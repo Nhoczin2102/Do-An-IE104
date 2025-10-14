@@ -5,16 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Công thức đã lưu</title>
     <link rel="stylesheet" href="myRecipe.css" />
+    <link rel="stylesheet" href="header.css" />
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body class='page'>
+<body>
     <home class='save-page'>
-            <!-- Tựa đề -->
-            <header class="save-header">
-                <h1 id="save-title">Công thức đã lưu</h1>
-                <button id="save-button">Đã lưu</button>
-            </header>
+        <header class="header">
+            <div class="container">
+                <div class="header-content">
+                    <!-- Logo -->
+                    <a href="index.html" class="logo">
+                        <!-- Placeholder for logo - replace with actual image -->
+                        <div class="logo-img" style="background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                            <img src = "./images/logo.svg" style = "width: 60px; height: 60px;"/>
+                        </div> 
+                        <h1>POTPAN</h1>
+                    </a>
+                    <!-- Thanh tìm kiếm -->
+                    <div class="search-bar">
+                        <input type="text" placeholder="Tìm kiếm công thức, nguyên liệu...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <!-- Điều hướng -->
+                    <div class="nav-links">
+                        <a href="index.html" class="active">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span>Trang chủ</span>
+                        </a>
+                        <a href="explore.html">
+                            <i class="fas fa-compass nav-icon"></i>
+                            <span>Khám phá</span>
+                        </a>
+                        <a href="#">
+                            <i class="fas fa-bell nav-icon"></i>
+                            <span>Thông báo</span>
+                        </a>
+                        <a href="messages.html">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Về chúng tôi</span>
+                        </a>
+                        <a href="messages.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Đăng nhập</span>
+                            <span>/</span>
+                            <span>Đăng ký</span>
+                        </a>
+                    </div>
+                </div>
+            </div>   
+        </header>
+            <div class="header-page">
+                <!-- Tựa đề -->
+                <div class="save-header">
+                    <h1 id="save-title">Công thức đã lưu</h1>
+                    <button id="save-button">Đã lưu</button>
+                </div>
+            </div>
+        <section class='page header-page'>
         <!-- Cac the hinh anh -->
             <div class="save-baiviet">
                 <!-- The 1 -->
@@ -138,6 +188,7 @@
                     </div>
                    </article>
             </div>
+        </section>
     </home>
 </body>
 </html>

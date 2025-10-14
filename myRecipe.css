@@ -1,5 +1,5 @@
 :root {
-    --orange: #FF782C;
+    --primary-color: #FF6967;
     --text: #3E2823;
     --card-border: #D9D9D9;
 }
@@ -13,7 +13,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: 'Fira Sans Condensed', system-ui, -apple-system, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #fff;
     line-height: 1.5;
 }
@@ -23,17 +23,18 @@ body {
     justify-content: center;
     padding: 24px;
 }
-
-.save-page {
-    max-width: 960px;
+.header-page {
+    margin-left: 400px;
 }
-
+.save-page {
+    max-width: 1040px;
+}
 .save-header {
     display: flex;
     justify-content:space-between;
     align-items: center;
-    gap:12px;
-    margin-bottom: 20px;
+    margin: 20px 0px;
+    max-width: 1040px;
 }
 #save-title {
     font-weight: 550;
@@ -49,9 +50,9 @@ body {
     border-radius: 10px;
     cursor: pointer;
 }
-.save-button:hover {
-    border-color: var(--orange);
-    color: var(--orange);
+#save-button:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .save-baiviet {
