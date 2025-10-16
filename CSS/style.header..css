@@ -25,12 +25,11 @@
 
         /* Header Styles */
         header {
-            background-color: var(--primary-color);
-            box-shadow: var(--shadow);
+            background-color: #FF6967;
             position: sticky;
             top: 0;
-            z-index: 1000;
-    
+            z-index: 100;
+            max-width: 100%;
         }
 
         .container {

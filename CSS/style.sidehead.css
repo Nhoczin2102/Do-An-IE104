@@ -1,0 +1,95 @@
+/* <!-- CSS bố cục tổng --> */
+    body {
+      background: #fff;
+      font-family: "Inter", sans-serif;
+      margin: 0;
+    }
+
+    main.page {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 280px 1fr 320px; /* trái - giữa - phải */
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Card bài viết ở giữa */
+    .feed-card {
+      background: #fff;
+      border: 2px dashed #6cb5ff;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .feed-card .composer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .feed-card .composer input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid #e6e6e6;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    .feed-card .tabs {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin: 10px 0 6px;
+      color: #222;
+      font-weight: 700;
+    }
+
+    .feed-card .btn-post {
+      margin-left: auto;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      background: #ff7b73;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Cột phải: đầu bếp đề xuất */
+    .right-card {
+      background: #fff;
+      border: 1px solid #efefef;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .04);
+    }
+
+    .right-card h3 {
+      margin: 0 0 8px 0;
+    }
+
+    .chef {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid #f2f2f2;
+    }
+
+    .chef:first-of-type {
+      border-top: none;
+    }
+
+    .chef img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .chef small {
+      color: #666;
+    }
