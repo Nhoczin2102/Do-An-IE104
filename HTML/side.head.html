@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>POTPAN - Mạng xã hội nấu ăn</title>
+
+  <!-- Font Awesome + CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../CSS/style.header..css">
+  <link rel="stylesheet" href="../CSS/style.sidebar.css">
+
+  <!-- CSS bố cục tổng -->
+  <style>
+    body {
+      background: #fff;
+      font-family: "Inter", sans-serif;
+      margin: 0;
+    }
+
+    main.page {
+      max-width: 1200px;
+      margin: 24px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 280px 1fr 320px; /* trái - giữa - phải */
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* Card bài viết ở giữa */
+    .feed-card {
+      background: #fff;
+      border: 2px dashed #6cb5ff;
+      border-radius: 14px;
+      padding: 16px;
+    }
+
+    .feed-card .composer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .feed-card .composer input {
+      flex: 1;
+      padding: 10px 14px;
+      border: 1px solid #e6e6e6;
+      border-radius: 20px;
+      outline: none;
+    }
+
+    .feed-card .tabs {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin: 10px 0 6px;
+      color: #222;
+      font-weight: 700;
+    }
+
+    .feed-card .btn-post {
+      margin-left: auto;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 16px;
+      cursor: pointer;
+      background: #ff7b73;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    /* Cột phải: đầu bếp đề xuất */
+    .right-card {
+      background: #fff;
+      border: 1px solid #efefef;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .04);
+    }
+
+    .right-card h3 {
+      margin: 0 0 8px 0;
+    }
+
+    .chef {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      padding: 10px 0;
+      border-top: 1px solid #f2f2f2;
+    }
+
+    .chef:first-of-type {
+      border-top: none;
+    }
+
+    .chef img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .chef small {
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+          <div class="logo-img" style="background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+            <img src="/ggg 1.svg" style="width: 60px; height: 60px;" alt="logo" />
+          </div>
+          <h1>POTPAN</h1>
+        </a>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="search-bar">
+          <input type="text" placeholder="Tìm kiếm công thức, nguyên liệu...">
+          <button class="search-btn">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+        <!-- Menu điều hướng -->
+        <div class="nav-links">
+          <a href="index.html" class="active">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="explore.html">
+            <i class="fas fa-compass nav-icon"></i>
+            <span>Khám phá</span>
+          </a>
+          <a href="#">
+            <i class="fas fa-bell nav-icon"></i>
+            <span>Thông báo</span>
+          </a>
+          <a href="messages.html">
+            <i class="fa-solid fa-users"></i>
+            <span>Về chúng tôi</span>
+          </a>
+          <a href="messages.html">
+            <i class="fa-solid fa-user"></i>
+            <span>Đăng nhập</span>
+            <span>/</span>
+            <span>Đăng ký</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== LAYOUT CHÍNH ==================== -->
+  <main class="page">
+
+    <!-- ===== SIDEBAR TRÁI ===== -->
+    <aside class="sidebar-card">
+      <div class="profile">
+        <img class="avatar" src="../img/image 1.png" alt="avatar">
+        <div>
+          <div class="name">Minh Nhựt</div>
+          <div class="handle">@nhutminh_amthuc</div>
+        </div>
+      </div>
+
+      <nav class="menu">
+        <a class="item active" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21a8 8 0 0 0-16 0" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Bảng tin
+        </a>
+        <a class="item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+          Hồ sơ của tôi
+        </a>
+        <a class="item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+          Công thức đã lưu
+        </a>
+        <a class="item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg>
+          Đầu bếp theo dõi
+        </a>
+        <a class="item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="1 4 1 10 7 10" />
+            <path d="M3.51 15a9 9 0 1 0 .49-9.36L1 10" />
+          </svg>
+          Hoạt động gần đây
+        </a>
+        <a class="item" href="#">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3" />
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 7.04 3.3l.06.06c.47.47 1.14.61 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09c0 .66.39 1.26 1 1.51h.08c.68.28 1.35.14 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.08c.26.61.4 1.28.4 1.95s-.14 1.34-.4 1.95z" />
+          </svg>
+          Cài đặt
+        </a>
+      </nav>
+    </aside>
+
+    <!-- ===== GIỮA: Đăng bài & bài viết ===== -->
+    <section>
+      <div class="feed-card">
+        <div class="composer">
+          <img src="../img/image 1.png" alt="" style="width:40px;height:40px;border-radius:50%">
+          <input type="text" placeholder="Chia sẻ công thức mới của bạn...">
+        </div>
+        <div class="tabs">
+          <span>Ảnh</span>
+          <span>Video</span>
+          <span>🍴 Công thức</span>
+          <button class="btn-post">Đăng</button>
+        </div>
+      </div>
+
+      <!-- Bài viết demo -->
+      <article style="margin-top:16px;border:1px solid #eaeaea;border-radius:14px;padding:14px;background:#fff;">
+        <div style="display:flex;gap:10px;align-items:center;margin-bottom:8px;">
+          <img src="https://i.pravatar.cc/100?img=32" style="width:44px;height:44px;border-radius:50%">
+          <div>
+            <strong>Chí Thành</strong>
+            <div style="color:#777;font-size:14px;">2 giờ trước</div>
+          </div>
+        </div>
+        <p style="margin:8px 0 12px">Hôm nay mình sẽ chia sẻ công thức nấu ăn món bánh ngọt này nhé, chúc mọi người thành công thực hiện.</p>
+        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?q=80&w=1200&auto=format&fit=crop"
+          style="width:100%;border-radius:12px">
+      </article>
+    </section>
+
+    <!-- ===== PHẢI: Đầu bếp đề xuất ===== -->
+    <aside class="right-card">
+      <h3>Đầu bếp đề xuất</h3>
+      <div class="chef">
+        <img src="https://i.pravatar.cc/100?img=5" alt="">
+        <div><strong>Hoàng Tú</strong><br><small>Chuyên các món nướng</small></div>
+      </div>
+      <div class="chef">
+        <img src="https://i.pravatar.cc/100?img=14" alt="">
+        <div><strong>Văn Tài</strong><br><small>Các món bánh</small></div>
+      </div>
+      <div class="chef">
+        <img src="https://i.pravatar.cc/100?img=47" alt="">
+        <div><strong>Ngọc Trâm</strong><br><small>Các món chay</small></div>
+      </div>
+    </aside>
+
+  </main>
+</body>
+</html>
