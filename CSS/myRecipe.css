@@ -23,9 +23,6 @@ body {
     justify-content: center;
     padding: 24px;
 }
-.header-page {
-    margin-left: 400px;
-}
 .save-page {
     max-width: 1040px;
 }
@@ -68,6 +65,7 @@ body {
     border-color: var(--card-border);
     border-radius: 20px;
     overflow: hidden;
+    max-width:fit-content;
 }
 .recipe-card:hover{
     cursor: pointer;
@@ -97,6 +95,9 @@ body {
 #recipe-text {
     color: var(--text);
     font-size: 20px;
+}
+.saved-card {
+    margin: 10px 40px;
 }
 
 @media (max-width: 640px) {
