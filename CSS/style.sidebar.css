@@ -1,7 +1,7 @@
 
     :root{
-      --border: #2aa3ff;         /* viền xanh */
-      --bg-card:#ffecec;         /* nền hồng nhạt */
+      --border: #ffffff;         /* viền xanh */
+      --bg-card:#ffffff;         /* nền hồng nhạt */
       --accent:#ff7b73;          /* màu mục đang chọn */
       --text:#111;
       --muted:#777;
@@ -12,7 +12,7 @@
       min-height:100vh;
       display:grid;
       place-items:center;
-      background:#f6f7fb;
+      background:#ffffff;
       font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
       color:var(--text);
     }
