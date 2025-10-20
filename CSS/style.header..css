@@ -29,13 +29,12 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            max-width: 100%;
+            max-width: 150%;
         }
 
         .container {
-            max-width: 100%;
+            max-width: 150%;
             display: flex;
-           
             padding: 0 20px;
         }
 
