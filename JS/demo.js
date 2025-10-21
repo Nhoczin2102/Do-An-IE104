@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   feed.innerHTML = `
     <div class="feed-card">
       <div class="composer">
-        <img src="../img/image 1.png" alt="" style="width:40px;height:40px;border-radius:50%">
+        <img src="../assets/images/image 1.png" alt="" style="width:40px;height:40px;border-radius:50%">
         <input type="text" placeholder="Chia sẻ công thức mới của bạn...">
       </div>
       <div class="tabs">

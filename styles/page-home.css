@@ -1,0 +1,9 @@
+main.page {
+  max-width: 1200px;
+  margin: 24px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 280px 1fr 320px; /* trái - giữa - phải */
+  gap: 24px;
+  align-items: start;
+}
