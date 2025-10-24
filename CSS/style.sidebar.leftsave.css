@@ -1,18 +1,5 @@
-:root {
-  --border: #ffffff;
-  /* viền xanh */
-  --bg-card: #ffffff;
-  /* nền hồng nhạt */
-  --accent: #ff7b73;
-  /* màu mục đang chọn */
-  --text: #111;
-  --muted: #777;
-  --radius: 16px;
-}
-
-* {
-  box-sizing: border-box
-}
+/* sidebar.css */
+/* Đã xóa :root và * vì đã có trong header.css */
 
 .sidebar-card {
   margin-top: 10px;
@@ -50,7 +37,7 @@
 }
 
 .handle {
-  color: #777;
+  color: #777; 
   font-weight: 500;
   margin-top: 2px
 }
@@ -69,13 +56,13 @@
   padding: 10px 12px;
   border-radius: 12px;
   text-decoration: none;
-  color: var(--text);
+  color: var(--text-on-light);
   transition: transform .06s ease;
   font-weight: 600;
 }
 
 .item:hover {
-  background: #ffd7d4;
+  background: var(--background-light);
 }
 
 .item svg {
@@ -88,5 +75,3 @@
 .item.active svg {
   color: #000
 }
-
-/* theo ảnh: icon vẫn đen khi active */

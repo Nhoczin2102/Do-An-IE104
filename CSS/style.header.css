@@ -144,7 +144,6 @@
             font-size: 20px;
         }
 
-        /* Demo Content Styles */
         .demo-content {
             padding: 60px 20px;
             text-align: center;
@@ -198,7 +197,7 @@
             margin: 0;
         }
 
-        /* Mobile Responsive */
+        
         @media (max-width: 768px) {
             .header-content {
                 flex-wrap: wrap;
