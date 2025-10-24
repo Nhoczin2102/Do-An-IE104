@@ -1,0 +1,70 @@
+.sidebar {}
+
+.sidebar__card {
+    background: var(--bg);
+    border: 2px solid #fff;
+    border-radius: var(--radius-lg);
+    padding: 18px 16px 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+}
+
+.sidebar__profile {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 14px;
+}
+
+.sidebar__avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #ffd0d0;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, .04) inset;
+}
+
+.sidebar__name {
+    font-weight: 800;
+    font-size: 18px;
+    line-height: 1.1;
+}
+
+.sidebar__handle {
+    color: var(--muted);
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.sidebar__menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.sidebar__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+    color: var(--text);
+    transition: transform .06s ease, background .15s ease;
+    font-weight: 700;
+}
+
+.sidebar__item:hover {
+    background: #ffd7d4;
+}
+
+.sidebar__item--active {
+    background: #ffebe9;
+}
+
+.sidebar__icon {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+}
