@@ -1,0 +1,91 @@
+/* components/_feed.css: CSS cho bố cục 3 cột (main.page), Feed Card và Right Card */
+
+main.page {
+    max-width: 1200px;
+    margin: 24px auto;
+    padding: 0 16px;
+    display: grid;
+    /* Định nghĩa bố cục 3 cột: Trái (280px) - Giữa (Mở rộng) - Phải (320px) */
+    grid-template-columns: 280px 1fr 320px; 
+    gap: 24px;
+    align-items: start;
+}
+
+/* Card Bài Viết (Feed Card) */
+.feed-card {
+    background: #fff;
+    border: 2px dashed #6cb5ff;
+    border-radius: 14px;
+    padding: 16px;
+}
+
+.feed-card .composer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.feed-card .composer input {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #e6e6e6;
+    border-radius: 20px;
+    outline: none;
+}
+
+.feed-card .tabs {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin: 10px 0 6px;
+    color: #222;
+    font-weight: 700;
+}
+
+.feed-card .btn-post {
+    margin-left: auto;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 16px;
+    cursor: pointer;
+    background: var(--accent); /* Dùng biến accent */
+    color: #fff;
+    font-weight: 700;
+}
+
+/* Cột Phải (Right Card - Đầu bếp đề xuất) */
+.right-card {
+    background: #fff;
+    border: 1px solid #efefef;
+    border-radius: 16px;
+    padding: 16px 18px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, .04);
+}
+
+.right-card h3 {
+    margin: 0 0 8px 0;
+}
+
+.chef {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #f2f2f2;
+}
+
+.chef:first-of-type {
+    border-top: none;
+}
+
+.chef img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.chef small {
+    color: #666;
+}
