@@ -50,7 +50,7 @@ body {
 
 .save-baiviet {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 24px; 
 }
 
@@ -58,7 +58,7 @@ body {
     background-color: #fff;
     border-width: 3px;
     border-style: solid;
-    border-color: var(--card-border);
+    border-color: var(--primary-color);
     border-radius: 20px;
     overflow: hidden;
     max-width:fit-content;
