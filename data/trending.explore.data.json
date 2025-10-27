@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Cánh gà chiên nước mắm",
+        "image": "https://placehold.co/600x400/fec89a/2b2b2b?text=Cánh+gà",
+        "ingredients": "Cánh gà, nước mắm, tỏi, ớt"
+    },
+    {
+        "id": 2,
+        "name": "Bún chả Hà Nội",
+        "image": "https://placehold.co/600x400/dde5b6/2b2b2b?text=Bún+chả",
+        "ingredients": "Bún, thịt ba chỉ, chả viên, rau sống"
+    },
+    {
+        "id": 3,
+        "name": "Trà đào cam sả",
+        "image": "https://placehold.co/600x400/ffb5a7/2b2b2b?text=Trà+đào",
+        "ingredients": "Trà, đào ngâm, cam, sả"
+    },
+    {
+        "id": 4,
+        "name": "Bánh Tiramisu",
+        "image": "https://placehold.co/600x400/d5bdaf/2b2b2b?text=Tiramisu",
+        "ingredients": "Mascarpone, trứng, cà phê, bánh"
+    }
+]
