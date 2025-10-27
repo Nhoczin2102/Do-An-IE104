@@ -4,7 +4,6 @@
 .sidebar-card {
   margin-top: 10px;
   width: 300px;
-  /* bạn có thể đổi kích thước tùy ý */
   background: #ffffff;
   border: 3px;
   border-radius: 10px;
@@ -72,6 +71,7 @@
   color: #000
 }
 
-.item.active svg {
-  color: #000
+.item.active {
+  background: #FF6967;
+  color: #ffffff;
 }
