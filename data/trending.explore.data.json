@@ -3,24 +3,32 @@
         "id": 1,
         "name": "Cánh gà chiên nước mắm",
         "image": "https://placehold.co/600x400/fec89a/2b2b2b?text=Cánh+gà",
-        "ingredients": "Cánh gà, nước mắm, tỏi, ớt"
+        "ingredients": "Cánh gà, nước mắm, tỏi, ớt",
+        "chef": "Hoàng Tú",
+        "time": "2 giờ trước"
     },
     {
         "id": 2,
         "name": "Bún chả Hà Nội",
         "image": "https://placehold.co/600x400/dde5b6/2b2b2b?text=Bún+chả",
-        "ingredients": "Bún, thịt ba chỉ, chả viên, rau sống"
+        "ingredients": "Bún, thịt ba chỉ, chả viên, rau sống",
+        "chef": "Bà Mư",
+        "time": "4 giờ trước"
     },
     {
         "id": 3,
         "name": "Trà đào cam sả",
         "image": "https://placehold.co/600x400/ffb5a7/2b2b2b?text=Trà+đào",
-        "ingredients": "Trà, đào ngâm, cam, sả"
+        "ingredients": "Trà, đào ngâm, cam, sả",
+        "chef": "Ngọc Trâm",
+        "time": "5 giờ trước"
     },
     {
         "id": 4,
         "name": "Bánh Tiramisu",
         "image": "https://placehold.co/600x400/d5bdaf/2b2b2b?text=Tiramisu",
-        "ingredients": "Mascarpone, trứng, cà phê, bánh"
+        "ingredients": "Mascarpone, trứng, cà phê, bánh",
+        "chef": "Văn Tài",
+        "time": "1 ngày trước"
     }
 ]

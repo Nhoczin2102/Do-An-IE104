@@ -1,5 +1,4 @@
-/* sidebar.css */
-/* Đã xóa :root và * vì đã có trong header.css */
+
 
 .sidebar-card {
   margin-top: 10px;
@@ -74,4 +73,5 @@
 .item.active {
   background: #FF6967;
   color: #ffffff;
+  
 }
