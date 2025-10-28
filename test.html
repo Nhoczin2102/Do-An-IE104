@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Chúng Tôi - Ẩm Thực Tinh Hoa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Biến màu sắc */
+        :root {
+            --primary-color: #FF6967;
+            --primary-dark: #e55c5a;
+            --secondary-color: #FFD166;
+            --accent-color: #06D6A0;
+            --dark-color: #333333;
+            --light-color: #F8F9FA;
+            --text-color: #444444;
+            --text-light: #777777;
+            --white: #FFFFFF;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Reset và cài đặt cơ bản */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+        }
+
+        .section-padding--light {
+            background-color: var(--light-color);
+        }
+
+        /* Header */
+        .main-header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: flex-end;
+            padding: 20px 0;
+        }
+
+        .nav__link {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            margin-left: 30px;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav__link:hover {
+            color: var(--primary-color);
+        }
+
+        .nav__link--active {
+            color: var(--primary-color);
+        }
+
+        .nav__link--active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+            padding: 150px 0;
+        }
+
+        .hero__title {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero__subtitle {
+            font-size: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title--primary {
+            color: var(--primary-color);
+        }
+
+        .section-title--center {
+            text-align: center;
+            width: 100%;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+        }
+
+        .section-title--center::after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* About Section */
+        .about__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about__text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .mission-vision {
+            margin-top: 30px;
+        }
+
+        .mission-vision__title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin: 25px 0 10px;
+        }
+
+        .about__image {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .image-placeholder {
+            height: 400px;
+            background: linear-gradient(rgba(255, 105, 103, 0.1), rgba(255, 105, 103, 0.2)), url('https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Values Section */
+        .values__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .value-card__icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .value-card__title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark-color);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(rgba(255, 105, 103, 0.9), rgba(255, 105, 103, 0.9)), url('https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .cta-section__box {
+            max-width: 800px;
+        }
+
+        .cta__title {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .btn--primary {
+            background-color: var(--white);
+            color: var(--primary-color);
+        }
+
+        .btn--primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .values__grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero__title {
+                font-size: 2.5rem;
+            }
+
+            .hero__subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .values__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .navigation {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-section {
+                padding: 100px 0;
+            }
+
+            .section-padding {
+                padding: 60px 0;
+            }
+
+            .cta__title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <nav class="navigation">
+                <a href="about.html" class="nav__link nav__link--active">Về Chúng Tôi</a>
+                <a href="contact.html" class="nav__link">Liên Hệ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="container">
+                <h1 class="hero__title">Câu Chuyện Ẩm Thực Của Chúng Tôi</h1>
+                <p class="hero__subtitle">Khởi nguồn từ đam mê hương vị, kiến tạo bằng sự tận tâm với ẩm thực.</p>
+            </div>
+        </section>
+
+        <section class="about-section section-padding">
+            <div class="container">
+                <div class="about__grid">
+                    <div class="about__text">
+                        <h2 class="section-title section-title--primary">Sứ Mệnh & Tầm Nhìn</h2>
+                        <p>Chúng tôi được thành lập với mục tiêu trở thành cầu nối vững chắc giữa những tinh hoa ẩm thực và thực khách, mang đến những trải nghiệm hương vị đột phá và dịch vụ tuyệt vời. Sứ mệnh của chúng tôi là <strong>nâng tầm giá trị</strong> của mỗi bữa ăn.</p>
+                        
+                        <div class="mission-vision">
+                            <h3 class="mission-vision__title">Sứ Mệnh</h3>
+                            <p>Tạo ra các món ăn chất lượng cao, thân thiện và bền vững, góp phần xây dựng một cộng đồng ẩm thực tốt đẹp hơn.</p>
+                            
+                            <h3 class="mission-vision__title">Tầm Nhìn</h3>
+                            <p>Trở thành nhà hàng hàng đầu trong lĩnh vực ẩm thực vào năm 2030, được công nhận về sự sáng tạo và độ tin cậy.</p>
+                        </div>
+                    </div>
+                    <div class="about__image">
+                        <div class="image-placeholder">Không Gian Ẩm Thực Của Chúng Tôi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="values-section section-padding section-padding--light">
+            <div class="container">
+                <h2 class="section-title section-title--center">Giá Trị Cốt Lõi</h2>
+                <div class="values__grid">
+                    
+                    <div class="value-card">
+                        <i class="fas fa-heart value-card__icon"></i>
+                        <h3 class="value-card__title">Tận Tâm</h3>
+                        <p>Luôn đặt trải nghiệm của thực khách lên hàng đầu, chế biến với tất cả sự nhiệt huyết và tình yêu ẩm thực.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <i class="fas fa-lightbulb value-card__icon"></i>
+                        <h3 class="value-card__title">Sáng Tạo</h3>
+                        <p>Không ngừng tìm kiếm và sáng tạo các hương vị mới, độc đáo và hấp dẫn cho thực đơn.</p>
+                    </div>
+
+                    <div class="value-card">
+                        <i class="fas fa-award value-card__icon"></i>
+                        <h3 class="value-card__title">Chất Lượng</h3>
+                        <p>Cam kết sử dụng nguyên liệu tươi ngon nhất và kỹ thuật chế biến tinh tế trong mỗi món ăn.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section section-padding">
+            <div class="container cta-section__box">
+                <h2 class="cta__title">Bạn đã sẵn sàng thưởng thức ẩm thực của chúng tôi?</h2>
+                <a href="contact.html" class="btn btn--primary">ĐẶT BÀN NGAY</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Nhà Hàng Ẩm Thực Tinh Hoa. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
