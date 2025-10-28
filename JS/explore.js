@@ -4,9 +4,9 @@ document.addEventListener('DOMContentLoaded',() => {
     const recipesPerLoad = 6
 
     const chefsContainer = document.querySelector('.explore-chefs')
-    const trendingContainer = document.querySelector('explore-trending')
-    const allRecipesContainer = document.querySelector('explore-allrecipes')
-    const loadMoreBtn = document.querySelector('load-more-btn')
+    const trendingContainer = document.querySelector('.explore-trending')
+    const allRecipesContainer = document.querySelector('.explore-allrecipes')
+    const loadMoreBtn = document.querySelector('.load-more-btn')
     // 1. Nut xem them
     function updateLoadMoreButton() {
         if (currentDisplayCount >= allRecipesData.length) {
