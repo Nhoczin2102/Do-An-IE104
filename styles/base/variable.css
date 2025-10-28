@@ -11,9 +11,9 @@
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
   /* Biến từ style.sidebar.css (sidebar-specific overrides) */
-  --border: #ffffff; /* viền xanh (Ghi chú: Giá trị này là trắng, không phải xanh) */
-  --bg-card: #ffffff; /* nền hồng nhạt (Ghi chú: Giá trị này là trắng) */
-  --accent: #ff7b73; /* màu mục đang chọn */
+  --border: #ffffff; 
+  --bg-card: #ffffff;
+  --accent: #ff7b73; 
   --text: #111;
   --muted: #777;
   --radius: 16px;
