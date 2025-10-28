@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded',() => {
     const chefsContainer = document.querySelector('.explore-chefs')
     const trendingContainer = document.querySelector('.explore-trending')
     const allRecipesContainer = document.querySelector('.explore-allrecipes')
-    const loadMoreBtn = document.querySelector('.load-more-btn')
+    const loadMoreBtn = document.querySelector('.btn-load-more')
     // 1. Nut xem them
     function updateLoadMoreButton() {
         if (currentDisplayCount >= allRecipesData.length) {

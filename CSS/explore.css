@@ -68,9 +68,10 @@ body {
 }
 .recipe-anh img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
     display: block;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    background-color: var(--bg-light-gray);
 }
 .recipe-card .recipe-body {
     padding: 4px 12px 6px 16px;
@@ -94,74 +95,125 @@ body {
     font-weight: 450;
 }
 /* Trending thanh cuon */
-.post-scroll {
-    /* 1. Thay đổi cốt lõi: Chuyển sang cuộn ngang */
-    overflow-x: auto;   /* Bật cuộn ngang khi cần */
-    overflow-y: hidden; /* Ẩn cuộn dọc */
-    
-    /* 2. Bắt buộc: Sắp xếp nội dung bên trong theo hàng ngang */
+.horizontal-scroll-wrapper {
     display: flex;
-    flex-wrap: nowrap; /* Không cho các item xuống dòng */
+    overflow-x: auto;
+    gap: 20px;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
 
-    /* 3. Thay đổi đệm: Chuyển padding xuống dưới cho thanh cuộn */
-    padding-bottom: 6px; /* Thay vì padding-right */
+.horizontal-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
 
-    /* 4. Giữ nguyên các thuộc tính chung */
-    max-width: 100%; /* Giới hạn chiều rộng của container */
+.horizontal-scroll-wrapper .recipe-card {
+    flex: 0 0 300px;
+}
+/* category */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 16px;
+}
+.category-card {
+    background: var(--background-light);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.category-border {
+    border: var(--primary-color) 3px solid;
+}
+.category-card:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-3px);
+}
+.category-card i {
+    font-size: 28px;
+    margin-bottom: 12px;
+    color: var(--primary-color);
+}
+.category-card:hover i {
+    color: white;
+}
+.category-card h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+.category-card:hover h4 {
+    color: white;
+}
+/* Recipe Grid */
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+/* Chefs Grid */
+.chefs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+.chef-card {
+    background: #fff;
     border-radius: 16px;
-    background: #f8f9fa;
-    scroll-behavior: smooth;
-    position: relative; /* Giữ nguyên cho ::before/::after */
-
-    /* 5. Giữ nguyên style thanh cuộn */
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) transparent;
-
-    /* 6. Xóa thuộc tính chỉ dành cho cuộn dọc */
-    /* scrollbar-gutter: stable both-edges; (Không còn cần thiết) */
-    /* max-height: ...; (Không còn cần thiết) */
+    box-shadow: var(--shadow);
+    padding: 20px;
+    text-align: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: var(--primary-color) 2px solid;
 }
-
-/* * 7. Thay đổi ::before/::after để làm "mask" che góc trái/phải 
- * thay vì trên/dưới.
- */
-.post-scroll::before,
-.post-scroll::after {
-    content: "";
-    position: sticky; /* Dính vào cạnh khi cuộn */
-    z-index: 1;
-    pointer-events: none;
-    
-    /* Phải có nền để che nội dung bên dưới */
-    background: #f8f9fa; 
-
-    /* Đổi từ height -> width */
-    width: 14px;
-    
-    /* * Chiếm 100% chiều cao của container.
-     * Chúng ta set top/bottom để nó co giãn
-     */
-    top: 0;
-    bottom: 0;
-    
-    /* * Vì .post-scroll là flex, ::before/::after cũng là flex item.
-     * Set flex-shrink: 0 để chúng không bị co lại.
-     */
-    flex-shrink: 0;
+.chef-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
-
-.post-scroll::before {
-    left: 0; /* Dính vào bên trái */
-    
-    /* Đổi border-radius cho góc trái */
-    border-top-left-radius: 16px;
-    border-bottom-left-radius: 16px;
+.chef-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text-on-light);
+    font-size: 1.2rem;
 }
-
-.post-scroll::after {
-    right: 0; /* Dính vào bên phải */
-    
-    /* Đổi border-radius cho góc phải */
-    border-top-right-radius: 16px;
-    border-bottom-right-radius: 16px;
+.chef-name {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+.chef-specialty {
+    font-size: 0.9rem;
+    color: var(--text-on-light);
+}
+/* Load More Button */
+.load-more-container {
+    justify-items: center;
+    margin-top: 32px;
+}
+.btn-load-more {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-on-light);
+    background: #fff;
+    border: 2px solid #ccc;
+    border-radius: 99px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-load-more:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
