@@ -2,25 +2,25 @@
     {
         "id": 1,
         "name": "Hoàng Tú",
-        "avatar": "HT",
+        "img": "/images/explore/chefs/HT.png",
         "specialty": "Chuyên các món nướng"
     },
     {
         "id": 2,
         "name": "Văn Tài",
-        "avatar": "VT",
+        "img": "/images/explore/chefs/VT.png",
         "specialty": "Chuyên các món bánh"
     },
     {
         "id": 3,
         "name": "Ngọc Trâm",
-        "avatar": "NT",
+        "img": "/images/explore/chefs/NT.png",
         "specialty": "Chuyên các món chay"
     },
     {
         "id": 4,
-        "name": "Bà Mư",
-        "avatar": "BM",
-        "specialty": "Chuyên món truyền thống"
+        "name": "Minh Trang",
+        "img": "/images/explore/chefs/MT.png",
+        "specialty": "Chuyên các món cuốn"
     }
 ]

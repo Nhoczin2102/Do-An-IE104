@@ -67,7 +67,7 @@ body {
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 .recipe-anh img {
-    width: 100%;
+    width: 105%;
     display: block;
     aspect-ratio: 16 / 10;
     object-fit: cover;

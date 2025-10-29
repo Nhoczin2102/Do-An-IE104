@@ -1,98 +1,50 @@
 [
     {
         "id": 1,
-        "name": "Gỏi cuốn",
-        "image": "https://placehold.co/600x400/d4e09b/2b2b2b?text=Gỏi+cuốn",
-        "ingredients": "Bánh tráng, rau, tôm, thịt heo",
-        "chef": "Bà Mư",
+        "name": "Bánh mì thịt",
+        "image": "/images/explore/trending/trend1.png",
+        "ingredients": "Bánh mì, rau thơm, thịt, cải chua",
+        "chef": "Minh Quân",
         "time": "2 giờ trước"
     },
     {
         "id": 2,
-        "name": "Canh chua cá lóc",
-        "image": "https://placehold.co/600x400/f9d5bb/2b2b2b?text=Canh+chua",
-        "ingredients": "Cá lóc, cà chua, ớt, đậu tây",
+        "name": "Tôm rim thịt",
+        "image": "/images/explore/trending/trend2.png",
+        "ingredients": "thịt heo, ớt, tôm",
         "chef": "Bà Mư",
         "time": "4 giờ trước"
     },
     {
         "id": 3,
-        "name": "Thịt kho trứng",
-        "image": "https://placehold.co/600x400/c7a693/2b2b2b?text=Thịt+kho",
-        "ingredients": "Thịt ba chỉ, trứng vịt, nước dừa",
-        "chef": "Hoàng Tú",
+        "name": "Bún chả giò",
+        "image": "/images/explore/trending/trend3.png",
+        "ingredients": "Bún, chả giò, đậu phộng, rau",
+        "chef": "Minh Trang",
         "time": "5 giờ trước"
     },
     {
         "id": 4,
-        "name": "Salad ức gà",
-        "image": "https://placehold.co/600x400/adc178/2b2b2b?text=Salad",
-        "ingredients": "Ức gà, xà lách, cà chua bi, sốt",
-        "chef": "Ngọc Trâm",
+        "name": "Bánh kếp",
+        "image": "/images/explore/trending/trend4.png",
+        "ingredients": "Bột, mật ong, trứng, sữa",
+        "chef": "Văn Tài",
         "time": "6 giờ trước"
     },
     {
         "id": 5,
-        "name": "Bò lúc lắc",
-        "image": "https://placehold.co/600x400/ffb5a7/2b2b2b?text=Bò+lúc+lắc",
-        "ingredients": "Thịt bò, ớt chuông, hành tây",
-        "chef": "Hoàng Tú",
+        "name": "Trà đào cam sả",
+        "image": "/images/explore/trending/trend5.png",
+        "ingredients": "Trà, cam, nước đào",
+        "chef": "Minh Uyên",
         "time": "1 ngày trước"
     },
     {
         "id": 6,
-        "name": "Cá kho tộ",
-        "image": "https://placehold.co/600x400/d5bdaf/2b2b2b?text=Cá+kho",
-        "ingredients": "Cá lóc, thịt ba chỉ, nước dừa",
-        "chef": "Bà Mư",
-        "time": "1 ngày trước"
-    },
-    {
-        "id": 7,
-        "name": "Bánh mì thịt nướng",
-        "image": "https://placehold.co/600x400/e9c46a/2b2b2b?text=Bánh+mì",
-        "ingredients": "Bánh mì, thịt nướng, rau sống, pate",
+        "name": "Tiramisu",
+        "image": "/images/explore/trending/trend6.png",
+        "ingredients": "Bánh, bột, cacao",
         "chef": "Văn Tài",
-        "time": "2 ngày trước"
-    },
-    {
-        "id": 8,
-        "name": "Chè đậu đen",
-        "image": "https://placehold.co/600x400/2a9d8f/2b2b2b?text=Chè+đậu",
-        "ingredients": "Đậu đen, đường, nước cốt dừa",
-        "chef": "Ngọc Trâm",
-        "time": "2 ngày trước"
-    },
-    {
-        "id": 9,
-        "name": "Phở bò Hà Nội",
-        "image": "https://placehold.co/600x400/a2d2ff/2b2b2b?text=Phở+bò",
-        "ingredients": "Bánh phở, thịt bò, gia vị phở",
-        "chef": "Hoàng Tú",
-        "time": "3 ngày trước"
-    },
-    {
-        "id": 10,
-        "name": "Bánh xèo",
-        "image": "https://placehold.co/600x400/ffafcc/2b2b2b?text=Bánh+xèo",
-        "ingredients": "Bột gạo, tôm, thịt, giá đỗ",
-        "chef": "Bà Mư",
-        "time": "3 ngày trước"
-    },
-    {
-        "id": 11,
-        "name": "Gà nướng muối ớt",
-        "image": "https://placehold.co/600x400/cad2c5/2b2b2b?text=Gà+nướng",
-        "ingredients": "Gà, muối, ớt, gia vị",
-        "chef": "Hoàng Tú",
-        "time": "4 ngày trước"
-    },
-    {
-        "id": 12,
-        "name": "Chả giò",
-        "image": "https://placehold.co/600x400/ffd6ff/2b2b2b?text=Chả+giò",
-        "ingredients": "Thịt heo, bánh tráng, miến, nấm",
-        "chef": "Bà Mư",
-        "time": "4 ngày trước"
+        "time": "1 ngày trước"
     }
 ]

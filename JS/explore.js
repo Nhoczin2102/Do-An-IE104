@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded',() => {
             const chefs = await chefRes.json()
             chefsContainer.innerHTML = chefs.map(chef =>`
                 <div class='chef-card' data-chef-id='${chef.id}'>
-                    <div class="chef-avatar">${chef.avatar}</div>
+                    <img src="${chef.img}" alt="${chef.name}" class="chef-avatar" />
                     <div class="chef-name">${chef.name}</div>
                     <div class="chef-specialty">${chef.specialty}</div>
                 </div>
