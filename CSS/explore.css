@@ -59,7 +59,6 @@ body {
     border-color: var(--primary-color);
     border-radius: 20px;
     overflow: hidden;
-    max-width:fit-content;
 }
 .recipe-card:hover{
     cursor: pointer;
@@ -100,14 +99,22 @@ body {
     overflow-x: auto;
     gap: 20px;
     padding-bottom: 10px;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 }
 
 .horizontal-scroll-wrapper::-webkit-scrollbar {
-    display: none;
+    height: 8px; 
 }
 
+.horizontal-scroll-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1; /* Màu nền rãnh cuộn */
+}
+.horizontal-scroll-wrapper::-webkit-scrollbar-thumb {
+    scrollbar-width: thin;    /* giảm mờ */                
+    border-radius: 4px;
+}
+.horizontal-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color); /* Màu thanh cuộn */
+}
 .horizontal-scroll-wrapper .recipe-card {
     flex: 0 0 300px;
 }
