@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hồ sơ tài khoản - PotPan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --brand:#ff6967;
+      --surface:#ffffff;
+      --shadow:0 8px 30px rgba(0,0,0,.12);
+      --radius:20px;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family:'Roboto',sans-serif;
+      background:#ff6967;
+      color:#222;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      height:100vh;
+      padding:24px;
+    }
+    .profile-card{
+      background:var(--surface);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      width:min(100%, 600px);
+      padding:40px 32px;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      animation: fadeIn .5s ease;
+    }
+    .profile-header img{
+      width:90px; height:90px;
+      border-radius:50%;
+      border:3px solid var(--brand);
+      object-fit:cover;
+      margin-bottom:10px;
+    }
+    .profile-header h2{
+      color:var(--brand);
+      font-size:28px;
+      margin-bottom:6px;
+    }
+    .profile-info{
+      background:#fff7f7;
+      border-radius:14px;
+      padding:18px 20px;
+      text-align:left;
+      box-shadow: inset 0 0 0 1.5px #ffd2d1;
+    }
+    .profile-info p{
+      font-size:16px;
+      margin:8px 0;
+    }
+    .btn{
+      background:var(--brand);
+      color:#fff;
+      border:none;
+      border-radius:10px;
+      padding:14px 18px;
+      font-weight:700;
+      font-size:16px;
+      cursor:pointer;
+      transition: background .2s ease, transform .06s ease;
+      width:100%;
+    }
+    .btn:hover{ background:#ff534e; }
+    .btn:active{ transform:translateY(1px); }
+    @keyframes fadeIn{ from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);} }
+  </style>
+</head>
+<body>
+  <div class="profile-card">
+    <div class="profile-header">
+      <img src="avatar.png" alt="User Avatar" />
+      <h2 id="userName">Người dùng</h2>
+      <p id="userEmail" style="color:#555;"></p>
+    </div>
+
+    <div class="profile-info">
+      <p><strong>Tình trạng tài khoản:</strong> Hoạt động</p>
+      <p><strong>Tham gia ngày:</strong> 03/11/2025</p>
+      <p><strong>Mô tả:</strong> Người dùng yêu ẩm thực, đam mê nấu nướng cùng PotPan 🍳</p>
+    </div>
+
+    <button class="btn" id="logoutBtn">Đăng xuất</button>
+  </div>
+
+  <script>
+    // Lấy thông tin người dùng hiện tại
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+    if(!currentUser){
+      window.location.href = 'index.html'; // quay về đăng nhập nếu chưa đăng nhập
+    } else {
+      document.getElementById('userName').textContent = currentUser.name;
+      document.getElementById('userEmail').textContent = currentUser.email;
+    }
+
+    // Đăng xuất
+    document.getElementById('logoutBtn').addEventListener('click', ()=>{
+      localStorage.removeItem('currentUser');
+      window.location.href = 'index.html';
+    });
+  </script>
+</body>
+</html>
