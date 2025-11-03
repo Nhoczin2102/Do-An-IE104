@@ -3,6 +3,7 @@
   box-shadow: var(--shadow);
   position: sticky;
   top: 0;
+  height: fit-content;
   z-index: 1000;
 }
 
@@ -52,7 +53,7 @@
   position: relative;
   flex: 1;
   max-width: 600px;
-  margin: 0 30px;
+  margin: 0 80px;
 }
 
 .header-search_bar input {
@@ -95,7 +96,7 @@
 .header-nav_links {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 40px;
 }
 
 .header-nav_links a {
@@ -105,7 +106,7 @@
   align-items: center;
   gap: 10px;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 18px;
   padding: 8px 12px;
   border-radius: 8px;
   transition: all 0.3s ease;
@@ -124,32 +125,3 @@
   font-size: 20px;
 }
 
-/* Mobile Responsive (Từ style.header..css và style.sidebar.css) */
-@media (max-width: 768px) {
-  .header-content {
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .header-logo h1 {
-    font-size: 24px;
-  }
-
-  .header-search_bar {
-    order: 3;
-    margin: 10px 0 0;
-    max-width: 100%;
-  }
-
-  .header-nav_links  {
-    gap: 15px;
-  }
-
-  .header-nav_links a span {
-    display: none;
-  }
-
-  .header-nav_links  a .nav-icon {
-    font-size: 22px;
-  }
-}

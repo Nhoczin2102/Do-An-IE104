@@ -1,0 +1,192 @@
+/* ===============================
+   POTPAN — HOME Responsive System (Tối ưu hóa)
+   =============================== */
+
+/* --- Biến CSS cho Kích thước & Khoảng cách Linh hoạt (Fluid Sizing) --- */
+:root {
+  /* Khoảng cách linh hoạt: Min 20px, Max 32px */
+  --gap-size: clamp(20px, 2.5vw, 32px);
+  /* Margin/Padding linh hoạt: Min 16px, Max 32px */
+  --margin-padding: clamp(16px, 3vw, 32px);
+  /* Chiều rộng sidebar trái linh hoạt: 240px -> 300px */
+  --sidebar-left-width: clamp(240px, 15vw, 300px);
+  /* Chiều rộng card phải linh hoạt: 300px -> 360px */
+  --sidebar-right-width: clamp(300px, 20vw, 360px);
+}
+
+
+/* ===== iPad Portrait (≤834px) — Chuyển sang 1 cột (Ẩn sidebar) và căn giữa feed ===== */
+@media (max-width: 1092px) {
+  .page.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 740px;
+    padding: 0 14px;
+    gap: 16px;
+  }
+
+  .sidebar-card { display: none !important; }
+  .right-card {display: none !important}
+
+  #feed {
+    width: 100%;
+    max-width: 800px; /* Chiều rộng feed được căn giữa */
+    margin: 0 auto;
+  }
+
+  /* Cấu trúc Header 2 hàng */
+  .header-content { flex-wrap: wrap; gap: 12px 10px; }
+  .header-logo { order: 1; }
+
+  .header-nav_links {
+    order: 2;
+    gap: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+  }
+
+  .header-nav_links::-webkit-scrollbar { display: none; }
+
+  .header-search_bar {
+    order: 3;
+    width: 100%;
+    margin-top: 6px;
+  }
+}
+
+/* ===== Mobile (≤768px) ===== */
+@media (max-width: 768px) {
+  .page.home {
+    max-width: 100%;
+    padding: 0 12px;
+  }
+
+  #feed {
+    max-width: 500px; /* Chiều rộng feed kiểu mạng xã hội */
+  }
+
+  /* Ẩn chữ trong nav link, chỉ giữ lại icon */
+  .header-nav_links a span { display: none; }
+  .header-nav_links a { padding: 10px; gap: 0; }
+}
+
+/* ===== Tối ưu hóa Typography (≤428px) - Đã hợp nhất 2 breakpoint nhỏ nhất ===== */
+@media (max-width: 428px) {
+  #feed { max-width: 100%; }
+  .header-logo h1 { font-size: 18px; }
+  .header-logo_img_cont { width: 34px; height: 34px; }
+  /* Kích thước font nhỏ hơn cho thanh tìm kiếm */
+  .header-search_bar input { font-size: 14px; }
+}
+
+/* ===== Smallest phones (≤360px) ===== */
+@media (max-width: 360px) {
+  .header-logo h1 { font-size: 16px; }
+}
+
+/* ===============================
+   CHỐNG TRÀN NỘI DUNG / TĂNG CƯỜNG ĐỘ BỀN (ANTI-OVERFLOW / HARDENING)
+   =============================== */
+
+/* Quy tắc chung để ngăn nội dung đẩy chiều rộng container */
+.page.home > .sidebar-card,
+.page.home > #feed,
+.page.home > .right-card {
+  min-width: 0 !important;
+  width: auto;
+  max-width: 100%;
+  float: none !important;
+  position: static !important;
+}
+
+
+
+
+#feed, .feed-card {
+  min-width: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+.feed-card .composer input {
+  min-width: 0;
+  flex: 1;
+}
+
+.feed-card .tabs {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+  min-width: 0;
+}
+
+.feed-card * {
+  /* Đảm bảo text dài không bị tràn */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+img, video, canvas, iframe {
+  max-width: 100%;
+  height: auto;
+}
+
+html, body { overflow-x: hidden; }
+
+
+/* ========== POST ARTICLE STYLES ========== */
+.feed-post {
+    margin-top: 16px;
+    border: 1px solid var(--border-color, #eaeaea);
+    border-radius: 14px;
+    padding: 14px;
+    background: var(--bg-card, #fff);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.feed-post-header {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.feed-post-avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.feed-post-user {
+    flex: 1;
+}
+
+.feed-post-name {
+    font-weight: 700;
+    color: var(--text, #111);
+    display: block;
+    margin-bottom: 2px;
+}
+
+.feed-post-time {
+    color: var(--muted, #777);
+    font-size: 14px;
+}
+
+.feed-post-content {
+    margin: 8px 0 12px;
+    line-height: 1.5;
+    color: var(--text-light, #333);
+}
+
+.feed-post-image {
+    width: 100%;
+    border-radius: 12px;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+}
+

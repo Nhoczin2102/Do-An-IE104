@@ -1,20 +1,18 @@
 :root {
-  /* Biến từ style.header..css (Ưu tiên vì chứa nhiều biến màu chính) */
+  /* Colors */
   --primary-color: #FF6967;
   --primary-light: #FF9A99;
-  --primary-dark: hsl(1, 75%, 60%);
-  --text-on-primary: #FFFFFF;
-  --text-on-light: #333333;
-  --text-light-subtle: #666666;
-  --background-light: #FFF5F5;
-  --border-color: #E0E0E0;
-  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-
-  /* Biến từ style.sidebar.css (sidebar-specific overrides) */
-  --border: #ffffff; 
-  --bg-card: #ffffff;
-  --accent: #ff7b73; 
+  --primary-dark: #E05553;
+  --bg-card: #fff;
+  --border-color: #e0e0e0;
   --text: #111;
+  --text-light: #333;
+  --text-light-subtle: #666;
   --muted: #777;
+  --text-on-primary: #fff;
+  --background-light: #FFF5F5;
+  
+  /* Layout */
   --radius: 16px;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
