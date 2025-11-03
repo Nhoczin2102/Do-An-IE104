@@ -178,6 +178,7 @@
     @media (prefers-reduced-motion: reduce){
       *{ animation: none !important; transition: none !important; }
     }
+    
   </style>
 </head>
 <body>
@@ -273,6 +274,73 @@
     };
     requireValid(document.getElementById('signinForm'));
     requireValid(document.getElementById('signupForm'));
+        // ======= XỬ LÝ ĐĂNG KÝ / ĐĂNG NHẬP =======
+
+    // Hàm lưu tài khoản mới vào localStorage
+    function saveUser(email, name, password){
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      // Kiểm tra trùng email
+      if(users.some(u => u.email === email)){
+        alert('Email này đã được đăng ký!');
+        return false;
+      }
+      users.push({ email, name, password });
+      localStorage.setItem('users', JSON.stringify(users));
+      alert('Đăng ký thành công! Hãy đăng nhập.');
+      root.classList.remove('signup-active');
+      return true;
+    }
+
+    // Hàm kiểm tra đăng nhập
+    function checkLogin(email, password){
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+      const user = users.find(u => u.email === email && u.password === password);
+      return user || null;
+    }
+
+    // Thêm phần tử hiển thị thông báo lỗi
+    const errorMsg = document.createElement('p');
+    errorMsg.style.color = '#FF6967';
+    errorMsg.style.fontWeight = '500';
+    errorMsg.style.fontFamily = 'Roboto, system-ui, sans-serif';
+    errorMsg.style.fontSize = '15px';
+    errorMsg.style.textAlign = 'center';
+    errorMsg.style.marginTop = '-8px';
+    errorMsg.style.display = 'none';
+    document.querySelector('#signinForm .btn').insertAdjacentElement('afterend', errorMsg);
+
+    // Xử lý đăng ký
+    document.getElementById('signupForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('fullName').value.trim();
+      const email = document.getElementById('signupEmail').value.trim();
+      const password = document.getElementById('signupPassword').value.trim();
+
+      if(!name || !email || !password){ alert('Vui lòng nhập đủ thông tin.'); return; }
+      if(password.length < 6){ alert('Mật khẩu phải có ít nhất 6 ký tự.'); return; }
+
+      saveUser(email, name, password);
+      document.getElementById('signupForm').reset();
+    });
+
+    // Xử lý đăng nhập
+    document.getElementById('signinForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('signinEmail').value.trim();
+      const password = document.getElementById('signinPassword').value.trim();
+      const user = checkLogin(email, password);
+
+      if(user){
+        // Lưu user hiện tại và chuyển trang
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        window.location.href = 'profile.html'; // điều hướng sang trang Hồ sơ
+      } else {
+        errorMsg.textContent = 'Sai email hoặc mật khẩu. Vui lòng thử lại.';
+        errorMsg.style.display = 'block';
+      }
+    });
+
   </script>
 </body>
 </html>
+
