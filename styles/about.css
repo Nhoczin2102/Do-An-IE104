@@ -90,7 +90,7 @@ body {
    4. HERO SECTION (BANNER)
    ======================================= */
 .hero-section {
-     background:url(../img/header.png);
+     background:url(../images/header.png);
     color: var(--color-white);
     text-align: center;
     padding: 150px 0;
@@ -126,7 +126,7 @@ body {
 }
 
 .image-placeholder {
-    background: url(../img/daidien.jpg);
+    background: url(../images/daidien.jpg);
     height: 350px;
     border-radius: 8px;
     display: flex;
