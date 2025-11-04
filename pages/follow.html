@@ -11,163 +11,228 @@
   <style>
     :root {
       --primary-color: #FF6967;
-      --secondary-color: #FF8E53;
-      --bg-color: #f5f5f5;
-      --card-bg: #fff;
-      --text-color: #333;
-      --text-light: #666;
+      --primary-light: #FF8E53;
+      --primary-dark: #E05553;
+      --bg-color: #f8f9fa;
+      --bg-card: #fff;
+      --text: #111;
+      --text-light: #333;
+      --text-light-subtle: #777;
+      --muted: #666;
       --border-color: #eaeaea;
-      --muted: #777;
+      --background-light: #f5f5f5;
+      --text-on-primary: #fff;
+      --radius: 16px;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.12);
     }
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background-color: var(--bg-color);
-      color: var(--text-color);
+      color: var(--text);
+      line-height: 1.5;
+      overflow-x: hidden;
     }
 
-    /* Header Styles */
+    /* ========== HEADER ========== */
     .header {
-      background-color: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: var(--primary-color);
+      border-bottom: 1px solid var(--border-color);
       position: sticky;
       top: 0;
       z-index: 100;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      width: 100%;
     }
 
     .header-container {
-      max-width: 1200px;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 0 20px;
+      padding: 0 24px;
     }
 
     .header-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 15px 0;
+      height: 80px;
+      gap: 40px;
     }
 
     .header-logo {
       display: flex;
       align-items: center;
+      gap: 12px;
       text-decoration: none;
-      color: var(--primary-color);
+      color: var(--text-on-primary);
+      font-weight: 700;
+      font-size: 24px;
     }
 
     .header-logo_img_cont {
-      width: 40px;
-      height: 40px;
-      margin-right: 10px;
+      width: 50px;
+      height: 50px;
     }
 
     .header-logo_img {
       width: 100%;
       height: 100%;
       object-fit: contain;
-    }
-
-    .header-logo h1 {
-      font-size: 24px;
-      font-weight: 700;
+      filter: brightness(0) invert(1);
     }
 
     .header-search_bar {
       display: flex;
-      align-items: center;
-      background: #f0f0f0;
-      border-radius: 20px;
-      padding: 8px 15px;
-      width: 40%;
+      flex: 1;
+      width: 100%;
+      max-width: 600px;
+      position: relative;
     }
 
     .header-search_bar input {
-      border: none;
-      background: transparent;
-      outline: none;
       width: 100%;
-      padding: 5px;
+      padding: 16px 24px;
+      border: 2px solid transparent;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      font-size: 16px;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .header-search_bar input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .header-search_bar input:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.25);
+      border-color: rgba(255, 255, 255, 0.3);
     }
 
     .header-search_btn {
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
       background: transparent;
       border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      color: white;
       cursor: pointer;
-      color: var(--text-light);
+      transition: all 0.3s ease;
+    }
+
+    .header-search_btn:hover {
+      background: rgba(255, 255, 255, 0.2);
     }
 
     .header-nav_links {
       display: flex;
-      gap: 25px;
+      align-items: center;
+      gap: 32px;
     }
 
     .header-nav_links a {
       display: flex;
-      flex-direction: column;
       align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
       text-decoration: none;
-      color: var(--text-light);
-      font-size: 12px;
-      transition: color 0.3s;
+      color: var(--text-on-primary);
+      border-radius: 16px;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      font-size: 16px;
+      position: relative;
     }
 
-    .header-nav_links a.active,
     .header-nav_links a:hover {
-      color: var(--primary-color);
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .header-nav_links a.active {
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
     .nav-icon {
-      font-size: 18px;
-      margin-bottom: 5px;
+      font-size: 20px;
     }
 
-    /* Main Layout */
-    .page {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 20px;
+    /* ========== MAIN LAYOUT ========== */
+    .page.home {
       display: grid;
-      grid-template-columns: 280px 1fr 280px;
-      gap: 20px;
+      grid-template-columns: 320px 1fr;
+      gap: 40px;
+      max-width: 1400px;
+      margin: 40px auto;
+      padding: 0 24px;
+      align-items: start;
     }
 
-    /* Sidebar Styles */
+    /* ========== SIDEBAR LEFT ========== */
     .sidebar-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 100px;
       height: fit-content;
     }
 
     .profile {
       display: flex;
       align-items: center;
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--border-color);
     }
 
     .avatar {
-      width: 50px;
-      height: 50px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       object-fit: cover;
-      margin-right: 12px;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
     }
 
-    .profile-info .name {
-      font-weight: 600;
-      font-size: 16px;
+    .profile-info {
+      flex: 1;
     }
 
-    .profile-info .handle {
-      color: var(--text-light);
+    .name {
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .handle {
+      color: var(--muted);
       font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .handle::before {
+      content: "@";
+      color: var(--primary-color);
     }
 
     .menu {
@@ -179,89 +244,96 @@
     .menu .item {
       display: flex;
       align-items: center;
-      padding: 10px 12px;
-      border-radius: 8px;
+      gap: 16px;
+      padding: 16px 20px;
       text-decoration: none;
-      color: var(--text-color);
-      transition: background 0.3s;
+      color: var(--text-light);
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
     }
 
-    .menu .item.active,
+    .menu .item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--primary-color);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+
     .menu .item:hover {
-      background: rgba(255, 105, 103, 0.1);
+      background: var(--background-light);
       color: var(--primary-color);
+      transform: translateX(8px);
+    }
+
+    .menu .item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .menu .item.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      box-shadow: 0 6px 20px rgba(255, 105, 103, 0.3);
+    }
+
+    .menu .item.active::before {
+      transform: scaleY(1);
+      background: white;
     }
 
     .menu .item i {
-      margin-right: 10px;
-      width: 20px;
+      font-size: 20px;
+      width: 24px;
       text-align: center;
     }
 
-    /* Right Card Styles */
-    .right-card {
-      background: var(--card-bg);
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-      margin-bottom: 20px;
+    /* ========== FOLLOWERS CONTENT ========== */
+    .followers-content {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
     }
 
-    .right-card h3 {
-      margin-bottom: 15px;
-      font-size: 18px;
-      color: var(--text-color);
-    }
-
-    .chef {
-      display: flex;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .chef:last-child {
-      border-bottom: none;
-    }
-
-    .chef img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-right: 10px;
-    }
-
-    .chef div strong {
-      display: block;
-      font-size: 14px;
-    }
-
-    .chef div small {
-      color: var(--text-light);
-      font-size: 12px;
-    }
-
-    /* Followers Page Styles */
+    /* Profile Header */
     .profile-header {
-      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
       color: white;
-      padding: 30px;
-      border-radius: 15px;
-      margin-bottom: 20px;
+      padding: 40px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
-      grid-column: 1 / -1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><path d="M0 50 Q 250 0 500 50 T 1000 50 V 100 H 0 Z"/></svg>');
+      background-size: cover;
+      background-position: bottom;
     }
 
     .profile-avatar {
-      width: 100px;
-      height: 100px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       border: 4px solid white;
-      margin: 0 auto 15px;
+      margin: 0 auto 20px;
       background-color: #fff;
       overflow: hidden;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
     }
 
     .profile-avatar img {
@@ -271,158 +343,224 @@
     }
 
     .profile-name {
-      font-size: 24px;
-      font-weight: 600;
-      margin-bottom: 5px;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      position: relative;
     }
 
     .profile-bio {
-      font-size: 14px;
+      font-size: 16px;
       opacity: 0.9;
       max-width: 500px;
       margin: 0 auto;
+      position: relative;
     }
 
     .profile-stats {
       display: flex;
       justify-content: center;
-      gap: 30px;
-      margin-top: 20px;
+      gap: 40px;
+      margin-top: 32px;
+      position: relative;
     }
 
     .stat-item {
       text-align: center;
+      padding: 16px 24px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255, 255, 255, 0.25);
     }
 
     .stat-number {
-      font-size: 20px;
+      font-size: 24px;
       font-weight: 700;
+      display: block;
     }
 
     .stat-label {
       font-size: 14px;
-      opacity: 0.8;
+      opacity: 0.9;
+      margin-top: 4px;
     }
 
     /* Navigation */
     .profile-nav {
       display: flex;
       background: white;
-      border-radius: 12px;
       padding: 0;
-      margin-bottom: 25px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      grid-column: 1 / -1;
+      border-bottom: 2px solid var(--border-color);
     }
 
     .nav-item {
       flex: 1;
       text-align: center;
-      padding: 15px;
+      padding: 20px;
       cursor: pointer;
       transition: all 0.3s ease;
-      font-weight: 500;
+      font-weight: 600;
       color: var(--text-light);
       text-decoration: none;
+      border-bottom: 3px solid transparent;
+      position: relative;
     }
 
     .nav-item.active {
-      background: var(--primary-color);
-      color: white;
+      color: var(--primary-color);
+      border-bottom-color: var(--primary-color);
     }
 
     .nav-item:hover:not(.active) {
-      background: #f9f9f9;
       color: var(--primary-color);
+      background: var(--background-light);
     }
 
     /* Follow Tabs */
     .follow-tabs {
       display: flex;
-      margin-bottom: 20px;
       background: white;
-      border-radius: 12px;
-      padding: 5px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      grid-column: 1 / -1;
+      padding: 8px;
+      margin: 24px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
     }
 
     .follow-tab {
       flex: 1;
       text-align: center;
-      padding: 12px;
+      padding: 16px;
       cursor: pointer;
-      border-radius: 8px;
-      font-weight: 500;
+      border-radius: 12px;
+      font-weight: 600;
       transition: all 0.3s ease;
+      color: var(--text-light);
     }
 
     .follow-tab.active {
       background: var(--primary-color);
       color: white;
+      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
+    }
+
+    .follow-tab:hover:not(.active) {
+      background: var(--background-light);
+      color: var(--primary-color);
     }
 
     /* Search Bar */
     .search-container {
       position: relative;
-      margin-bottom: 20px;
-      grid-column: 1 / -1;
+      margin: 0 24px 24px;
     }
 
     .search-input {
       width: 100%;
-      padding: 14px 20px 14px 45px;
-      border: none;
-      border-radius: 12px;
+      padding: 18px 24px 18px 56px;
+      border: 2px solid var(--border-color);
+      border-radius: 16px;
       background: white;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      font-size: 15px;
+      font-size: 16px;
       transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
     .search-input:focus {
       outline: none;
-      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.2);
+      border-color: var(--primary-color);
+      box-shadow: 0 4px 20px rgba(255, 105, 103, 0.15);
     }
 
     .search-icon {
       position: absolute;
-      left: 15px;
+      left: 20px;
       top: 50%;
       transform: translateY(-50%);
-      color: #999;
+      color: var(--muted);
+      font-size: 20px;
     }
 
     /* User List */
     .user-list {
-      display: grid;
-      gap: 15px;
-      grid-column: 1 / -1;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding: 0 24px 24px;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .user-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .user-list::-webkit-scrollbar-track {
+      background: var(--background-light);
+      border-radius: 10px;
+    }
+
+    .user-list::-webkit-scrollbar-thumb {
+      background: var(--primary-color);
+      border-radius: 10px;
     }
 
     .user-card {
       display: flex;
       align-items: center;
       background: white;
-      border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: var(--shadow);
       transition: all 0.3s ease;
+      border: 1px solid transparent;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .user-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--primary-color);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
     }
 
     .user-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--primary-light);
+    }
+
+    .user-card:hover::before {
+      transform: scaleY(1);
     }
 
     .user-avatar {
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       overflow: hidden;
-      margin-right: 15px;
+      margin-right: 20px;
       flex-shrink: 0;
+      border: 3px solid var(--background-light);
+      transition: all 0.3s ease;
+    }
+
+    .user-card:hover .user-avatar {
+      border-color: var(--primary-light);
+      transform: scale(1.05);
     }
 
     .user-avatar img {
@@ -436,126 +574,211 @@
     }
 
     .user-name {
-      font-weight: 600;
-      font-size: 16px;
-      margin-bottom: 5px;
-      color: var(--text-color);
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .user-bio {
       font-size: 14px;
       color: var(--text-light);
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.5;
     }
 
     .user-stats {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       font-size: 13px;
       color: var(--muted);
     }
 
+    .user-stat {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .user-stat i {
+      color: var(--primary-color);
+    }
+
     .user-action {
-      margin-left: 15px;
+      margin-left: 20px;
     }
 
     .btn-follow {
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 28px;
       border-radius: 20px;
       font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
-      min-width: 100px;
+      min-width: 120px;
+      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-follow::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn-follow:hover::before {
+      left: 100%;
     }
 
     .btn-follow:hover {
-      background: #ff5250;
+      background: var(--primary-dark);
       transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
     }
 
     .btn-following {
-      background: #f0f0f0;
-      color: #666;
+      background: var(--background-light);
+      color: var(--muted);
+      box-shadow: none;
     }
 
     .btn-following:hover {
       background: #e0e0e0;
-      color: #ff5250;
+      color: var(--primary-dark);
+      transform: translateY(-2px);
     }
 
     /* Empty State */
     .empty-state {
       text-align: center;
-      padding: 50px 20px;
+      padding: 60px 20px;
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      grid-column: 1 / -1;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      margin: 24px;
     }
 
     .empty-icon {
-      font-size: 60px;
-      color: #ddd;
-      margin-bottom: 15px;
+      font-size: 80px;
+      color: var(--border-color);
+      margin-bottom: 20px;
+      opacity: 0.5;
     }
 
     .empty-text {
-      color: #888;
-      font-size: 16px;
-      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 18px;
+      margin-bottom: 24px;
     }
 
-    /* Responsive */
-    @media (max-width: 1024px) {
-      .page {
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 1200px) {
+      .page.home {
+        grid-template-columns: 280px 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 968px) {
+      .page.home {
         grid-template-columns: 1fr;
+        gap: 24px;
       }
       
-      .sidebar-card, .right-card {
+      .sidebar-card {
         display: none;
+      }
+      
+      .header-content {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 16px 0;
+        gap: 20px;
+      }
+      
+      .header-search_bar {
+        order: 3;
+        max-width: 100%;
+        margin-top: 10px;
       }
     }
 
     @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        gap: 15px;
-      }
-      
-      .header-search_bar {
-        width: 100%;
-      }
-      
-      .header-nav_links {
-        width: 100%;
-        justify-content: space-between;
-      }
-      
       .profile-stats {
-        gap: 15px;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+      
+      .stat-item {
+        flex: 1;
+        min-width: 120px;
       }
       
       .user-card {
         flex-direction: column;
         text-align: center;
-        padding: 15px;
+        padding: 20px;
       }
       
       .user-avatar {
         margin-right: 0;
-        margin-bottom: 10px;
+        margin-bottom: 16px;
       }
       
       .user-action {
         margin-left: 0;
-        margin-top: 10px;
+        margin-top: 16px;
       }
       
       .user-stats {
         justify-content: center;
+      }
+      
+      .profile-nav {
+        flex-direction: column;
+      }
+      
+      .nav-item {
+        padding: 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page.home {
+        padding: 0 16px;
+      }
+      
+      .header-container {
+        padding: 0 16px;
+      }
+      
+      .header-logo h1 {
+        display: none;
+      }
+      
+      .profile-header {
+        padding: 30px 20px;
+      }
+      
+      .profile-avatar {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .follow-tabs {
+        flex-direction: column;
+        gap: 8px;
       }
     }
   </style>
@@ -569,7 +792,7 @@
         <!-- Logo -->
         <a href="index.html" class="header-logo">
           <div class="header-logo_img_cont">
-            <img src="https://via.placeholder.com/40x40/FF6967/FFFFFF?text=P" class="header-logo_img" />
+            <img src="https://via.placeholder.com/40x40/FFFFFF/FF6967?text=P" class="header-logo_img" />
           </div>
           <h1>POTPAN</h1>
         </a>
@@ -609,15 +832,15 @@
     </div>
   </header>
 
-  <!-- ========== LAYOUT 3 CỘT ========== -->
-  <main class="page">
+  <!-- ========== LAYOUT 2 CỘT ========== -->
+  <main class="page home">
     <!-- Sidebar trái -->
     <aside class="sidebar-card">
       <div class="profile">
         <img class="avatar" src="https://i.pravatar.cc/150?img=32" alt="avatar">
         <div class="profile-info">
           <div class="name">Minh Nhựt</div>
-          <div class="handle">@nhutminh_amthuc</div>
+          <div class="handle">nhutminh_amthuc</div>
         </div>
       </div>
 
@@ -654,8 +877,8 @@
       </nav>
     </aside>
 
-    <!-- Nội dung chính -->
-    <div>
+    <!-- Nội dung chính - Người theo dõi -->
+    <div class="followers-content">
       <!-- Profile Header -->
       <div class="profile-header">
         <div class="profile-avatar">
@@ -709,41 +932,6 @@
         <!-- User cards will be generated by JavaScript -->
       </div>
     </div>
-
-    <!-- Cột phải -->
-    <aside>
-      <div class="right-card">
-        <h3>Đầu bếp đề xuất</h3>
-        <div class="chef">
-          <img src="https://i.pravatar.cc/100?img=5" alt="">
-          <div><strong>Hoàng Tú</strong><br><small>Chuyên các món nướng</small></div>
-        </div>
-        <div class="chef">
-          <img src="https://i.pravatar.cc/100?img=14" alt="">
-          <div><strong>Văn Tài</strong><br><small>Các món bánh</small></div>
-        </div>
-        <div class="chef">
-          <img src="https://i.pravatar.cc/100?img=47" alt="">
-          <div><strong>Ngọc Trâm</strong><br><small>Các món chay</small></div>
-        </div>
-      </div>
-
-      <div class="right-card">
-        <h3>Món ăn nổi bật</h3>
-        <div class="chef">
-          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="">
-          <div><strong>Thịt kho tàu</strong><br><small>Bùi Anh Khôi</small></div>
-        </div>
-        <div class="chef">
-          <img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="">
-          <div><strong>Cá kho tộ</strong><br><small>Hán Dương Long</small></div>
-        </div>
-        <div class="chef">
-          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80" alt="">
-          <div><strong>Gà kho gừng</strong><br><small>Bùi Trương Nhật Quang</small></div>
-        </div>
-      </div>
-    </aside>
   </main>
 
   <script>
@@ -753,7 +941,7 @@
         id: 1,
         name: "Chí Thành",
         avatar: "https://i.pravatar.cc/150?img=32",
-        bio: "Đam mê ẩm thực Việt Nam",
+        bio: "Đam mê ẩm thực Việt Nam - Chia sẻ công thức gia đình",
         recipes: 45,
         followers: 320,
         isFollowing: true
@@ -762,7 +950,7 @@
         id: 2,
         name: "Minh Anh",
         avatar: "https://i.pravatar.cc/150?img=12",
-        bio: "Chuyên làm bánh ngọt",
+        bio: "Chuyên làm bánh ngọt | Yêu thích ẩm thực Pháp",
         recipes: 67,
         followers: 890,
         isFollowing: true
@@ -771,16 +959,16 @@
         id: 3,
         name: "Hương Giang",
         avatar: "https://i.pravatar.cc/150?img=45",
-        bio: "Food blogger | Healthy recipes",
+        bio: "Food blogger | Healthy recipes | Eat clean",
         recipes: 123,
-        followers: 2.1,
+        followers: 2100,
         isFollowing: false
       },
       {
         id: 4,
         name: "Tuấn Vũ",
         avatar: "https://i.pravatar.cc/150?img=22",
-        bio: "Đầu bếp nghiệp dư",
+        bio: "Đầu bếp nghiệp dư | Thích nấu ăn cho gia đình",
         recipes: 34,
         followers: 156,
         isFollowing: true
@@ -789,7 +977,7 @@
         id: 5,
         name: "Thanh Hà",
         avatar: "https://i.pravatar.cc/150?img=15",
-        bio: "Yêu thích nấu ăn chay",
+        bio: "Yêu thích nấu ăn chay | Sống xanh",
         recipes: 78,
         followers: 432,
         isFollowing: false
@@ -798,7 +986,7 @@
         id: 6,
         name: "Quang Dũng",
         avatar: "https://i.pravatar.cc/150?img=8",
-        bio: "Chia sẻ món ăn gia đình",
+        bio: "Chia sẻ món ăn gia đình | Bố của 2 bé",
         recipes: 56,
         followers: 287,
         isFollowing: true
@@ -810,36 +998,36 @@
         id: 1,
         name: "Bếp Nhà Mình",
         avatar: "https://i.pravatar.cc/150?img=60",
-        bio: "Kênh ẩm thực gia đình",
+        bio: "Kênh ẩm thực gia đình | Món ngon mỗi ngày",
         recipes: 234,
-        followers: 12.5,
+        followers: 12500,
         isFollowing: true
       },
       {
         id: 2,
         name: "Ẩm Thực Mẹ Làm",
         avatar: "https://i.pravatar.cc/150?img=28",
-        bio: "Món ngon mỗi ngày",
+        bio: "Món ngon mỗi ngày | Công thức dễ làm",
         recipes: 189,
-        followers: 8.7,
+        followers: 8700,
         isFollowing: true
       },
       {
         id: 3,
         name: "Nấu Ăn Dễ Dàng",
         avatar: "https://i.pravatar.cc/150?img=35",
-        bio: "Công thức đơn giản cho người mới",
+        bio: "Công thức đơn giản cho người mới bắt đầu",
         recipes: 156,
-        followers: 5.2,
+        followers: 5200,
         isFollowing: true
       },
       {
         id: 4,
         name: "Bếp Trưởng Gia Đình",
         avatar: "https://i.pravatar.cc/150?img=42",
-        bio: "Chia sẻ kinh nghiệm nấu nướng",
+        bio: "Chia sẻ kinh nghiệm nấu nướng | Mẹo vặt bếp núc",
         recipes: 98,
-        followers: 3.8,
+        followers: 3800,
         isFollowing: true
       }
     ];
@@ -856,6 +1044,9 @@
               <i class="fas fa-users"></i>
             </div>
             <div class="empty-text">Không có người dùng nào</div>
+            <button class="btn-follow" onclick="showFollowers()">
+              <i class="fas fa-redo"></i> Tải lại
+            </button>
           </div>
         `;
         return;
@@ -867,16 +1058,26 @@
             <img src="${user.avatar}" alt="${user.name}">
           </div>
           <div class="user-info">
-            <div class="user-name">${user.name}</div>
+            <div class="user-name">
+              ${user.name}
+              ${user.followers > 1000 ? '<i class="fas fa-star" style="color: #FFD700;"></i>' : ''}
+            </div>
             <div class="user-bio">${user.bio}</div>
             <div class="user-stats">
-              <span>${user.recipes} công thức</span>
-              <span>${user.followers}K người theo dõi</span>
+              <div class="user-stat">
+                <i class="fas fa-utensils"></i>
+                <span>${user.recipes} công thức</span>
+              </div>
+              <div class="user-stat">
+                <i class="fas fa-users"></i>
+                <span>${user.followers >= 1000 ? (user.followers/1000).toFixed(1) + 'K' : user.followers} người theo dõi</span>
+              </div>
             </div>
           </div>
           <div class="user-action">
             <button class="btn-follow ${user.isFollowing ? 'btn-following' : ''}" 
                     onclick="toggleFollow(${user.id}, '${containerId}')">
+              <i class="fas ${user.isFollowing ? 'fa-check' : 'fa-plus'}"></i>
               ${user.isFollowing ? 'Đang theo dõi' : 'Theo dõi'}
             </button>
           </div>
@@ -892,12 +1093,41 @@
       if (user) {
         user.isFollowing = !user.isFollowing;
         renderUserCards(list, listType);
+        
+        // Show notification
+        showNotification(user.isFollowing ? `Đã theo dõi ${user.name}` : `Đã bỏ theo dõi ${user.name}`);
       }
+    }
+
+    // Function to show notification
+    function showNotification(message) {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 24px;
+        background: var(--primary-color);
+        color: white;
+        padding: 16px 24px;
+        border-radius: 12px;
+        box-shadow: var(--shadow-hover);
+        z-index: 1000;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+      `;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+      setTimeout(() => {
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
     }
 
     // Function to show followers
     function showFollowers() {
-      document.getElementById('followersList').style.display = 'grid';
+      document.getElementById('followersList').style.display = 'flex';
       document.getElementById('followingList').style.display = 'none';
       
       document.querySelectorAll('.follow-tab').forEach(tab => {
@@ -911,7 +1141,7 @@
     // Function to show following
     function showFollowing() {
       document.getElementById('followersList').style.display = 'none';
-      document.getElementById('followingList').style.display = 'grid';
+      document.getElementById('followingList').style.display = 'flex';
       
       document.querySelectorAll('.follow-tab').forEach(tab => {
         tab.classList.remove('active');
