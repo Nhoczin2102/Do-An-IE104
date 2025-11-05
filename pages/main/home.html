@@ -309,9 +309,108 @@
     <div class="modal-actions">
       <button class="cancel-btn">Hủy</button>
       <button class="post-btn">Đăng bài</button>
+      
     </div>
   </div>
 </div>
+
+<!-- COOK MODE MODAL - Thêm vào cuối file HTML, trước </body> -->
+<div id="cookModeModal" class="cook-modal" aria-hidden="true">
+  <div class="cook-panel" role="dialog" aria-modal="true">
+    <div class="cook-head">
+      <h3 class="cook-title">COOK Mode — <span class="cookmode-dish">Món ăn</span></h3>
+      <button class="cook-close" type="button" aria-label="Đóng">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="cook-body">
+      <div class="cook-col">
+        <h4 class="cook-subtitle">🧾 Thông tin</h4>
+        <div class="cook-meta">
+          <div class="cook-meta-item">
+            <div class="cook-meta-label">⏱️ Chuẩn bị</div>
+            <div class="cook-meta-value" data-cm-prep>--</div>
+          </div>
+          <div class="cook-meta-item">
+            <div class="cook-meta-label">🔥 Nấu</div>
+            <div class="cook-meta-value" data-cm-cook>--</div>
+          </div>
+          <div class="cook-meta-item">
+            <div class="cook-meta-label">👥 Khẩu phần</div>
+            <div class="cook-meta-value" data-cm-serv>--</div>
+          </div>
+          <div class="cook-meta-item">
+            <div class="cook-meta-label">📊 Độ khó</div>
+            <div class="cook-meta-value" data-cm-diff>--</div>
+          </div>
+        </div>
+
+        <h4 class="cook-subtitle">📝 Nguyên liệu</h4>
+        <div class="cook-ingredients">
+          <ul class="cookmode-ingredients">
+            <!-- Ingredients will be populated by JavaScript -->
+          </ul>
+        </div>
+
+        <div class="cookmode-tip" data-cm-tip style="display:none">
+          <!-- Tips will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <div class="cook-col">
+        <h4 class="cook-subtitle">👩‍🍳 Các bước</h4>
+        <div class="cook-step-box">
+          <div class="cook-step-header">
+            <div class="cook-step-info">
+              <span class="cook-step-index">Bước <span data-cm-step-index>1</span></span>
+              <span class="cook-step-total">/ <span data-cm-step-total>1</span></span>
+            </div>
+            <div class="cook-timer">
+              <span class="cook-timer-label">⏳ Hẹn giờ</span>
+              <div class="cook-timer-inputs">
+                <button class="cook-btn secondary" data-cm-minus>-</button>
+                <span class="cook-timer-display" data-cm-timer>00:00</span>
+                <button class="cook-btn secondary" data-cm-plus>+</button>
+              </div>
+              <button class="cook-btn secondary" data-cm-startstop>Bắt đầu</button>
+            </div>
+          </div>
+          <div class="cook-step-content">
+            <p class="cook-step-text" data-cm-step-text>--</p>
+          </div>
+          <div class="cook-progress-container">
+            <div class="cook-progress-label">
+              <span>Tiến độ</span>
+              <span data-cm-progress>0%</span>
+            </div>
+            <div class="cook-progress-bar">
+              <div class="cook-progress-fill" data-cm-progress-bar style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="cook-controls">
+            <button class="cook-btn secondary" data-cm-prev disabled>
+              <i class="fas fa-arrow-left"></i>
+              Quay lại
+            </button>
+            <button class="cook-btn" data-cm-next>
+              Tiếp theo
+              <i class="fas fa-arrow-right"></i>
+            </button>
+            <button class="cook-btn secondary" data-cm-finish style="display:none">
+              <i class="fas fa-check"></i>
+              Hoàn tất
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <audio data-cm-beep style="display:none">
+    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
+  </audio>
+</div>
+
   <!-- Nhúng file JS demo -->
   <script src="../../js/home-page/demo.js"></script>
 </body>

@@ -154,78 +154,116 @@ body {
 }
 
 /* ========== SIDEBAR LEFT ========== */
-.sidebar-card {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 90px;
-  height: 700px;
-}
+ .sidebar-card {
+      background: var(--bg-card);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 100px;
+      height: fit-content;
+    }
 
-.profile {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--border-color);
-}
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--border-color);
+    }
 
-.avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--primary-color);
+      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
+    }
 
-.name {
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--text);
-}
+    .profile-info {
+      flex: 1;
+    }
 
-.handle {
-  color: var(--muted);
-  font-size: 14px;
-  margin-top: 4px;
-}
+    .name {
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+    .handle {
+      color: var(--muted);
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
 
-.menu .item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 16px;
-  text-decoration: none;
-  color: var(--text-light);
-  border-radius: 12px;
-  transition: all 0.2s ease;
-  font-weight: 500;
-}
+    .handle::before {
+      content: "@";
+      color: var(--primary-color);
+    }
 
-.menu .item:hover {
-  background: var(--background-light);
-  color: var(--primary-color);
-}
+    .menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-.menu .item.active {
-  background: var(--background-light);
-  color: var(--primary-color);
-  font-weight: 600;
-}
+    .menu .item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      text-decoration: none;
+      color: var(--text-light);
+      border-radius: 14px;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      position: relative;
+      overflow: hidden;
+    }
 
-.menu .item svg {
-  width: 20px;
-  height: 20px;
-}
+    .menu .item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 4px;
+      background: var(--primary-color);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
 
+    .menu .item:hover {
+      background: var(--background-light);
+      color: var(--primary-color);
+      transform: translateX(8px);
+    }
+
+    .menu .item:hover::before {
+      transform: scaleY(1);
+    }
+
+    .menu .item.active {
+      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+      color: white;
+      box-shadow: 0 6px 20px rgba(255, 105, 103, 0.3);
+    }
+
+    .menu .item.active::before {
+      transform: scaleY(1);
+      background: white;
+    }
+
+    .menu .item i {
+      font-size: 20px;
+      width: 24px;
+      text-align: center;
+    }
 /* ========== MIDDLE COLUMN - FEED RỘNG HƠN ========== */
 .page.home > div:nth-child(2) {
   display: flex;
@@ -1186,4 +1224,105 @@ body {
   .post-btn {
     width: 100%;
   }
+}
+
+/* ======= COOK MODE ======= */
+.cookmode-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0f0f0fcc;
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: none;
+  color: #fff;
+}
+
+.cookmode-overlay[aria-hidden="false"] { display: grid; }
+
+.cookmode-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(180deg, rgba(255,105,103,0.25), transparent);
+}
+
+.cookmode-close {
+  background: transparent; border: 0; color: #fff; font-size: 28px; cursor: pointer;
+}
+
+.cookmode-title h3 { margin: 0 0 4px 0; font-size: 20px; }
+.cookmode-meta { display: flex; gap: 8px; flex-wrap: wrap; }
+.cookmode-meta .tag {
+  background: rgba(255,255,255,.12);
+  padding: 4px 10px; border-radius: 999px; font-size: 12px;
+}
+
+.cookmode-toggle {
+  background: var(--primary-color);
+  color: var(--text-on-primary);
+  border: 0; padding: 8px 12px; border-radius: 10px;
+  cursor: pointer; font-weight: 600;
+}
+
+.cookmode-body {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 18px;
+  padding: 16px;
+  height: calc(100vh - 64px);
+}
+
+.cookmode-panel {
+  background: #1a1a1a;
+  border-radius: 16px;
+  padding: 16px;
+  overflow: auto;
+}
+
+.cookmode-panel h4 { margin: 0 0 10px 0; }
+
+.cookmode-ingredients { list-style: none; display: grid; gap: 10px; }
+.cookmode-ingredients li {
+  display: flex; align-items: center; gap: 10px;
+  background: #232323; border-radius: 12px; padding: 10px 12px;
+}
+.cookmode-ingredients input { width: 18px; height: 18px; }
+
+.cookmode-tip {
+  margin-top: 12px; background: #232323; border-left: 3px solid #FF6967;
+  border-radius: 8px; padding: 10px 12px; color: #ddd;
+}
+
+.cookmode-main {
+  background: #141414; border-radius: 16px; padding: 18px;
+  display: grid; grid-template-rows: auto 1fr auto auto; gap: 14px;
+}
+
+.cookmode-step-counter { color: #bbb; }
+.cookmode-step-text {
+  font-size: 20px; line-height: 1.6; background: #1a1a1a; border-radius: 12px; padding: 18px;
+}
+
+.cookmode-timer {
+  display: flex; align-items: center; gap: 12px; justify-content: center;
+}
+.timer-display { font-variant-numeric: tabular-nums; font-size: 26px; min-width: 86px; text-align: center; }
+.timer-btn {
+  background: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);
+  padding: 8px 12px; border-radius: 10px; cursor: pointer;
+}
+
+.cookmode-nav { display: flex; justify-content: space-between; gap: 10px; }
+.nav-btn {
+  background: var(--primary-color); color: var(--text-on-primary);
+  border: 0; padding: 12px 16px; border-radius: 12px; cursor: pointer; font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .cookmode-body { grid-template-columns: 1fr; }
+  .cookmode-panel { order: 2; height: 35vh; }
+  .cookmode-main { order: 1; height: 55vh; }
 }

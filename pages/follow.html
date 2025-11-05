@@ -41,135 +41,127 @@
       overflow-x: hidden;
     }
 
-    /* ========== HEADER ========== */
     .header {
-      background: var(--primary-color);
-      border-bottom: 1px solid var(--border-color);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
-      width: 100%;
-    }
+  background: var(--primary-color);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  width: 100%;
+}
 
-    .header-container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 0 24px;
-    }
+.header-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 
-    .header-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 80px;
-      gap: 40px;
-    }
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+  gap: 40px;
+}
 
-    .header-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: var(--text-on-primary);
-      font-weight: 700;
-      font-size: 24px;
-    }
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--text-on-primary);
+  font-weight: 700;
+  font-size: 20px;
+}
 
-    .header-logo_img_cont {
-      width: 50px;
-      height: 50px;
-    }
+.header-logo_img_cont {
+  width: 70px;
+  height: 70px;
+}
 
-    .header-logo_img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      filter: brightness(0) invert(1);
-    }
+.header-logo_img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 
-    .header-search_bar {
-      display: flex;
-      flex: 1;
-      width: 100%;
-      max-width: 600px;
-      position: relative;
-    }
+.header-search_bar {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
 
-    .header-search_bar input {
-      width: 100%;
-      padding: 16px 24px;
-      border: 2px solid transparent;
-      border-radius: 28px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      font-size: 16px;
-      color: white;
-      transition: all 0.3s ease;
-    }
+.header-search_bar input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  background: #f8f9fa;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
 
-    .header-search_bar input::placeholder {
-      color: rgba(255, 255, 255, 0.7);
-    }
+.header-search_bar input:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
+}
 
-    .header-search_bar input:focus {
-      outline: none;
-      background: rgba(255, 255, 255, 0.25);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
+.header-search_btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--primary-color);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
 
-    .header-search_btn {
-      position: absolute;
-      right: 8px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: transparent;
-      border: none;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
+.header-search_btn:hover {
+  background: var(--primary-dark);
+}
 
-    .header-search_btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
+.header-nav_links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
 
-    .header-nav_links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
+.header-nav_links a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: var(--text-on-primary);
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  font-weight: 600;
+  font-size: 17px;
+}
 
-    .header-nav_links a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      text-decoration: none;
-      color: var(--text-on-primary);
-      border-radius: 16px;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      font-size: 16px;
-      position: relative;
-    }
+.header-nav_links a:hover {
+  background: var(--background-light);
+  color: var(--primary-color);
+}
 
-    .header-nav_links a:hover {
-      background: rgba(255, 255, 255, 0.15);
-      transform: translateY(-2px);
-    }
+.header-nav_links a.active {
+  background: var(--background-light);
+  color: var(--primary-color);
+}
 
-    .header-nav_links a.active {
-      background: rgba(255, 255, 255, 0.2);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .nav-icon {
-      font-size: 20px;
-    }
+.nav-icon {
+  font-size: 18px;
+}
 
     /* ========== MAIN LAYOUT ========== */
     .page.home {
@@ -792,7 +784,7 @@
         <!-- Logo -->
         <a href="index.html" class="header-logo">
           <div class="header-logo_img_cont">
-            <img src="https://via.placeholder.com/40x40/FFFFFF/FF6967?text=P" class="header-logo_img" />
+            <img src="../assets/home-page/logo.svg" class="header-logo_img" />
           </div>
           <h1>POTPAN</h1>
         </a>
