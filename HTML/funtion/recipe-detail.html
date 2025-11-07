@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi tiết công thức</title>
+  <link rel="stylesheet" href="../../CSS/style.header.css" />
+  <link rel="stylesheet" href="../../CSS/recipe-detail.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="container header-content">
+      <a href="../explore.html" class="logo">← Quay về</a>
+      <h1 id="recipe-name" class="page-title">Đang tải...</h1>
+    </div>
+  </header>
+
+  <main class="detail-container">
+    <section class="hero">
+      <img id="hero-img" alt="Hình món ăn" />
+      <div class="hero-info">
+        <h2 id="recipe-name-dup"></h2>
+        <div class="meta">
+          <span id="recipe-chef"></span>
+          <span id="recipe-time"></span>
+        </div>
+        <div class="tags" id="recipe-tags"></div>
+      </div>
+    </section>
+
+    <section class="detail-grid">
+      <article class="card">
+        <h3>Nguyên liệu</h3>
+        <ul id="ingredients"></ul>
+      </article>
+
+      <article class="card">
+        <h3>Các bước thực hiện</h3>
+        <ol id="steps"></ol>
+      </article>
+
+      <aside class="card">
+        <h3>Dinh dưỡng</h3>
+        <ul id="nutrition"></ul>
+      </aside>
+    </section>
+  </main>
+
+  <!-- từ HTML/funtion -> gốc -> JS -->
+  <script src="../../JS/recipe-detail.js"></script>
+</body>
+</html>
