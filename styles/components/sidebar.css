@@ -1,98 +1,110 @@
 .sidebar-card {
-  width: 100%;
-  max-width: 280px;
-  background: var(--bg-card); /* Nền trắng */
-  border: none;
-  border-radius: var(--radius); /* 16px */
-  padding: 24px;
-  box-shadow: var(--shadow); /* Bóng nhẹ */
-  min-width: 0;
-  transition: all 0.3s ease;
-  height: 500px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
   position: sticky;
-}
-
-/* Hiệu ứng nổi nhẹ khi hover */
-.sidebar-card:hover {
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); /* Bóng mạnh hơn một chút */
-    transform: translateY(-2px);
+  top: 100px;
+  height: fit-content;
 }
 
 .profile {
   display: flex;
-  gap: 16px;
   align-items: center;
-  margin-bottom: 24px;
+  gap: 16px;
+  margin-bottom: 32px;
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--border-color); /* Viền phân cách xám nhạt */
+  border-bottom: 2px solid var(--border-color);
 }
+
 .avatar {
-  width: 64px;
-  height: 64px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
-  background: var(--background-light); /* Nền avatar (hơi ánh hồng) */
-  border: 3px solid var(--primary-color); /* Viền màu chủ đạo */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  flex-shrink: 0;
+  border: 3px solid var(--primary-color);
+  box-shadow: var(--shadow-primary);
 }
+
+.profile-info {
+  flex: 1;
+}
+
 .name {
   font-weight: 700;
-  font-size: 22px;
-  line-height: 1.2;
-  color: var(--text); /* Màu chữ chính (rất đậm) */
-  margin: 0;
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 4px;
 }
+
 .handle {
-  color: var(--muted); /* Màu chữ phụ (xám) */
-  font-weight: 500;
-  font-size: 15px;
-  margin-top: 4px;
+  color: var(--muted);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.handle::before {
+  content: "@";
+  color: var(--primary-color);
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 0;
+  gap: 8px;
 }
-.item {
+
+.menu .item {
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  border-radius: calc(var(--radius) - 4px); /* Bo góc nhỏ hơn sidebar (12px) */
+  gap: 16px;
+  padding: 16px 20px;
   text-decoration: none;
-  color: var(--text); /* Màu chữ mặc định (rất đậm) */
-  transition: all 0.2s ease-out;
-  font-weight: 600;
-  font-size: 16px;
-}
-.item:hover {
-  background: var(--background-light); /* Nền hover (ánh hồng rất nhạt) */
-  transform: translateX(4px);
-  color: var(--primary-color); /* Chữ chuyển sang màu chủ đạo khi hover */
+  color: var(--text-light);
+  border-radius: 14px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Trạng thái active (mục menu được chọn) */
-.item.active {
-    background: var(--primary-color); /* Nền màu chủ đạo (Hồng/Đỏ) */
-    color: var(--text-on-primary); /* Chữ trắng */
-    box-shadow: 0 4px 10px rgba(255, 105, 103, 0.3); /* Bóng đổ theo màu chủ đạo */
+.menu .item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--primary-color);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
 }
 
-.item svg {
-  width: 20px;
-  height: 20px;
-  flex: 0 0 20px;
-  color: var(--muted); /* Icon mặc định màu xám */
-  transition: color 0.2s ease-out;
+.menu .item:hover {
+  background: var(--background-light);
+  color: var(--primary-color);
+  transform: translateX(8px);
 }
 
-.item:hover svg {
-  color: var(--primary-color); /* Icon chuyển sang màu chủ đạo khi hover */
+.menu .item:hover::before {
+  transform: scaleY(1);
 }
 
-.item.active svg {
-  color: var(--text-on-primary); /* Icon trắng khi active */
+.menu .item.active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-primary);
+}
+
+.menu .item.active::before {
+  transform: scaleY(1);
+  background: white;
+}
+
+.menu .item i {
+  font-size: 20px;
+  width: 24px;
+  text-align: center;
 }
