@@ -1,5 +1,3 @@
-
-
 /* ========== LAYOUT ========== */
 .page.home {
   display: grid;
@@ -201,7 +199,8 @@
 
 .feed-post-actions {
   display: flex;
-  gap: 24px;
+  gap: 100px;
+  justify-content: center;
   padding-top: 16px;
   border-top: 1px solid var(--border-color);
 }
@@ -291,6 +290,7 @@
 }
 
 /* ========== POST DETAILS ========== */
+/* Đây là các style cho trang chi tiết bài đăng (khác với feed) */
 .feed-post-stats {
   display: flex;
   justify-content: space-between;
@@ -313,7 +313,9 @@
   text-decoration: underline;
 }
 
-.feed-post-actions {
+/* === ĐÃ ĐỔI TÊN: .feed-post-actions -> .post-detail-actions-bar ĐỂ TRÁNH TRÙNG LẶP === */
+/* Đây là thanh actions (Like, Comment, Share) ở trang chi tiết */
+.post-detail-actions-bar {
   display: flex;
   justify-content: space-around;
   padding: 8px 0;
@@ -442,7 +444,7 @@
   background: var(--primary-dark);
 }
 
-/* ========== MODAL ========== */
+/* ========== MODAL (Tạo bài đăng) ========== */
 .modal {
   display: none;
   position: fixed;
@@ -552,7 +554,7 @@
   border-color: var(--primary-color);
 }
 
-/* Recipe Form */
+/* Recipe Form (Trong Modal) */
 .recipe-form h4 {
   margin: 0 0 16px 0;
   color: #333;
@@ -663,7 +665,9 @@
   background: #e9ecef;
 }
 
-.recipe-tips {
+/* === ĐÃ ĐỔI TÊN: .recipe-tips -> .recipe-tips-input ĐỂ TRÁNH TRÙNG LẶP === */
+/* Đây là ô <textarea> để NHẬP tips trong modal */
+.recipe-tips-input {
   width: 100%;
   min-height: 60px;
   border: 1px solid #eaeaea;
@@ -674,12 +678,12 @@
   font-family: inherit;
 }
 
-.recipe-tips:focus {
+.recipe-tips-input:focus {
   outline: none;
   border-color: var(--primary-color);
 }
 
-/* Image Upload */
+/* Image Upload (Trong Modal) */
 .image-upload label {
   display: block;
   font-size: 14px;
@@ -783,100 +787,9 @@
   background: var(--primary-dark);
 }
 
-/* ========== COOK MODE ========== */
-.cookmode-overlay {
-  position: fixed;
-  inset: 0;
-  background: #0f0f0fcc;
-  backdrop-filter: blur(8px);
-  z-index: 9999;
-  display: none;
-  color: #fff;
-}
+/* === ĐÃ XÓA BLOCK "COOK MODE - OVERLAY" (DARK MODE) GỐC TẠI ĐÂY === */
+/* Toàn bộ code cho .cookmode-overlay, .cookmode-panel... đã được xóa bỏ */
 
-.cookmode-overlay[aria-hidden="false"] { display: grid; }
-
-.cookmode-header {
-  display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  align-items: center;
-  gap: 12px;
-  padding: 14px 16px;
-  border-bottom: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,105,103,0.25);
-}
-
-.cookmode-close {
-  background: transparent; border: 0; color: #fff; font-size: 28px; cursor: pointer;
-}
-
-.cookmode-title h3 { margin: 0 0 4px 0; font-size: 20px; }
-.cookmode-meta { display: flex; gap: 8px; flex-wrap: wrap; }
-.cookmode-meta .tag {
-  background: rgba(255,255,255,.12);
-  padding: 4px 10px; border-radius: 999px; font-size: 12px;
-}
-
-.cookmode-toggle {
-  background: var(--primary-color);
-  color: var(--text-on-primary);
-  border: 0; padding: 8px 12px; border-radius: 10px;
-  cursor: pointer; font-weight: 600;
-}
-
-.cookmode-body {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 18px;
-  padding: 16px;
-  height: calc(100vh - 64px);
-}
-
-.cookmode-panel {
-  background: #1a1a1a;
-  border-radius: 16px;
-  padding: 16px;
-  overflow: auto;
-}
-
-.cookmode-panel h4 { margin: 0 0 10px 0; }
-
-.cookmode-ingredients { list-style: none; display: grid; gap: 10px; }
-.cookmode-ingredients li {
-  display: flex; align-items: center; gap: 10px;
-  background: #232323; border-radius: 12px; padding: 10px 12px;
-}
-.cookmode-ingredients input { width: 18px; height: 18px; }
-
-.cookmode-tip {
-  margin-top: 12px; background: #232323; border-left: 3px solid var(--primary-color);
-  border-radius: 8px; padding: 10px 12px; color: #ddd;
-}
-
-.cookmode-main {
-  background: #141414; border-radius: 16px; padding: 18px;
-  display: grid; grid-template-rows: auto 1fr auto auto; gap: 14px;
-}
-
-.cookmode-step-counter { color: #bbb; }
-.cookmode-step-text {
-  font-size: 20px; line-height: 1.6; background: #1a1a1a; border-radius: 12px; padding: 18px;
-}
-
-.cookmode-timer {
-  display: flex; align-items: center; gap: 12px; justify-content: center;
-}
-.timer-display { font-variant-numeric: tabular-nums; font-size: 26px; min-width: 86px; text-align: center; }
-.timer-btn {
-  background: #232323; color: #fff; border: 1px solid rgba(255,255,255,0.1);
-  padding: 8px 12px; border-radius: 10px; cursor: pointer;
-}
-
-.cookmode-nav { display: flex; justify-content: space-between; gap: 10px; }
-.nav-btn {
-  background: var(--primary-color); color: var(--text-on-primary);
-  border: 0; padding: 12px 16px; border-radius: 12px; cursor: pointer; font-weight: 700;
-}
 
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1400px) {
@@ -1002,9 +915,304 @@
   }
 }
 
-@media (max-width: 992px) {
-  .cookmode-body { grid-template-columns: 1fr; }
-  .cookmode-panel { order: 2; height: 35vh; }
-  .cookmode-main { order: 1; height: 55vh; }
+/* Responsive cho Cook Mode (Dark) đã được xóa */
+/* @media (max-width: 992px) { ... } */
+
+
+/* ========== HIỂN THỊ CÔNG THỨC TRÊN FEED ========== */
+/* Đây là phần hiển thị công thức (recipe) BÊN DƯỚI một bài post */
+.recipe-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
 }
 
+.recipe-section h4 {
+    margin: 0 0 12px 0;
+    color: #FF6967;
+}
+
+.recipe-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: #666;
+}
+
+.recipe-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.ingredients h5, .steps h5 {
+    margin: 0 0 8px 0;
+    color: #333;
+}
+
+.ingredients ul, .steps ol {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* Đây là class để HIỂN THỊ tips (khác với .recipe-tips-input) */
+.recipe-tips {
+    margin-top: 12px;
+    padding: 8px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 3px solid #FF6967;
+    
+}
+
+/* ========== COOK MODE (LIGHT MODE MODAL) ========== */
+/* Đây là phiên bản Light Mode Modal mà chúng ta đã thống nhất giữ lại */
+.cookmode-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.cookmode-modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cookmode-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.cookmode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    background: linear-gradient(135deg, #FF6967, #ff8e8e);
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.cookmode-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.cook-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cook-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cookmode-body {
+    padding: 10px;
+}
+
+.cookmode-dish-info {
+    text-align: center;
+}
+
+.cookmode-dish {
+    color: #FF6967;
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+}
+
+.cookmode-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.cookmode-section {
+    margin-bottom: 25px;
+}
+
+.cookmode-section h4 {
+    color: #333;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cookmode-ingredients {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cookmode-ingredients li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cookmode-ingredients input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.cookmode-step {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.step-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #FF6967;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF6967, #ff8e8e);
+    transition: width 0.3s ease;
+}
+
+.step-text {
+    margin: 0;
+    line-height: 1.5;
+    color: #333;
+}
+
+.cookmode-timer {
+    text-align: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.timer-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #FF6967;
+    margin-bottom: 15px;
+    font-family: 'Courier New', monospace;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.timer-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #FF6967;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.timer-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+.timer-btn.timer-active {
+    background: #ff3333;
+}
+
+.cookmode-footer {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-top: 2px solid #f0f0f0;
+    background: #fafafa;
+    border-radius: 0 0 20px 20px;
+}
+
+.cook-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cook-btn.primary {
+    background: #FF6967;
+    color: white;
+}
+
+.cook-btn.primary:hover:not(:disabled) {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+.cook-btn.secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.cook-btn.secondary:hover:not(:disabled) {
+    background: #d0d0d0;
+}
+
+.cook-btn.success {
+    background: #4CAF50;
+    color: white;
+}
+
+.cook-btn.success:hover {
+    background: #45a049;
+}
+
+.cook-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}

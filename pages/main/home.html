@@ -318,102 +318,173 @@
   </div>
 </div>
 
-<!-- COOK MODE MODAL - Thêm vào cuối file HTML, trước </body> -->
-<div id="cookModeModal" class="cook-modal" aria-hidden="true">
-  <div class="cook-panel" role="dialog" aria-modal="true">
-    <div class="cook-head">
-      <h3 class="cook-title">COOK Mode — <span class="cookmode-dish">Món ăn</span></h3>
-      <button class="cook-close" type="button" aria-label="Đóng">
-        <i class="fas fa-times"></i>
-      </button>
+<!-- COOK MODE MODAL -->
+<div id="cookModeModal" class="cookmode-modal">
+    <div class="cookmode-content">
+        <div class="cookmode-header">
+            <h2>🍳 COOK MODE</h2>
+            <button class="cook-close">&times;</button>
+        </div>
+        
+        <div class="cookmode-body">
+            <!-- Dish Info -->
+            <div class="cookmode-dish-info">
+                <h3 class="cookmode-dish">Tên món ăn</h3>
+                <div class="cookmode-meta">
+                    <div><span data-cm-prep>--</span> chuẩn bị</div>
+                    <div><span data-cm-cook>--</span> nấu</div>
+                    <div><span data-cm-serv>--</span> khẩu phần</div>
+                    <div><span data-cm-diff>--</span> độ khó</div>
+                </div>
+            </div>
+
+            <!-- Ingredients -->
+            <div class="cookmode-section">
+                <h4>📝 Nguyên liệu</h4>
+                <ul class="cookmode-ingredients"></ul>
+            </div>
+
+            <!-- Current Step -->
+            <div class="cookmode-section">
+                <h4>👩‍🍳 Bước thực hiện</h4>
+                <div class="cookmode-step">
+                    <div class="step-progress">
+                        <span data-cm-step-index>1</span>/<span data-cm-step-total>5</span>
+                        <div class="progress-bar">
+                            <div class="progress-fill" data-cm-progress-bar style="width: 0%"></div>
+                        </div>
+                        <span data-cm-progress>0%</span>
+                    </div>
+                    <p class="step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
+                </div>
+            </div>
+
+            <!-- Timer -->
+            <div class="cookmode-section">
+                <h4>⏰ Hẹn giờ</h4>
+                <div class="cookmode-timer">
+                    <div class="timer-display" data-cm-timer>00:00</div>
+                    <div class="timer-controls">
+                        <button class="timer-btn" data-cm-minus>-1m</button>
+                        <button class="timer-btn" data-cm-startstop>Bắt đầu</button>
+                        <button class="timer-btn" data-cm-plus>+1m</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tips -->
+            <div class="cookmode-section" data-cm-tip style="display: none;">
+                <h4>💡 Mẹo nhỏ</h4>
+                <p></p>
+            </div>
+        </div>
+
+        <div class="cookmode-footer">
+            <button class="cook-btn secondary" data-cm-prev disabled>⬅ Bước trước</button>
+            <button class="cook-btn primary" data-cm-next>Bước tiếp theo ➡</button>
+            <button class="cook-btn success" data-cm-finish style="display: none;">🎉 Hoàn thành</button>
+        </div>
     </div>
-
-    <div class="cook-body">
-      <div class="cook-col">
-        <h4 class="cook-subtitle">🧾 Thông tin</h4>
-        <div class="cook-meta">
-          <div class="cook-meta-item">
-            <div class="cook-meta-label">⏱️ Chuẩn bị</div>
-            <div class="cook-meta-value" data-cm-prep>--</div>
-          </div>
-          <div class="cook-meta-item">
-            <div class="cook-meta-label">🔥 Nấu</div>
-            <div class="cook-meta-value" data-cm-cook>--</div>
-          </div>
-          <div class="cook-meta-item">
-            <div class="cook-meta-label">👥 Khẩu phần</div>
-            <div class="cook-meta-value" data-cm-serv>--</div>
-          </div>
-          <div class="cook-meta-item">
-            <div class="cook-meta-label">📊 Độ khó</div>
-            <div class="cook-meta-value" data-cm-diff>--</div>
-          </div>
-        </div>
-
-        <h4 class="cook-subtitle">📝 Nguyên liệu</h4>
-        <div class="cook-ingredients">
-          <ul class="cookmode-ingredients">
-            <!-- Ingredients will be populated by JavaScript -->
-          </ul>
-        </div>
-
-        <div class="cookmode-tip" data-cm-tip style="display:none">
-          <!-- Tips will be populated by JavaScript -->
-        </div>
-      </div>
-
-      <div class="cook-col">
-        <h4 class="cook-subtitle">👩‍🍳 Các bước</h4>
-        <div class="cook-step-box">
-          <div class="cook-step-header">
-            <div class="cook-step-info">
-              <span class="cook-step-index">Bước <span data-cm-step-index>1</span></span>
-              <span class="cook-step-total">/ <span data-cm-step-total>1</span></span>
-            </div>
-            <div class="cook-timer">
-              <span class="cook-timer-label">⏳ Hẹn giờ</span>
-              <div class="cook-timer-inputs">
-                <button class="cook-btn secondary" data-cm-minus>-</button>
-                <span class="cook-timer-display" data-cm-timer>00:00</span>
-                <button class="cook-btn secondary" data-cm-plus>+</button>
-              </div>
-              <button class="cook-btn secondary" data-cm-startstop>Bắt đầu</button>
-            </div>
-          </div>
-          <div class="cook-step-content">
-            <p class="cook-step-text" data-cm-step-text>--</p>
-          </div>
-          <div class="cook-progress-container">
-            <div class="cook-progress-label">
-              <span>Tiến độ</span>
-              <span data-cm-progress>0%</span>
-            </div>
-            <div class="cook-progress-bar">
-              <div class="cook-progress-fill" data-cm-progress-bar style="width: 0%"></div>
-            </div>
-          </div>
-          <div class="cook-controls">
-            <button class="cook-btn secondary" data-cm-prev disabled>
-              <i class="fas fa-arrow-left"></i>
-              Quay lại
-            </button>
-            <button class="cook-btn" data-cm-next>
-              Tiếp theo
-              <i class="fas fa-arrow-right"></i>
-            </button>
-            <button class="cook-btn secondary" data-cm-finish style="display:none">
-              <i class="fas fa-check"></i>
-              Hoàn tất
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <audio data-cm-beep style="display:none">
-    <source src="data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==" type="audio/wav">
-  </audio>
 </div>
+
+
+    <!-- ========== HTML TEMPLATES ========== -->
+    <!-- Post Template -->
+    <template id="postTemplate">
+        <article class="feed-post" data-post-id="{id}">
+            <div class="feed-post-header">
+                <img class="feed-post-avatar" src="{avatar}" alt="{name}">
+                <div class="feed-post-user">
+                    <strong class="feed-post-name">{name}</strong>
+                    <div class="feed-post-time">{time}</div>
+                </div>
+            </div>
+
+            <p class="feed-post-content">{content}</p>
+            
+            {recipeSection}
+            
+            {imageSection}
+
+            <div class="feed-post-stats">
+                <span class="feed-post-likes">{likes} lượt thích</span>
+                <span class="feed-post-comments-count">{comments} bình luận</span>
+                <span class="feed-post-shares">{shares} chia sẻ</span>
+            </div>
+
+            <div class="feed-post-actions">
+                <button class="feed-action-btn {likeClass}" data-action="like" data-post-id="{id}">
+                    <i class="fas fa-heart"></i>
+                    <span>{likeText}</span>
+                </button>
+                <button class="feed-action-btn" data-action="comment" data-post-id="{id}">
+                    <i class="fas fa-comment"></i>
+                    <span>Bình luận</span>
+                </button>
+                <button class="feed-action-btn" data-action="share" data-post-id="{id}">
+                    <i class="fas fa-share"></i>
+                    <span>Chia sẻ</span>
+                </button>
+                {cookModeButton}
+            </div>
+
+            <div class="feed-comments">
+                {commentsList}
+                
+                <div class="feed-comment-input">
+                    <img class="feed-comment-avatar" src="../../assets/home-page/image 1.png" alt="Your avatar">
+                    <div class="comment-input-wrapper">
+                        <input type="text" placeholder="Viết bình luận..." class="comment-input" data-post-id="{id}">
+                        <button class="comment-submit" data-post-id="{id}">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <!-- Recipe Template -->
+    <template id="recipeTemplate">
+        <div class="recipe-section">
+            <h4>🍴 {title}</h4>
+            
+            <div class="recipe-info">
+                <div>⏱️ Chuẩn bị: {prepTime}</div>
+                <div>🔥 Nấu: {cookTime}</div>
+                <div>👥 Khẩu phần: {servings}</div>
+                <div>📊 Độ khó: {difficulty}</div>
+            </div>
+            
+            <div class="recipe-details">
+                <div class="ingredients">
+                    <h5>Nguyên liệu:</h5>
+                    <ul>{ingredientsList}</ul>
+                </div>
+                
+                <div class="steps">
+                    <h5>Các bước:</h5>
+                    <ol>{stepsList}</ol>
+                </div>
+            </div>
+            
+            {tipsSection}
+        </div>
+    </template>
+
+    <!-- Comment Template -->
+    <template id="commentTemplate">
+        <div class="feed-comment">
+            <img class="feed-comment-avatar" src="{avatar}" alt="{name}">
+            <div class="feed-comment-content">
+                <div class="feed-comment-header">
+                    <strong class="feed-comment-name">{name}</strong>
+                    <span class="feed-comment-time">{time}</span>
+                </div>
+                <p class="feed-comment-text">{content}</p>
+            </div>
+        </div>
+    </template>
 
   <!-- Nhúng file JS demo -->
   <script src="../../js/home-page/home-page.js"></script>
