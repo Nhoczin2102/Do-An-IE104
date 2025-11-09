@@ -1,5 +1,5 @@
 /* HEADER */
-.header {
+.page-header {
   background: var(--primary-color);
   border-bottom: 1px solid var(--border-color);
   position: sticky;
@@ -9,13 +9,13 @@
   width: 100%;
 }
 
-.header-container {
+.page-header__container {
   max-width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-.header-content {
+.page-header__content {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -23,7 +23,7 @@
   gap: 40px;
 }
 
-.header-logo {
+.page-header__logo {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -33,18 +33,18 @@
   font-size: 20px;
 }
 
-.header-logo_img_cont {
+.page-header__logo-image {
   width: 70px;
   height: 70px;
 }
 
-.header-logo_img {
+.page-header__logo-image img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-.header-search_bar {
+.page-header__search-bar {
   display: flex;
   flex: 1;
   width: 100%;
@@ -52,7 +52,7 @@
   position: relative;
 }
 
-.header-search_bar input {
+.page-header__search-bar input {
   width: 100%;
   padding: 16px 20px;
   border: 1px solid var(--border-color);
@@ -62,14 +62,14 @@
   transition: all 0.2s ease;
 }
 
-.header-search_bar input:focus {
+.page-header__search-bar input:focus {
   outline: none;
   border-color: var(--primary-light);
   background: white;
   box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
 }
 
-.header-search_btn {
+.page-header__search-button {
   position: absolute;
   right: 8px;
   top: 50%;
@@ -84,17 +84,17 @@
   transition: background 0.2s ease;
 }
 
-.header-search_btn:hover {
+.page-header__search-button:hover {
   background: var(--primary-dark);
 }
 
-.header-nav_links {
+.page-header__nav {
   display: flex;
   align-items: center;
   gap: 40px;
 }
 
-.header-nav_links a {
+.page-header__nav a {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -107,16 +107,16 @@
   font-size: 17px;
 }
 
-.header-nav_links a:hover {
+.page-header__nav a:hover {
   background: var(--background-light);
   color: var(--primary-color);
 }
 
-.header-nav_links a.active {
+.page-header__nav a.active {
   background: var(--background-light);
   color: var(--primary-color);
 }
 
-.nav-icon {
+.page-header__nav-icon {
   font-size: 18px;
 }

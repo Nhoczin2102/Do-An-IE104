@@ -1,0 +1,341 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.3s ease;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: #333;
+  font-size: 20px;
+}
+
+.close-modal {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #666;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-modal:hover {
+  background: #f5f5f5;
+  border-radius: 50%;
+}
+
+.post-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.post-user img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.user-handle {
+  font-size: 14px;
+  color: #666;
+}
+
+.post-content-input {
+  width: 100%;
+  min-height: 120px;
+  border: 1px solid #eaeaea;
+  border-radius: 12px;
+  padding: 16px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 20px;
+}
+
+.post-content-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Recipe Form (Trong Modal) */
+.recipe-form h4 {
+  margin: 0 0 16px 0;
+  color: #333;
+}
+
+.recipe-basic-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.recipe-time-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.input-group input,
+.input-group select {
+  padding: 12px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.ingredients-section,
+.steps-section,
+.tips-section {
+  margin-bottom: 16px;
+}
+
+.ingredients-section label,
+.steps-section label,
+.tips-section label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.ingredient-item,
+.step-item {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ingredient-input,
+.step-input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #eaeaea;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.ingredient-input:focus,
+.step-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.remove-ingredient,
+.remove-step {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  width: 32px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-ingredient,
+.add-step {
+  background: #f8f9fa;
+  border: 1px dashed #ddd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  color: #666;
+  cursor: pointer;
+  width: 100%;
+}
+
+.add-ingredient:hover,
+.add-step:hover {
+  background: #e9ecef;
+}
+
+/* === ĐÃ ĐỔI TÊN: .recipe-tips -> .recipe-tips-input ĐỂ TRÁNH TRÙNG LẶP === */
+/* Đây là ô <textarea> để NHẬP tips trong modal */
+.recipe-tips-input {
+  width: 100%;
+  min-height: 60px;
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  resize: vertical;
+  font-family: inherit;
+}
+
+.recipe-tips-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+/* Image Upload (Trong Modal) */
+.image-upload label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.upload-area {
+  border: 2px dashed #ddd;
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  cursor: pointer;
+  background: #fafafa;
+  transition: border-color 0.3s ease;
+}
+
+.upload-area:hover {
+  border-color: var(--primary-color);
+}
+
+.upload-icon {
+  font-size: 48px;
+  color: #ccc;
+  margin-bottom: 8px;
+}
+
+.upload-text {
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.upload-subtext {
+  font-size: 12px;
+  color: #999;
+}
+
+.image-input {
+  display: none;
+}
+
+.image-preview {
+  margin-top: 12px;
+}
+
+.image-preview img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.remove-image {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  padding-top: 16px;
+  border-top: 1px solid #eaeaea;
+}
+
+.cancel-btn {
+  padding: 12px 24px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: white;
+  color: #666;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cancel-btn:hover {
+  background: #f8f9fa;
+}
+
+.post-btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary-color);
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.post-btn:hover {
+  background: var(--primary-dark);
+}

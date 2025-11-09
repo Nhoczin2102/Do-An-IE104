@@ -1,0 +1,145 @@
+/* ========== LAYOUT ========== */
+.page.home {
+  display: grid;
+  grid-template-columns: 320px minmax(0, 1fr) 320px;
+  gap: 50px;
+  max-width: 90%;
+  margin: 30px auto;
+  padding: 0 20px;
+  align-items: start;
+  min-height: calc(100vh - 130px);
+}
+
+.page.home > div:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 140px);
+  min-height: 600px;
+  width: 100%;
+}
+
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 1400px) {
+  .page.home {
+    grid-template-columns: 280px minmax(0, 1fr) 280px;
+    max-width: 1400px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .page.home {
+    grid-template-columns: 250px minmax(0, 1fr) 250px;
+    gap: 25px;
+  }
+}
+
+@media (max-width: 1091px) {
+  .page.home {
+    grid-template-columns: 235px minmax(0, 1fr);
+  }
+  
+  .right-card {
+    display: none;
+  }
+  
+  .header-content {
+    flex-wrap: wrap;
+    height: auto;
+    padding: 15px 0;
+    gap: 15px;
+  }
+  
+  .header-search_bar {
+    order: 3;
+    max-width: 100%;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 787px) {
+  .page.home {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .sidebar-card{display: none;}
+
+  
+  .sidebar-card {
+    position: static;
+  }
+  
+  .page.home > div:nth-child(2) {
+    height: auto;
+    min-height: auto;
+  }
+  
+  .header-nav_links span {
+    display: none;
+  }
+  
+  .header-nav_links a {
+    padding: 10px;
+  }
+  
+  .feed-card {
+    padding: 20px;
+  }
+  
+  .feed-card .tabs {
+    gap: 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar-card{display: none;}
+  .page.home {
+    padding: 0 15px;
+  }
+  
+  .feed-card .tabs {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .feed-card .btn-post {
+    margin-left: 0;
+    width: 100%;
+  }
+  
+  .header-container {
+    padding: 0 15px;
+  }
+  
+  .header-logo h1 {
+    display: none;
+  }
+  
+  .feed-post {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    padding: 16px;
+    margin: 20px;
+  }
+  
+  .recipe-basic-info,
+  .recipe-time-info {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+  
+  .cancel-btn,
+  .post-btn {
+    width: 100%;
+  }
+}
+
