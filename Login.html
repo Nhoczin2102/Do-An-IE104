@@ -6,185 +6,139 @@
   <title>PotPan - Đăng nhập & Đăng ký</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    :root{
-      --brand:#ff6967;
-      --brand-600:#ff534e;
-      --surface:#ffffff;
-      --surface-veil: rgba(255,255,255,.94);
-      --shadow:0 8px 30px rgba(0,0,0,.12);
-      --radius:20px;
-      --border:#e9e9e9;
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family:'Roboto',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      color:#222;
-      background:#ff6967;
-      background-size:cover;
-      background-position:center;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-    }
-
-    /* ===== Layout wrapper (desktop/tablet: 2 cột, mobile: 1 cột) ===== */
+  :root{
+    --brand:#ff6967;
+    --brand-600:#ff534e;
+    --surface:#ffffff;
+    --surface-veil: rgba(255,255,255,.94);
+    --shadow:0 8px 30px rgba(0,0,0,.12);
+    --radius:20px;
+    --border:#e9e9e9;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ height:100%; }
+  body{
+    margin:0;
+    font-family:'Roboto',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+    color:#222;
+    background:#ff6967;
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+  }
+  .container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width: min(100%, 980px);
+    min-height: 560px;
+    background: var(--surface);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .container:focus-within{ box-shadow: 0 12px 36px rgba(0,0,0,.16); }
+  .img-box{ background:url('meal-logo.jpg') center/cover no-repeat; min-height: 560px; }
+  .form-wrapper{ padding: 40px 40px 32px; display:flex; flex-direction:column; gap: 16px; }
+  .header{ display:flex; align-items:center; gap:14px; justify-content:center; margin-top:4px; }
+  .header img{ width:82px; height:82px; transition: transform .25s ease; }
+  .header img:hover{ transform: scale(1.06); }
+  .header h1{ font-size:44px; color:var(--brand); margin:0; }
+  .form-container{ position:relative; flex:1; overflow:hidden; margin-top:8px; }
+  .form-box{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    padding:8px 0; opacity:0; pointer-events:none; transform: translateX(100%);
+    transition: transform .5s ease, opacity .4s ease;
+  }
+  #signinBox{ transform: translateX(0); opacity:1; pointer-events:auto; z-index:2; }
+  .signup-active #signinBox{ transform: translateX(-100%); opacity:0; pointer-events:none; }
+  .signup-active #signupBox{ transform: translateX(0); opacity:1; pointer-events:auto; z-index:2; }
+  form{ width:100%; max-width: 460px; display:flex; flex-direction:column; gap:18px; }
+  .input-box{ display:flex; flex-direction:column; gap:8px; }
+  label{ font-size:14px; color:#555; }
+  input{
+    width:100%; padding:14px 16px; border:1.5px solid var(--border);
+    border-radius:10px; font-size:16px; background:#fff;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  input:focus{ outline:none; border-color: var(--brand); box-shadow: 0 0 0 3px rgba(255,105,103,.2); }
+  .pw-row{ position:relative; }
+  .toggle-pw{
+    position:absolute; right:10px; top:0; bottom:0; transform:none;
+    display:flex; align-items:center; padding:0 12px; border:none; background:transparent;
+    cursor:pointer; font-size:14px; color:#666; border-radius:8px;
+  }
+  .toggle-pw:focus{ outline:none; box-shadow:0 0 0 2px rgba(255,105,103,.35); }
+  .btn{
+    background:var(--brand); color:#fff; border:none; border-radius:10px;
+    padding:14px 16px; font-weight:700; font-size:16px; cursor:pointer;
+    transition: background .2s ease, transform .06s ease;
+  }
+  .btn:hover{ background:var(--brand-600); }
+  .btn:active{ transform: translateY(1px); }
+  .options{ margin-top:-6px; text-align:right; font-size:14px; }
+  .options a{ color:var(--brand); text-decoration:none; font-weight:600; }
+  .options a:hover{ text-decoration:underline; }
+  .toggle-link{ text-align:center; font-size:15px; }
+  .toggle-link a{ color:var(--brand); font-weight:700; text-decoration:none; }
+  .toggle-link a:hover{ text-decoration:underline; }
+  @media (max-width: 1024px) and (min-width: 481px){
+    .container{ width: min(100%, 860px); grid-template-columns: 1.1fr 1fr; min-height: 540px; }
+    .img-box{ min-height: 540px; }
+    .form-wrapper{ padding: 32px 32px 24px; }
+    .header img{ width:72px; height:72px; }
+    .header h1{ font-size:38px; }
+    form{ max-width: 420px; }
+    input, .btn{ padding: 13px 15px; font-size:16px; }
+  }
+  @media (max-width: 480px){
+    body{ padding: 18px; background: #ff6967 url('meal-logo.jpg') center/cover no-repeat fixed; }
     .container{
-      display:grid;
-      grid-template-columns: 1fr 1fr;         /* desktop default */
-      width: min(100%, 980px);
-      min-height: 560px;
-      background: var(--surface);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease;
+      grid-template-columns: 1fr; width: 100%; max-width: 420px;
+      background: var(--surface-veil); backdrop-filter: blur(10px); min-height: auto;
     }
-    .container:focus-within{ box-shadow: 0 12px 36px rgba(0,0,0,.16); }
-
-    .img-box{
-      background:url('meal-logo.jpg') center/cover no-repeat;
-      min-height: 560px;
-    }
-
-    .form-wrapper{
-      padding: 40px 40px 32px;
-      display:flex;
-      flex-direction:column;
-      gap: 16px;
-    }
-
-    .header{
-      display:flex; align-items:center; gap:14px; justify-content:center; margin-top:4px;
-    }
-    .header img{ width:82px; height:82px; transition: transform .25s ease; }
-    .header img:hover{ transform: scale(1.06); }
-    .header h1{ font-size:44px; color:var(--brand); margin:0; }
-
-    .form-container{
-      position:relative;
-      flex:1;
-      overflow:hidden;
-      margin-top:8px;
-    }
-    .form-box{
-      position:absolute; inset:0;
-      display:flex; align-items:center; justify-content:center;
-      padding: 8px 0;
-      opacity:0; pointer-events:none; transform: translateX(100%);
-      transition: transform .5s ease, opacity .4s ease;
-    }
-    #signinBox{ transform: translateX(0); opacity:1; pointer-events:auto; z-index:2; }
-    .signup-active #signinBox{ transform: translateX(-100%); opacity:0; pointer-events:none; }
-    .signup-active #signupBox{ transform: translateX(0); opacity:1; pointer-events:auto; z-index:2; }
-
-    form{ width:100%; max-width: 460px; display:flex; flex-direction:column; gap:18px; }
-
-    .input-box{ display:flex; flex-direction:column; gap:8px; }
-    label{ font-size:14px; color:#555; }
-    input{
-      width:100%;
-      padding:14px 16px;
-      border:1.5px solid var(--border);
-      border-radius:10px;
-      font-size:16px; /* iOS: chống auto-zoom */
-      transition: border-color .2s ease, box-shadow .2s ease;
-      background:#fff;
-    }
-    input:focus{
-      outline: none;
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(255,105,103,.2);
-    }
-
-    .pw-row{ position:relative; }
-    .toggle-pw{
-      position:absolute; right:10px; top:50%; transform:translateY(-50%);
-      border:none; background:transparent; cursor:pointer; font-size:14px; color:#666; padding:6px 8px; border-radius:8px;
-    }
-    .toggle-pw:focus{ outline:none; box-shadow:0 0 0 2px rgba(255,105,103,.35); }
-
-    .btn{
-      background:var(--brand);
-      color:#fff; border:none; border-radius:10px;
-      padding:14px 16px; font-weight:700; font-size:16px;
-      cursor:pointer; transition: background .2s ease, transform .06s ease;
-    }
-    .btn:hover{ background:var(--brand-600); }
-    .btn:active{ transform: translateY(1px); }
-
-    .options{
-      margin-top: -6px; text-align:right; font-size:14px;
-    }
-    .options a{ color:var(--brand); text-decoration:none; font-weight:600; }
-    .options a:hover{ text-decoration:underline; }
-
-    .toggle-link{ text-align:center; font-size:15px; }
-    .toggle-link a{ color:var(--brand); font-weight:700; text-decoration:none; }
-    .toggle-link a:hover{ text-decoration:underline; }
-
-    /* ===== Breakpoints ===== */
-
-    /* Tablet / iPad (481–1024px) */
-    @media (max-width: 1024px) and (min-width: 481px){
-      .container{
-        width: min(100%, 860px);
-        grid-template-columns: 1.1fr 1fr;  /* ảnh hơi rộng để cân */
-        min-height: 540px;
-      }
-      .img-box{ min-height: 540px; }
-      .form-wrapper{ padding: 32px 32px 24px; }
-      .header img{ width:72px; height:72px; }
-      .header h1{ font-size:38px; }
-      form{ max-width: 420px; }
-      input, .btn{ padding: 13px 15px; font-size:16px; }
-    }
-
-    /* Mobile ≤ 480px */
-    @media (max-width: 480px){
-      body{
-        padding: 18px;
-        background: #ff6967 url('meal-logo.jpg') center/cover no-repeat fixed;
-      }
-      .container{
-        grid-template-columns: 1fr;    /* 1 cột */
-        width: 100%;
-        max-width: 420px;
-        background: var(--surface-veil);
-        backdrop-filter: blur(10px);
-        min-height: auto;
-      }
-      .img-box{ display:none; }
-      .form-wrapper{ padding: 26px 18px 20px; }
-      .header{ margin-top:0; }
-      .header img{ width:58px; height:58px; }
-      .header h1{ font-size:28px; }
-      .form-container{ margin-top:0; min-height: 360px; }
-      form{ max-width: 100%; padding: 2px; }
-      input, .btn{ padding: 12px 14px; font-size:16px; }
-      .toggle-link{ font-size:14px; }
-      .options{ font-size:13px; }
-    }
-
-    /* Desktop lớn (≥ 1440px) – phóng nhẹ */
-    @media (min-width: 1440px){
-      .container{ transform: scale(1.02); }
-    }
-
-    /* Giảm chuyển động nếu người dùng chọn */
-    @media (prefers-reduced-motion: reduce){
-      *{ animation: none !important; transition: none !important; }
-    }
-    
+    .img-box{ display:none; }
+    .form-wrapper{ padding: 26px 18px 20px; }
+    .header{ margin-top:0; }
+    .header img{ width:58px; height:58px; }
+    .header h1{ font-size:28px; }
+    .form-container{ margin-top:0; min-height: 360px; }
+    form{ max-width: 100%; padding: 2px; }
+    input, .btn{ padding: 12px 14px; font-size:16px; }
+    .toggle-link{ font-size:14px; }
+    .options{ font-size:13px; }
+  }
+  @media (min-width: 1440px){ .container{ transform: scale(1.02); } }
+  @media (prefers-reduced-motion: reduce){ *{ animation: none !important; transition: none !important; } }
+  .modal-backdrop{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:none; align-items:center; justify-content:center; padding:16px; z-index:9999; }
+  .modal{ width:min(100%,520px); background:#fff; border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
+  .modal-header{ padding:16px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+  .modal-title{ margin:0; font-size:18px; color:#333; font-weight:800; }
+  .modal-close{ border:none; background:transparent; font-size:22px; line-height:1; cursor:pointer; color:#777; padding:4px 8px; border-radius:8px; }
+  .modal-close:focus{ outline:none; box-shadow:0 0 0 2px rgba(255,105,103,.35); }
+  .modal-body{ padding:18px 20px 20px; display:flex; flex-direction:column; gap:14px; }
+  .helper{ font-size:14px; color:#666; margin:4px 0 6px; }
+  .inline{ display:flex; gap:10px; }
+  .inline input[type="text"]{ flex:1; }
+  .muted{ color:#666; font-size:13px; }
+  .badge{ display:inline-block; font-size:12px; padding:3px 8px; border-radius:999px; background:#ffe6e6; color:#ff534e; font-weight:700; }
+  .notice{ background:#fff5f5; border:1px dashed #ffc9c8; padding:10px 12px; border-radius:10px; color:#a43d3b; font-size:13px; }
+  .toast{ position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:#222; color:#fff; padding:10px 14px; border-radius:10px; box-shadow:var(--shadow); font-size:14px; z-index:10000; display:none; }
+  .btn.secondary{ background:#f0f0f0; color:#333; }
+  .btn.ghost{ background:transparent; color:var(--brand); border:1.5px solid var(--brand); }
+  .btn.full{ width:100%; }
+  .modal-actions{ display:flex; align-items:center; justify-content:flex-end; gap:10px; margin-top:4px; }
+  .otp-row{ display:flex; gap:8px; }
+  .otp-row input{ text-align:center; font-weight:700; letter-spacing:1px; }
+  .small{ font-size:12px; color:#777; }
   </style>
 </head>
 <body>
   <div class="container" id="container">
     <div class="img-box" aria-hidden="true"></div>
-
     <div class="form-wrapper">
       <div class="header">
         <img src="logo.svg" alt="PotPan logo" />
@@ -205,11 +159,9 @@
               <button class="toggle-pw" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="signinPassword">Hiện</button>
             </div>
             <button class="btn" type="submit">Đăng nhập</button>
-
             <div class="options">
-              <a href="#">Quên mật khẩu?</a>
+              <a href="#" id="forgotLink">Quên mật khẩu?</a>
             </div>
-
             <div class="toggle-link">
               Bạn chưa có tài khoản? <a href="#" id="signupLink">Đăng ký ngay</a>
             </div>
@@ -233,7 +185,6 @@
               <button class="toggle-pw" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="signupPassword">Hiện</button>
             </div>
             <button class="btn" type="submit">Đăng ký</button>
-
             <div class="toggle-link">
               Đã có tài khoản? <a href="#" id="signinLink">Đăng nhập ngay</a>
             </div>
@@ -243,104 +194,367 @@
     </div><!-- /form-wrapper -->
   </div><!-- /container -->
 
+  <!-- Modal Quên mật khẩu -->
+  <div class="modal-backdrop" id="forgotModal">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="forgotTitle">
+      <div class="modal-header">
+        <h3 id="forgotTitle" class="modal-title">Khôi phục mật khẩu</h3>
+        <button class="modal-close" type="button" aria-label="Đóng" id="forgotClose">×</button>
+      </div>
+      <div class="modal-body">
+        <!-- Step 1: email -->
+        <form id="forgotStepEmail" novalidate>
+          <div class="input-box">
+            <label for="forgotEmail">Nhập email đã đăng ký</label>
+            <input id="forgotEmail" type="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required>
+            <p class="helper">Chúng tôi sẽ gửi mã xác nhận đến email của bạn.</p>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" id="forgotCancel1">Hủy</button>
+            <button type="submit" class="btn">Gửi mã</button>
+          </div>
+          <div class="notice" id="forgotNoticeEmail" style="display:none;"></div>
+        </form>
+
+        <!-- Step 2: OTP -->
+        <form id="forgotStepOtp" style="display:none;" novalidate>
+          <p class="helper">Nhập mã xác nhận gồm 6 chữ số đã gửi đến <span id="otpEmailLabel" class="badge"></span></p>
+          <div class="otp-row">
+            <input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="6" id="otpCode" placeholder="••••••" required>
+          </div>
+          <div class="inline">
+            <button type="button" class="btn ghost" id="resendOtpBtn">Gửi lại mã</button>
+            <span class="small" id="resendCountdown"></span>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" id="forgotBack2">Quay lại</button>
+            <button type="submit" class="btn">Xác nhận</button>
+          </div>
+          <div class="notice" id="forgotNoticeOtp" style="display:none;"></div>
+        </form>
+
+        <!-- Step 3: reset password -->
+        <form id="forgotStepReset" style="display:none;" novalidate>
+          <div class="input-box">
+            <label for="newPassword">Mật khẩu mới</label>
+            <input id="newPassword" type="password" placeholder="Mật khẩu mới (≥ 6 ký tự)" minlength="6" required>
+          </div>
+          <div class="input-box">
+            <label for="newPassword2">Nhập lại mật khẩu mới</label>
+            <input id="newPassword2" type="password" placeholder="Nhập lại mật khẩu mới" minlength="6" required>
+          </div>
+          <div class="modal-actions">
+            <button type="button" class="btn secondary" id="forgotBack3">Quay lại</button>
+            <button type="submit" class="btn">Cập nhật mật khẩu</button>
+          </div>
+          <div class="notice" id="forgotNoticeReset" style="display:none;"></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <!-- SDK EmailJS (CDN chính thức) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
-    // Toggle giữa Signin/Signup
-    const root = document.getElementById('container');
-    const signupLink = document.getElementById('signupLink');
-    const signinLink = document.getElementById('signinLink');
+  // ========== Toggle Signin/Signup ==========
+  const root = document.getElementById('container');
+  const signupLink = document.getElementById('signupLink');
+  const signinLink = document.getElementById('signinLink');
+  if(signupLink){ signupLink.addEventListener('click', e=>{ e.preventDefault(); root.classList.add('signup-active'); }); }
+  if(signinLink){ signinLink.addEventListener('click', e=>{ e.preventDefault(); root.classList.remove('signup-active'); }); }
 
-    signupLink.addEventListener('click', (e)=>{ e.preventDefault(); root.classList.add('signup-active'); });
-    signinLink.addEventListener('click', (e)=>{ e.preventDefault(); root.classList.remove('signup-active'); });
-
-    // Hiện/ẩn mật khẩu
-    document.querySelectorAll('.toggle-pw').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = btn.dataset.target;
-        const inp = document.getElementById(id);
-        const isPw = inp.type === 'password';
-        inp.type = isPw ? 'text' : 'password';
-        btn.textContent = isPw ? 'Ẩn' : 'Hiện';
-      });
+  // ========== Toggle password ==========
+  document.querySelectorAll('.toggle-pw').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const id = btn.dataset.target;
+      const inp = document.getElementById(id);
+      const isPw = inp.type === 'password';
+      inp.type = isPw ? 'text' : 'password';
+      btn.textContent = isPw ? 'Ẩn' : 'Hiện';
     });
+  });
 
-    // Validate nhẹ (tránh submit form trống)
-    const requireValid = (form) => {
-      form.addEventListener('submit', (e)=>{
-        if(!form.checkValidity()){
-          e.preventDefault();
-          form.reportValidity();
-        }
-      });
-    };
-    requireValid(document.getElementById('signinForm'));
-    requireValid(document.getElementById('signupForm'));
-        // ======= XỬ LÝ ĐĂNG KÝ / ĐĂNG NHẬP =======
-
-    // Hàm lưu tài khoản mới vào localStorage
-    function saveUser(email, name, password){
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      // Kiểm tra trùng email
-      if(users.some(u => u.email === email)){
-        alert('Email này đã được đăng ký!');
-        return false;
+  // ========== Validate ==========
+  function requireValid(form){
+    if(!form) return;
+    form.addEventListener('submit', (e)=>{
+      if(!form.checkValidity()){
+        e.preventDefault();
+        form.reportValidity();
       }
-      users.push({ email, name, password });
-      localStorage.setItem('users', JSON.stringify(users));
-      alert('Đăng ký thành công! Hãy đăng nhập.');
-      root.classList.remove('signup-active');
-      return true;
-    }
-
-    // Hàm kiểm tra đăng nhập
-    function checkLogin(email, password){
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-      const user = users.find(u => u.email === email && u.password === password);
-      return user || null;
-    }
-
-    // Thêm phần tử hiển thị thông báo lỗi
-    const errorMsg = document.createElement('p');
-    errorMsg.style.color = '#FF6967';
-    errorMsg.style.fontWeight = '500';
-    errorMsg.style.fontFamily = 'Roboto, system-ui, sans-serif';
-    errorMsg.style.fontSize = '15px';
-    errorMsg.style.textAlign = 'center';
-    errorMsg.style.marginTop = '-8px';
-    errorMsg.style.display = 'none';
-    document.querySelector('#signinForm .btn').insertAdjacentElement('afterend', errorMsg);
-
-    // Xử lý đăng ký
-    document.getElementById('signupForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const name = document.getElementById('fullName').value.trim();
-      const email = document.getElementById('signupEmail').value.trim();
-      const password = document.getElementById('signupPassword').value.trim();
-
-      if(!name || !email || !password){ alert('Vui lòng nhập đủ thông tin.'); return; }
-      if(password.length < 6){ alert('Mật khẩu phải có ít nhất 6 ký tự.'); return; }
-
-      saveUser(email, name, password);
-      document.getElementById('signupForm').reset();
     });
+  }
+  requireValid(document.getElementById('signinForm'));
+  requireValid(document.getElementById('signupForm'));
+  requireValid(document.getElementById('forgotStepEmail'));
+  requireValid(document.getElementById('forgotStepOtp'));
+  requireValid(document.getElementById('forgotStepReset'));
 
-    // Xử lý đăng nhập
-    document.getElementById('signinForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const email = document.getElementById('signinEmail').value.trim();
-      const password = document.getElementById('signinPassword').value.trim();
-      const user = checkLogin(email, password);
+  // ========== Hàm gốc (giữ nguyên) ==========
+  function saveUser(email, name, password){
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    if(users.some(u => u.email === email)){
+      alert('Email này đã được đăng ký!');
+      return false;
+    }
+    users.push({ email, name, password });
+    localStorage.setItem('users', JSON.stringify(users));
+    alert('Đăng ký thành công! Hãy đăng nhập.');
+    root.classList.remove('signup-active');
+    return true;
+  }
+  function checkLogin(email, password){
+    const users = JSON.parse(localStorage.getItem('users') || '[]');
+    const user = users.find(u => u.email === email && u.password === password);
+    return user || null;
+  }
 
+  // ========== Thông báo lỗi đăng nhập ==========
+  const errorMsg = document.createElement('p');
+  Object.assign(errorMsg.style, { color:'#FF6967', fontWeight:'500', fontFamily:'Roboto, system-ui, sans-serif', fontSize:'15px', textAlign:'center', marginTop:'-8px', display:'none' });
+  document.querySelector('#signinForm .btn').insertAdjacentElement('afterend', errorMsg);
+
+  // ========== DataStore (IndexedDB + sync localStorage) ==========
+  const DataStore = (function(){
+    const DB_NAME = 'potpan_db';
+    const STORE = 'users';
+    const VERSION = 1;
+    let db, opened=false;
+    const _cache = new Map();
+
+    function _open(){
+      return new Promise((resolve, reject)=>{
+        if(opened && db) return resolve(db);
+        const req = indexedDB.open(DB_NAME, VERSION);
+        req.onupgradeneeded = (e)=>{
+          const _db = e.target.result;
+          if(!_db.objectStoreNames.contains(STORE)){
+            const s = _db.createObjectStore(STORE, { keyPath: 'email' });
+            s.createIndex('email', 'email', { unique: true });
+          }
+        };
+        req.onsuccess = e=>{ db=e.target.result; opened=true; resolve(db); };
+        req.onerror = ()=> reject(req.error || new Error('Mở DB lỗi'));
+      });
+    }
+    function _tx(mode='readonly'){ return _open().then(_db=> _db.transaction(STORE, mode).objectStore(STORE)); }
+    function listUsers(){
+      return _tx('readonly').then(store=> new Promise((resolve,reject)=>{
+        const arr=[]; const cursor=store.openCursor();
+        cursor.onsuccess = e=>{ const c=e.target.result; if(c){ arr.push(c.value); c.continue(); } else { resolve(arr); } };
+        cursor.onerror = ()=> reject(cursor.error || new Error('Không thể đọc danh sách người dùng'));
+      }));
+    }
+    function _syncLocal(){ localStorage.setItem('users', JSON.stringify(Array.from(_cache.values()))); }
+    function _init(){
+      return listUsers().then(arr=>{ _cache.clear(); arr.forEach(u=> _cache.set(u.email,u)); _syncLocal(); });
+    }
+    function getUserByEmail(email){
+      if(!email) return Promise.resolve(null);
+      if(_cache.has(email)) return Promise.resolve(_cache.get(email));
+      return _tx('readonly').then(store=> new Promise((resolve,reject)=>{
+        const req = store.get(email);
+        req.onsuccess = ()=>{ const v=req.result||null; if(v) _cache.set(email,v); resolve(v); };
+        req.onerror = ()=> reject(req.error || new Error('Lỗi truy vấn'));
+      }));
+    }
+    function addUser(user){
+      if(!user?.email || !user?.name || !user?.password) return Promise.reject(new Error('Thiếu thông tin người dùng'));
+      return getUserByEmail(user.email).then(existed=>{
+        if(existed) throw new Error('Email này đã được đăng ký!');
+        return _tx('readwrite').then(store=> new Promise((resolve,reject)=>{
+          const now = new Date().toISOString();
+          const data = { ...user, createdAt: now, updatedAt: now };
+          const req = store.add(data);
+          req.onsuccess = ()=>{ _cache.set(data.email, data); _syncLocal(); resolve(data); };
+          req.onerror = ()=> reject(req.error || new Error('Không thể lưu người dùng'));
+        }));
+      });
+    }
+    function updateUserPassword(email, newPassword){
+      if(!email || !newPassword) return Promise.reject(new Error('Thiếu dữ liệu'));
+      return getUserByEmail(email).then(u=>{
+        if(!u) throw new Error('Không tìm thấy tài khoản');
+        return _tx('readwrite').then(store=> new Promise((resolve,reject)=>{
+          const updated = { ...u, password:newPassword, updatedAt:new Date().toISOString() };
+          const req = store.put(updated);
+          req.onsuccess = ()=>{ _cache.set(email, updated); _syncLocal(); resolve(updated); };
+          req.onerror = ()=> reject(req.error || new Error('Không thể cập nhật mật khẩu'));
+        }));
+      });
+    }
+    _init();
+    return { listUsers, getUserByEmail, addUser, updateUserPassword, cacheUsers:()=>Array.from(_cache.values()) };
+  })();
+
+  // ========== Đăng ký ==========
+  document.getElementById('signupForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const email = document.getElementById('signupEmail').value.trim();
+    const password = document.getElementById('signupPassword').value.trim();
+    if(!name || !email || !password){ alert('Vui lòng nhập đủ thông tin.'); return; }
+    if(password.length < 6){ alert('Mật khẩu phải có ít nhất 6 ký tự.'); return; }
+
+    DataStore.addUser({ email, name, password })
+      .then(()=>{
+        localStorage.setItem('users', JSON.stringify(DataStore.cacheUsers()));
+        alert('Đăng ký thành công! Hãy đăng nhập.');
+        document.getElementById('signupForm').reset();
+        root.classList.remove('signup-active');
+      })
+      .catch(err=> alert(err?.message || 'Không thể đăng ký.'));
+  });
+
+  // ========== Đăng nhập ==========
+  document.getElementById('signinForm').addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const email = document.getElementById('signinEmail').value.trim();
+    const password = document.getElementById('signinPassword').value.trim();
+    DataStore.getUserByEmail(email).then(u=>{
+      const ok = u && u.password === password;
+      const user = ok ? u : checkLogin(email, password);
       if(user){
-        // Lưu user hiện tại và chuyển trang
         localStorage.setItem('currentUser', JSON.stringify(user));
-        window.location.href = 'profile.html'; // điều hướng sang trang Hồ sơ
-      } else {
+        window.location.href = 'profile.html';
+      }else{
         errorMsg.textContent = 'Sai email hoặc mật khẩu. Vui lòng thử lại.';
         errorMsg.style.display = 'block';
       }
     });
+  });
 
+  // ========== Forgot Password + EmailJS ==========
+  const EMAILJS_CFG = {
+    enabled: true,
+    publicKey: 'YOUR_PUBLIC_KEY',
+    serviceId: 'YOUR_SERVICE_ID',
+    templateId: 'YOUR_TEMPLATE_ID'
+  };
+  // init EmailJS
+  window.addEventListener('load', ()=>{
+    if(EMAILJS_CFG.enabled && window.emailjs){
+      try{ emailjs.init(EMAILJS_CFG.publicKey); }catch(e){}
+    }
+  });
+
+  const $ = (sel, root=document)=> root.querySelector(sel);
+  const show = (el)=> el && (el.style.display = '');
+  const hide = (el)=> el && (el.style.display = 'none');
+  const toast = $('#toast'); let toastTimer;
+  function showToast(msg, ms=2000){ toast.textContent=msg; toast.style.display='block'; clearTimeout(toastTimer); toastTimer=setTimeout(()=> toast.style.display='none', ms); }
+
+  const forgotModal = $('#forgotModal');
+  const forgotClose = $('#forgotClose');
+  const forgotStepEmail = $('#forgotStepEmail');
+  const forgotStepOtp = $('#forgotStepOtp');
+  const forgotStepReset = $('#forgotStepReset');
+  const forgotNoticeEmail = $('#forgotNoticeEmail');
+  const forgotNoticeOtp = $('#forgotNoticeOtp');
+  const forgotNoticeReset = $('#forgotNoticeReset');
+  const otpEmailLabel = $('#otpEmailLabel');
+  const resendCountdown = $('#resendCountdown');
+  const forgotLinkEl = document.getElementById('forgotLink');
+
+  let currentEmail = '', currentOtp = '', resendSecs = 0, resendTimer;
+
+  function openForgot(){
+    forgotModal.style.display='flex';
+    hide(forgotNoticeEmail); hide(forgotNoticeOtp); hide(forgotNoticeReset);
+    show(forgotStepEmail); hide(forgotStepOtp); hide(forgotStepReset);
+    $('#forgotEmail').value = $('#signinEmail')?.value || '';
+    $('#otpCode').value = ''; $('#newPassword').value=''; $('#newPassword2').value='';
+    currentEmail = ''; currentOtp = '';
+    clearInterval(resendTimer); resendCountdown.textContent='';
+  }
+  function closeForgot(){ forgotModal.style.display='none'; }
+
+  if(forgotLinkEl){ forgotLinkEl.addEventListener('click', e=>{ e.preventDefault(); openForgot(); }); }
+  if(forgotClose) forgotClose.addEventListener('click', closeForgot);
+  $('#forgotCancel1')?.addEventListener('click', closeForgot);
+  $('#forgotBack2')?.addEventListener('click', ()=>{ show(forgotStepEmail); hide(forgotStepOtp); });
+  $('#forgotBack3')?.addEventListener('click', ()=>{ show(forgotStepOtp); hide(forgotStepReset); });
+
+  function generateOtp(){ return String(Math.floor(100000 + Math.random()*900000)); }
+  function startResendCountdown(seconds=45){
+    resendSecs = seconds; resendCountdown.textContent = `Bạn có thể gửi lại mã sau ${resendSecs}s`;
+    clearInterval(resendTimer);
+    resendTimer = setInterval(()=>{
+      resendSecs--;
+      if(resendSecs<=0){ clearInterval(resendTimer); resendCountdown.textContent='Bạn có thể gửi lại mã.'; }
+      else{ resendCountdown.textContent = `Bạn có thể gửi lại mã sau ${resendSecs}s`; }
+    }, 1000);
+  }
+  function sendOtpEmail(email, otp){
+    if(EMAILJS_CFG.enabled && window.emailjs){
+      return emailjs.send(EMAILJS_CFG.serviceId, EMAILJS_CFG.templateId, {
+        to_email: email,
+        otp_code: otp,
+        app_name: 'PotPan'
+      });
+    }else{
+      // fallback demo (không dùng khi enabled = true)
+      forgotNoticeEmail.innerHTML = `Mã xác nhận: <strong>${otp}</strong>`;
+      show(forgotNoticeEmail);
+      return Promise.resolve();
+    }
+  }
+
+  // Step 1
+  forgotStepEmail?.addEventListener('submit', (e)=>{
+    e.preventDefault(); hide(forgotNoticeEmail);
+    const email = $('#forgotEmail').value.trim();
+    if(!email){ forgotStepEmail.reportValidity(); return; }
+
+    DataStore.getUserByEmail(email).then(u=>{
+      if(!u){ forgotNoticeEmail.textContent='Email này chưa được đăng ký.'; show(forgotNoticeEmail); return; }
+      currentEmail = email; currentOtp = generateOtp();
+      sendOtpEmail(email, currentOtp).then(()=>{
+        otpEmailLabel.textContent = email; showToast('Đã gửi mã xác nhận'); startResendCountdown(45);
+        hide(forgotStepEmail); show(forgotStepOtp);
+      }).catch(err=>{
+        const msg = (err && (err.text || err.message)) || 'Không thể gửi mã xác nhận. Vui lòng thử lại.';
+        forgotNoticeEmail.textContent = msg; show(forgotNoticeEmail);
+      });
+    });
+  });
+
+  // Resend
+  $('#resendOtpBtn')?.addEventListener('click', ()=>{
+    if(resendSecs>0){ showToast('Vui lòng chờ hết thời gian đếm ngược'); return; }
+    if(!currentEmail){ showToast('Vui lòng nhập email trước'); return; }
+    currentOtp = generateOtp();
+    sendOtpEmail(currentEmail, currentOtp).then(()=>{ showToast('Đã gửi lại mã'); startResendCountdown(45); })
+      .catch(()=>{ forgotNoticeOtp.textContent='Không thể gửi lại mã.'; show(forgotNoticeOtp); });
+  });
+
+  // Step 2
+  forgotStepOtp?.addEventListener('submit', (e)=>{
+    e.preventDefault(); hide(forgotNoticeOtp);
+    const otp = $('#otpCode').value.trim();
+    if(otp.length !== 6){ forgotNoticeOtp.textContent='Mã xác nhận gồm 6 chữ số.'; show(forgotNoticeOtp); return; }
+    if(otp !== currentOtp){ forgotNoticeOtp.textContent='Mã xác nhận không đúng.'; show(forgotNoticeOtp); return; }
+    hide(forgotStepOtp); show(forgotStepReset);
+  });
+
+  // Step 3
+  forgotStepReset?.addEventListener('submit', (e)=>{
+    e.preventDefault(); hide(forgotNoticeReset);
+    const pw1 = $('#newPassword').value.trim();
+    const pw2 = $('#newPassword2').value.trim();
+    if(pw1.length < 6){ forgotNoticeReset.textContent='Mật khẩu phải có ít nhất 6 ký tự.'; show(forgotNoticeReset); return; }
+    if(pw1 !== pw2){ forgotNoticeReset.textContent='Mật khẩu nhập lại không khớp.'; show(forgotNoticeReset); return; }
+    DataStore.updateUserPassword(currentEmail, pw1).then(()=>{
+      localStorage.setItem('users', JSON.stringify(DataStore.cacheUsers()));
+      showToast('Cập nhật mật khẩu thành công'); closeForgot();
+      document.getElementById('signinEmail').value = currentEmail;
+      document.getElementById('signinPassword').value = pw1;
+      currentEmail=''; currentOtp='';
+    }).catch(()=>{ forgotNoticeReset.textContent='Không thể cập nhật mật khẩu.'; show(forgotNoticeReset); });
+  });
   </script>
 </body>
 </html>
-
