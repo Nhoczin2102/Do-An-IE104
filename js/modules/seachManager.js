@@ -1,0 +1,30 @@
+export class SearchManager {
+    constructor(postManager) {
+        this.postManager = postManager;
+        this.searchInput = document.querySelector('.header-search_bar input');
+        this.searchBtn = document.querySelector('.header-search_btn');
+        
+        this.bindEvents();
+    }
+
+    bindEvents() {
+        if (this.searchBtn && this.searchInput) {
+            this.searchBtn.addEventListener('click', () => this.performSearch());
+            this.searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') this.performSearch();
+            });
+        }
+    }
+
+    performSearch() {
+        const searchTerm = this.searchInput.value.trim().toLowerCase();
+        this.postManager.searchPosts(searchTerm);
+    }
+
+    clearSearch() {
+        if (this.searchInput) {
+            this.searchInput.value = '';
+        }
+        this.postManager.renderFeed();
+    }
+}

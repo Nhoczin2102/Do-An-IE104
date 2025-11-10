@@ -1,0 +1,97 @@
+  <div id="createPostModal" class="modal">
+    <div class="modal-content">
+      <!-- Header popup -->
+      <div class="modal-header">
+        <h3>Tạo bài đăng mới</h3>
+        <button class="close-modal">&times;</button>
+      </div>
+
+      <!-- Thông tin người dùng -->
+      <div class="post-user">
+        <img src="../../assets/home-page/image 1.png" alt="Avatar">
+        <div>
+          <div class="user-name">Minh Nhựt</div>
+          <div class="user-handle">@nhutminh_amthuc</div>
+        </div>
+      </div>
+
+      <!-- Nội dung bài đăng -->
+      <textarea class="post-content-input" placeholder="Chia sẻ công thức mới của bạn..."></textarea>
+
+      <!-- Phần công thức -->
+      <div class="recipe-form">
+        <h4>🍴 Thông tin công thức</h4>
+
+        <div class="recipe-basic-info">
+          <div class="input-group">
+            <label>Tên món ăn</label>
+            <input type="text" class="recipe-title" placeholder="Ví dụ: Phở bò Hà Nội">
+          </div>
+          <div class="input-group">
+            <label>Độ khó</label>
+            <select class="recipe-difficulty">
+              <option value="Dễ">Dễ</option>
+              <option value="Trung bình">Trung bình</option>
+              <option value="Khó">Khó</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="recipe-time-info">
+          <div class="input-group">
+            <label>Thời gian chuẩn bị</label>
+            <input type="text" class="recipe-prep-time" placeholder="30 phút">
+          </div>
+          <div class="input-group">
+            <label>Thời gian nấu</label>
+            <input type="text" class="recipe-cook-time" placeholder="1 giờ">
+          </div>
+          <div class="input-group">
+            <label>Khẩu phần</label>
+            <input type="text" class="recipe-servings" placeholder="4 người">
+          </div>
+        </div>
+
+        <!-- Nguyên liệu -->
+        <div class="ingredients-section">
+          <label>📝 Nguyên liệu</label>
+          <div class="ingredients-list"></div>
+          <button type="button" class="add-ingredient">+ Thêm nguyên liệu</button>
+        </div>
+
+        <!-- Các bước thực hiện -->
+        <div class="steps-section">
+          <label>👩‍🍳 Các bước thực hiện</label>
+          <div class="steps-list"></div>
+          <button type="button" class="add-step">+ Thêm bước</button>
+        </div>
+
+        <!-- Mẹo hay -->
+        <div class="tips-section">
+          <label>💡 Mẹo hay</label>
+          <textarea class="recipe-tips" placeholder="Chia sẻ mẹo nấu ăn của bạn..."></textarea>
+        </div>
+      </div>
+
+      <!-- Upload ảnh -->
+      <div class="image-upload">
+        <label>🖼️ Hình ảnh món ăn</label>
+        <div class="upload-area">
+          <div class="upload-icon">📷</div>
+          <div class="upload-text">Kéo thả ảnh vào đây hoặc click để chọn</div>
+          <div class="upload-subtext">JPG, PNG (Tối đa 5MB)</div>
+          <input type="file" accept="image/*" class="image-input">
+          <input type="file" accept="video/*" class="image-input">
+
+        </div>
+        <div class="image-preview"></div>
+      </div>
+
+      <!-- Nút hành động -->
+      <div class="modal-actions">
+        <button class="cancel-btn">Hủy</button>
+        <button class="post-btn">Đăng bài</button>
+
+      </div>
+    </div>
+  </div>

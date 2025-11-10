@@ -1,0 +1,67 @@
+<div id="cookModeModal" class="cookmode-modal">
+    <div class="cookmode-content">
+      <div class="cookmode-header">
+        <h2>🍳 COOK MODE</h2>
+        <button class="cook-close">&times;</button>
+      </div>
+
+      <div class="cookmode-body">
+        <!-- Dish Info -->
+        <div class="cookmode-dish-info">
+          <h3 class="cookmode-dish">Tên món ăn</h3>
+          <div class="cookmode-meta">
+            <div><span data-cm-prep>--</span> chuẩn bị</div>
+            <div><span data-cm-cook>--</span> nấu</div>
+            <div><span data-cm-serv>--</span> khẩu phần</div>
+            <div><span data-cm-diff>--</span> độ khó</div>
+          </div>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="cookmode-section">
+          <h4>📝 Nguyên liệu</h4>
+          <ul class="cookmode-ingredients"></ul>
+        </div>
+
+        <!-- Current Step -->
+        <div class="cookmode-section">
+          <h4>👩‍🍳 Bước thực hiện</h4>
+          <div class="cookmode-step">
+            <div class="step-progress">
+              <span data-cm-step-index>1</span>/<span data-cm-step-total>5</span>
+              <div class="progress-bar">
+                <div class="progress-fill" data-cm-progress-bar style="width: 0%"></div>
+              </div>
+              <span data-cm-progress>0%</span>
+            </div>
+            <p class="step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
+          </div>
+        </div>
+
+        <!-- Timer -->
+        <div class="cookmode-section">
+          <h4>⏰ Hẹn giờ</h4>
+          <div class="cookmode-timer">
+            <div class="timer-display" data-cm-timer>00:00</div>
+            <div class="timer-controls">
+              <button class="timer-btn" data-cm-minus>-1m</button>
+              <button class="timer-btn" data-cm-startstop>Bắt đầu</button>
+              <button class="timer-btn" data-cm-plus>+1m</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="cookmode-section" data-cm-tip style="display: none;">
+          <h4>💡 Mẹo nhỏ</h4>
+          <p></p>
+        </div>
+      </div>
+
+      <div class="cookmode-footer">
+        <button class="cook-btn secondary" data-cm-prev disabled>⬅ Bước trước</button>
+        <button class="cook-btn primary" data-cm-next>Bước tiếp theo ➡</button>
+        <button class="cook-btn success" data-cm-finish style="display: none;">🎉 Hoàn thành</button>
+      </div>
+    </div>
+  </div>

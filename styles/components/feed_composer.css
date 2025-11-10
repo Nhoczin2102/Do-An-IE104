@@ -1,0 +1,255 @@
+/* ========== FEED ========== */
+.feed-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.feed-card .composer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.feed-card .composer img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.feed-card .composer input {
+  flex: 1;
+  padding: 14px 20px;
+  border: 1px solid var(--border-color);
+  border-radius: 28px;
+  outline: none;
+  font-size: 16px;
+  color: var(--text-light);
+  background: #f8f9fa;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.feed-card .composer input:focus {
+  border-color: var(--primary-light);
+  background: white;
+  box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
+}
+
+.feed-card .tabs {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  margin: 15px 0 8px;
+  color: var(--text-light-subtle);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.feed-card .tabs span {
+  cursor: pointer;
+  transition: color 0.15s ease;
+  padding: 10px 16px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.feed-card .tabs span:hover {
+  color: var(--primary-color);
+  background: var(--background-light);
+}
+
+.feed-card .btn-post {
+  margin-left: auto;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 24px;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: var(--text-on-primary);
+  font-weight: 700;
+  font-size: 15px;
+  transition: all 0.15s ease;
+  min-width: 100px;
+}
+
+.feed-card .btn-post:hover {
+  background: var(--primary-dark);
+}
+
+.feed-card .btn-post:active {
+  transform: scale(0.98);
+}
+
+/* Feed Posts */
+#feed {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+#feed::-webkit-scrollbar {
+  width: 8px;
+}
+
+#feed::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+#feed::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 10px;
+}
+
+#feed::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+.feed-post {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  width: 100%;
+}
+
+.feed-post-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.feed-post-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.feed-post-user {
+  flex: 1;
+}
+
+.feed-post-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+}
+
+.feed-post-handle {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.feed-post-time {
+  color: var(--text-light-subtle);
+  font-size: 13px;
+}
+
+.feed-post-content {
+  margin-bottom: 16px;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+.feed-post-image {
+  width: 100%;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  max-height: 500px;
+  object-fit: cover;
+}
+
+.feed-post-actions {
+  display: flex;
+  gap: 100px;
+  justify-content: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-color);
+}
+
+.feed-post-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light-subtle);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.feed-post-action:hover {
+  background: var(--background-light);
+  color: var(--primary-color);
+}
+
+/* Đây là phần hiển thị công thức (recipe) BÊN DƯỚI một bài post */
+.recipe-section {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 12px 0;
+}
+
+.recipe-section h4 {
+    margin: 0 0 12px 0;
+    color: #FF6967;
+}
+
+.recipe-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    color: #666;
+}
+
+.recipe-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.ingredients h5, .steps h5 {
+    margin: 0 0 8px 0;
+    color: #333;
+}
+
+.ingredients ul, .steps ol {
+    margin: 0;
+    padding-left: 16px;
+    font-size: 13px;
+    color: #555;
+}
+
+/* Đây là class để HIỂN THỊ tips (khác với .recipe-tips-input) */
+.recipe-tips {
+    margin-top: 12px;
+    padding: 8px;
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    border-left: 3px solid #FF6967;
+    
+}

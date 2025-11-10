@@ -1,0 +1,244 @@
+/* Đây là phiên bản Light Mode Modal mà chúng ta đã thống nhất giữ lại */
+.cookmode-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.cookmode-modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cookmode-content {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.cookmode-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #f0f0f0;
+    background: linear-gradient(135deg, #FF6967, #ff8e8e);
+    color: white;
+    border-radius: 20px 20px 0 0;
+}
+
+.cookmode-header h2 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.cook-close {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2em;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cook-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cookmode-body {
+    padding: 10px;
+}
+
+.cookmode-dish-info {
+    text-align: center;
+}
+
+.cookmode-dish {
+    color: #FF6967;
+    margin: 0 0 10px 0;
+    font-size: 1.4em;
+}
+
+.cookmode-meta {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.cookmode-section {
+    margin-bottom: 25px;
+}
+
+.cookmode-section h4 {
+    color: #333;
+    margin: 0 0 12px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.cookmode-ingredients {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cookmode-ingredients li {
+    display: flex;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.cookmode-ingredients input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+}
+
+.cookmode-step {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.step-progress {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #FF6967;
+}
+
+.progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #FF6967, #ff8e8e);
+    transition: width 0.3s ease;
+}
+
+.step-text {
+    margin: 0;
+    line-height: 1.5;
+    color: #333;
+}
+
+.cookmode-timer {
+    text-align: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.timer-display {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #FF6967;
+    margin-bottom: 15px;
+    font-family: 'Courier New', monospace;
+}
+
+.timer-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.timer-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 8px;
+    background: #FF6967;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.timer-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+.timer-btn.timer-active {
+    background: #ff3333;
+}
+
+.cookmode-footer {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-top: 2px solid #f0f0f0;
+    background: #fafafa;
+    border-radius: 0 0 20px 20px;
+}
+
+.cook-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cook-btn.primary {
+    background: #FF6967;
+    color: white;
+}
+
+.cook-btn.primary:hover:not(:disabled) {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+.cook-btn.secondary {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.cook-btn.secondary:hover:not(:disabled) {
+    background: #d0d0d0;
+}
+
+.cook-btn.success {
+    background: #4CAF50;
+    color: white;
+}
+
+.cook-btn.success:hover {
+    background: #45a049;
+}
+
+.cook-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
