@@ -1,108 +1,107 @@
-document.addEventListener('DOMContentLoaded',() => {
-    let allRecipesData = []
-    let currentDisplayCount = 6
-    const recipesPerLoad = 6
+document.addEventListener('DOMContentLoaded', () => {
+  const chefsContainer = document.querySelector('.explore-chefs');
+  const trendingContainer = document.querySelector('.explore-trending');
+  const allRecipesContainer = document.querySelector('.explore-allrecipes');
+  const loadMoreBtn = document.querySelector('.btn-load-more');
 
-    const chefsContainer = document.querySelector('.explore-chefs')
-    const trendingContainer = document.querySelector('.explore-trending')
-    const allRecipesContainer = document.querySelector('.explore-allrecipes')
-    const loadMoreBtn = document.querySelector('.btn-load-more')
-    // 1. Nut xem them
-    function updateLoadMoreButton() {
-        if (currentDisplayCount >= allRecipesData.length) {
-           loadMoreBtn.style.display = 'none'; 
-        }
-        else {
-            loadMoreBtn.style.display = 'block';
-        }
-    }
-    // 2. Danh sach tat ca cong thuc
-    function renderAllRecipes() {
-        //cat mang data
-        const recipesToShow = allRecipesData.slice(0,currentDisplayCount)
-        //html
-        allRecipesContainer.innerHTML = recipesToShow.map(recipe => 
-            `
-                <div class='recipe-card' data-recipe-id='${recipe.id}'>
-                    <div class='recipe-anh'>
-                        <img src='${recipe.image}' alt='${recipe.name}'>
-                    </div>
-                    <div class='recipe-body'>
-                        <h3 class='recipe-title'>${recipe.name}</h3>
-                        <p class='recipe-text'>${recipe.ingredients}</p>
-                        <div class='recipe-meta'>
-                            <span class='chef'>${recipe.chef}</span>
-                            <span class='time'>${recipe.time}</span>
-                        </div>
-                    </div>
-                </div>
-            `).join('')
-        updateLoadMoreButton()
-    }
-    // 3. Xu ly nut xem them
-    function handleLoadMore() {
-        currentDisplayCount += recipesPerLoad //them sl cong thuc
-        renderAllRecipes() //goi lai de load
-    }
-    // 4. Ham tai lai du lieu
-    async function loadData() {
-        try {
-            //Tai dau bep
-            const chefRes = await fetch('../data/chefs.explore.data.json')
-            const chefs = await chefRes.json()
-            chefsContainer.innerHTML = chefs.map(chef =>`
-                <div class='chef-card' data-chef-id='${chef.id}'>
-                    <img src="${chef.img}" alt="${chef.name}" class="chef-avatar" />
-                    <div class="chef-name">${chef.name}</div>
-                    <div class="chef-specialty">${chef.specialty}</div>
-                </div>
-            `).join('')
-            //Tai cong thuc thinh hanh
-            const trendingRes = await fetch('../data/trending.explore.data.json')
-            const trending = await trendingRes.json()
-            trendingContainer.innerHTML = trending.map(recipe => `
-                <div class='recipe-card' data-recipe-id='${recipe.id}'>
-                    <div class='recipe-anh'>
-                        <img src='${recipe.image}' alt='${recipe.name}'>
-                    </div>
-                    <div class='recipe-body'>
-                        <h4 class='recipe-title'>${recipe.name}</h4>
-                        <p class='recipe-text'>${recipe.ingredients}</p>
-                        <div class='recipe-meta'>
-                            <span class='chef'>${recipe.chef}</span>
-                            <span class='time'>${recipe.time}</span>
-                        </div>
-                    </div>
-                </div> 
-            `).join('')
+  let allData = [];            // toàn bộ entries 
+  let allBucket = [];          // 101..199
+  let trendingBucket = [];     // 201..299
+  let currentDisplayCount = 6;
+  const recipesPerLoad = 6;
 
-            //Tai tat ca cong thuc
-            const allRecipeRes = await fetch('../data/allrecipes.explore.data.json')
-            allRecipesData = await allRecipeRes.json()
-            renderAllRecipes()
-        } catch (error) {
-            console.error("Không thể tải dữ liệu:", error);
-            allRecipesContainer.innerHTML = "<p>Lỗi tải dữ liệu. Vui lòng thử lại.</p>";
-        }
+  function bucketByIdPrefix(list) {
+    const isALL = (id) => id >= 101 && id <= 200;
+    const isTREND = (id) => id >= 201 && id <= 300;
+    return {
+      all: list.filter(x => isALL(Number(x.id))),
+      trending: list.filter(x => isTREND(Number(x.id))),
+    };
+  }
+
+  function renderChefs(chefs) {
+    chefsContainer.innerHTML = (chefs || []).map(chef => `
+      <div class='chef-card' data-chef-id='${chef.id}'>
+        <img src="${chef.img}" alt="${chef.name}" class="chef-avatar" />
+        <div class="chef-name">${chef.name}</div>
+        <div class="chef-specialty">${chef.specialty}</div>
+      </div>
+    `).join('');
+  }
+
+  function renderTrending() {
+    trendingContainer.innerHTML = trendingBucket.map(r => `
+      <div class='recipe-card' data-recipe-id='${r.id}' data-source='trending'>
+        <div class='recipe-anh'>
+          <img src='${r.img}' alt='${r.name}'>
+        </div>
+        <div class='recipe-body'>
+          <h4 class='recipe-title'>${r.name}</h4>
+          <p class='recipe-text'>${r.short || ''}</p>
+          <div class='recipe-meta'>
+            <span class='chef'>${r.chef || ''}</span>
+            <span class='time'>${r.time || ''}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function renderAllRecipes() {
+    const data = allBucket.slice(0, currentDisplayCount);
+    allRecipesContainer.innerHTML = data.map(r => `
+      <div class='recipe-card' data-recipe-id='${r.id}' data-source='all'>
+        <div class='recipe-anh'>
+          <img src='${r.img}' alt='${r.name}'>
+        </div>
+        <div class='recipe-body'>
+          <h3 class='recipe-title'>${r.name}</h3>
+          <p class='recipe-text'>${r.short || ''}</p>
+          <div class='recipe-meta'>
+            <span class='chef'>${r.chef || ''}</span>
+            <span class='time'>${r.time || ''}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+
+    // nút Load more
+    if (currentDisplayCount >= allBucket.length) {
+      loadMoreBtn.style.display = 'none';
+    } else {
+      loadMoreBtn.style.display = 'block';
     }
-    // su kien cho nut xem them
-    loadMoreBtn.addEventListener('click',handleLoadMore)
-    // su kien click vao the
-    document.addEventListener('click', (e) => {
-        const recipeCard = e.target.closest('.recipe-card');
-        if (recipeCard) {
-            const recipeId = recipeCard.dataset.recipeId;
-            console.log('Clicked recipe:', recipeId);
-            // chuyen trang cong thuc
-        }
+  }
 
-        const chefCard = e.target.closest('.chef-card');
-        if (chefCard) {
-            const chefId = chefCard.dataset.chefId;
-            console.log('Clicked chef:', chefId);
-            // chuyen trang dau bep
-        }
-    });
+  async function loadData() {
+    try {
+      // Chefs (giữ nguyên nếu bạn đang có file chefs)
+      try {
+        const chefRes = await fetch('../data/chefs.explore.data.json');
+        const chefs = await chefRes.json();
+        renderChefs(chefs);
+      } catch { /* optional */ }
 
-    loadData()
-})
+      // Đọc 1 file duy nhất
+      const res = await fetch('../data/recipe-details.data.json');
+      allData = await res.json();
+
+      const buckets = bucketByIdPrefix(allData);
+      allBucket = buckets.all;
+      trendingBucket = buckets.trending;
+
+      renderTrending();
+      renderAllRecipes();
+    } catch (e) {
+      console.error('Không thể tải dữ liệu:', e);
+      allRecipesContainer.innerHTML = "<p>Lỗi tải dữ liệu. Vui lòng thử lại.</p>";
+    }
+  }
+
+  loadMoreBtn.addEventListener('click', () => {
+    currentDisplayCount += recipesPerLoad;
+    renderAllRecipes();
+  });
+
+  loadData();
+});

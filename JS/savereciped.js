@@ -1,28 +1,28 @@
 document.addEventListener("DOMContentLoaded", async () => {
-    const recipeContainer = document.querySelector(".save-baiviet");
-    try {
-        const response = await fetch('../data/savereciped.data.json');
-        const recipes = await response.json();
-        recipeContainer.innerHTML = ""; 
-        recipes.forEach(recipe => {
-            const recipeCard = document.createElement("article");
-            recipeCard.className = "recipe-card";
-            
-            recipeCard.innerHTML = `
-                <div class="recipe-anh">
-                    <img src="${recipe.img}" alt="${recipe.alt}" />
-                </div>
-                <div class="recipe-body">
-                    <h3 class="recipe-title">${recipe.title}</h3>
-                    <p class="recipe-text">${recipe.desc}</p>
-                </div>
-            `;
-            
-            recipeContainer.appendChild(recipeCard);
-        });
+  const recipeContainer = document.querySelector(".save-baiviet");
 
-    } catch (error) {
-        console.error("Lỗi khi tải file:", error);
-        recipeContainer.innerHTML = "<p>Không thể tải danh sách công thức.</p>";
-    }
+  const isSAVED = (id) => id >= 301 && id <= 399;
+
+  try {
+    const response = await fetch('../data/recipe-details.data.json');
+    const all = await response.json();
+
+    const saved = all.filter(r => isSAVED(Number(r.id)));
+
+    recipeContainer.innerHTML = saved.map(r => `
+      <article class="recipe-card" data-recipe-id="${r.id}" data-source="saved">
+        <div class="recipe-anh">
+          <img src="${r.img}" alt="${r.name}" />
+        </div>
+        <div class="recipe-body">
+          <h3 class="recipe-title">${r.name}</h3>
+          <p class="recipe-text">${r.short || ''}</p>
+        </div>
+      </article>
+    `).join('');
+
+  } catch (error) {
+    console.error("Lỗi khi tải file:", error);
+    recipeContainer.innerHTML = "<p>Không thể tải danh sách công thức.</p>";
+  }
 });

@@ -1,0 +1,63 @@
+[
+  {
+    "id": 101,
+    "name": "Pizza",
+    "img": "/images/explore/recipes/recipe1.png",
+    "chef": "Bà Mư",
+    "time": "2 giờ trước",
+    "tags": ["Bánh", "Nướng"],
+    "short": "Bột mì, xúc xích, phô mai..",
+    "ingredients": [
+      "Bột mì 300g",
+      "Nước 180ml",
+      "Men nở 5g",
+      "Xúc xích, phô mai, sốt cà"
+    ],
+    "steps": [
+      "Trộn bột + men + nước, ủ 60 phút.",
+      "Cán vỏ, phết sốt, thêm topping.",
+      "Nướng 220°C trong 12–15 phút."
+    ],
+    "nutrition": { "Calories": "420", "Carbs": "55g", "Protein": "18g", "Fat": "14g" }
+  },
+
+
+
+
+  {
+    "id": 201,
+    "name": "Tôm rim thịt",
+    "img": "/images/explore/trending/trend2.png",
+    "chef": "Bà Mư",
+    "time": "4 giờ trước",
+    "tags": ["Mặn", "Cơm nhà"],
+    "short": "Thịt heo, ớt, tôm",
+    "ingredients": ["Tôm 300g", "Thịt ba rọi 200g", "Đường, nước mắm, ớt"],
+    "steps": [
+      "Áp chảo thịt cho ra mỡ, cho tôm vào xào săn.",
+      "Thêm đường, nước mắm, kho sệt lại.",
+      "Nêm ớt, tiêu cho vừa miệng."
+    ],
+    "nutrition": { "Calories": "380 (ước tính)" }
+  },
+
+
+
+
+  
+  {
+    "id": 301,
+    "name": "Gỏi cuốn",
+    "img": "/images/savedrecipe/mon1.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Cuốn", "Thanh nhẹ"],
+    "short": "Bánh tráng, rau, tôm, thịt",
+    "ingredients": ["Bánh tráng", "Tôm", "Thịt", "Bún", "Rau thơm", "Nước chấm"],
+    "steps": [
+      "Sơ chế tôm, thịt; chuẩn bị rau.",
+      "Nhúng bánh tráng, cuốn với bún + rau + tôm/thịt.",
+      "Pha nước chấm và dùng ngay."
+    ]
+  }
+]

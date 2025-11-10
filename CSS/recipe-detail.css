@@ -4,86 +4,231 @@
   --text-2: #6b7280;
   --card: #fff;
   --bg: #f8f9fa;
-  --radius: 25px;
+  --radius: 16px; 
 }
-/* Header */
-.header { 
-    background:#fff;
-    border-bottom:2px solid var(--primary-color);
-}
-.container { 
-    max-width:1100px; 
-    margin:0 auto; 
-    padding:14px 16px; 
-}
-.header-content { 
-  display:flex; 
-  align-items:center; 
-  gap:16px; 
-}
-.page-title { 
-  font-size:20px; 
-}
-/* The mon an */
-.detail-container { 
-  max-width:1100px; 
-  margin:20px auto; 
-  padding:0 16px; 
-}
-.recipe-card { 
-  display:grid; 
-  grid-template-columns: 1.2fr 1fr; 
-  gap:20px; 
 
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--background-light);
+  color: var(--text-on-light);
+  margin: 0;
 }
-.recipe-card img { 
-  display:flex;
-  justify-self:end;
-  width: 60%;
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 10px;
+}
+
+ul, ol {
+  margin: 0;
+}
+
+/* --- Header --- */
+.header {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 14px 16px;
+}
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.page-title {
+  font-size: 20px;
+  margin: 0;
+}
+
+/* --- Thẻ món ăn  --- */
+.detail-container {
+  max-width: 1100px;
+  margin: 24px auto; 
+  padding: 0 16px;
+}
+
+.recipe-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr; 
+  gap: 24px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  overflow: hidden; 
+  align-items: center;
+}
+
+.recipe-card img {
+  display: block;
+  justify-self: end; 
+  width: 60%; 
+  height: auto; 
   object-fit: cover;
+  border-radius: 16px; 
 }
-.detail-info h2 { 
-  margin:0 0 6px; 
-  color:var(--text-on-light); 
+
+.detail-info h2 {
+  margin: 0 0 10px;
+  color: var(--text-on-light);
+  font-size: 2.25rem;
+  font-weight: 700;
 }
-.meta { 
-  display:flex; 
-  gap:12px; 
-  color:var(--text-light-subtle); 
+
+.meta {
+  display: flex;
+  gap: 16px;
+  color: var(--text-light-subtle);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
 }
-.tags { 
-  display:flex; 
-  flex-wrap:wrap; 
-  gap:8px; 
-  margin-top:8px; 
+/* Icon */
+.meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.tags .tag { 
-  border:2px solid var(--primary-color); 
-  border-radius:999px; 
-  padding:6px 10px; 
-  background:#fff; 
-  font-weight:600; 
+#recipe-chef::before {
+  content: '👨‍🍳';
 }
-/* Nội dung chi tiết */
-.detail-grid { 
-  display:grid; 
-  grid-template-columns: 2fr 2fr 1.2fr; 
-  gap:20px; 
-  margin-top:20px; }
-.card { 
-  background: #fff; 
-  border-radius: 25px; 
-  border:3px solid var(--primary-color); 
-  padding:16px 18px; 
+#recipe-time::before {
+  content: '⏱️';
 }
-.card ul, .card ol { 
-  padding-left:20px; 
-  line-height:1.7; 
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
 }
-.card li { 
-  margin-bottom:6px; 
+
+.tags .tag {
+  border: 1px solid var(--primary);
+  border-radius: 999px;
+  padding: 6px 12px;
+  background: #fff3f3;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.85rem;
 }
+
+/* --- Nội dung chi tiết (Layout mới) --- */
+.detail-grid {
+  display: grid;
+  grid-template-areas:
+    'steps ingredients'
+    'steps nutrition';
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.detail-grid > article:nth-of-type(1) {
+  grid-area: ingredients;
+}
+.detail-grid > article:nth-of-type(2) {
+  grid-area: steps;
+}
+.detail-grid > aside {
+  grid-area: nutrition;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  border: none; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 20px 24px;
+}
+
+.card h3 {
+  font-size: 1.5rem; 
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 16px;
+}
+
+.card ul,
+.card ol {
+  padding-left: 0; 
+  line-height: 1.7;
+}
+
+.card li {
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#ingredients {
+  list-style: none;
+}
+#ingredients li {
+  padding-left: 28px;
+}
+#ingredients li::before {
+  content: '🥣';
+  position: absolute;
+  left: 0;
+  font-size: 1.1rem;
+}
+
+/* TRANG TRÍ: Tạo số thứ tự đẹp hơn cho Các bước */
+#steps {
+  list-style: none;
+  counter-reset: steps-counter; /* Tạo bộ đếm */
+}
+#steps li {
+  counter-increment: steps-counter; /* Tăng bộ đếm */
+  padding-left: 38px;
+  font-size: 1.05rem; 
+}
+#steps li::before {
+  content: counter(steps-counter); /* Lấy số thứ tự từ bộ đếm */
+  position: absolute;
+  left: 0;
+  top: 0;
+  
+  /* Style cho vòng tròn số */
+  background: var(--primary-color);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+/* --- Responsive --- */
 @media (max-width: 960px) {
-  .hero { grid-template-columns: 1fr; }
-  .detail-grid { grid-template-columns: 1fr; }
+  .recipe-card {
+    grid-template-columns: 1fr; 
+    padding: 16px;
+  }
+  .recipe-card img {
+    justify-self: center; 
+    width: 100%; 
+    height: 300px; 
+  }
+  
+  .detail-info h2 {
+    font-size: 1.75rem; 
+  }
+
+  .detail-grid {
+    grid-template-columns: 1fr; 
+    grid-template-areas:
+      'steps'
+      'ingredients'
+      'nutrition';
+  }
 }
