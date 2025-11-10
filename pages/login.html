@@ -46,7 +46,7 @@
     .container:focus-within{ box-shadow: 0 12px 36px rgba(0,0,0,.16); }
 
     .img-box{
-      background:url('../assets/login-bg.jpg') center/cover no-repeat;
+      background:url('../assets/images/login-bg.jpg') center/cover no-repeat;
       min-height: 560px;
     }
 
@@ -187,7 +187,7 @@
 
     <div class="form-wrapper">
       <div class="header">
-        <img src="../assets/home-page/logo.svg" alt="PotPan logo" />
+        <img src="../assets/images/logo.svg" alt="PotPan logo" />
         <h1>PotPan</h1>
       </div>
 
@@ -333,7 +333,7 @@
       if(user){
         // Lưu user hiện tại và chuyển trang
         localStorage.setItem('currentUser', JSON.stringify(user));
-        window.location.href = '../pages/main/home.html'; // điều hướng sang trang Hồ sơ
+        window.location.href = '../index.html'; // điều hướng sang trang Hồ sơ
       } else {
         errorMsg.textContent = 'Sai email hoặc mật khẩu. Vui lòng thử lại.';
         errorMsg.style.display = 'block';
