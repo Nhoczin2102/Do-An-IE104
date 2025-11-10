@@ -1,6 +1,4 @@
-import { posts } from "../data/posts.js";
-
- export class CookMode {
+export class CookMode {
     constructor() {
         this.currentRecipe = null;
         this.currentStep = 0;
@@ -17,81 +15,116 @@ import { posts } from "../data/posts.js";
     }
 
     bindEvents() {
-        // Bind cook mode button clicks in feed
-       document.addEventListener('click', (e) => {
+        document.addEventListener('click', (e) => {
             const cookBtn = e.target.closest('.cook-mode-btn');
             if (cookBtn) {
-                // Lấy ID từ nút
-                const postId = parseInt(cookBtn.dataset.postId);
-                if (postId) {
-                    this.openFromPostId(postId); // <-- Gọi hàm mới
+                console.log('🍳 Cook Mode button clicked');
+                const post = cookBtn.closest('.feed-post');
+                if (post) {
+                    this.openFromPost(post);
                 }
             }
         });
 
-        // Bind cook mode modal events
-        const modal = document.getElementById('cookModeModal');
-        if (modal) {
-            console.log('✅ Cook Mode modal found');
-            
-            modal.querySelector('.cook-close').addEventListener('click', () => this.close());
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) this.close();
-            });
-            
-            // Step navigation
-            modal.querySelector('[data-cm-prev]').addEventListener('click', () => this.prevStep());
-            modal.querySelector('[data-cm-next]').addEventListener('click', () => this.nextStep());
-            modal.querySelector('[data-cm-finish]').addEventListener('click', () => this.finish());
-            
-            // Timer controls
-            modal.querySelector('[data-cm-startstop]').addEventListener('click', () => this.toggleTimer());
-            modal.querySelector('[data-cm-plus]').addEventListener('click', () => this.adjustTimer(60));
-            modal.querySelector('[data-cm-minus]').addEventListener('click', () => this.adjustTimer(-60));
-        } else {
-            console.error('❌ Cook Mode modal not found');
-        }
-
-        // Keyboard shortcuts
+        this.bindModalEvents();
         document.addEventListener('keydown', (e) => this.handleKeyboard(e));
     }
 
-    openFromPostId(postId) {
-        console.log(`🍳 Opening Cook Mode for post ID: ${postId}`);
-        const post = posts.find(p => p.id === postId);
+    bindModalEvents() {
+        const modal = document.getElementById('cookModeModal');
+        if (!modal) {
+            console.error('❌ Cook Mode modal not found');
+            return;
+        }
+        
+        console.log('✅ Cook Mode modal found');
+        
+        modal.querySelector('.cook-close').addEventListener('click', () => this.close());
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) this.close();
+        });
+        
+        // Step navigation
+        modal.querySelector('[data-cm-prev]').addEventListener('click', () => this.prevStep());
+        modal.querySelector('[data-cm-next]').addEventListener('click', () => this.nextStep());
+        modal.querySelector('[data-cm-finish]').addEventListener('click', () => this.finish());
+        
+        // Timer controls
+        modal.querySelector('[data-cm-startstop]').addEventListener('click', () => this.toggleTimer());
+        modal.querySelector('[data-cm-plus]').addEventListener('click', () => this.adjustTimer(60));
+        modal.querySelector('[data-cm-minus]').addEventListener('click', () => this.adjustTimer(-60));
+    }
 
-        if (!post || !post.recipe) {
+    extractRecipeData(postEl) {
+        try {
+            console.log('🔍 Extracting recipe data from post');
+            
+            const titleElement = postEl.querySelector('.recipe-section h4');
+            const title = titleElement ? titleElement.textContent.replace('🍴', '').trim() : 'Công thức nấu ăn';
+            
+            const ingredients = [];
+            const ingredientElements = postEl.querySelectorAll('.recipe-section .ingredients li');
+            ingredientElements.forEach(li => {
+                if (li.textContent.trim()) {
+                    ingredients.push(li.textContent.trim());
+                }
+            });
+            
+            const steps = [];
+            const stepElements = postEl.querySelectorAll('.recipe-section .steps li');
+            stepElements.forEach(li => {
+                if (li.textContent.trim()) {
+                    steps.push(li.textContent.trim());
+                }
+            });
+            
+            const metaElements = postEl.querySelectorAll('.recipe-info div');
+            const meta = {
+                prep: metaElements[0]?.textContent?.replace('⏱️ Chuẩn bị: ', '').trim() || '--',
+                cook: metaElements[1]?.textContent?.replace('🔥 Nấu: ', '').trim() || '--',
+                servings: metaElements[2]?.textContent?.replace('👥 Khẩu phần: ', '').trim() || '--',
+                difficulty: metaElements[3]?.textContent?.replace('📊 Độ khó: ', '').trim() || '--'
+            };
+
+            const tipsElement = postEl.querySelector('.recipe-tips span');
+            const tips = tipsElement ? tipsElement.textContent.trim() : '';
+
+            console.log('📋 Recipe data extracted:', {
+                title,
+                ingredients: ingredients.length,
+                steps: steps.length,
+                meta,
+                hasTips: !!tips
+            });
+
+            return { title, ingredients, steps, meta, tips };
+        } catch (error) {
+            console.error('❌ Error extracting recipe data:', error);
+            return null;
+        }
+    }
+
+    openFromPost(postEl) {
+        console.log('🍳 Opening Cook Mode from post');
+        const recipeData = this.extractRecipeData(postEl);
+        
+        if (!recipeData) {
             alert('❌ Không thể tải công thức từ bài đăng này.');
             return;
         }
 
-        if (post.recipe.steps.length === 0) {
+        if (recipeData.steps.length === 0) {
             alert('⚠️ Công thức này không có bước thực hiện.');
             return;
         }
 
-        // Dùng dữ liệu recipe chuẩn
-        const { recipe } = post;
-        this.currentRecipe = {
-            title: recipe.title,
-            ingredients: recipe.ingredients,
-            steps: recipe.steps,
-            meta: {
-                prep: recipe.prepTime || '--',
-                cook: recipe.cookTime || '--',
-                servings: recipe.servings || '--',
-                difficulty: recipe.difficulty || '--'
-            },
-            tips: recipe.tips
-        };
-        
+        this.currentRecipe = recipeData;
         this.currentStep = 0;
         this.timerSeconds = 0;
         
         this.render();
         this.showModal();
     }
-
 
     render() {
         if (!this.currentRecipe) return;
@@ -162,7 +195,6 @@ import { posts } from "../data/posts.js";
     autoSetTimer(stepText) {
         if (!stepText) return;
 
-        // Look for time patterns in step text
         const timeMatches = stepText.match(/(\d+)\s*(phút|ph|phút|min|minutes?)/i);
         if (timeMatches) {
             const minutes = parseInt(timeMatches[1]);
@@ -229,7 +261,6 @@ import { posts } from "../data/posts.js";
     }
 
     showTimerComplete() {
-        // Create notification
         const notification = document.createElement('div');
         notification.style.cssText = `
             position: fixed;
@@ -256,7 +287,6 @@ import { posts } from "../data/posts.js";
             notification.remove();
         }, 3000);
 
-        // Play sound
         this.playBeep();
     }
 
