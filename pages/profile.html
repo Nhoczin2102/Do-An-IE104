@@ -12,596 +12,98 @@
   <link rel="stylesheet" href = "../styles/components/sidebar.css">
   <link rel="stylesheet" href = "../styles/base/base.css">
   <link rel="stylesheet" href = "../styles/base/variable.css">
+  <link rel="stylesheet" href = "../styles/pages/profile.css">
 
-
-  <style>
-    /* ========== MAIN LAYOUT ========== */
-    .page.home {
-      display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 40px;
-      max-width: 1400px;
-      margin: 40px auto;
-      padding: 0 24px;
-      align-items: start;
-    }
-    /* ========== FOLLOWERS CONTENT ========== */
-    .followers-content {
-      background: var(--bg-card);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    /* Profile Header */
-    .profile-header {
-      background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-      color: white;
-      padding: 40px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .profile-header::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><path d="M0 50 Q 250 0 500 50 T 1000 50 V 100 H 0 Z"/></svg>');
-      background-size: cover;
-      background-position: bottom;
-    }
-
-    .profile-avatar {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      border: 4px solid white;
-      margin: 0 auto 20px;
-      background-color: #fff;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-    }
-
-    .profile-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .profile-name {
-      font-size: 28px;
-      font-weight: 700;
-      margin-bottom: 8px;
-      position: relative;
-    }
-
-    .profile-bio {
-      font-size: 16px;
-      opacity: 0.9;
-      max-width: 500px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .profile-stats {
-      display: flex;
-      justify-content: center;
-      gap: 40px;
-      margin-top: 32px;
-      position: relative;
-    }
-
-    .stat-item {
-      text-align: center;
-      padding: 16px 24px;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-    }
-
-    .stat-item:hover {
-      transform: translateY(-4px);
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    .stat-number {
-      font-size: 24px;
-      font-weight: 700;
-      display: block;
-    }
-
-    .stat-label {
-      font-size: 14px;
-      opacity: 0.9;
-      margin-top: 4px;
-    }
-
-    /* Navigation */
-    .profile-nav {
-      display: flex;
-      background: white;
-      padding: 0;
-      border-bottom: 2px solid var(--border-color);
-    }
-
-    .nav-item {
-      flex: 1;
-      text-align: center;
-      padding: 20px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 600;
-      color: var(--text-light);
-      text-decoration: none;
-      border-bottom: 3px solid transparent;
-      position: relative;
-    }
-
-    .nav-item.active {
-      color: var(--primary-color);
-      border-bottom-color: var(--primary-color);
-    }
-
-    .nav-item:hover:not(.active) {
-      color: var(--primary-color);
-      background: var(--background-light);
-    }
-
-    /* Follow Tabs */
-    .follow-tabs {
-      display: flex;
-      background: white;
-      padding: 8px;
-      margin: 24px;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      border: 1px solid var(--border-color);
-    }
-
-    .follow-tab {
-      flex: 1;
-      text-align: center;
-      padding: 16px;
-      cursor: pointer;
-      border-radius: 12px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      color: var(--text-light);
-    }
-
-    .follow-tab.active {
-      background: var(--primary-color);
-      color: white;
-      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
-    }
-
-    .follow-tab:hover:not(.active) {
-      background: var(--background-light);
-      color: var(--primary-color);
-    }
-
-    /* Search Bar */
-    .search-container {
-      position: relative;
-      margin: 0 24px 24px;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 18px 24px 18px 56px;
-      border: 2px solid var(--border-color);
-      border-radius: 16px;
-      background: white;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 4px 20px rgba(255, 105, 103, 0.15);
-    }
-
-    .search-icon {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--muted);
-      font-size: 20px;
-    }
-
-    /* User List */
-    .user-list {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      padding: 0 24px 24px;
-      max-height: 600px;
-      overflow-y: auto;
-    }
-
-    .user-list::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    .user-list::-webkit-scrollbar-track {
-      background: var(--background-light);
-      border-radius: 10px;
-    }
-
-    .user-list::-webkit-scrollbar-thumb {
-      background: var(--primary-color);
-      border-radius: 10px;
-    }
-
-    .user-card {
-      display: flex;
-      align-items: center;
-      background: white;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-      transition: all 0.3s ease;
-      border: 1px solid transparent;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .user-card::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 4px;
-      background: var(--primary-color);
-      transform: scaleY(0);
-      transition: transform 0.3s ease;
-    }
-
-    .user-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--primary-light);
-    }
-
-    .user-card:hover::before {
-      transform: scaleY(1);
-    }
-
-    .user-avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-right: 20px;
-      flex-shrink: 0;
-      border: 3px solid var(--background-light);
-      transition: all 0.3s ease;
-    }
-
-    .user-card:hover .user-avatar {
-      border-color: var(--primary-light);
-      transform: scale(1.05);
-    }
-
-    .user-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .user-info {
-      flex: 1;
-    }
-
-    .user-name {
-      font-weight: 700;
-      font-size: 18px;
-      margin-bottom: 6px;
-      color: var(--text);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .user-bio {
-      font-size: 14px;
-      color: var(--text-light);
-      margin-bottom: 10px;
-      line-height: 1.5;
-    }
-
-    .user-stats {
-      display: flex;
-      gap: 20px;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .user-stat {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    .user-stat i {
-      color: var(--primary-color);
-    }
-
-    .user-action {
-      margin-left: 20px;
-    }
-
-    .btn-follow {
-      background: var(--primary-color);
-      color: white;
-      border: none;
-      padding: 12px 28px;
-      border-radius: 20px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      min-width: 120px;
-      box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-follow::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
-    }
-
-    .btn-follow:hover::before {
-      left: 100%;
-    }
-
-    .btn-follow:hover {
-      background: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
-    }
-
-    .btn-following {
-      background: var(--background-light);
-      color: var(--muted);
-      box-shadow: none;
-    }
-
-    .btn-following:hover {
-      background: #e0e0e0;
-      color: var(--primary-dark);
-      transform: translateY(-2px);
-    }
-
-    /* Empty State */
-    .empty-state {
-      text-align: center;
-      padding: 60px 20px;
-      background: white;
-      border-radius: 16px;
-      box-shadow: var(--shadow);
-      margin: 24px;
-    }
-
-    .empty-icon {
-      font-size: 80px;
-      color: var(--border-color);
-      margin-bottom: 20px;
-      opacity: 0.5;
-    }
-
-    .empty-text {
-      color: var(--muted);
-      font-size: 18px;
-      margin-bottom: 24px;
-    }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 1200px) {
-      .page.home {
-        grid-template-columns: 280px 1fr;
-        gap: 30px;
-      }
-    }
-
-    @media (max-width: 968px) {
-      .page.home {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-      
-      .sidebar-card {
-        display: none;
-      }
-      
-      .header-content {
-        flex-wrap: wrap;
-        height: auto;
-        padding: 16px 0;
-        gap: 20px;
-      }
-      
-      .header-search_bar {
-        order: 3;
-        max-width: 100%;
-        margin-top: 10px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .profile-stats {
-        gap: 16px;
-        flex-wrap: wrap;
-      }
-      
-      .stat-item {
-        flex: 1;
-        min-width: 120px;
-      }
-      
-      .user-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-      }
-      
-      .user-avatar {
-        margin-right: 0;
-        margin-bottom: 16px;
-      }
-      
-      .user-action {
-        margin-left: 0;
-        margin-top: 16px;
-      }
-      
-      .user-stats {
-        justify-content: center;
-      }
-      
-      .profile-nav {
-        flex-direction: column;
-      }
-      
-      .nav-item {
-        padding: 16px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .page.home {
-        padding: 0 16px;
-      }
-      
-      .header-container {
-        padding: 0 16px;
-      }
-      
-      .header-logo h1 {
-        display: none;
-      }
-      
-      .profile-header {
-        padding: 30px 20px;
-      }
-      
-      .profile-avatar {
-        width: 100px;
-        height: 100px;
-      }
-      
-      .follow-tabs {
-        flex-direction: column;
-        gap: 8px;
-      }
-    }
-  </style>
 </head>
 
 <body>
   <!-- ========== HEADER ========== -->
-  <header class="header">
-    <div class="header-container">
-      <div class="header-content">
+    <header class="page-header">
+    <div class="page-header__container">
+      <div class="page-header__content">
         <!-- Logo -->
-        <a href="index.html" class="header-logo">
-          <div class="header-logo_img_cont">
-            <img src="../assets/home-page/logo.svg" class="header-logo_img" />
+        <a href="index.html" class="page-header__logo">
+          <div class="page-header__logo-image">
+            <img src="../assets/images/logo.svg" />
           </div>
           <h1>POTPAN</h1>
         </a>
 
         <!-- Thanh tìm kiếm -->
-        <div class="header-search_bar">
+        <div class="page-header__search-bar">
           <input type="text" placeholder="Tìm kiếm công thức, nguyên liệu...">
-          <button class="header-search_btn">
+          <button class="page-header__search-button">
             <i class="fas fa-search"></i>
           </button>
         </div>
 
         <!-- Điều hướng -->
-        <div class="header-nav_links">
-          <a href="index.html">
+        <div class="page-header__nav">
+          <a href="../index.html" class="page-header_nav-link--active">
             <i class="fas fa-home nav-icon"></i>
             <span>Trang chủ</span>
           </a>
-          <a href="#">
-            <i class="fas fa-compass nav-icon"></i>
+          <a href="../">
+            <i class="fas fa-compass page-header__nav-icon"></i>
             <span>Khám phá</span>
           </a>
-          <a href="#">
+          <a href="./contact.html">
             <i class="fa-solid fa-users"></i>
             <span>Về chúng tôi</span>
           </a>
-          <a href="#">
+          <a href="./contact.html">
             <i class="fa-solid fa-phone"></i>
             <span>Liên hệ</span>
           </a>
-          <a href="#">
+          <a href="./login.html">
             <i class="fa-solid fa-user"></i>
             <span>Đăng nhập</span>
           </a>
+
         </div>
       </div>
     </div>
   </header>
 
   <!-- ========== LAYOUT 2 CỘT ========== -->
-  <main class="page home">
+  <main class="page profile">
     <!-- Sidebar trái -->
-    <aside class="sidebar-card">
+    <aside class="sidebar">
       <div class="profile">
-        <img class="avatar" src="https://i.pravatar.cc/150?img=32" alt="avatar">
+        <img class="profile__avatar" src="../assets/images/avatar.png" alt="avatar">
         <div class="profile-info">
-          <div class="name">Minh Nhựt</div>
-          <div class="handle">nhutminh_amthuc</div>
+          <div class="profile__name">Minh Nhựt</div>
+          <div class="profile__handle">@nhutminh_amthuc</div>
         </div>
       </div>
 
-      <nav class="menu">
-        <a class="item" href="index.html">
+      <nav class="main-menu">
+        <a class="main-menu__item" href="../index.html">
           <i class="fas fa-newspaper"></i>
           <span>Bảng tin</span>
         </a>
 
-        <a class="item active" href="profile.html">
+        <a class="main-menu__item active" href="#">
           <i class="fas fa-user"></i>
           <span>Hồ sơ của tôi</span>
         </a>
 
-        <a class="item" href="#">
+        <a class="main-menu__item" href="#">
           <i class="fas fa-bookmark"></i>
           <span>Công thức đã lưu</span>
         </a>
 
-        <a class="item" href="followers.html">
-          <i class="fas fa-users"></i>
-          <span>Người theo dõi</span>
+        <a class="main-menu__item" href="#">
+          <i class="fas fa-utensils"></i>
+          <span>Đầu bếp theo dõi</span>
         </a>
 
-        <a class="item" href="#">
+        <a class="main-menu__item" href="#">
           <i class="fas fa-history"></i>
           <span>Hoạt động gần đây</span>
         </a>
 
-        <a class="item" href="#">
+        <a class="main-menu__item" href="#">
           <i class="fas fa-cog"></i>
           <span>Cài đặt</span>
         </a>
@@ -613,7 +115,7 @@
       <!-- Profile Header -->
       <div class="profile-header">
         <div class="profile-avatar">
-          <img src="https://i.pravatar.cc/150?img=32" alt="Avatar">
+          <img src="../assets/images/avatar.png" alt="Avatar">
         </div>
         <h1 class="profile-name">Minh Nhựt</h1>
         <p class="profile-bio">Đầu bếp tại gia | Chia sẻ công thức nấu ăn đơn giản, ngon miệng</p>
@@ -636,9 +138,7 @@
       <!-- Navigation -->
       <div class="profile-nav">
         <a href="profile.html" class="nav-item">Bài viết</a>
-        <a href="recipes.html" class="nav-item">Công thức</a>
-        <a href="followers.html" class="nav-item active">Người theo dõi</a>
-        <a href="following.html" class="nav-item">Đang theo dõi</a>
+        <a href="followers.html" class="nav-item active">Theo dõi</a>
       </div>
 
       <!-- Follow Tabs -->
