@@ -71,7 +71,7 @@ body {
    4. HERO SECTION (BANNER)
    ======================================= */
 .hero-section {
-    background: url(../images/header.png);
+    background: url(../../assets/images/header.png);
     color: var(--text-on-primary);
     text-align: center;
     padding: 150px 0;
@@ -107,7 +107,7 @@ body {
 }
 
 .image-placeholder {
-    background: url(../images/logo.svg) no-repeat;
+    background: url(../../assets/images/logo.svg) no-repeat;
     background-position: 100px center;
     background-size: contain;
     display: flex;

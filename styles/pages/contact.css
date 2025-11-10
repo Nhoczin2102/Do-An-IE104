@@ -1,0 +1,434 @@
+/* =======================================
+   1. KHAI BÁO BIẾN & THIẾT LẬP CHUNG
+   ======================================= */
+:root {
+  --primary-color: #FF6967;
+  --primary-light: #FF9A99;
+  --primary-dark: hsl(1, 75%, 60%);
+  --text-on-primary: #FFFFFF;
+  --text-on-light: #333333;
+  --text-light-subtle: #666666;
+  --background-light: #FFF5F5;
+  --border-color: #E0E0E0;
+  --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f8f9fa;
+  color: var(--text);
+  line-height: 1.5;
+  position: relative !important;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+
+/* =======================================
+   3. TYPOGRAPHY
+   ======================================= */
+.section-title {
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  color: var(--text-on-light);
+  /* was --color-text-dark */
+}
+
+.section-title--primary {
+  color: var(--primary-color);
+}
+
+.section-title--center {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* =======================================
+   4. HERO SECTION (BANNER)
+   ======================================= */
+.hero-section {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  /* was --color-white */
+  text-align: center;
+  padding: 100px 0;
+}
+
+.hero-section--contact {
+  background: linear-gradient(135deg, var(--primary-color) 100%);
+}
+
+.hero__title {
+  font-size: 3.5em;
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.hero__subtitle {
+  font-size: 1.3em;
+  opacity: .95;
+  max-width: 600px;
+  margin: 0 auto;
+  font-weight: 300;
+}
+
+
+.section-padding {
+  padding: 80px 0;
+}
+
+.section-padding--light {
+  background-color: var(--background-light);
+}
+
+
+/* =======================================
+   5. CONTACT LAYOUT
+   ======================================= */
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 60px;
+  align-items: start;
+}
+
+.contact-info,
+.contact-form {
+  background-color: var(--text-on-primary);
+  /* was --color-white */
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.contact-info {
+  height: fit-content;
+}
+
+/* =======================================
+   6. CONTACT INFO
+   ======================================= */
+.contact-info h2 {
+  color: var(--primary-color);
+  margin: 0 0 30px;
+  font-size: 1.8em;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.contact-info h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+  border-radius: 2px;
+}
+
+.info-item {
+  margin-bottom: 30px;
+  display: flex;
+  align-items: flex-start;
+  padding: 15px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  background-color: var(--background-light);
+}
+
+.info-item i {
+  color: var(--primary-color);
+  font-size: 1.3em;
+  margin-right: 15px;
+  padding-top: 3px;
+  min-width: 20px;
+  text-align: center;
+}
+
+.info-item h3 {
+  color: var(--text-on-light);
+  margin-bottom: 5px;
+  font-size: 1.1em;
+}
+
+.info-item p {
+  color: var(--text-light-subtle);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* =======================================
+   7. CONTACT FORM
+   ======================================= */
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: var(--text-on-light);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1em;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: var(--background-light);
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: var(--text-on-primary);
+  box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 150px;
+}
+
+/* =======================================
+   8. BUTTONS
+   ======================================= */
+.btn {
+  display: inline-block;
+  padding: 14px 30px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1em;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.btn--primary {
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+}
+
+.btn--primary:hover {
+  background-color: #e55e5c;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 105, 103, 0.3);
+}
+
+.btn--fullwidth {
+  width: 100%;
+  padding: 16px;
+  font-size: 1.1em;
+}
+
+/* =======================================
+   9. SOCIAL MEDIA
+   ======================================= */
+.social-media {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-color);
+}
+
+.social-media h3 {
+  color: var(--text-on-light);
+  margin-bottom: 15px;
+  font-size: 1.2em;
+}
+
+.social-media a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--primary-color);
+  color: var(--text-on-primary);
+  border-radius: 50%;
+  margin-right: 12px;
+  font-size: 1.2em;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  background-color: #e55e5c;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(255, 105, 103, 0.3);
+}
+
+/* 10. MAP SECTION */
+.map-section {
+  background-color: var(--background-light);
+}
+
+.map-container {
+  height: 400px;
+  background:
+    linear-gradient(45deg, var(--background-light) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--background-light) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--background-light) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--background-light) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--text-light-subtle);
+  font-style: italic;
+  border: 2px dashed var(--border-color);
+}
+
+/* 11. FOOTER */
+.main-footer {
+  background-color: var(--text-on-light);
+  color: var(--text-on-primary);
+  text-align: center;
+  padding: 30px 0;
+}
+
+/* 12. MEDIA QUERIES (RESPONSIVE) */
+
+@media (max-width: 992px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero__title {
+    font-size: 2.8em;
+  }
+
+  .section-padding {
+    padding: 60px 0;
+  }
+
+  .navigation {
+    justify-content: center;
+  }
+
+  .nav__link {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero__title {
+    font-size: 2.2em;
+  }
+
+  .hero__subtitle {
+    font-size: 1.1em;
+  }
+
+  .section-title {
+    font-size: 2em;
+  }
+
+  .contact-info,
+  .contact-form {
+    padding: 30px 25px;
+  }
+
+  .navigation {
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0;
+  }
+
+  .nav__link {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    padding: 0 15px;
+  }
+
+  .hero__title {
+    font-size: 1.8em;
+  }
+
+  .hero-section {
+    padding: 60px 0;
+  }
+
+  .contact-info,
+  .contact-form {
+    padding: 25px 20px;
+  }
+
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .info-item i {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
+
+/* Bố cục 2 cột cho hero */
+.hero__inner {
+  display: grid;
+  align-items: center;
+  gap: 28px;
+  /* mobile mặc định 1 cột */
+  grid-template-columns: 1fr;
+}
+
+/* ≥768px: chia 2 cột — chữ 1fr, ảnh cố định tối đa 420px hoặc 38vw */
+@media (min-width: 768px) {
+  .hero__inner {
+    grid-template-columns: 1fr min(38vw, 420px);
+    gap: 40px;
+  }
+}
+
+.hero__media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
+  /* ảnh không méo, gọn trong khối */
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .12));
+  /* nhẹ nhàng, có thể bỏ */
+}
+
+/* Tuỳ chọn: thu nhỏ ảnh ở màn rất nhỏ cho cân đối */
+@media (max-width: 575.98px) {
+  .hero__media img {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
