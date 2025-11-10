@@ -285,7 +285,7 @@ export class ModalManager {
 
         return {
             id: Date.now(),
-            avatar: "../../assets/home-page/image 1.png",
+            avatar: "../../assets/images/avatar.png",
             name: "Minh Nhựt",
             time: "Vừa xong",
             content: content,

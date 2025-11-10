@@ -53,7 +53,7 @@ export class PostManager {
         if (post && commentContent.trim()) {
             const newComment = {
                 id: Date.now(),
-                avatar: "../../assets/image/avatar",
+                avatar: "../../assets/images/avatar.png",
                 name: "Minh Nhựt",
                 time: "Vừa xong",
                 content: commentContent.trim()
