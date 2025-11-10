@@ -305,7 +305,6 @@ body {
   font-style: italic;
   border: 2px dashed var(--border-color);
 }
-
 /* 11. FOOTER */
 .main-footer {
   background-color: var(--text-on-light);
