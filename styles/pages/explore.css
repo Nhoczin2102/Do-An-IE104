@@ -17,16 +17,11 @@
 }
 
 /* page */
-<<<<<<< HEAD
 body {
-    background: linear-gradient(135deg, #f8f9fa 0%, #fff5f5 50%, #f8f9fa 100%);
+    background-color: #f8f9fa;
     margin: 0;
     padding: 0;
-    min-height: 100vh;
 }
-
-=======
->>>>>>> 23ff83c9b79fb258907872e98fd336cc0b0e1f4d
 .explore-page {
     max-width: 1200px;
     margin: 0 auto;
