@@ -334,7 +334,7 @@ ul, ol {
   transform: scale(1.2);
 }
 
-/* TRANG TRÍ: Tạo số thứ tự đẹp hơn cho Các bước */
+/* TRANG TRÍ */
 #steps {
   list-style: none;
   counter-reset: steps-counter;
