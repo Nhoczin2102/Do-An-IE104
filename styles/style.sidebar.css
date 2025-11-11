@@ -1,30 +1,23 @@
 :root {
   --border: #ffffff;
-  /* viền xanh */
   --bg-card: #ffffff;
-  /* nền hồng nhạt */
   --accent: #ff7b73;
-  /* màu mục đang chọn */
   --text: #111;
   --muted: #777;
   --radius: 16px;
 }
 
-* {
-  box-sizing: border-box
-}
+* { box-sizing: border-box; }
 
 body {
   min-height: 10px;
   display: grid;
-
   background: #ffffff;
-  font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-seri
+  font-family: Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; /* fix typo */
 }
 
 .sidebar-card {
-  width: 300px;
-  /* bạn có thể đổi kích thước tùy ý */
+  width: 300px; /* có thể đổi */
   background: #ffffff;
   border: 3px;
   border-radius: 10px;
@@ -49,23 +42,14 @@ body {
   box-shadow: 0 1px 0 rgba(0, 0, 0, .04) inset;
 }
 
-.name {
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.1
-}
-
-.handle {
-  color: #777;
-  font-weight: 500;
-  margin-top: 2px
-}
+.name { font-weight: 700; font-size: 18px; line-height: 1.1; }
+.handle { color: #777; font-weight: 500; margin-top: 2px; }
 
 .menu {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  margin-top: 6px
+  margin-top: 6px;
 }
 
 .item {
@@ -76,23 +60,28 @@ body {
   border-radius: 12px;
   text-decoration: none;
   color: var(--text);
-  transition: transform .06s ease;
+  transition: transform .06s ease, background .12s ease;
   font-weight: 600;
 }
 
-.item:hover {
-  background: #ffd7d4;
-}
+.item:hover { background: #ffd7d4; }
 
+/* Icon là inline <svg> (rule gốc của bạn) */
 .item svg {
   width: 18px;
   height: 18px;
   flex: 0 0 18px;
-  color: #000
+  color: #000;
 }
 
-.item.active svg {
-  color: #000
+/* Bổ sung: nếu dùng file .svg qua <img> thì áp style tương tự */
+.item img {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: inline-block;
 }
 
-/* theo ảnh: icon vẫn đen khi active */
+/* Trạng thái active (icon vẫn đen như mô tả) */
+
+/* nếu icon là <img>, màu do bản thân file svg quyết định; giữ nguyên như yêu cầu */
