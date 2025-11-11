@@ -36,9 +36,6 @@
   padding: 84px 24px 40px; /* 64px (header) + 20px (khoảng cách) */
   align-items: start;
     }
-
-    /* Empty */
-
     /* =================== Responsive =================== */
     @media (max-width:1200px){
       .page.profile{grid-template-columns:280px 1fr;gap:30px}
