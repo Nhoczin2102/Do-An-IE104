@@ -107,13 +107,12 @@ body {
 }
 
 .image-placeholder {
-    background: url(../../assets/images/logo.svg) no-repeat;
-    background-position: 100px center;
-    background-size: contain;
+    background: url(../../assets/images/logo.png) no-repeat;
+    background-position: 100px -20%;
+    background-size: 80%;
     display: flex;
     justify-content: center;
     background-origin: content-box;
-    background-clip: content-box;
     padding-top: 60px;
 }
 .image-placeholder::before {
@@ -121,10 +120,11 @@ body {
   position: relative;
   width: 350px;
   height: 350px;
-  border-radius: 50%;
+  border-radius: 100%;
   border: 3px solid var(--primary-dark);
   pointer-events: none;
-  left: 90px;
+  left: 65px;
+  top: -35px;
 }
 
 .mission-vision {
