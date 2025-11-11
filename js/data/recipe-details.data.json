@@ -1,0 +1,443 @@
+[
+  {
+    "id": 101,
+    "name": "Pizza",
+    "img": "/assets/images/recipe1.png",
+    "hero": "/assets/images/recipe1.png",
+    "chef": "Bà Mư",
+    "time": "2 giờ trước",
+    "tags": ["Bánh ngọt", "Nướng"],
+    "short": "Bột mì, xúc xích, phô mai",
+    "ingredients": ["Bột mì 300g", "Nước 180ml", "Men nở 5g", "Sốt cà chua", "Phô mai", "Xúc xích"],
+    "steps": [
+      "Trộn bột + men + nước, ủ 60 phút.",
+      "Cán bột, phết sốt, thêm phô mai/topping.",
+      "Nướng 220°C trong 12–15 phút."
+    ],
+    "nutrition": { "Calories": "420", "Carbs": "55g", "Protein": "18g", "Fat": "14g" }
+  },
+  {
+    "id": 102,
+    "name": "Ức gà xào nấm",
+    "img": "/assets/images/recipe2.png",
+    "hero": "/assets/images/recipe2.png",
+    "chef": "Minh Long",
+    "time": "4 giờ trước",
+    "tags": ["Món mặn", "Ít dầu"],
+    "short": "Ức gà, nấm, cà rốt",
+    "ingredients": ["Ức gà 300g", "Nấm 150g", "Cà rốt 1 củ", "Hành tỏi", "Dầu ô liu", "Nước tương"],
+    "steps": [
+      "Ướp gà với chút muối tiêu 10 phút.",
+      "Xào hành tỏi thơm, cho gà đảo săn.",
+      "Thêm nấm, cà rốt, nêm vừa ăn."
+    ],
+    "nutrition": { "Calories": "290 (ước tính)" }
+  },
+  {
+    "id": 103,
+    "name": "Bánh hỏi heo quay",
+    "img": "/assets/images/recipe3.png",
+    "hero": "/assets/images/recipe3.png",
+    "chef": "Hoàng Tú",
+    "time": "5 giờ trước",
+    "tags": ["Món mặn"],
+    "short": "Bánh hỏi, heo quay, rau thơm",
+    "ingredients": ["Bánh hỏi", "Heo quay", "Rau sống", "Nước mắm chua ngọt"],
+    "steps": [
+      "Cắt heo quay, làm nóng nhanh.",
+      "Bày bánh hỏi, thêm rau và heo quay.",
+      "Chan nước mắm, dùng ngay."
+    ],
+    "nutrition": { "Calories": "520 (ước tính)" }
+  },
+  {
+    "id": 104,
+    "name": "Gỏi gà xé phay",
+    "img": "/assets/images/recipe4.png",
+    "hero": "/assets/images/recipe4.png",
+    "chef": "Mỹ Loan",
+    "time": "6 giờ trước",
+    "tags": ["Món mặn"],
+    "short": "Gà luộc xé, đu đủ, rau thơm",
+    "ingredients": ["Thịt gà chín 300g", "Đu đủ bào 200g", "Rau thơm", "Nước mắm, đường, chanh"],
+    "steps": [
+      "Xé gà, trộn với đu đủ và rau.",
+      "Pha nước mắm chua ngọt.",
+      "Trộn đều, rắc đậu phộng."
+    ],
+    "nutrition": { "Calories": "310 (ước tính)" }
+  },
+  {
+    "id": 105,
+    "name": "Bún đậu mắm tôm",
+    "img": "/assets/images/recipe5.png",
+    "hero": "/assets/images/recipe5.png",
+    "chef": "Anh Khải",
+    "time": "1 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Bún, đậu hũ chiên, mắm tôm",
+    "ingredients": ["Bún tươi", "Đậu hũ", "Rau thơm", "Mắm tôm pha", "Thịt ba chỉ (tuỳ chọn)"],
+    "steps": [
+      "Chiên đậu vàng giòn.",
+      "Pha mắm tôm vừa ăn.",
+      "Bày bún – đậu – rau – mắm tôm."
+    ],
+    "nutrition": { "Calories": "520 (ước tính)" }
+  },
+  {
+    "id": 106,
+    "name": "Nem nướng",
+    "img": "/assets/images/recipe6.png",
+    "hero": "/assets/images/recipe6.png",
+    "chef": "Tuấn Long",
+    "time": "1 ngày trước",
+    "tags": ["Món nướng"],
+    "short": "Nem heo quết, nướng than/airfryer",
+    "ingredients": ["Thịt heo xay 400g", "Mỡ heo 50g", "Gia vị", "Que nướng"],
+    "steps": [
+      "Quết thịt với gia vị đến dẻo.",
+      "Nắn vào que.",
+      "Nướng than/airfryer đến chín vàng."
+    ],
+    "nutrition": { "Protein": "20g (ước tính)" }
+  },
+  {
+    "id": 107,
+    "name": "Cơm chiên dương châu",
+    "img": "/assets/images/recipe7.png",
+    "hero": "/assets/images/recipe7.png",
+    "chef": "Văn Long",
+    "time": "2 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Cơm, trứng, đậu, lạp xưởng",
+    "ingredients": ["Cơm nguội 2 bát", "Trứng 2 quả", "Lạp xưởng", "Đậu Hà Lan", "Cà rốt", "Hành lá"],
+    "steps": [
+      "Tráng trứng mỏng, thái sợi.",
+      "Xào lạp xưởng và rau củ.",
+      "Cho cơm vào chiên, nêm nếm."
+    ]
+  },
+  {
+    "id": 108,
+    "name": "Gà xào sả ớt",
+    "img": "/assets/images/recipe8.png",
+    "hero": "/assets/images/recipe8.png",
+    "chef": "Ngọc Trâm",
+    "time": "2 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Gà, sả, ớt cay nồng",
+    "ingredients": ["Thịt gà 400g", "Sả băm", "Ớt", "Tỏi", "Nước mắm", "Đường"],
+    "steps": [
+      "Ướp gà với sả ớt 15 phút.",
+      "Xào gà lửa lớn đến săn.",
+      "Nêm mắm đường cho vừa."
+    ]
+  },
+  {
+    "id": 109,
+    "name": "Vịt kho gừng",
+    "img": "/assets/images/recipe9.png",
+    "hero": "/assets/images/recipe9.png",
+    "chef": "Trần Anh",
+    "time": "3 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Vịt kho đậm vị gừng",
+    "ingredients": ["Vịt 800g", "Gừng", "Nước mắm", "Đường", "Ớt"],
+    "steps": [
+      "Xào săn vịt với gừng.",
+      "Thêm nước mắm, đường, kho 25–30 phút.",
+      "Nêm lại rồi tắt bếp."
+    ]
+  },
+  {
+    "id": 110,
+    "name": "Bò lúc lắc",
+    "img": "/assets/images/recipe10.png",
+    "hero": "/assets/images/recipe10.png",
+    "chef": "Trương Vĩ",
+    "time": "3 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Thịt bò xóc tỏi ớt, ớt chuông",
+    "ingredients": ["Thịt bò 350g", "Tỏi", "Hành tây", "Ớt chuông", "Bơ", "Tiêu"],
+    "steps": [
+      "Áp chảo bò chín tái, gắp ra.",
+      "Xào hành tây, ớt chuông với bơ.",
+      "Cho bò vào xóc nhanh, nêm tiêu."
+    ]
+  },
+  {
+    "id": 111,
+    "name": "Bò tía Tam Kỳ",
+    "img": "/assets/images/recipe11.png",
+    "hero": "/assets/images/recipe11.png",
+    "chef": "Tuấn Anh",
+    "time": "4 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Gỏi bò trộn đu đủ, đậu phộng",
+    "ingredients": ["Thịt bò", "Đu đủ bào", "Rau thơm", "Đậu phộng", "Nước trộn gỏi"],
+    "steps": [
+      "Trụng bò nhanh, để ráo.",
+      "Trộn cùng đu đủ, rau, nước trộn.",
+      "Rắc đậu phộng."
+    ]
+  },
+  {
+    "id": 112,
+    "name": "Canh bí đao",
+    "img": "/assets/images/recipe12.png",
+    "hero": "/assets/images/recipe12.png",
+    "chef": "Thanh Tuyền",
+    "time": "4 ngày trước",
+    "tags": ["Món mặn"],
+    "short": "Bí đao, thịt bằm, rau thơm",
+    "ingredients": ["Bí đao 400g", "Thịt bằm 150g", "Hành ngò", "Muối tiêu"],
+    "steps": [
+      "Xào sơ thịt bằm.",
+      "Cho bí đao + nước, nấu chín.",
+      "Nêm nếm, thêm hành ngò."
+    ]
+  },
+
+
+
+
+  {
+    "id": 201,
+    "name": "Bánh mì thịt",
+    "img": "/assets/images/trend1.png",
+    "hero": "/assets/images/trend1.png",
+    "chef": "Minh Quân",
+    "time": "2 giờ trước",
+    "tags": ["Món mặn"],
+    "short": "Bánh mì, rau thơm, thịt, cải chua",
+    "ingredients": ["Bánh mì", "Rau thơm", "Thịt", "Cải chua"],
+    "steps": ["Xẻ bánh mì.", "Nhồi thịt và rau.", "Thêm cải chua, dùng ngay."],
+    "nutrition": { "Calories": "420 kcal (ước tính)", "Protein": "18g", "Carbs": "48g", "Fat": "16g" }
+  },
+  {
+    "id": 202,
+    "name": "Tôm rim thịt",
+    "img": "/assets/images/trend2.png",
+    "hero": "/assets/images/trend2.png",
+    "chef": "Bà Mư",
+    "time": "4 giờ trước",
+    "tags": ["Món mặn"],
+    "short": "Thịt heo, ớt, tôm",
+    "ingredients": ["Thịt heo", "Ớt", "Tôm"],
+    "steps": ["Áp chảo thịt cho ra mỡ.", "Cho tôm và ớt vào rim sệt.", "Nêm lại cho vừa."],
+    "nutrition": { "Calories": "380 kcal (ước tính)", "Protein": "27g", "Carbs": "10g", "Fat": "20g" }
+  },
+  {
+    "id": 203,
+    "name": "Bún chả giò",
+    "img": "/assets/images/trend3.png",
+    "hero": "/assets/images/trend3.png",
+    "chef": "Minh Trang",
+    "time": "5 giờ trước",
+    "tags": ["Món mặn"],
+    "short": "Bún, chả giò, đậu phộng, rau",
+    "ingredients": ["Bún", "Chả giò", "Đậu phộng", "Rau sống"],
+    "steps": ["Chiên nóng chả giò.", "Bày bún, rau, chả giò.", "Rưới nước mắm chua ngọt."],
+    "nutrition": { "Calories": "520 kcal (ước tính)", "Protein": "19g", "Carbs": "62g", "Fat": "22g" }
+  },
+  {
+    "id": 204,
+    "name": "Bánh kếp",
+    "img": "/assets/images/trend4.png",
+    "hero": "/assets/images/trend4.png",
+    "chef": "Văn Tài",
+    "time": "6 giờ trước",
+    "tags": ["Bánh ngọt", "Tráng miệng"],
+    "short": "Bột, mật ong, trứng, sữa",
+    "ingredients": ["Bột", "Mật ong", "Trứng", "Sữa"],
+    "steps": ["Pha bột với sữa và trứng.", "Rán chảo từng lớp mỏng.", "Rưới mật ong."],
+    "nutrition": { "Calories": "310 kcal (ước tính)", "Protein": "9g", "Carbs": "45g", "Fat": "10g" }
+  },
+  {
+    "id": 205,
+    "name": "Trà đào cam sả",
+    "img": "/assets/images/trend5.png",
+    "hero": "/assets/images/trend5.png",
+    "chef": "Minh Uyên",
+    "time": "1 ngày trước",
+    "tags": ["Đồ uống"],
+    "short": "Trà, cam, nước đào",
+    "ingredients": ["Trà", "Cam", "Nước đào", "Sả (tuỳ chọn)"],
+    "steps": ["Ủ trà.", "Thêm cam, nước đào, sả dầm nhẹ.", "Thêm đá và thưởng thức."],
+    "nutrition": { "Calories": "140 kcal (ước tính)", "Protein": "1g", "Carbs": "34g", "Fat": "0g" }
+  },
+  {
+    "id": 206,
+    "name": "Tiramisu",
+    "img": "/assets/images/trend6.png",
+    "hero": "/assets/images/trend6.png",
+    "chef": "Văn Tài",
+    "time": "1 ngày trước",
+    "tags": ["Bánh ngọt", "Tráng miệng"],
+    "short": "Bánh, bột, cacao",
+    "ingredients": ["Bánh ladyfinger", "Kem mascarpone", "Cà phê", "Bột cacao"],
+    "steps": ["Nhúng bánh vào cà phê.", "Phết mascarpone xen kẽ lớp bánh.", "Rắc cacao, làm lạnh."],
+    "nutrition": { "Calories": "360 kcal (ước tính)", "Protein": "6g", "Carbs": "38g", "Fat": "20g" }
+  },
+
+
+
+
+  
+  {
+    "id": 301,
+    "name": "Gỏi cuốn",
+    "img": "/assets/images/mon1.png",
+    "hero": "/assets/images/mon1.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Bánh tráng, rau, tôm, thịt",
+    "ingredients": ["Bánh tráng", "Rau sống", "Tôm", "Thịt", "Bún", "Nước chấm"],
+    "steps": ["Sơ chế tôm thịt.", "Nhúng bánh tráng, cuốn.", "Chấm nước mắm chua ngọt."],
+    "nutrition": { "Calories": "260 kcal (ước tính)", "Protein": "16g", "Carbs": "33g", "Fat": "7g" }
+  },
+  {
+    "id": 302,
+    "name": "Canh chua cá lóc",
+    "img": "/assets/images/mon2.png",
+    "hero": "/assets/images/mon2.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Cá lóc, cà chua, ớt, đậu tây",
+    "ingredients": ["Cá lóc", "Cà chua", "Thơm", "Bạc hà", "Me", "Ớt"],
+    "steps": ["Nấu nước me.", "Cho cá và rau củ vào.", "Nêm lại cho vừa."],
+    "nutrition": { "Calories": "230 kcal (ước tính)", "Protein": "22g", "Carbs": "14g", "Fat": "9g" }
+  },
+  {
+    "id": 303,
+    "name": "Gà chiên nước mắm",
+    "img": "/assets/images/mon3.png",
+    "hero": "/assets/images/mon3.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Gà, rau thơm, vừng",
+    "ingredients": ["Gà", "Nước mắm", "Tỏi", "Đường", "Vừng"],
+    "steps": ["Chiên gà vàng.", "Áo sốt mắm tỏi.", "Rắc vừng."],
+    "nutrition": { "Calories": "450 kcal (ước tính)", "Protein": "25g", "Carbs": "20g", "Fat": "28g" }
+  },
+  {
+    "id": 304,
+    "name": "Bò xào rau củ",
+    "img": "/assets/images/mon4.png",
+    "hero": "/assets/images/mon4.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Bò, ớt, ớt chuông",
+    "ingredients": ["Thịt bò", "Ớt chuông", "Hành tây", "Tỏi", "Dầu hào"],
+    "steps": ["Xào bò lửa lớn.", "Cho rau củ vào đảo nhanh.", "Nêm dầu hào."],
+    "nutrition": { "Calories": "330 kcal (ước tính)", "Protein": "24g", "Carbs": "12g", "Fat": "20g" }
+  },
+  {
+    "id": 305,
+    "name": "Thịt kho tàu",
+    "img": "/assets/images/mon5.png",
+    "hero": "/assets/images/mon5.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Thịt heo, trứng, ớt",
+    "ingredients": ["Thịt ba chỉ", "Trứng", "Nước dừa", "Nước mắm", "Đường"],
+    "steps": ["Thắng nước màu.", "Kho thịt trứng với nước dừa.", "Nêm lại cho vừa."],
+    "nutrition": { "Calories": "560 kcal (ước tính)", "Protein": "28g", "Carbs": "18g", "Fat": "40g" }
+  },
+  {
+    "id": 306,
+    "name": "Vịt kho gừng",
+    "img": "/assets/images/mon6.png",
+    "hero": "/assets/images/mon6.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Vịt, ớt, gừng",
+    "ingredients": ["Vịt", "Gừng", "Nước mắm", "Đường", "Ớt"],
+    "steps": ["Xào vịt với gừng.", "Kho vừa cạn.", "Nêm lại."],
+    "nutrition": { "Calories": "500 kcal (ước tính)", "Protein": "30g", "Carbs": "10g", "Fat": "35g" }
+  },
+  {
+    "id": 307,
+    "name": "Bò tía tam kỳ",
+    "img": "/assets/images/mon7.png",
+    "hero": "/assets/images/mon7.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Bò, đu đủ, đậu phộng",
+    "ingredients": ["Thịt bò", "Đu đủ bào", "Đậu phộng", "Rau thơm"],
+    "steps": ["Trụng bò nhanh.", "Trộn với đu đủ, rau, nước trộn.", "Rắc đậu phộng."],
+    "nutrition": { "Calories": "340 kcal (ước tính)", "Protein": "23g", "Carbs": "16g", "Fat": "20g" }
+  },
+  {
+    "id": 308,
+    "name": "Bún chả giò",
+    "img": "/assets/images/mon8.png",
+    "hero": "/assets/images/mon8.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Bún, chả giò, đậu phộng, rau",
+    "ingredients": ["Bún", "Chả giò", "Rau sống", "Đậu phộng", "Nước mắm"],
+    "steps": ["Chiên chả giò.", "Bày bún, rau, chả giò.", "Chan nước mắm."],
+    "nutrition": { "Calories": "520 kcal (ước tính)", "Protein": "19g", "Carbs": "62g", "Fat": "22g" }
+  },
+  {
+    "id": 309,
+    "name": "Tôm rim thịt",
+    "img": "/assets/images/mon9.png",
+    "hero": "/assets/images/mon9.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Thịt heo, ớt, tôm",
+    "ingredients": ["Tôm", "Thịt ba rọi", "Ớt", "Đường", "Nước mắm"],
+    "steps": ["Áp chảo thịt.", "Rim tôm với gia vị.", "Nêm tiêu ớt."],
+    "nutrition": { "Calories": "380 kcal (ước tính)", "Protein": "27g", "Carbs": "10g", "Fat": "20g" }
+  },
+  {
+    "id": 310,
+    "name": "Bánh xèo miền trung",
+    "img": "/assets/images/mon10.png",
+    "hero": "/assets/images/mon10.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Tôm, củ hủ dừa, bột bánh xèo",
+    "ingredients": ["Bột bánh xèo", "Tôm", "Củ hủ dừa", "Giá", "Rau sống"],
+    "steps": ["Pha bột.", "Đổ bánh xèo nhân tôm.", "Ăn kèm rau và nước chấm."],
+    "nutrition": { "Calories": "430 kcal (ước tính)", "Protein": "18g", "Carbs": "55g", "Fat": "14g" }
+  },
+  {
+    "id": 311,
+    "name": "Bánh mì thịt",
+    "img": "/assets/images/mon11.png",
+    "hero": "/assets/images/mon11.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Bánh mì, rau thơm, thịt, cải chua",
+    "ingredients": ["Bánh mì", "Rau thơm", "Thịt", "Cải chua"],
+    "steps": ["Xẻ bánh mì.", "Nhồi nhân.", "Dùng ngay."],
+    "nutrition": { "Calories": "420 kcal (ước tính)", "Protein": "18g", "Carbs": "48g", "Fat": "16g" }
+  },
+  {
+    "id": 312,
+    "name": "Phở Hà Nội",
+    "img": "/assets/images/mon12.png",
+    "hero": "/assets/images/mon12.png",
+    "chef": "Ẩn danh",
+    "time": "Hôm nay",
+    "tags": ["Món mặn"],
+    "short": "Phở, thịt bò, chanh, ớt, rau thơm",
+    "ingredients": ["Bánh phở", "Thịt bò", "Nước dùng", "Hành", "Rau thơm", "Chanh ớt"],
+    "steps": ["Chuẩn bị nước dùng.", "Trụng phở, chần thịt.", "Chan nước, thêm rau thơm."],
+    "nutrition": { "Calories": "430 kcal (ước tính)", "Protein": "26g", "Carbs": "60g", "Fat": "10g" }
+  }
+]

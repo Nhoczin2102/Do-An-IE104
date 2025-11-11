@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Hoàng Tú",
+        "img": "/assets/images/HT.png",
+        "specialty": "Chuyên các món nướng"
+    },
+    {
+        "id": 2,
+        "name": "Văn Tài",
+        "img": "/assets/images/VT.png",
+        "specialty": "Chuyên các món bánh"
+    },
+    {
+        "id": 3,
+        "name": "Ngọc Trâm",
+        "img": "/assets/images/NT.png",
+        "specialty": "Chuyên các món chay"
+    },
+    {
+        "id": 4,
+        "name": "Minh Trang",
+        "img": "/assets/images/MT.png",
+        "specialty": "Chuyên các món cuốn"
+    }
+]

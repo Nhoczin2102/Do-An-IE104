@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "name": "Pizza",
+        "image": "/assets/images/recipe1.png",
+        "ingredients": "Bột mì, xúc xích, phô mai,..",
+        "chef": "Bà Mư",
+        "time": "2 giờ trước"
+    },
+    {
+        "id": 2,
+        "name": "Ức gà xào nấm",
+        "image": "/assets/images/recipe2.png",
+        "ingredients": "Ức gà, rau, nấm, cà rốt",
+        "chef": "Minh Long",
+        "time": "4 giờ trước"
+    },
+    {
+        "id": 3,
+        "name": "Bánh hỏi heo quay",
+        "image": "/assets/images/recipe3.png",
+        "ingredients": "Bánh hỏi, thịt heo, rau",
+        "chef": "Hoàng Tú",
+        "time": "5 giờ trước"
+    },
+    {
+        "id": 4,
+        "name": "Gỏi gà xé phay",
+        "image": "/assets/images/recipe4.png",
+        "ingredients": "Gà, đu đủ, rau",
+        "chef": "Mỹ Loan",
+        "time": "6 giờ trước"
+    },
+    {
+        "id": 5,
+        "name": "Bún đậu mắm tôm",
+        "image": "/assets/images/recipe5.png",
+        "ingredients": "Đậu hủ, bún, rau, mắm tôm",
+        "chef": "Anh Khải",
+        "time": "1 ngày trước"
+    },
+    {
+        "id": 6,
+        "name": "Nem nướng",
+        "image": "/assets/images/recipe6.png",
+        "ingredients": "Nem, rau, nước mắm",
+        "chef": "Tuấn Long",
+        "time": "1 ngày trước"
+    },
+    {
+        "id": 7,
+        "name": "Cơm chiên dương châu",
+        "image": "/assets/images/recipe7.png",
+        "ingredients": "Cơm, đậu, trứng, lạc xưởng",
+        "chef": "Văn Long",
+        "time": "2 ngày trước"
+    },
+    {
+        "id": 8,
+        "name": "Gà xào xả ớt",
+        "image": "/assets/images/recipe8.png",
+        "ingredients": "Gà, xả, ớt",
+        "chef": "Ngọc Trâm",
+        "time": "2 ngày trước"
+    },
+    {
+        "id": 9,
+        "name": "Vịt kho gừng",
+        "image": "/assets/images/recipe9.png",
+        "ingredients": "Vịt, ớt, gừng",
+        "chef": "Trần Anh",
+        "time": "3 ngày trước"
+    },
+    {
+        "id": 10,
+        "name": "Bò lúc lắc",
+        "image": "/assets/images/recipe10.png",
+        "ingredients": "Thịt bò, ớt chuông, hành",
+        "chef": "Trương Vĩ",
+        "time": "3 ngày trước"
+    },
+    {
+        "id": 11,
+        "name": "Bò tía Tam kỳ",
+        "image": "/assets/images/recipe11.png",
+        "ingredients": "Bò, đu đủ, đậu phộng",
+        "chef": "Tuấn Anh",
+        "time": "4 ngày trước"
+    },
+    {
+        "id": 12,
+        "name": "Canh bí đao",
+        "image": "/assets/images/recipe12.png",
+        "ingredients": "Bí đao, thịt bầm, rau thơm",
+        "chef": "Thanh Tuyền",
+        "time": "4 ngày trước"
+    }
+]

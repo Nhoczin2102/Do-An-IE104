@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chi tiết công thức</title>
+  <link rel="stylesheet" href="../../styles/components/style.header.css" />
+  <link rel="stylesheet" href="../../styles/components/recipe-detail.css" />
+</head>
+  <body>
+    <!-- Header -->
+    <header class="header">
+      <div class="container header-content">
+        <a id="back-link" class="back-link" href="#">← Quay lại</a>
+        <h1 id="recipe-name" class="page-title">Đang tải...</h1>
+      </div>
+    </header>
+    <!-- The mon -->
+    <main class="detail-container">
+      <section class="recipe-card">
+        <img id="recipe-img" alt="Hình món ăn" />
+        <div class="detail-info">
+          <h2 id="recipe-name-dup"></h2>
+          <div class="meta">
+            <span id="recipe-chef"></span>
+            <span id="recipe-time"></span>
+          </div>
+          <div class="tags" id="recipe-tags"></div>
+        </div>
+      </section>
+      <!-- Nội dung chi tiết -->
+      <section class="detail-grid">
+        <article class="card">
+          <h3>Nguyên liệu</h3>
+          <ul id="ingredients"></ul>
+        </article>
+
+        <article class="card">
+          <h3>Các bước thực hiện</h3>
+          <ol id="steps"></ol>
+        </article>
+
+        <aside class="card">
+          <h3>Dinh dưỡng</h3>
+          <ul id="nutrition"></ul>
+        </aside>
+      </section>
+    </main>
+
+  <!-- Script -->
+  <script src="../../js/modules/recipe-detail.js"></script>
+  </body>
+</html>

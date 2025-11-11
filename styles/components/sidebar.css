@@ -4,8 +4,9 @@
   padding: 28px;
   box-shadow: var(--shadow);
   position: sticky;
-  top: 100px;
+ 
   height: fit-content;
+  
 }
 
 .profile {
