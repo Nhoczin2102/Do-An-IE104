@@ -1,0 +1,38 @@
+
+    /* =================== LAYOUT 2 CỘT (profile.css) =================== */
+    .page.profile{
+       display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 84px 24px 40px; /* 64px (header) + 20px (khoảng cách) */
+  align-items: start;
+    }
+
+    /* Empty */
+
+    /* =================== Responsive =================== */
+    @media (max-width:1200px){
+      .page.profile{grid-template-columns:280px 1fr;gap:30px}
+    }
+    @media (max-width:968px){
+      .page.profile{grid-template-columns:1fr;gap:24px}
+      .sidebar{display:none}
+    }
+    @media (max-width:768px){
+      .profile-stats{gap:16px;flex-wrap:wrap}
+      .stat-item{flex:1;min-width:120px}
+      .user-card{flex-direction:column;text-align:center;padding:20px}
+      .user-avatar{margin-right:0;margin-bottom:16px}
+      .user-action{margin-left:0;margin-top:16px}
+      .user-stats{justify-content:center}
+      .profile-nav{flex-direction:column}
+      .nav-item{padding:16px}
+    }
+    @media (max-width:480px){
+      .page.profile{padding:0 16px}
+      .profile-header{padding:30px 20px}
+      .profile-avatar{width:100px;height:100px}
+      .follow-tabs{flex-direction:column;gap:8px}
+    }

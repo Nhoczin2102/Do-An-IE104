@@ -1,131 +1,521 @@
+/* ===== LAYOUT CHÍNH ===== */
 .page {
-    display: flex;
-    justify-content: center;
-    padding: 24px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 50px;
+  max-width: 90%;
+  margin: 10px auto;
+  padding: 0 20px;
+  align-items: start;
+  min-height: calc(100vh - 130px);
 }
+
 .save-page {
-    max-width: 1040px;
+  max-width: 1040px;
+  width: 100%;
 }
+
+/* ===== HEADER SECTION ===== */
 .save-header {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-    margin: 20px 0px;
-    max-width: 1040px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1040px;
+  margin-bottom: 30px;
+  padding: 0 20px;
 }
+
 #save-title {
-    font-weight: 550;
-    font-size: 40px;
-    margin: 0;
+  font-weight: 550;
+  font-size: 40px;
+  margin: 0;
+  color: var(--text-color, #333);
 }
+
 #save-button {
-    background-color: #fff;
-    border-width: 2px;
-    border-style: solid;
-    padding: 8px 16px;
-    font-weight: 600;
-    border-radius: 10px;
-    cursor: pointer;
+  background-color: #fff;
+  border: 2px solid var(--border-color, #ddd);
+  padding: 8px 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--text-color, #333);
+  font-size: 14px;
 }
+
 #save-button:hover {
-    border-color: var(--primary-color);
-    color: var(--primary-color);
+  border-color: var(--primary-color, #007bff);
+  color: var(--primary-color, #007bff);
+  transform: translateY(-1px);
 }
 
-.save-baiviet {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px; 
-}
-
-.recipe-card {
-    background-color: #fff;
-    border-width: 3px;
-    border-style: solid;
-    border-color: var(--primary-color);
-    border-radius: 20px;
-    overflow: hidden;
-    max-width:fit-content;
-}
-.recipe-card:hover{
-    cursor: pointer;
-    transform: translate(-3px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-}
-.recipe-anh img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-.recipe-body {
-    padding: 4px 12px 6px 16px;
-}
-.recipe-anh {
-    overflow: hidden;
-    width: 290px;
-    height: 242px;
-}
-.recipe-title { 
-    margin-bottom: 1px;
-    font-size: 26px;
-    font-weight: 550;
-}
-.recipe-text { 
-    color: var(--text-light-subtle); 
-    font-size: 16px;
-}
+/* ===== SAVED CARD CONTAINER ===== */
 .saved-card {
-    margin: 10px 40px;
+  width: 100%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+.header-page {
+  margin-bottom: 20px;
+}
 
-/* ===== Scroll area cho danh sách bài viết ===== */
+/* ===== RECIPES GRID ===== */
+.save-baiviet {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 24px;
+  padding: 10px 0;
+}
+
+/* ===== RECIPE CARD ===== */
+.recipe-card {
+  background-color: #fff;
+  border: 3px solid var(--primary-color, #007bff);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  max-width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  position: relative;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  border-color: var(--primary-dark, #0056b3);
+}
+
+.recipe-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--primary-color, #007bff);
+  z-index: 2;
+}
+
+.recipe-anh {
+  overflow: hidden;
+  width: 100%;
+  height: 242px;
+  position: relative;
+}
+
+.recipe-anh img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.recipe-card:hover .recipe-anh img {
+  transform: scale(1.05);
+}
+
+.recipe-body {
+  padding: 16px 20px 20px;
+  position: relative;
+}
+
+.recipe-title {
+  margin-bottom: 8px;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text-color, #333);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 56px;
+}
+
+.recipe-text {
+  color: var(--text-light-subtle, #666);
+  font-size: 16px;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Bookmark indicator */
+.recipe-card::after {
+  content: "✓ Đã lưu";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: var(--primary-color, #007bff);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 3;
+}
+
+/* ===== SCROLL AREA ===== */
 .post-scroll {
-  max-height: calc(100vh - 220px);   
-  overflow: auto;
-  padding-right: 6px;          
+  max-height: calc(100vh - 220px);
+  overflow-y: auto;
+  padding: 20px;
   border-radius: 16px;
   background: #f8f9fa;
   scroll-behavior: smooth;
-  scrollbar-gutter: stable both-edges;
-  position: relative;            
+  scrollbar-gutter: stable;
+  width: 100%;
+  box-sizing: border-box;
 }
-.post-scroll::before,
-.post-scroll::after {
-  content: "";
-  position: sticky;
-  height: 14px;
-  pointer-events: none;
+
+/* Custom scrollbar for Webkit browsers */
+.post-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.post-scroll::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+  margin: 5px 0;
+}
+
+.post-scroll::-webkit-scrollbar-thumb {
+  background: var(--primary-color, #007bff);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.post-scroll::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark, #0056b3);
+  background-clip: content-box;
+}
+
+/* Firefox scrollbar */
+.post-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color, #007bff) transparent;
+}
+
+/* ===== EMPTY STATE ===== */
+.save-baiviet:empty::before {
+  content: "📚";
+  font-size: 64px;
+  text-align: center;
   display: block;
-}
-.post-scroll::before {
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
-}
-.post-scroll::after {
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
-}
-.post-scroll{
-  scrollbar-width: thin;                    
-  scrollbar-color: var(--primary-color) transparent;
+  margin: 40px 0 20px;
 }
 
+.save-baiviet:empty::after {
+  content: "Chưa có công thức nào được lưu";
+  font-size: 20px;
+  color: var(--text-light-subtle, #666);
+  text-align: center;
+  display: block;
+  margin-bottom: 20px;
+}
 
+.save-baiviet:empty + .empty-state-actions {
+  text-align: center;
+  padding: 20px;
+}
+
+.explore-btn {
+  background: var(--primary-color, #007bff);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.explore-btn:hover {
+  background: var(--primary-dark, #0056b3);
+  transform: translateY(-2px);
+}
+
+/* ===== FILTER BUTTONS ===== */
+.filter-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: #fff;
+  border: 2px solid var(--border-color, #ddd);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: var(--primary-color, #007bff);
+  color: white;
+  border-color: var(--primary-color, #007bff);
+}
+
+/* ===== LOADING STATES ===== */
+.recipe-card.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.recipe-card.loading .recipe-anh {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+.recipe-card.loading .recipe-title,
+.recipe-card.loading .recipe-text {
+  background: #f0f0f0;
+  color: transparent;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 1200px) {
+  .page {
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .save-baiviet {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .page {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  
+  .save-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+  }
+  
+  #save-title {
+    font-size: 32px;
+    margin-left: 0;
+  }
+  
+  #save-button {
+    align-self: stretch;
+    text-align: center;
+  }
+  
+  .save-baiviet {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  
+  .post-scroll {
+    max-height: calc(100vh - 200px);
+    padding: 15px;
+  }
+  
+  .saved-card {
+    padding: 15px;
+    border-radius: 15px;
+  }
+}
 
 @media (max-width: 640px) {
   .save-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
+    gap: 15px;
   }
-  .save-title {
-    font-size: 26px;
+  
+  #save-title {
+    font-size: 28px;
+    text-align: center;
   }
-  .save-button {
-    align-self: flex-end;
+  
+  #save-button {
+    padding: 10px 16px;
   }
-  .post-scroll{
-    max-height: calc(100vh - 260px);
+  
+  .save-baiviet {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .recipe-anh {
+    height: 200px;
+  }
+  
+  .recipe-title {
+    font-size: 20px;
+    min-height: 48px;
+  }
+  
+  .recipe-body {
+    padding: 12px 16px 16px;
+  }
+  
+  .post-scroll {
+    max-height: calc(100vh - 180px);
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page {
+    padding: 0 10px;
+  }
+  
+  #save-title {
+    font-size: 24px;
+  }
+  
+  .save-baiviet {
+    gap: 12px;
+  }
+  
+  .recipe-anh {
+    height: 180px;
+  }
+  
+  .recipe-title {
+    font-size: 18px;
+    min-height: 44px;
+  }
+  
+  .recipe-text {
+    font-size: 14px;
+  }
+  
+  .recipe-card::after {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+}
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+  .recipe-card,
+  .recipe-card:hover .recipe-anh img,
+  #save-button,
+  .filter-btn,
+  .explore-btn {
+    transition: none;
+    transform: none;
+  }
+  
+  .recipe-card.loading .recipe-anh {
+    animation: none;
+  }
+}
+
+/* ===== FOCUS STATES ===== */
+.recipe-card:focus-within {
+  outline: 3px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+#save-button:focus,
+.filter-btn:focus,
+.explore-btn:focus {
+  outline: 3px solid var(--primary-color, #007bff);
+  outline-offset: 2px;
+}
+
+/* ===== DARK MODE SUPPORT ===== */
+@media (prefers-color-scheme: dark) {
+  .saved-card {
+    background: var(--bg-dark, #1a1a1a);
+    color: var(--text-dark, #fff);
+  }
+  
+  .post-scroll {
+    background: var(--bg-dark-secondary, #2d2d2d);
+  }
+  
+  .recipe-card {
+    background: var(--bg-dark, #1a1a1a);
+    border-color: var(--primary-color, #007bff);
+  }
+  
+  .recipe-title {
+    color: var(--text-dark, #fff);
+  }
+  
+  .recipe-text {
+    color: var(--text-light-dark, #ccc);
+  }
+  
+  #save-button,
+  .filter-btn {
+    background: var(--bg-dark, #1a1a1a);
+    color: var(--text-dark, #fff);
+    border-color: var(--border-dark, #444);
+  }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+  .page-header,
+  .sidebar,
+  #save-button,
+  .filter-buttons {
+    display: none;
+  }
+  
+  .page {
+    grid-template-columns: 1fr;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .save-baiviet {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .recipe-card {
+    break-inside: avoid;
+    border: 1px solid #000;
+    box-shadow: none;
   }
 }

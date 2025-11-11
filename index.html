@@ -25,54 +25,61 @@
   <body>
     <!-- ========== HEADER ========== -->
     <header class="page-header">
-      <div class="page-header__container">
-        <div class="page-header__content">
-          <!-- Logo -->
-          <a href="index.html" class="page-header__logo">
-            <div class="page-header__logo-image">
-              <img src="./assets/images/logo.svg" />
-            </div>
-            <h1>POTPAN</h1>
-          </a>
-
-          <!-- Thanh tìm kiếm -->
-          <div class="page-header__search-bar">
-            <input
-              type="text"
-              placeholder="Tìm kiếm công thức, nguyên liệu..."
-            />
-            <button class="page-header__search-button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-
-          <!-- Điều hướng -->
-          <div class="page-header__nav">
-            <a href="index.html" class="active">
-              <i class="fas fa-home nav-icon"></i>
-              <span>Trang chủ</span>
-            </a>
-            <a href="./pages/explore.html">
-              <i class="fas fa-compass page-header__nav-icon"></i>
-              <span>Khám phá</span>
-            </a>
-            <a href="./pages/about.html" target="_blank">
-              <i class="fa-solid fa-users"></i>
-              <span>Về chúng tôi</span>
-            </a>
-            <a href="./pages/contact.html">
-              <i class="fa-solid fa-phone"></i>
-              <span>Liên hệ</span>
-            </a>
-            <a href="./pages/login.html">
-              <i class="fa-solid fa-user"></i>
-              <span>Đăng nhập</span>
-            </a>
-          </div>
+  <div class="page-header__container">
+    <div class="page-header__content">
+      <!-- Logo -->
+      <a href="index.html" class="page-header__logo">
+        <div class="page-header__logo-image">
+          <img src="./assets/images/logo.svg" />
         </div>
-      </div>
-    </header>
+        <h1>POTPAN</h1>
+      </a>
 
+      <!-- Thanh tìm kiếm -->
+      <div class="page-header__search-bar">
+        <input
+          type="text"
+          placeholder="Tìm kiếm công thức, nguyên liệu..."
+        />
+        <button class="page-header__search-button">
+          <i class="fas fa-search"></i>
+        </button>
+      </div>
+
+      <!-- Điều hướng -->
+      <div class="page-header__nav">
+        <a href="index.html" class="active">
+          <i class="fas fa-home nav-icon"></i>
+          <span>Trang chủ</span>
+        </a>
+        <a href="./pages/explore.html">
+          <i class="fas fa-compass page-header__nav-icon"></i>
+          <span>Khám phá</span>
+        </a>
+        <a href="./pages/about.html" target="_blank">
+          <i class="fa-solid fa-users"></i>
+          <span>Về chúng tôi</span>
+        </a>
+        <a href="./pages/contact.html" target="_blank">
+          <i class="fa-solid fa-phone"></i>
+          <span>Liên hệ</span>
+        </a>
+        
+        <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
+        <a href="#" class="logout-nav" id="logoutNav" style="display: none;">
+          <i class="fas fa-sign-out-alt"></i>
+          <span>Đăng xuất</span>
+        </a>
+        
+        <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
+        <a href="./pages/login.html" class="login-nav" id="loginNav">
+          <i class="fa-solid fa-user"></i>
+          <span>Đăng nhập</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
     <!-- ========== LAYOUT 3 CỘT ========== -->
     <main class="page home">
       <aside class="sidebar">
@@ -109,7 +116,7 @@
             <span>Đầu bếp nổi tiếng</span>
           </a>
 
-          <a class="main-menu__item" href="#">
+          <a class="main-menu__item" href="./pages/setting.html">
             <i class="fas fa-cog"></i>
             <span>Cài đặt</span>
           </a>
