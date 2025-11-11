@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="../styles/T.css"> 
   <link rel="stylesheet" href="../styles/pages/setting.css"> 
   <link rel="stylesheet" href="../styles/components/sidebar.css"> 
+  <link rel="stylesheet" href="../styles/components/header.css"> 
 </head>
 
 <body>
@@ -238,67 +239,6 @@
               </div>
             </div>
           </section>
-
-          <!-- Preferences -->
-          <section class="settings-section" id="preferences-section">
-            <div class="section-header">
-              <h2 class="section-title">Sở thích ăn uống</h2>
-              <span class="section-icon">🍽️</span>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Chế độ ăn</div>
-                <div class="setting-description">Chọn chế độ ăn phù hợp với bạn</div>
-              </div>
-              <div class="setting-control">
-                <select id="dietary-mode">
-                  <option value="none">Không</option>
-                  <option value="vegetarian">Ăn chay</option>
-                  <option value="vegan">Thuần chay</option>
-                  <option value="keto">Keto</option>
-                  <option value="lowcarb">Low-carb</option>
-                  <option value="halal">Halal</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Dị ứng & tránh</div>
-                <div class="setting-description">Chọn thành phần bạn dị ứng hoặc không thích</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="manage-allergies">Quản lý</button>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Mức cay ưa thích</div>
-                <div class="setting-description">Điều chỉnh độ cay trong công thức</div>
-              </div>
-              <div class="setting-control">
-                <select id="spice-level">
-                  <option value="0">Không cay</option>
-                  <option value="1">Ít cay</option>
-                  <option value="2" selected>Trung bình</option>
-                  <option value="3">Rất cay</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Ẩm thực yêu thích</div>
-                <div class="setting-description">Chọn các nền ẩm thực bạn yêu thích</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="manage-cuisines">Quản lý</button>
-              </div>
-            </div>
-          </section>
-
           <!-- Accessibility -->
           <section class="settings-section" id="accessibility-section">
             <div class="section-header">
@@ -484,83 +424,7 @@
             </div>
           </section>
 
-          <!-- Help & FAQ -->
-          <section class="settings-section" id="help-section">
-            <div class="section-header">
-              <h2 class="section-title">Trợ giúp & FAQ</h2>
-              <span class="section-icon">❓</span>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Câu hỏi thường gặp</div>
-                <div class="setting-description">Tìm câu trả lời cho các thắc mắc phổ biến</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="open-faq">Mở</button>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Hướng dẫn sử dụng</div>
-                <div class="setting-description">Hướng dẫn chi tiết cách sử dụng ứng dụng</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="open-guide">Xem</button>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Liên hệ hỗ trợ</div>
-                <div class="setting-description">Liên hệ với đội ngũ hỗ trợ của chúng tôi</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="contact-support">Liên hệ</button>
-              </div>
-            </div>
-          </section>
-
-          <!-- Feedback -->
-          <section class="settings-section" id="feedback-section">
-            <div class="section-header">
-              <h2 class="section-title">Gửi phản hồi</h2>
-              <span class="section-icon">📝</span>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Gửi ý kiến</div>
-                <div class="setting-description">Chia sẻ ý kiến để cải thiện ứng dụng</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="send-feedback">Gửi</button>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Báo lỗi</div>
-                <div class="setting-description">Báo cáo lỗi hoặc sự cố gặp phải</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="report-bug">Báo cáo</button>
-              </div>
-            </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Đánh giá ứng dụng</div>
-                <div class="setting-description">Đánh giá ứng dụng trên cửa hàng</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="rate-app">Đánh giá</button>
-              </div>
-            </div>
-          </section>
-
-          <!-- Privacy & Legal -->
+                 <!-- Privacy & Legal -->
           <section class="settings-section" id="privacy-section">
             <div class="section-header">
               <h2 class="section-title">Quyền riêng tư & Pháp lý</h2>
@@ -592,17 +456,6 @@
                 </label>
               </div>
             </div>
-
-            <div class="setting-item">
-              <div class="setting-info">
-                <div class="setting-title">Xuất dữ liệu</div>
-                <div class="setting-description">Tải về tất cả dữ liệu của bạn</div>
-              </div>
-              <div class="setting-control">
-                <button class="btn secondary" id="export-data">Xuất dữ liệu</button>
-              </div>
-            </div>
-
             <div class="setting-item">
               <div class="setting-info">
                 <div class="setting-title">Điều khoản dịch vụ</div>
@@ -683,15 +536,6 @@
       showSection('account');
     });
   </script>
- 
-      <!-- Empty state (nếu không có ai) -->
-      <!--
-      <div class="empty-state">
-        <div class="empty-icon"><i class="fa-regular fa-face-smile"></i></div>
-        <div class="empty-text">Chưa có người theo dõi nào. Khám phá cộng đồng và kết nối ngay!</div>
-        <button class="btn-follow">Khám phá</button>
-      </div>
-      -->
     </section>
   </main>
 </body>

@@ -27,28 +27,6 @@
     img{max-width:100%;display:block}
 
     /* =================== HEADER (header.css) =================== */
-    .page-header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border-color)}
-    .page-header__container{max-width:var(--container-max);margin:0 auto;padding:10px 24px}
-    .page-header__content{display:flex;align-items:center;gap:20px}
-    .page-header__logo{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none}
-    .page-header__logo-image{width:40px;height:40px;display:grid;place-items:center}
-    .page-header__logo h1{font-size:20px;margin:0;font-weight:800;letter-spacing:.3px}
-    .page-header__search-bar{flex:1;display:flex;align-items:center;gap:8px;max-width:680px;margin-left:auto;margin-right:auto}
-    .page-header__search-bar input{
-      flex:1;padding:10px 14px;border:1px solid var(--border-color);border-radius:12px;background:#fff
-    }
-    .page-header__search-button{
-      border:0;background:var(--primary-color);color:#fff;border-radius:12px;padding:10px 14px;cursor:pointer
-    }
-    .page-header__nav{display:flex;align-items:center;gap:14px;margin-left:auto}
-    .page-header__nav a{
-      display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--text);font-weight:600;
-      padding:8px 10px;border-radius:10px
-    }
-    .page-header__nav a.active,
-    .page-header__nav a:hover{background:var(--background-light)}
-    .nav-icon,.page-header__nav-icon{font-size:18px}
-
     /* =================== LAYOUT 2 CỘT (profile.css) =================== */
     .page.profile{
       display:grid;
@@ -61,9 +39,6 @@
     }
 
     /* Empty */
-    .empty-state{text-align:center;padding:60px 20px;background:#fff;border-radius:16px;box-shadow:var(--shadow);margin:24px}
-    .empty-icon{font-size:80px;color:var(--border-color);margin-bottom:20px;opacity:.5}
-    .empty-text{color:var(--muted);font-size:18px;margin-bottom:24px}
 
     /* =================== Responsive =================== */
     @media (max-width:1200px){

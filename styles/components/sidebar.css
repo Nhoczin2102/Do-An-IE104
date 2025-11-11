@@ -1,12 +1,15 @@
 .sidebar {
-  background: var(--bg-card);
+ background: var(--bg-card);
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: var(--shadow);
   position: sticky;
- 
+  top: 20px;
   height: fit-content;
-  
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--background-light) 
 }
 
 .profile {
@@ -68,7 +71,7 @@
   transition: all 0.3s ease;
   font-weight: 500;
   position: relative;
-  overflow: hidden;
+  overflow: none;
 }
 
 .main-menu .main-menu__item::before {
