@@ -1,17 +1,12 @@
 .sidebar {
- background: var(--bg-card);
+  background: var(--bg-card);
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: var(--shadow);
-  position: sticky;
-  top: 20px;
+  position: sticky; /* Thay sticky bằng fixed */
+  top: 84px; /* Cách header 20px (64px + 20px) */
   height: fit-content;
-  max-height: calc(100vh - 40px);
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--primary-color) var(--background-light) 
 }
-
 .profile {
   display: flex;
   align-items: center;

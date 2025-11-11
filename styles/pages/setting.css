@@ -124,11 +124,6 @@ body {
     border-bottom: 1px solid var(--border-color);
 }
 
-.section-title {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--text-on-light);
-}
 
 .section-icon {
     color: var(--primary-color);
@@ -266,26 +261,9 @@ button.danger:hover {
     margin-top: 10px;
 }
 
-.chip {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 14px;
-    background-color: #f0f0f0;
-    border-radius: 20px;
-    font-size: .9rem;
-    cursor: pointer;
-    transition: all .2s;
-}
-
-.chip.active {
-    background-color: var(--primary-color);
-    color: var(--text-on-primary);
-}
 
 /* Cooking Assist Highlight */
-.cooking-assist {
-    border-left: 4px solid var(--primary-color);
-}
+
 
 /* Modal */
 .modal {
@@ -300,46 +278,6 @@ button.danger:hover {
 
 .modal.is-open {
     display: flex;
-}
-
-/* class mở modal */
-.modal-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, .2);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-title {
-    font-size: 1.4rem;
-    font-weight: 600;
-    color: var(--text-on-light);
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-light-subtle);
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 25px;
 }
 
 /* Detail (nếu sau này cần màn phụ) */

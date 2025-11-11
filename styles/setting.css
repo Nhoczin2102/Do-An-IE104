@@ -26,16 +26,15 @@
     }
     img{max-width:100%;display:block}
 
-    /* =================== HEADER (header.css) =================== */
     /* =================== LAYOUT 2 CỘT (profile.css) =================== */
     .page.profile{
-      display:grid;
-      grid-template-columns:320px 1fr;
-      gap:40px;
-      max-width:var(--container-max);
-      margin:40px auto;
-      padding:0 24px;
-      align-items:start;
+       display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 40px;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 84px 24px 40px; /* 64px (header) + 20px (khoảng cách) */
+  align-items: start;
     }
 
     /* Empty */
@@ -60,8 +59,6 @@
     }
     @media (max-width:480px){
       .page.profile{padding:0 16px}
-      .page-header__container{padding:10px 16px}
-      .page-header__logo h1{display:none}
       .profile-header{padding:30px 20px}
       .profile-avatar{width:100px;height:100px}
       .follow-tabs{flex-direction:column;gap:8px}
