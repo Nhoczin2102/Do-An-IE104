@@ -45,10 +45,10 @@ body {
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family:Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color:var(--text);
-      background:#fff;
+    margin:0;
+    font-family:Inter, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color:var(--text);
+    background:#fff;
     }
     img{max-width:100%;display:block}
 
@@ -72,15 +72,15 @@ body {
     color: var(--text-on-light);
 }
     /* =================== LAYOUT 2 CỘT (profile.css) =================== */
-    .page.profile{
-       display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 40px;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 84px 24px 40px; /* 64px (header) + 20px (khoảng cách) */
-  align-items: start;
-    }
+.page.profile{
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 40px;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 84px 24px 40px; /* 64px (header) + 20px (khoảng cách) */
+    align-items: start;
+}
 .user-profile {
     display: flex;
     align-items: center;
@@ -126,15 +126,6 @@ body {
 .settings-section.active {
     display: block;
 }
-
-/* Nếu giữ dạng grid cho nhiều section (tương lai) */
-.settings-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    /* chỉ 1 cột vì mỗi lần chỉ active 1 section */
-    gap: 20px;
-}
-
 /* Section nội dung */
 .section-header {
     display: flex;
