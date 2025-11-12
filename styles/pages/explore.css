@@ -213,3 +213,264 @@ body {
     border-color: var(--primary-color);
     color: var(--primary-color);
 }
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .main-content {
+        padding: 0 4%;
+    }
+    
+    .main-content h1 {
+        font-size: 2rem;
+    }
+    
+    .recipe-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .horizontal-scroll-wrapper .recipe-card {
+        flex: 0 0 280px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 14px;
+    }
+    
+    .chefs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 18px;
+    }
+}
+
+/* Small Tablet */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 0 3%;
+        margin: 20px auto;
+    }
+    
+    .main-content h1 {
+        font-size: 1.8rem;
+    }
+    
+    .explore-section h2 {
+        font-size: 1.3rem;
+    }
+    
+    .recipe-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+    
+    .horizontal-scroll-wrapper .recipe-card {
+        flex: 0 0 260px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 12px;
+    }
+    
+    .category-card {
+        padding: 16px;
+    }
+    
+    .category-card i {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+    
+    .category-card h4 {
+        font-size: 0.9rem;
+    }
+    
+    .chefs-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        gap: 16px;
+    }
+    
+    .chef-card {
+        padding: 16px;
+    }
+    
+    .chef-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1rem;
+    }
+    
+    .chef-name {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .main-content {
+        padding: 0 16px;
+        margin: 16px auto;
+    }
+    
+    .main-content h1 {
+        font-size: 1.6rem;
+        margin-bottom: 6px;
+    }
+    
+    .main-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 24px;
+    }
+    
+    .explore-section {
+        margin-bottom: 32px;
+    }
+    
+    .explore-section h2 {
+        font-size: 1.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+    }
+    
+    .recipe-card .recipe-body {
+        padding: 10px 14px 14px;
+    }
+    
+    .recipe-body .recipe-title {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+    
+    .recipe-body .recipe-text {
+        font-size: 0.85rem;
+    }
+    
+    .recipe-meta {
+        font-size: 0.85rem;
+        margin-top: 10px;
+    }
+    
+    .horizontal-scroll-wrapper {
+        gap: 16px;
+        padding-bottom: 12px;
+    }
+    
+    .horizontal-scroll-wrapper .recipe-card {
+        flex: 0 0 240px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+    
+    .category-card {
+        padding: 12px 8px;
+    }
+    
+    .category-card i {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    
+    .category-card h4 {
+        font-size: 0.8rem;
+    }
+    
+    .chefs-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .chef-card {
+        padding: 14px;
+    }
+    
+    .chef-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 0.9rem;
+    }
+    
+    .chef-name {
+        font-size: 0.9rem;
+    }
+    
+    .chef-specialty {
+        font-size: 0.8rem;
+    }
+    
+    .btn-load-more {
+        padding: 10px 24px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 0 12px;
+    }
+    
+    .main-content h1 {
+        font-size: 1.4rem;
+    }
+    
+    .recipe-grid {
+        gap: 16px;
+    }
+    
+    .horizontal-scroll-wrapper .recipe-card {
+        flex: 0 0 220px;
+    }
+    
+    .category-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .chefs-grid {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .load-more-container {
+        margin-top: 24px;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 360px) {
+    .main-content {
+        padding: 0 8px;
+    }
+    
+    .horizontal-scroll-wrapper .recipe-card {
+        flex: 0 0 200px;
+    }
+    
+    .category-card {
+        padding: 10px 6px;
+    }
+    
+    .category-card i {
+        font-size: 18px;
+    }
+    
+    .category-card h4 {
+        font-size: 0.75rem;
+    }
+    
+    .chef-card {
+        padding: 12px;
+    }
+}
