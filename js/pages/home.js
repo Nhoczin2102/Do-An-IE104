@@ -47,65 +47,6 @@ document.addEventListener('DOMContentLoaded', function() {
     window.feedApp = app;
 });
 
-// Hàm kiểm tra trạng thái đăng nhập và cập nhật navigation
-function updateNavigation() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    const loginNav = document.getElementById('loginNav');
-    const logoutNav = document.getElementById('logoutNav');
-    
-    if (currentUser) {
-        // Đã đăng nhập - hiển thị nút Đăng xuất, ẩn nút Đăng nhập
-        loginNav.style.display = 'none';
-        logoutNav.style.display = 'flex';
-        
-        // Cập nhật thông tin trong sidebar
-        updateSidebarInfo(currentUser);
-    } else {
-        // Chưa đăng nhập - hiển thị nút Đăng nhập, ẩn nút Đăng xuất
-        loginNav.style.display = 'flex';
-        logoutNav.style.display = 'none';
-    }
-}
-
-// Hàm cập nhật thông tin sidebar
-function updateSidebarInfo(user) {
-    const sidebarAvatar = document.querySelector('.profile__avatar');
-    const profileName = document.querySelector('.profile__name');
-    const profileHandle = document.querySelector('.profile__handle');
-    
-    if (sidebarAvatar) {
-        sidebarAvatar.src = user.avatar || './assets/images/avatar.png';
-    }
-    if (profileName) {
-        profileName.textContent = user.name;
-    }
-    if (profileHandle) {
-        profileHandle.textContent = `@${user.email.split('@')[0]}`;
-    }
-}
-
-// Hàm xử lý đăng xuất
-function setupLogout() {
-    const logoutNav = document.getElementById('logoutNav');
-    if (logoutNav) {
-        logoutNav.addEventListener('click', function(e) {
-            e.preventDefault();
-            if (confirm('Bạn có chắc muốn đăng xuất?')) {
-                localStorage.removeItem('currentUser');
-                // Chuyển hướng về trang login
-                window.location.href = './pages/login.html';
-            }
-        });
-    }
-}
-
-// Gọi hàm khi trang load
-document.addEventListener('DOMContentLoaded', function() {
-    updateNavigation();
-    setupLogout();
-});
-
-// Hàm xử lý đăng xuất
 
 
 // Export for testing or other modules

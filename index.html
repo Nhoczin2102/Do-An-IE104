@@ -83,45 +83,46 @@
     <!-- ========== LAYOUT 3 CỘT ========== -->
     <main class="page home">
       <aside class="sidebar">
-        <div class="profile">
-          <img
+    <div class="profile">
+        <img
             class="profile__avatar"
+            id="sidebarAvatar"
             src="./assets/images/avatar.png"
             alt="avatar"
-          />
-          <div class="profile-info">
-            <div class="profile__name">Minh Nhựt</div>
-            <div class="profile__handle">@nhutminh_amthuc</div>
-          </div>
+        />
+        <div class="profile-info">
+            <div class="profile__name" id="sidebarName">...</div>
+            <div class="profile__handle" id="sidebarHandle">...</div>
         </div>
+    </div>
 
-        <nav class="main-menu">
-          <a class="main-menu__item active" href="#">
+    <nav class="main-menu">
+        <a class="main-menu__item active" href="#">
             <i class="fas fa-newspaper"></i>
             <span>Bảng tin</span>
-          </a>
+        </a>
 
-          <a class="main-menu__item" href="./pages/profile.html">
+        <a class="main-menu__item" href="./pages/profile.html">
             <i class="fas fa-user"></i>
             <span>Hồ sơ của tôi</span>
-          </a>
+        </a>
 
-          <a class="main-menu__item" href="./pages/myRecipe.html">
+        <a class="main-menu__item" href="./pages/myRecipe.html">
             <i class="fas fa-bookmark"></i>
             <span>Công thức đã lưu</span>
-          </a>
+        </a>
 
-          <a class="main-menu__item" href="#">
+        <a class="main-menu__item" href="./pages/famous-chef.html">
             <i class="fas fa-utensils"></i>
             <span>Đầu bếp nổi tiếng</span>
-          </a>
+        </a>
 
-          <a class="main-menu__item" href="./pages/setting.html">
+        <a class="main-menu__item" href="./pages/setting.html">
             <i class="fas fa-cog"></i>
             <span>Cài đặt</span>
-          </a>
-        </nav>
-      </aside>
+        </a>
+    </nav>
+</aside>
 
       <!-- Cột giữa: nạp nội dung từ file JS -->
       <div>
@@ -523,5 +524,7 @@
 
     <!-- Nhúng file JS demo -->
     <script src="./js/pages/home.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+
   </body>
 </html>

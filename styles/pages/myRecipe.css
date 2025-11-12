@@ -460,38 +460,6 @@
   outline-offset: 2px;
 }
 
-/* ===== DARK MODE SUPPORT ===== */
-@media (prefers-color-scheme: dark) {
-  .saved-card {
-    background: var(--bg-dark, #1a1a1a);
-    color: var(--text-dark, #fff);
-  }
-  
-  .post-scroll {
-    background: var(--bg-dark-secondary, #2d2d2d);
-  }
-  
-  .recipe-card {
-    background: var(--bg-dark, #1a1a1a);
-    border-color: var(--primary-color, #007bff);
-  }
-  
-  .recipe-title {
-    color: var(--text-dark, #fff);
-  }
-  
-  .recipe-text {
-    color: var(--text-light-dark, #ccc);
-  }
-  
-  #save-button,
-  .filter-btn {
-    background: var(--bg-dark, #1a1a1a);
-    color: var(--text-dark, #fff);
-    border-color: var(--border-dark, #444);
-  }
-}
-
 /* ===== PRINT STYLES ===== */
 @media print {
   .page-header,

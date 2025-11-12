@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đầu Bếp Nổi Tiếng - POTPAN</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href = "../styles/components/header.css">
+  <link rel="stylesheet" href = "../styles/components/sidebar.css">
+  <link rel="stylesheet" href = "../styles/base/base.css">
+  <link rel="stylesheet" href = "../styles/base/variable.css">
+  <link rel="stylesheet" href = "../styles/pages/famous-chef.css">
+
+</head>
+
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="page-header">
+    <div class="page-header__container">
+      <div class="page-header__content">
+        <!-- Logo -->
+        <a href="../index.html" class="page-header__logo">
+          <div class="page-header__logo-image">
+            <img src="../assets/images/logo.svg" />
+          </div>
+          <h1>POTPAN</h1>
+        </a>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="page-header__search-bar">
+          <input type="text" placeholder="Tìm kiếm đầu bếp, chuyên môn...">
+          <button class="page-header__search-button">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+
+        <!-- Điều hướng -->
+        <div class="page-header__nav">
+          <a href="../index.html">
+            <i class="fas fa-home nav-icon"></i>
+            <span>Trang chủ</span>
+          </a>
+          <a href="./explore.html">
+            <i class="fas fa-compass page-header__nav-icon"></i>
+            <span>Khám phá</span>
+          </a>
+          <a href="./contact.html">
+            <i class="fa-solid fa-users"></i>
+            <span>Về chúng tôi</span>
+          </a>
+          <a href="./contact.html">
+            <i class="fa-solid fa-phone"></i>
+            <span>Liên hệ</span>
+          </a>
+          <a href="./login.html" id="loginNav">
+            <i class="fa-solid fa-user"></i>
+            <span>Đăng nhập</span>
+          </a>
+          <a href="#" id="logoutNav" style="display: none;">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Đăng xuất</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== LAYOUT 2 CỘT ========== -->
+  <main class="page chefs">
+    <!-- Sidebar trái -->
+    <aside class="sidebar">
+      <div class="profile">
+        <img
+          class="profile__avatar"
+          id="sidebarAvatar"
+          src="../assets/images/avatar.png"
+          alt="avatar"
+        />
+        <div class="profile-info">
+          <div class="profile__name" id="sidebarName">Người dùng</div>
+          <div class="profile__handle" id="sidebarHandle">@nguoidung</div>
+        </div>
+      </div>
+
+      <nav class="main-menu">
+        <a class="main-menu__item" href="../index.html">
+          <i class="fas fa-newspaper"></i>
+          <span>Bảng tin</span>
+        </a>
+
+        <a class="main-menu__item" href="./profile.html">
+          <i class="fas fa-user"></i>
+          <span>Hồ sơ của tôi</span>
+        </a>
+
+        <a class="main-menu__item" href="./myRecipe.html">
+          <i class="fas fa-bookmark"></i>
+          <span>Công thức đã lưu</span>
+        </a>
+
+        <a class="main-menu__item active" href="./famous-chefs.html">
+          <i class="fas fa-utensils"></i>
+          <span>Đầu bếp nổi tiếng</span>
+        </a>
+
+        <a class="main-menu__item" href="./setting.html">
+          <i class="fas fa-cog"></i>
+          <span>Cài đặt</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Nội dung chính - Đầu bếp nổi tiếng -->
+    <div class="chefs-content">
+      <!-- Header Section -->
+      <div class="chefs-header">
+        <div class="chefs-header-content">
+          <h1 class="chefs-title">👨‍🍳 Đầu Bếp Nổi Tiếng</h1>
+          <p class="chefs-subtitle">Khám phá những đầu bếp tài năng và học hỏi từ các chuyên gia ẩm thực</p>
+          
+          <!-- Filter Tabs -->
+          <div class="chef-filter-tabs">
+            <div class="filter-tab active" data-category="all">Tất cả</div>
+            <div class="filter-tab" data-category="vietnamese">Ẩm thực Việt</div>
+            <div class="filter-tab" data-category="asian">Ẩm thực Châu Á</div>
+            <div class="filter-tab" data-category="european">Ẩm thực Âu</div>
+            <div class="filter-tab" data-category="baking">Làm bánh</div>
+            <div class="filter-tab" data-category="healthy">Ăn uống lành mạnh</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search and Sort -->
+      <div class="chefs-controls">
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-input" placeholder="Tìm kiếm đầu bếp..." id="chefSearchInput">
+        </div>
+        
+        <div class="sort-container">
+          <select class="sort-select" id="chefSortSelect">
+            <option value="popular">Phổ biến nhất</option>
+            <option value="newest">Mới nhất</option>
+            <option value="recipes">Nhiều công thức</option>
+            <option value="followers">Nhiều người theo dõi</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Chefs Grid -->
+      <div class="chefs-grid" id="chefsGrid">
+        <!-- Chef cards will be generated by JavaScript -->
+      </div>
+
+      <!-- Load More Button -->
+      <div class="load-more-container">
+        <button class="btn-load-more" id="loadMoreChefs">
+          <i class="fas fa-redo"></i>
+          Tải thêm đầu bếp
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <script src="../js/main.js" type="module"></script>
+  <script src="../js/pages/famous-chefs.js"></script>
+</body>
+
+</html>
