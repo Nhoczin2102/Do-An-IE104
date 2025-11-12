@@ -6,7 +6,7 @@
   grid-template-columns: 320px minmax(0, 1fr) 320px;
   gap: 50px;
   max-width: 90%;
-  margin: 10px auto;
+  margin: 23px auto;
   padding: 0 20px;
   align-items: start;
   min-height: calc(100vh - 130px);

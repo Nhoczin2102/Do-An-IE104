@@ -5,7 +5,7 @@
   grid-template-columns: 320px 1fr;
   gap: 50px;
   max-width: 90%;
-  margin: 10px auto;
+  margin: 23px auto;
   padding: 0 20px;
   align-items: start;
   min-height: calc(100vh - 130px);
@@ -15,12 +15,13 @@
 /* ========== SIDEBAR FIXED ========== */
 .sidebar {
   position: sticky;
-  top: 20px;
+  top: 90px;
   height: fit-content;
   max-height: calc(100vh - 150px);
   overflow-y: auto;
   z-index: 100;
 }
+
 
 .sidebar::-webkit-scrollbar {
   width: 4px;
@@ -43,14 +44,14 @@
   box-shadow: var(--shadow);
   overflow: hidden;
   height: fit-content;
-  min-height: 600px;
+  min-height: 10px;
 }
 
 /* Profile Header */
 .profile-header {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   color: white;
-  padding: 40px;
+  padding: 10px;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -501,7 +502,7 @@
   }
 
   .profile-header {
-    padding: 30px 20px;
+    padding: 20px 10px;
   }
 
   .profile-avatar {

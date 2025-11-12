@@ -4,10 +4,14 @@
   padding: 28px;
   box-shadow: var(--shadow);
   position: sticky;
- 
+  top: 90px;
+    max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  z-index: 100;
   height: fit-content;
   
 }
+
 
 .profile {
   display: flex;
