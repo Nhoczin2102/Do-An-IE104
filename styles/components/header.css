@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 64px;
   gap: 40px;
 }
 
@@ -30,12 +30,12 @@
   text-decoration: none;
   color: var(--text-on-primary);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .page-header__logo-image {
-  width: 70px;
-  height: 70px;
+  width: 55px;
+  height: 55px;
 }
 
 .page-header__logo-image img {
@@ -54,7 +54,7 @@
 
 .page-header__search-bar input {
   width: 100%;
-  padding: 16px 20px;
+  padding: 12px 20px;
   border: 1px solid var(--border-color);
   border-radius: 24px;
   background: #f8f9fa;
@@ -66,6 +66,7 @@
   outline: none;
   border-color: var(--primary-light);
   background: white;
+  height: 50px;
   box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
 }
 
@@ -110,13 +111,157 @@
 .page-header__nav a:hover {
   background: var(--background-light);
   color: var(--primary-color);
+  height: 40px;
 }
 
 .page-header__nav a.active {
   background: var(--background-light);
   color: var(--primary-color);
+  height: 40px;
 }
 
 .page-header__nav-icon {
   font-size: 18px;
+}
+
+/* User Menu Styles */
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.user-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  transition: background-color 0.2s ease;
+  color: #333;
+  text-decoration: none;
+}
+
+.user-dropdown-trigger:hover {
+  background-color: rgba(255, 105, 103, 0.1);
+}
+
+.nav-user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--brand);
+}
+
+.user-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 240px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  padding: 16px;
+  z-index: 1000;
+  display: none;
+  margin-top: 8px;
+}
+
+.user-menu:hover .user-dropdown-menu {
+  display: block;
+}
+
+.user-dropdown-menu .user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 8px;
+}
+
+.user-dropdown-menu .user-info img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-dropdown-menu .user-info div {
+  flex: 1;
+}
+
+.user-dropdown-menu .user-info strong {
+  display: block;
+  font-size: 14px;
+  color: #333;
+}
+
+.user-dropdown-menu .user-info span {
+  font-size: 12px;
+  color: #666;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  background: none;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background: #f5f5f5;
+  text-decoration: none;
+  color: #333;
+}
+
+.dropdown-divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 8px 0;
+}
+
+.logout-btn {
+  color: #e53e3e;
+  width: 100%;
+  text-align: left;
+}
+
+.logout-btn:hover {
+  background: #fed7d7;
+}
+
+.login-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.login-nav:hover {
+  background-color: rgba(255, 105, 103, 0.1);
+  text-decoration: none;
+  color: #333;
+}
+
+/* Ẩn một trong hai phần tùy theo trạng thái đăng nhập */
+.user-menu[style*="display: none"] + .login-nav,
+.user-menu:not([style*="display: none"]) + .login-nav {
+  display: none;
 }

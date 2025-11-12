@@ -47,5 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.feedApp = app;
 });
 
+
+
 // Export for testing or other modules
 export { FeedApp };
