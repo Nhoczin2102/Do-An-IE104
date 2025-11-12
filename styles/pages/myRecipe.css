@@ -115,8 +115,6 @@ main.page {
 /* Content chính */
 .saved-card {
     position: relative;
-    top: 10px;
-    left: 20px;
     flex:1;
     background: var(--bg-card);
     border-radius: var(--radius);
