@@ -1,5 +1,6 @@
-/* ========== FEED ========== */
-.feed-card {
+/* CSS */
+
+.feed__composer {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
@@ -9,14 +10,14 @@
   width: 100%;
 }
 
-.feed-card .composer {
+.feed__composer .feed__composer-content {
   display: flex;
   align-items: center;
   gap: 16px;
   margin-bottom: 20px;
 }
 
-.feed-card .composer img {
+.feed__composer .feed__composer-avatar {
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -24,7 +25,7 @@
   flex-shrink: 0;
 }
 
-.feed-card .composer input {
+.feed__composer .feed__composer-input {
   flex: 1;
   padding: 14px 20px;
   border: 1px solid var(--border-color);
@@ -37,13 +38,13 @@
   width: 100%;
 }
 
-.feed-card .composer input:focus {
+.feed__composer .feed__composer-input:focus {
   border-color: var(--primary-light);
-  background: white;
+  background: var(--bg-card);
   box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
 }
 
-.feed-card .tabs {
+.feed__composer .feed__composer-tabs {
   display: flex;
   gap: 28px;
   align-items: center;
@@ -53,7 +54,7 @@
   font-size: 16px;
 }
 
-.feed-card .tabs span {
+.feed__composer .feed__composer-tab {
   cursor: pointer;
   transition: color 0.15s ease;
   padding: 10px 16px;
@@ -61,12 +62,12 @@
   white-space: nowrap;
 }
 
-.feed-card .tabs span:hover {
+.feed__composer .feed__composer-tab:hover {
   color: var(--primary-color);
   background: var(--background-light);
 }
 
-.feed-card .btn-post {
+.feed__composer .feed__composer-button {
   margin-left: auto;
   border: none;
   padding: 12px 28px;
@@ -80,16 +81,15 @@
   min-width: 100px;
 }
 
-.feed-card .btn-post:hover {
+.feed__composer .feed__composer-button:hover {
   background: var(--primary-dark);
 }
 
-.feed-card .btn-post:active {
+.feed__composer .feed__composer-button:active {
   transform: scale(0.98);
 }
 
-/* Feed Posts */
-#feed {
+#feed, .feed__posts {
   flex: 1;
   overflow-y: auto;
   padding-right: 15px;
@@ -101,21 +101,25 @@
   scrollbar-color: var(--primary-color) transparent;
 }
 
-#feed::-webkit-scrollbar {
+#feed::-webkit-scrollbar,
+.feed__posts::-webkit-scrollbar {
   width: 8px;
 }
 
-#feed::-webkit-scrollbar-track {
+#feed::-webkit-scrollbar-track,
+.feed__posts::-webkit-scrollbar-track {
   background: transparent;
   border-radius: 10px;
 }
 
-#feed::-webkit-scrollbar-thumb {
+#feed::-webkit-scrollbar-thumb,
+.feed__posts::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 10px;
 }
 
-#feed::-webkit-scrollbar-thumb:hover {
+#feed::-webkit-scrollbar-thumb:hover,
+.feed__posts::-webkit-scrollbar-thumb:hover {
   background: var(--primary-dark);
 }
 
@@ -128,25 +132,25 @@
   width: 100%;
 }
 
-.feed-post-header {
+.feed-post__header {
   display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 16px;
 }
 
-.feed-post-avatar {
+.feed-post__avatar {
   width: 50px;
   height: 50px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-.feed-post-user {
+.feed-post__user {
   flex: 1;
 }
 
-.feed-post-name {
+.feed-post__name {
   font-weight: 700;
   font-size: 16px;
   color: var(--text);
@@ -157,18 +161,18 @@
   font-size: 14px;
 }
 
-.feed-post-time {
+.feed-post__time {
   color: var(--text-light-subtle);
   font-size: 13px;
 }
 
-.feed-post-content {
+.feed-post__content {
   margin-bottom: 16px;
   line-height: 1.6;
   font-size: 15px;
 }
 
-.feed-post-image {
+.feed-post__image {
   width: 100%;
   border-radius: 12px;
   margin-bottom: 16px;
@@ -176,7 +180,7 @@
   object-fit: cover;
 }
 
-.feed-post-actions {
+.feed-post__actions {
   display: flex;
   gap: 100px;
   justify-content: center;
@@ -184,7 +188,7 @@
   border-top: 1px solid var(--border-color);
 }
 
-.feed-post-action {
+.feed-post__action-btn {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -198,58 +202,110 @@
   font-size: 14px;
 }
 
-.feed-post-action:hover {
+.feed-post__action-btn:hover {
   background: var(--background-light);
   color: var(--primary-color);
 }
 
-/* Đây là phần hiển thị công thức (recipe) BÊN DƯỚI một bài post */
-.recipe-section {
+.feed-post__recipe {
     background: #f8f9fa;
     border-radius: 12px;
     padding: 16px;
     margin: 12px 0;
 }
 
-.recipe-section h4 {
+.feed-post__recipe-title {
     margin: 0 0 12px 0;
-    color: #FF6967;
+    color: var(--primary-color);
 }
 
-.recipe-info {
+.feed-post__recipe-info {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 8px;
     margin-bottom: 12px;
     font-size: 12px;
-    color: #666;
+    color: var(--text-light-subtle);
 }
 
-.recipe-details {
+.feed-post__recipe-details {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 16px;
 }
 
-.ingredients h5, .steps h5 {
+.feed-post__ingredients-title, .feed-post__steps-title {
     margin: 0 0 8px 0;
-    color: #333;
+    color: var(--text-light);
 }
 
-.ingredients ul, .steps ol {
+.feed-post__ingredients-list, .feed-post__steps-list {
     margin: 0;
     padding-left: 16px;
     font-size: 13px;
-    color: #555;
+    color: var(--text-light-subtle);
 }
 
-/* Đây là class để HIỂN THỊ tips (khác với .recipe-tips-input) */
-.recipe-tips {
+
+.feed-post__recipe-tips {
     margin-top: 12px;
     padding: 8px;
     width: 100%;
-    background: #fff;
+    background: var(--bg-card);
     border-radius: 8px;
-    border-left: 3px solid #FF6967;
-    
+    border-left: 3px solid var(--primary-color);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 787px) {
+  .feed__composer {
+    padding: 16px; 
+  }
+  .feed__composer .feed__composer-tabs {
+    gap: 16px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 538px) {
+  .feed__composer {
+    padding: 12px; 
+  }
+  .feed__composer .feed__composer-tabs {
+    flex-wrap: wrap; 
+    gap: 12px;
+  }
+  .feed__composer .feed__composer-button {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 465px) {
+  .feed__composer {
+    padding: 12px 10px; 
+  }
+  .feed__composer .feed__composer-tabs {
+    white-space: normal; 
+    flex-wrap: wrap;     
+    gap: 8px;            
+  }
+}
+
+@media (max-width: 400px) {
+  .feed__composer {
+    padding: 10px 8px; 
+  }
+  
+  .feed__composer .feed__composer-input {
+    padding: 12px 15px; 
+    font-size: 14px;
+  }
+  
+  .feed__composer .feed__composer-tab {
+    padding: 8px 10px; 
+    font-size: 13px;
+    gap: 4px;
+  }
 }

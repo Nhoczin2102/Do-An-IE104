@@ -16,7 +16,7 @@ export class CookMode {
 
     bindEvents() {
         document.addEventListener('click', (e) => {
-            const cookBtn = e.target.closest('.cook-mode-btn');
+            const cookBtn = e.target.closest('.feed-post__cookmode-btn');
             if (cookBtn) {
                 console.log('🍳 Cook Mode button clicked');
                 const post = cookBtn.closest('.feed-post');
@@ -39,7 +39,7 @@ export class CookMode {
         
         console.log('✅ Cook Mode modal found');
         
-        modal.querySelector('.cook-close').addEventListener('click', () => this.close());
+        modal.querySelector('.cookmode__close').addEventListener('click', () => this.close());
         modal.addEventListener('click', (e) => {
             if (e.target === modal) this.close();
         });
@@ -59,11 +59,11 @@ export class CookMode {
         try {
             console.log('🔍 Extracting recipe data from post');
             
-            const titleElement = postEl.querySelector('.recipe-section h4');
+            const titleElement = postEl.querySelector('.feed-post__recipe-title');
             const title = titleElement ? titleElement.textContent.replace('🍴', '').trim() : 'Công thức nấu ăn';
             
             const ingredients = [];
-            const ingredientElements = postEl.querySelectorAll('.recipe-section .ingredients li');
+            const ingredientElements = postEl.querySelectorAll('.feed-post__ingredients-list li');
             ingredientElements.forEach(li => {
                 if (li.textContent.trim()) {
                     ingredients.push(li.textContent.trim());
@@ -71,14 +71,14 @@ export class CookMode {
             });
             
             const steps = [];
-            const stepElements = postEl.querySelectorAll('.recipe-section .steps li');
+            const stepElements = postEl.querySelectorAll('.feed-post__steps-list li');
             stepElements.forEach(li => {
                 if (li.textContent.trim()) {
                     steps.push(li.textContent.trim());
                 }
             });
             
-            const metaElements = postEl.querySelectorAll('.recipe-info div');
+            const metaElements = postEl.querySelectorAll('.feed-post__recipe-info-item');
             const meta = {
                 prep: metaElements[0]?.textContent?.replace('⏱️ Chuẩn bị: ', '').trim() || '--',
                 cook: metaElements[1]?.textContent?.replace('🔥 Nấu: ', '').trim() || '--',
@@ -86,7 +86,7 @@ export class CookMode {
                 difficulty: metaElements[3]?.textContent?.replace('📊 Độ khó: ', '').trim() || '--'
             };
 
-            const tipsElement = postEl.querySelector('.recipe-tips span');
+            const tipsElement = postEl.querySelector('.feed-post__recipe-tips span');
             const tips = tipsElement ? tipsElement.textContent.trim() : '';
 
             console.log('📋 Recipe data extracted:', {
@@ -134,14 +134,14 @@ export class CookMode {
         console.log('🎨 Rendering Cook Mode with:', { title, steps: steps.length });
 
         // Update basic info
-        document.querySelector('.cookmode-dish').textContent = title;
+        document.querySelector('.cookmode__dish-name').textContent = title;
         document.querySelector('[data-cm-prep]').textContent = meta.prep;
         document.querySelector('[data-cm-cook]').textContent = meta.cook;
         document.querySelector('[data-cm-serv]').textContent = meta.servings;
         document.querySelector('[data-cm-diff]').textContent = meta.difficulty;
 
         // Render ingredients
-        const ingredientsList = document.querySelector('.cookmode-ingredients');
+        const ingredientsList = document.querySelector('.cookmode__ingredients');
         ingredientsList.innerHTML = ingredients.map((ingredient, index) => `
             <li>
                 <input type="checkbox" id="ing-${index}">
@@ -153,7 +153,7 @@ export class CookMode {
         const tipElement = document.querySelector('[data-cm-tip]');
         if (tips && tips.trim()) {
             tipElement.style.display = 'block';
-            tipElement.querySelector('p').textContent = tips;
+            tipElement.querySelector('.cookmode__tip-text').textContent = tips;
         } else {
             tipElement.style.display = 'none';
         }
@@ -355,7 +355,7 @@ export class CookMode {
             <p style="margin: 0 0 24px 0; color: #666; line-height: 1.6;">
                 Bạn đã hoàn thành món <strong>${this.currentRecipe.title}</strong> một cách xuất sắc!
             </p>
-            <button class="cook-btn primary" onclick="this.parentElement.remove();" style="margin: 0 auto;">
+            <button class="cookmode__btn cookmode__btn--primary" onclick="this.parentElement.remove();" style="margin: 0 auto;">
                 Hoàn tất
             </button>
         `;
