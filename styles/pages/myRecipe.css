@@ -10,7 +10,7 @@
     width: 100%;
 }
 
-/* Layout chính với sidebar và content */
+/* Layout chính  */
 main.page {
     display: grid;
     grid-template-columns: 280px 1fr;

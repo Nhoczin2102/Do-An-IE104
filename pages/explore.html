@@ -5,110 +5,113 @@
     <title>Khám phá</title>
     <link rel="stylesheet" href="/styles/base/base.css" />
     <link rel="stylesheet" href="/styles/base/variable.css" />
-
-    <link rel="stylesheet" href="/styles/components/header.css" />
+    <link rel="stylesheet" href="/styles/components/Main/header.css" />
     <link rel="stylesheet" href="/styles/pages/explore.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <home class="explore-page">
-            <header class="page-header">
-      <div class="page-header__container">
-        <div class="page-header__content">
-          <!-- Logo -->
-          <a href="index.html" class="page-header__logo">
-            <div class="page-header__logo-image">
-              <img src="../assets/images/logo.svg" />
+    <main class="explore-page">
+        <header class="page-header">
+            <div class="page-header__container">
+                <div class="page-header__content">
+                    <!-- Logo -->
+                    <a href="index.html" class="page-header__logo">
+                        <div class="page-header__logo-image">
+                            <img src="../assets/images/logo.svg" />
+                        </div>
+                        <h1>POTPAN</h1>
+                    </a>
+
+                    <!-- Thanh tìm kiếm -->
+                    <div class="page-header__search-bar">
+                        <input
+                            type="text"
+                            placeholder="Tìm kiếm công thức, nguyên liệu..."
+                        />
+                        <button class="page-header__search-button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <!-- Điều hướng -->
+                    <div class="page-header__nav">
+                        <a href="../index.html">
+                            <i class="fas fa-home nav-icon"></i>
+                            <span>Trang chủ</span>
+                        </a>
+                        <a href="./pages/explore.html" class="active">
+                            <i class="fas fa-compass page-header__nav-icon"></i>
+                            <span>Khám phá</span>
+                        </a>
+                        <a href="./about.html" target="_blank">
+                            <i class="fa-solid fa-users"></i>
+                            <span>Về chúng tôi</span>
+                        </a>
+                        <a href="./contact.html">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>Liên hệ</span>
+                        </a>
+                        <a href="./login.html">
+                            <i class="fa-solid fa-user"></i>
+                            <span>Đăng nhập</span>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <h1>POTPAN</h1>
-          </a>
-
-          <!-- Thanh tìm kiếm -->
-          <div class="page-header__search-bar">
-            <input
-              type="text"
-              placeholder="Tìm kiếm công thức, nguyên liệu..."
-            />
-            <button class="page-header__search-button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-
-          <!-- Điều hướng -->
-          <div class="page-header__nav">
-            <a href="../index.html" >
-              <i class="fas fa-home nav-icon"></i>
-              <span>Trang chủ</span>
-            </a>
-            <a href="./pages/explore.html" class="active">
-              <i class="fas fa-compass page-header__nav-icon"></i>
-              <span>Khám phá</span>
-            </a>
-            <a href="./about.html" target="_blank">
-              <i class="fa-solid fa-users"></i>
-              <span>Về chúng tôi</span>
-            </a>
-            <a href="./contact.html">
-              <i class="fa-solid fa-phone"></i>
-              <span>Liên hệ</span>
-            </a>
-            <a href="./login.html">
-              <i class="fa-solid fa-user"></i>
-              <span>Đăng nhập</span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
-        <main class="main-content">
-            <section class="main-section">
+        </header>
+        
+        <main class="explore-content">
+            <section class="explore-hero">
                 <h1>Khám phá</h1>
-                <p class="main-subtitle">Những công thức nấu ăn mới nhất và thịnh hành nhất từ cộng đồng PotPan.</p>
+                <p class="explore-hero__subtitle">Những công thức nấu ăn mới nhất và thịnh hành nhất từ cộng đồng PotPan.</p>
             </section>
+            
             <!-- Đầu bếp đề xuất -->
             <section class="explore-section">
                 <h2>Đầu bếp đề xuất</h2>
-                <p class="section-subtitle">Các đầu bếp nổi bật với chuyên môn đa dạng</p>
-                <div class="explore-chefs chefs-grid">
+                <p class="explore-section__subtitle">Các đầu bếp nổi bật với chuyên môn đa dạng</p>
+                <div class="explore-chefs explore-chefs__grid">
                     <!-- render trong js -->
                 </div>
             </section>
+            
             <!-- Công thức thịnh hành -->
             <section class="explore-section">
                 <h2>Công thức thịnh hành</h2>
-                <p class="section-subtitle">Những món ăn đang được yêu thích nhất tuần này</p>
-                <div class="explore-trending horizontal-scroll-wrapper">
+                <p class="explore-section__subtitle">Những món ăn đang được yêu thích nhất tuần này</p>
+                <div class="explore-trending explore-trending__scroll">
                     <!-- render trong js -->
                 </div>
             </section>
+            
             <!-- Danh mục -->
             <section class="explore-section">
                 <h2>Khám phá theo danh mục</h2>
-                <p class="section-subtitle">Tìm kiếm món ăn theo sở thích của bạn</p>
-                <div class="category-grid">
-                    <div class="category-card category-border" data-tag="Món mặn">
+                <p class="explore-section__subtitle">Tìm kiếm món ăn theo sở thích của bạn</p>
+                <div class="explore-categories__grid">
+                    <div class="explore-category-card explore-category-card--bordered" data-tag="Món mặn">
                         <i class="fas fa-utensils"></i>
                         <h4>Món mặn</h4>
                     </div>
-                    <div class="category-card category-border" data-tag="Món chay">
+                    <div class="explore-category-card explore-category-card--bordered" data-tag="Món chay">
                         <i class="fas fa-leaf"></i>
                         <h4>Món chay</h4>
                     </div>
-                    <div class="category-card category-border" data-tag="Bánh ngọt">
+                    <div class="explore-category-card explore-category-card--bordered" data-tag="Bánh ngọt">
                         <i class="fas fa-bread-slice"></i>
                         <h4>Bánh ngọt</h4>
                     </div>
-                    <div class="category-card category-border" data-tag="Tráng miệng">
+                    <div class="explore-category-card explore-category-card--bordered" data-tag="Tráng miệng">
                         <i class="fas fa-ice-cream"></i>
                         <h4>Tráng miệng</h4>
                     </div>
-                    <div class="category-card category-border" data-tag="Đồ uống">
+                    <div class="explore-category-card explore-category-card--bordered" data-tag="Đồ uống">
                         <i class="fas fa-cocktail"></i>
                         <h4>Đồ uống</h4>
                     </div>
-                    <div class="category-card category-border" data-tag="Món nướng">
+                    <div class="explore-category-card explore-category-card--bordered" data-tag="Món nướng">
                         <i class="fas fa-fire"></i>
                         <h4>Món nướng</h4>
                     </div>
@@ -118,19 +121,19 @@
             <!-- Tất cả công thức -->
             <section class="explore-section">
                 <h2>Tất cả công thức</h2>
-                <p class="section-subtitle">Xem tất cả các công thức mới nhất</p>
+                <p class="explore-section__subtitle">Xem tất cả các công thức mới nhất</p>
 
-                <div class="explore-allrecipes recipe-grid">
+                <div class="explore-recipes explore-recipes__grid">
                     <!-- render trong js -->
                 </div>
 
-                <div class="load-more-container">
-                    <button class="btn-load-more">Xem thêm</button>
+                <div class="explore-load-more">
+                    <button class="explore-load-more__button">Xem thêm</button>
                 </div>
-
             </section>
         </main>
-    </home>
+    </main>
+    
     <!-- Import các file JavaScript -->
     <script src="/js/pages/explore.js"></script>
     <script src="/js/modules/nav-detail-recipes.js"></script>
