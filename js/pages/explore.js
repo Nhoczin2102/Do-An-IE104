@@ -76,12 +76,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   async function loadData() {
     try {
-      // Chefs 
+      // Chefs (giữ nguyên nếu bạn đang có file chefs)
       try {
         const chefRes = await fetch('../js/data/chefs.explore.data.json');
         const chefs = await chefRes.json();
         renderChefs(chefs);
-      } catch {  }
+      } catch { /* optional */ }
 
       // Đọc 1 file duy nhất
       const res = await fetch('../js/data/recipe-details.data.json');
