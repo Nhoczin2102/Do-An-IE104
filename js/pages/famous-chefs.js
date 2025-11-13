@@ -1,343 +1,467 @@
+// js/pages/famous-chefs.js
+import { chefsData } from '../data/chefsData.js'
 
-// Sample data for famous chefs
-const famousChefs = [
-    {
-        id: 1,
-        name: "Gordon Ramsay",
-        avatar: "https://i.pravatar.cc/150?img=68",
-        specialty: "Ẩm thực Châu Âu",
-        bio: "Đầu bếp 3 sao Michelin, chủ nhân nhiều nhà hàng nổi tiếng thế giới và là giám khảo MasterChef.",
-        rating: 4.9,
-        recipes: 245,
-        followers: "125K",
-        experience: "25 năm",
-        expertise: ["French", "British", "Fine Dining", "Michelin"],
-        category: "european",
-        isFollowing: false,
-        isVerified: true
-    },
-    {
-        id: 2,
-        name: "Phan Tôn Tịnh Hải",
-        avatar: "https://i.pravatar.cc/150?img=32",
-        specialty: "Ẩm thực Việt Nam",
-        bio: "Bếp trưởng nhà hàng Việt Nam đầu tiên đạt sao Michelin, chuyên gia ẩm thực truyền thống Việt.",
-        rating: 4.8,
-        recipes: 189,
-        followers: "89K",
-        experience: "20 năm",
-        expertise: ["Vietnamese", "Street Food", "Traditional", "Healthy"],
-        category: "vietnamese",
-        isFollowing: true,
-        isVerified: true
-    },
-    {
-        id: 3,
-        name: "David Chang",
-        avatar: "https://i.pravatar.cc/150?img=45",
-        specialty: "Ẩm thực Châu Á Fusion",
-        bio: "Người sáng lập Momofuku, mang hương vị Châu Á đến với thế giới ẩm thực hiện đại.",
-        rating: 4.7,
-        recipes: 167,
-        followers: "76K",
-        experience: "18 năm",
-        expertise: ["Asian", "Fusion", "Ramen", "Modern"],
-        category: "asian",
-        isFollowing: false,
-        isVerified: true
-    },
-    {
-        id: 4,
-        name: "Nguyễn Thị Hương",
-        avatar: "https://i.pravatar.cc/150?img=12",
-        specialty: "Làm bánh Việt Nam",
-        bio: "Nghệ nhân làm bánh truyền thống, chuyên gia các loại bánh ngọt và bánh mì Việt Nam.",
-        rating: 4.6,
-        recipes: 134,
-        followers: "54K",
-        experience: "15 năm",
-        expertise: ["Baking", "Vietnamese", "Desserts", "Traditional"],
-        category: "baking",
-        isFollowing: false,
-        isVerified: false
-    },
-    {
-        id: 5,
-        name: "Jamie Oliver",
-        avatar: "https://i.pravatar.cc/150?img=22",
-        specialty: "Ẩm thực lành mạnh",
-        bio: "Đầu bếp nổi tiếng với phong cách nấu ăn đơn giản, lành mạnh và thân thiện với gia đình.",
-        rating: 4.7,
-        recipes: 278,
-        followers: "98K",
-        experience: "22 năm",
-        expertise: ["Healthy", "British", "Family", "Simple"],
-        category: "healthy",
-        isFollowing: true,
-        isVerified: true
-    },
-    {
-        id: 6,
-        name: "Trần Minh Anh",
-        avatar: "https://i.pravatar.cc/150?img=15",
-        specialty: "Ẩm thực Chay",
-        bio: "Chuyên gia ẩm thực chay sáng tạo, biến các món chay thành những tác phẩm nghệ thuật.",
-        rating: 4.5,
-        recipes: 98,
-        followers: "42K",
-        experience: "12 năm",
-        expertise: ["Vegetarian", "Vegan", "Healthy", "Creative"],
-        category: "healthy",
-        isFollowing: false,
-        isVerified: false
-    },
-    {
-        id: 7,
-        name: "Massimo Bottura",
-        avatar: "https://i.pravatar.cc/150?img=58",
-        specialty: "Ẩm thực Ý hiện đại",
-        bio: "Chủ nhân nhà hàng Osteria Francescana 3 sao Michelin, người cách mạng ẩm thực Ý.",
-        rating: 4.9,
-        recipes: 156,
-        followers: "67K",
-        experience: "28 năm",
-        expertise: ["Italian", "Modern", "Fine Dining", "Michelin"],
-        category: "european",
-        isFollowing: false,
-        isVerified: true
-    },
-    {
-        id: 8,
-        name: "Lê Văn Tùng",
-        avatar: "https://i.pravatar.cc/150?img=8",
-        specialty: "Hải sản Việt Nam",
-        bio: "Bếp trưởng chuyên về hải sản, mang hương vị biển đến với ẩm thực đường phố Việt Nam.",
-        rating: 4.4,
-        recipes: 87,
-        followers: "38K",
-        experience: "10 năm",
-        expertise: ["Seafood", "Vietnamese", "Street Food", "Grill"],
-        category: "vietnamese",
-        isFollowing: true,
-        isVerified: false
+class FamousChefs {
+    constructor() {
+        this.chefs = [...chefsData];
+        this.filteredChefs = [...chefsData];
+        this.currentCategory = 'all';
+        this.currentSort = 'popular';
+        this.currentPage = 1;
+        this.chefsPerPage = 6;
+        
+        this.init();
     }
-];
 
-// Function to render chef cards
-function renderChefCards(chefs) {
-    const container = document.getElementById('chefsGrid');
-    if (!container) return;
+    init() {
+        this.renderChefs();
+        this.bindEvents();
+        this.updateChefCount();
+    }
 
-    if (chefs.length === 0) {
-        container.innerHTML = `
-            <div class="empty-state">
-                <div class="empty-icon">
-                    <i class="fas fa-utensils"></i>
+    renderChefs() {
+        const grid = document.getElementById('chefsGrid');
+        if (!grid) return;
+
+        const startIndex = (this.currentPage - 1) * this.chefsPerPage;
+        const endIndex = startIndex + this.chefsPerPage;
+        const chefsToShow = this.filteredChefs.slice(0, endIndex);
+
+        grid.innerHTML = chefsToShow.map(chef => this.createChefCard(chef)).join('');
+        
+        this.updateLoadMoreButton();
+    }
+
+    createChefCard(chef) {
+        const stars = this.generateStars(chef.rating);
+        
+        return `
+            <div class="chef-card" data-category="${chef.category}" data-id="${chef.id}">
+                ${chef.featured ? '<div class="chef-badge" data-featured>Nổi bật</div>' : ''}
+                
+                <div class="chef-card-header">
+                    <div class="chef-avatar">
+                        <img src="${chef.avatar}" alt="${chef.name}" data-avatar>
+                    </div>
+                    <h3 class="chef-name" data-name>${chef.name}</h3>
+                    <div class="chef-specialty" data-specialty>${chef.specialty}</div>
+                    <div class="chef-rating">
+                        <div class="chef-stars" data-stars>${stars}</div>
+                        <span class="chef-rating-score" data-rating>${chef.rating}</span>
+                    </div>
                 </div>
-                <div class="empty-text">Không tìm thấy đầu bếp nào</div>
-                <button class="btn-load-more" onclick="resetFilters()">
-                    <i class="fas fa-redo"></i> Hiển thị tất cả
-                </button>
+
+                <div class="chef-card-body">
+                    <p class="chef-bio" data-bio>${chef.bio}</p>
+                    
+                    <div class="chef-stats">
+                        <div class="chef-stat">
+                            <span class="chef-stat-number" data-recipes>${chef.recipes}</span>
+                            <span class="chef-stat-label">Công thức</span>
+                        </div>
+                        <div class="chef-stat">
+                            <span class="chef-stat-number" data-followers>${chef.followers}</span>
+                            <span class="chef-stat-label">Theo dõi</span>
+                        </div>
+                        <div class="chef-stat">
+                            <span class="chef-stat-number" data-experience>${chef.experience}</span>
+                            <span class="chef-stat-label">Kinh nghiệm</span>
+                        </div>
+                    </div>
+
+                    <div class="chef-expertise" data-expertise>
+                        ${chef.expertise.map(exp => `<span class="expertise-tag">${exp}</span>`).join('')}
+                    </div>
+                </div>
+
+                <div class="chef-card-footer">
+                    <button class="btn-follow ${chef.isFollowing ? 'btn-following' : ''}" 
+                            data-follow-btn data-chef-id="${chef.id}">
+                        <i class="fas ${chef.isFollowing ? 'fa-check' : 'fa-plus'}"></i>
+                        <span data-follow-text>${chef.isFollowing ? 'Đang theo dõi' : 'Theo dõi'}</span>
+                    </button>
+                    <button class="btn-view-profile" data-view-profile data-chef-id="${chef.id}">
+                        Xem hồ sơ
+                    </button>
+                </div>
             </div>
         `;
-        return;
     }
 
-    container.innerHTML = chefs.map(chef => `
-        <div class="chef-card" data-category="${chef.category}" data-id="${chef.id}">
-            <div class="chef-card-header">
-                ${chef.isVerified ? '<div class="chef-badge"><i class="fas fa-star"></i> Xác thực</div>' : ''}
-                <div class="chef-avatar">
-                    <img src="${chef.avatar}" alt="${chef.name}">
-                </div>
-                <h3 class="chef-name">${chef.name}</h3>
-                <div class="chef-specialty">${chef.specialty}</div>
-                <div class="chef-rating">
-                    <div class="chef-stars">
-                        ${generateStars(chef.rating)}
-                    </div>
-                    <span class="chef-rating-score">${chef.rating}</span>
-                </div>
-            </div>
+    generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        let stars = '';
+        
+        for (let i = 0; i < fullStars; i++) {
+            stars += '<i class="fas fa-star"></i>';
+        }
+        
+        if (hasHalfStar) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        }
+        
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        for (let i = 0; i < emptyStars; i++) {
+            stars += '<i class="far fa-star"></i>';
+        }
+        
+        return stars;
+    }
+
+    filterChefs(category) {
+        this.currentCategory = category;
+        this.currentPage = 1;
+        
+        if (category === 'all') {
+            this.filteredChefs = [...this.chefs];
+        } else {
+            this.filteredChefs = this.chefs.filter(chef => chef.category === category);
+        }
+        
+        this.sortChefs(this.currentSort);
+        this.renderChefs();
+        this.updateChefCount();
+    }
+
+    sortChefs(sortBy) {
+        this.currentSort = sortBy;
+        
+        switch (sortBy) {
+            case 'newest':
+                this.filteredChefs.sort((a, b) => b.id - a.id);
+                break;
+            case 'recipes':
+                this.filteredChefs.sort((a, b) => b.recipes - a.recipes);
+                break;
+            case 'followers':
+                this.filteredChefs.sort((a, b) => {
+                    const aFollowers = this.parseFollowers(a.followers);
+                    const bFollowers = this.parseFollowers(b.followers);
+                    return bFollowers - aFollowers;
+                });
+                break;
+            case 'popular':
+            default:
+                this.filteredChefs.sort((a, b) => b.rating - a.rating);
+        }
+        
+        this.renderChefs();
+    }
+
+    parseFollowers(followersStr) {
+        if (followersStr.includes('K')) {
+            return parseFloat(followersStr) * 1000;
+        }
+        return parseInt(followersStr);
+    }
+
+    searchChefs(searchTerm) {
+        if (!searchTerm) {
+            this.filterChefs(this.currentCategory);
+            return;
+        }
+        
+        const term = searchTerm.toLowerCase();
+        this.filteredChefs = this.chefs.filter(chef => 
+            chef.name.toLowerCase().includes(term) ||
+            chef.specialty.toLowerCase().includes(term) ||
+            chef.bio.toLowerCase().includes(term) ||
+            chef.expertise.some(exp => exp.toLowerCase().includes(term))
+        );
+        
+        this.currentPage = 1;
+        this.renderChefs();
+        this.updateChefCount();
+    }
+
+    toggleFollow(chefId) {
+        const chef = this.chefs.find(c => c.id === chefId);
+        if (chef) {
+            chef.isFollowing = !chef.isFollowing;
+            this.renderChefs();
             
-            <div class="chef-card-body">
-                <p class="chef-bio">${chef.bio}</p>
-                
-                <div class="chef-stats">
-                    <div class="chef-stat">
-                        <span class="chef-stat-number">${chef.recipes}</span>
-                        <span class="chef-stat-label">Công thức</span>
-                    </div>
-                    <div class="chef-stat">
-                        <span class="chef-stat-number">${chef.followers}</span>
-                        <span class="chef-stat-label">Theo dõi</span>
-                    </div>
-                    <div class="chef-stat">
-                        <span class="chef-stat-number">${chef.experience}</span>
-                        <span class="chef-stat-label">Kinh nghiệm</span>
-                    </div>
-                </div>
-                
-                <div class="chef-expertise">
-                    ${chef.expertise.map(skill => `
-                        <span class="expertise-tag">${skill}</span>
-                    `).join('')}
-                </div>
-            </div>
-            
-            <div class="chef-card-footer">
-                <button class="btn-follow ${chef.isFollowing ? 'btn-following' : ''}" 
-                        onclick="toggleFollow(${chef.id})">
-                    <i class="fas ${chef.isFollowing ? 'fa-check' : 'fa-plus'}"></i>
-                    ${chef.isFollowing ? 'Đang theo dõi' : 'Theo dõi'}
-                </button>
-                <button class="btn-view-profile" onclick="viewChefProfile(${chef.id})">
-                    <i class="fas fa-user"></i> Xem hồ sơ
-                </button>
-            </div>
-        </div>
-    `).join('');
+            // Show notification
+            this.showNotification(
+                chef.isFollowing ? 
+                `Đã theo dõi ${chef.name}` : 
+                `Đã bỏ theo dõi ${chef.name}`
+            );
+        }
+    }
+
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'chef-notification';
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 24px;
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    updateChefCount() {
+        const count = this.filteredChefs.length;
+        const title = document.querySelector('.chefs-title');
+        if (title) {
+            const baseTitle = '👨‍🍳 Đầu Bếp Nổi Tiếng';
+            title.textContent = `${baseTitle} (${count})`;
+        }
+    }
+
+    updateLoadMoreButton() {
+        const loadMoreBtn = document.getElementById('loadMoreChefs');
+        if (!loadMoreBtn) return;
+        
+        const totalChefs = this.filteredChefs.length;
+        const currentlyShowing = this.currentPage * this.chefsPerPage;
+        
+        if (currentlyShowing >= totalChefs) {
+            loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.style.display = 'flex';
+        }
+    }
+
+    loadMoreChefs() {
+        this.currentPage++;
+        this.renderChefs();
+    }
+
+    bindEvents() {
+        // Filter tabs
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                this.filterChefs(tab.dataset.category);
+            });
+        });
+
+        // Search input
+        const searchInput = document.getElementById('chefSearchInput');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                this.searchChefs(e.target.value);
+            });
+        }
+
+        // Sort select
+        const sortSelect = document.getElementById('chefSortSelect');
+        if (sortSelect) {
+            sortSelect.addEventListener('change', (e) => {
+                this.sortChefs(e.target.value);
+            });
+        }
+
+        // Load more button
+        const loadMoreBtn = document.getElementById('loadMoreChefs');
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                this.loadMoreChefs();
+            });
+        }
+
+        // Follow buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('[data-follow-btn]')) {
+                const button = e.target.closest('[data-follow-btn]');
+                const chefId = parseInt(button.dataset.chefId);
+                this.toggleFollow(chefId);
+            }
+
+            if (e.target.closest('[data-view-profile]')) {
+                const button = e.target.closest('[data-view-profile]');
+                const chefId = parseInt(button.dataset.chefId);
+                this.viewChefProfile(chefId);
+            }
+        });
+    }
+
+    viewChefProfile(chefId) {
+        // Redirect to chef profile page or show modal
+        console.log('Viewing chef profile:', chefId);
+        // You can implement this based on your routing
+        // window.location.href = `chef-profile.html?id=${chefId}`;
+    }
 }
 
-// Function to generate star ratings
-function generateStars(rating) {
-    const fullStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 >= 0.5;
-    let stars = '';
+// Function tạo card đầu bếp từ template
+function createChefCardFromTemplate(chef) {
+    // Lấy template từ DOM
+    const template = document.getElementById('chefCardTemplate');
+    const card = template.content.cloneNode(true);
     
-    for (let i = 0; i < fullStars; i++) {
-        stars += '<i class="fas fa-star"></i>';
-    }
+    // Thiết lập attributes
+    const cardElement = card.querySelector('.chef-card');
+    cardElement.setAttribute('data-chef-id', chef.id);
+    cardElement.setAttribute('data-category', chef.category);
     
-    if (hasHalfStar) {
-        stars += '<i class="fas fa-star-half-alt"></i>';
-    }
+    // Điền dữ liệu vào template
+    fillChefCardData(card, chef);
     
-    const emptyStars = 5 - Math.ceil(rating);
-    for (let i = 0; i < emptyStars; i++) {
-        stars += '<i class="far fa-star"></i>';
-    }
+    // Thêm event listener cho toàn bộ card (click để xem chi tiết)
+    cardElement.addEventListener('click', function(e) {
+        // Ngăn chặn sự kiện khi click vào các nút bên trong
+        if (!e.target.closest('.btn-follow') && !e.target.closest('.btn-view-profile')) {
+            viewChefDetail(chef.id);
+        }
+    });
     
-    return stars;
+    return card;
 }
 
-// Function to toggle follow status
-function toggleFollow(chefId) {
-    const chef = famousChefs.find(c => c.id === chefId);
+// Function điền dữ liệu vào card
+function fillChefCardData(card, chef) {
+    // ... (phần này giữ nguyên như trước)
+    
+    // Thêm event listeners cho các nút
+    const followBtn = card.querySelector('[data-follow-btn]');
+    const viewProfileBtn = card.querySelector('[data-view-profile]');
+    
+    followBtn.addEventListener('click', function(e) {
+        e.stopPropagation(); // Ngăn sự kiện nổi bọt
+        toggleFollowChef(chef.id);
+    });
+    
+    viewProfileBtn.addEventListener('click', function(e) {
+        e.stopPropagation(); // Ngăn sự kiện nổi bọt
+        viewChefDetail(chef.id);
+    });
+}
+
+// Function xem chi tiết đầu bếp
+function viewChefDetail(chefId) {
+    // Chuyển hướng đến trang profile đầu bếp
+    window.location.href = `chef-profile.html?id=${chefId}`;
+}
+
+// Function toggle theo dõi đầu bếp
+function toggleFollowChef(chefId) {
+    const chef = chefsData.find(c => c.id === chefId);
     if (chef) {
         chef.isFollowing = !chef.isFollowing;
-        renderChefCards(getFilteredChefs());
         
-        // Show notification
+        // Hiển thị thông báo
         showNotification(chef.isFollowing ? 
             `Đã theo dõi ${chef.name}` : 
             `Đã bỏ theo dõi ${chef.name}`
         );
+        
+        // Cập nhật UI
+        updateFollowButton(chefId, chef.isFollowing);
     }
 }
 
-// Function to view chef profile
-function viewChefProfile(chefId) {
-    // In a real app, this would navigate to the chef's profile page
-    const chef = famousChefs.find(c => c.id === chefId);
-    showNotification(`Đang chuyển đến trang của ${chef.name}`);
+// Function cập nhật nút theo dõi
+function updateFollowButton(chefId, isFollowing) {
+    const followBtn = document.querySelector(`[data-follow-btn][data-chef-id="${chefId}"]`);
+    const followText = followBtn?.querySelector('[data-follow-text]');
+    
+    if (followBtn && followText) {
+        if (isFollowing) {
+            followBtn.classList.add('btn-following');
+            followText.textContent = 'Đang theo dõi';
+        } else {
+            followBtn.classList.remove('btn-following');
+            followText.textContent = 'Theo dõi';
+        }
+    }
 }
 
-// Function to show notification
+// Function hiển thị thông báo
 function showNotification(message) {
+    // Tạo thông báo
     const notification = document.createElement('div');
+    notification.className = 'chef-notification';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <i class="fas fa-check-circle"></i>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    // Thêm style cho thông báo
     notification.style.cssText = `
         position: fixed;
         top: 100px;
-        right: 24px;
+        right: 20px;
         background: var(--primary-color);
         color: white;
         padding: 16px 24px;
         border-radius: 12px;
         box-shadow: var(--shadow-hover);
         z-index: 1000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
+        animation: slideIn 0.3s ease;
     `;
-    notification.textContent = message;
+    
     document.body.appendChild(notification);
     
-    setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+    // Tự động xóa sau 3 giây
     setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => notification.remove(), 300);
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+            if (notification.parentNode) {
+                notification.parentNode.removeChild(notification);
+            }
+        }, 300);
     }, 3000);
 }
 
-// Filter and search functionality
-let currentCategory = 'all';
-let currentSearch = '';
-let currentSort = 'popular';
-
-function getFilteredChefs() {
-    let filtered = famousChefs;
-
-    // Filter by category
-    if (currentCategory !== 'all') {
-        filtered = filtered.filter(chef => chef.category === currentCategory);
-    }
-
-    // Filter by search
-    if (currentSearch) {
-        const searchTerm = currentSearch.toLowerCase();
-        filtered = filtered.filter(chef => 
-            chef.name.toLowerCase().includes(searchTerm) ||
-            chef.specialty.toLowerCase().includes(searchTerm) ||
-            chef.bio.toLowerCase().includes(searchTerm) ||
-            chef.expertise.some(skill => skill.toLowerCase().includes(searchTerm))
-        );
-    }
-
-    // Sort chefs
-    filtered.sort((a, b) => {
-        switch (currentSort) {
-            case 'newest':
-                return b.id - a.id;
-            case 'recipes':
-                return b.recipes - a.recipes;
-            case 'followers':
-                return parseFloat(b.followers) - parseFloat(a.followers);
-            case 'popular':
-            default:
-                return b.rating - a.rating;
+// Thêm CSS animation cho thông báo
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
         }
-    });
-
-    return filtered;
-}
-
-function resetFilters() {
-    currentCategory = 'all';
-    currentSearch = '';
-    currentSort = 'popular';
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
     
-    document.getElementById('chefSearchInput').value = '';
-    document.getElementById('chefSortSelect').value = 'popular';
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
     
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-        tab.classList.remove('active');
-    });
-    document.querySelector('.filter-tab[data-category="all"]').classList.add('active');
+    .chef-card {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
     
-    renderChefCards(getFilteredChefs());
-}
+    .chef-card:hover {
+        transform: translateY(-5px);
+    }
+`;
+document.head.appendChild(style);
 
-// Initialize the page
-document.addEventListener('DOMContentLoaded'), function() {
-    renderChefCards(getFilteredChefs());
-
-    // Filter tab event listeners
-    document.querySelectorAll('.filter-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            currentCategory = this.dataset.category;
-            renderChefCards(getFilteredChefs());
-        });
-    });
-}
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new FamousChefs();
+});

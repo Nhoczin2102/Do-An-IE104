@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Đầu Bếp Nổi Tiếng - POTPAN</title>
+  <title>Bài Viết - POTPAN</title>
 
   <!-- CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -12,11 +12,12 @@
   <link rel="stylesheet" href="../styles/components/Main/sidebar.css">
   <link rel="stylesheet" href="../styles/base/base.css">
   <link rel="stylesheet" href="../styles/base/variable.css">
-  <link rel="stylesheet" href="../styles/pages/famous-chef.css">
-
+  <link rel="stylesheet" href="../styles/pages/profile.css">
+  <link rel="stylesheet" href="../styles/pages/profile1.css">
 </head>
 
 <body>
+  <!-- ========== HEADER ========== -->
   <header class="header">
     <div class="header__container">
       <div class="header__content">
@@ -72,11 +73,11 @@
   </header>
 
   <!-- ========== LAYOUT 2 CỘT ========== -->
-  <main class="page chefs">
+  <main class="page page--profile">
     <!-- Sidebar trái -->
     <aside class="sidebar">
       <div class="sidebar__profile">
-        <img class="sidebar__avatar" id="sidebarAvatar" src="../assets/images/avatar.png" alt="avatar" />
+        <img class="sidebar__avatar" id="sidebarAvatar" src="./assets/images/avatar.png" alt="avatar" />
         <div class="sidebar__profile-info">
           <div class="sidebar__name" id="sidebarName">...</div>
           <div class="sidebar__handle" id="sidebarHandle">...</div>
@@ -89,7 +90,7 @@
           <span class="sidebar__menu-text">Bảng tin</span>
         </a>
 
-        <a class="sidebar__menu-item" href="./profile.html">
+        <a class="sidebar__menu-item sidebar__menu-item--active" href="./profile.html">
           <i class="fas fa-user sidebar__menu-icon"></i>
           <span class="sidebar__menu-text">Hồ sơ của tôi</span>
         </a>
@@ -99,7 +100,7 @@
           <span class="sidebar__menu-text">Công thức đã lưu</span>
         </a>
 
-        <a class="sidebar__menu-item sidebar__menu-item--active" href="./famous-chef.html">
+        <a class="sidebar__menu-item" href="./famous-chef.html">
           <i class="fas fa-utensils sidebar__menu-icon"></i>
           <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
         </a>
@@ -111,109 +112,71 @@
       </nav>
     </aside>
 
-    <!-- Nội dung chính - Đầu bếp nổi tiếng -->
-    <div class="chefs-content">
-      <!-- Header Section -->
-      <div class="chefs-header">
-        <div class="chefs-header-content">
-          <h1 class="chefs-title">👨‍🍳 Đầu Bếp Nổi Tiếng</h1>
-          <p class="chefs-subtitle">Khám phá những đầu bếp tài năng và học hỏi từ các chuyên gia ẩm thực</p>
-
-          <!-- Filter Tabs -->
-          <div class="chef-filter-tabs">
-            <div class="filter-tab active" data-category="all">Tất cả</div>
-            <div class="filter-tab" data-category="vietnamese">Ẩm thực Việt</div>
-            <div class="filter-tab" data-category="asian">Ẩm thực Châu Á</div>
-            <div class="filter-tab" data-category="european">Ẩm thực Âu</div>
-            <div class="filter-tab" data-category="baking">Làm bánh</div>
-            <div class="filter-tab" data-category="healthy">Ăn uống lành mạnh</div>
+    <!-- Nội dung chính - Bài viết -->
+    <div class="posts-content">
+      <!-- Profile Header -->
+      <div class="profile-header">
+        <div class="profile-header__avatar">
+          <img src="../assets/images/avatar.png" alt="Avatar" id="profileAvatar">
+        </div>
+        <h1 class="profile-header__name" id="profileName">Minh Nhựt</h1>
+        <p class="profile-header__bio" id="profileBio">Đầu bếp tại gia | Chia sẻ công thức nấu ăn đơn giản, ngon miệng</p>
+        <div class="profile-header__stats">
+          <div class="profile-header__stat-item">
+            <div class="profile-header__stat-number">127</div>
+            <div class="profile-header__stat-label">Bài đăng</div>
+          </div>
+          <div class="profile-header__stat-item">
+            <div class="profile-header__stat-number">1.2K</div>
+            <div class="profile-header__stat-label">Người theo dõi</div>
+          </div>
+          <div class="profile-header__stat-item">
+            <div class="profile-header__stat-number">584</div>
+            <div class="profile-header__stat-label">Đang theo dõi</div>
           </div>
         </div>
       </div>
 
-      <!-- Search and Sort -->
-      <div class="chefs-controls">
-        <div class="search-container">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" class="search-input" placeholder="Tìm kiếm đầu bếp..." id="chefSearchInput">
-        </div>
+      <!-- Navigation -->
+      <div class="profile-nav">
+        <a href="./profile1.html" class="profile-nav__item profile-nav__item--active">Bài viết</a>
+        <a href="./profile.html" class="profile-nav__item">Theo dõi</a>
+      </div>
 
-        <div class="sort-container">
-          <select class="sort-select" id="chefSortSelect">
-            <option value="popular">Phổ biến nhất</option>
+      <!-- Post Filters -->
+      <div class="post-filters">
+        <div class="filter-tabs">
+          <div class="filter-tabs__tab filter-tabs__tab--active" data-filter="all">Tất cả</div>
+          <div class="filter-tabs__tab" data-filter="popular">Phổ biến</div>
+          <div class="filter-tabs__tab" data-filter="recent">Gần đây</div>
+        </div>
+        <div class="sort-options">
+          <span class="sort-options__label">Sắp xếp:</span>
+          <select class="sort-options__select" id="sortSelect">
             <option value="newest">Mới nhất</option>
-            <option value="recipes">Nhiều công thức</option>
-            <option value="followers">Nhiều người theo dõi</option>
+            <option value="oldest">Cũ nhất</option>
+            <option value="popular">Phổ biến nhất</option>
           </select>
         </div>
       </div>
 
-      <!-- Chefs Grid -->
-      <div class="chefs-grid" id="chefsGrid">
-        <!-- Chef cards will be generated by JavaScript -->
+      <!-- Posts Grid -->
+      <div class="posts-grid" id="postsGrid">
+        <!-- Post cards will be generated by JavaScript -->
       </div>
 
-      <!-- Load More Button -->
-      <div class="load-more-container">
-        <button class="btn-load-more" id="loadMoreChefs">
-          <i class="fas fa-redo"></i>
-          Tải thêm đầu bếp
-        </button>
+      <!-- Empty State (Hidden by default) -->
+      <div id="emptyPosts" class="empty-posts" style="display: none;">
+        <div class="empty-posts__icon">
+          <i class="fas fa-file-alt"></i>
+        </div>
+        <h3 class="empty-posts__text">Chưa có bài viết nào</h3>
+        <button class="btn--create-post">Tạo bài viết đầu tiên</button>
       </div>
     </div>
   </main>
 
-  <!-- Template cho card đầu bếp -->
-  <template id="chefCardTemplate">
-    <div class="chef-card">
-      <div class="chef-badge" data-featured style="display: none;">Nổi bật</div>
-      
-      <div class="chef-card-header">
-        <div class="chef-avatar">
-          <img data-avatar alt="Chef Avatar">
-        </div>
-        <h3 class="chef-name" data-name></h3>
-        <div class="chef-specialty" data-specialty></div>
-        <div class="chef-rating">
-          <div class="chef-stars" data-stars></div>
-          <span class="chef-rating-score" data-rating></span>
-        </div>
-      </div>
-
-      <div class="chef-card-body">
-        <p class="chef-bio" data-bio></p>
-        
-        <div class="chef-stats">
-          <div class="chef-stat">
-            <span class="chef-stat-number" data-recipes></span>
-            <span class="chef-stat-label">Công thức</span>
-          </div>
-          <div class="chef-stat">
-            <span class="chef-stat-number" data-followers></span>
-            <span class="chef-stat-label">Theo dõi</span>
-          </div>
-          <div class="chef-stat">
-            <span class="chef-stat-number" data-experience></span>
-            <span class="chef-stat-label">Kinh nghiệm</span>
-          </div>
-        </div>
-
-        <div class="chef-expertise" data-expertise></div>
-      </div>
-
-      <div class="chef-card-footer">
-        <button class="btn-follow" data-follow-btn data-chef-id>
-          <span data-follow-text>Theo dõi</span>
-        </button>
-        <button class="btn-view-profile" data-view-profile data-chef-id>
-          Xem hồ sơ
-        </button>
-      </div>
-    </div>
-  </template>
-
   <script src="../js/main.js" type="module"></script>
-  <script src="../js/pages/famous-chefs.js" type = "module"></script>
+  <script src="../js/pages/profile1.js" type="module"></script>
 </body>
-
 </html>

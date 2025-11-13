@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Đầu Bếp - POTPAN</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../styles/components/Main/header.css">
+  <link rel="stylesheet" href="../styles/components/Main/sidebar.css">
+  <link rel="stylesheet" href="../styles/base/base.css">
+  <link rel="stylesheet" href="../styles/base/variable.css">
+  <link rel="stylesheet" href="../styles/pages/chef-profile.css">
+
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__container">
+      <div class="header__content">
+        <!-- Logo -->
+        <a href="../index.html" class="header__logo">
+          <div class="header__logo-image">
+            <img src="../assets/images/logo.svg" />
+          </div>
+          <h1 class="header__logo-text">POTPAN</h1>
+        </a>
+
+        <!-- Thanh tìm kiếm -->
+        <div class="header__search">
+          <input type="text" class="header__search-input" placeholder="Tìm kiếm công thức, nguyên liệu..." />
+          <button class="header__search-button">
+            <i class="fas fa-search header__search-icon"></i>
+          </button>
+        </div>
+
+        <!-- Điều hướng -->
+        <div class="header__nav">
+          <a href="../index.html" class="header__nav-item">
+            <i class="fas fa-home header__nav-icon"></i>
+            <span class="header__nav-text">Trang chủ</span>
+          </a>
+          <a href="./explore.html" class="header__nav-item">
+            <i class="fas fa-compass header__nav-icon"></i>
+            <span class="header__nav-text">Khám phá</span>
+          </a>
+          <a href="./about.html" class="header__nav-item">
+            <i class="fa-solid fa-users header__nav-icon"></i>
+            <span class="header__nav-text">Về chúng tôi</span>
+          </a>
+          <a href="./contact.html" class="header__nav-item">
+            <i class="fa-solid fa-phone header__nav-icon"></i>
+            <span class="header__nav-text">Liên hệ</span>
+          </a>
+
+          <!-- Nút Đăng xuất/Đăng nhập -->
+          <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
+            <i class="fas fa-sign-out-alt header__nav-icon"></i>
+            <span class="header__nav-text">Đăng xuất</span>
+          </a>
+          <a href="./login.html" class="header__nav-item header__nav-item--login" id="loginNav">
+            <i class="fa-solid fa-user header__nav-icon"></i>
+            <span class="header__nav-text">Đăng nhập</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== LAYOUT 2 CỘT ========== -->
+  <main class="page chef-profile">
+    <!-- Sidebar trái -->
+    <aside class="sidebar">
+      <div class="sidebar__profile">
+        <img class="sidebar__avatar" id="sidebarAvatar" src="../assets/images/avatar.png" alt="avatar" />
+        <div class="sidebar__profile-info">
+          <div class="sidebar__name" id="sidebarName">...</div>
+          <div class="sidebar__handle" id="sidebarHandle">...</div>
+        </div>
+      </div>
+
+      <nav class="sidebar__menu">
+        <a class="sidebar__menu-item" href="../index.html">
+          <i class="fas fa-newspaper sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Bảng tin</span>
+        </a>
+
+        <a class="sidebar__menu-item" href="./profile.html">
+          <i class="fas fa-user sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Hồ sơ của tôi</span>
+        </a>
+
+        <a class="sidebar__menu-item" href="./myRecipe.html">
+          <i class="fas fa-bookmark sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Công thức đã lưu</span>
+        </a>
+
+        <a class="sidebar__menu-item" href="./famous-chef.html">
+          <i class="fas fa-utensils sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
+        </a>
+
+        <a class="sidebar__menu-item" href="./setting.html">
+          <i class="fas fa-cog sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Cài đặt</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Nội dung chính - Profile đầu bếp -->
+    <div class="chef-profile-content">
+      <!-- Header Section -->
+      <div class="chef-profile-header">
+        <div class="chef-profile-cover">
+          <img src="../assets/images/chef-cover.jpg" alt="Cover" class="chef-cover-image">
+          <div class="chef-profile-overlay"></div>
+        </div>
+
+        <div class="chef-profile-info">
+          <div class="chef-avatar-section">
+            <div class="chef-avatar-large">
+              <img id="chefAvatar" src="" alt="Chef Avatar">
+              <div class="chef-verified" id="chefVerified">
+                <i class="fas fa-check-circle"></i>
+              </div>
+            </div>
+            <button class="btn-follow-large" id="followChefBtn">
+              <span id="followChefText">Theo dõi</span>
+              <span class="followers-count" id="followersCount">0</span>
+            </button>
+          </div>
+
+          <div class="chef-details">
+            <h1 class="chef-name" id="chefName">...</h1>
+            <div class="chef-specialty" id="chefSpecialty">...</div>
+            <div class="chef-bio" id="chefBio">...</div>
+
+            <div class="chef-stats-large">
+              <div class="chef-stat-item">
+                <span class="stat-number" id="recipesCount">0</span>
+                <span class="stat-label">Công thức</span>
+              </div>
+              <div class="chef-stat-item">
+                <span class="stat-number" id="followersCountLarge">0</span>
+                <span class="stat-label">Người theo dõi</span>
+              </div>
+              <div class="chef-stat-item">
+                <span class="stat-number" id="experienceYears">0</span>
+                <span class="stat-label">Năm kinh nghiệm</span>
+              </div>
+              <div class="chef-stat-item">
+                <span class="stat-number" id="chefRating">0.0</span>
+                <span class="stat-label">Đánh giá</span>
+              </div>
+            </div>
+
+            <div class="chef-expertise-large" id="chefExpertise">
+              <!-- Expertise tags will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <div class="chef-profile-nav">
+        <div class="nav-tabs">
+          <button class="nav-tab active" data-tab="recipes">
+            <i class="fas fa-utensils"></i>
+            Công thức
+          </button>
+          <button class="nav-tab" data-tab="about">
+            <i class="fas fa-user"></i>
+            Giới thiệu
+          </button>
+          <button class="nav-tab" data-tab="achievements">
+            <i class="fas fa-trophy"></i>
+            Thành tích
+          </button>
+          <button class="nav-tab" data-tab="reviews">
+            <i class="fas fa-star"></i>
+            Đánh giá
+          </button>
+        </div>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="chef-profile-tabs">
+        <!-- Recipes Tab -->
+        <div class="tab-content active" id="recipesTab">
+          <div class="recipes-header">
+            <h3>Công thức của đầu bếp</h3>
+            <div class="recipes-filter">
+              <select class="filter-select" id="recipeFilter">
+                <option value="all">Tất cả</option>
+                <option value="popular">Phổ biến</option>
+                <option value="newest">Mới nhất</option>
+                <option value="difficulty">Độ khó</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="recipes-grid" id="recipesGrid">
+            <!-- Recipes will be populated by JavaScript -->
+          </div>
+        </div>
+
+        <!-- About Tab -->
+        <div class="tab-content" id="aboutTab">
+          <div class="about-section">
+            <h3>Giới thiệu</h3>
+            <div class="about-content" id="aboutContent">
+              <!-- About content will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements Tab -->
+        <div class="tab-content" id="achievementsTab">
+          <div class="achievements-section">
+            <h3>Thành tích & Giải thưởng</h3>
+            <div class="achievements-grid" id="achievementsGrid">
+              <!-- Achievements will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Reviews Tab -->
+        <div class="tab-content" id="reviewsTab">
+          <div class="reviews-section">
+            <h3>Đánh giá từ cộng đồng</h3>
+            <div class="reviews-stats">
+              <div class="overall-rating">
+                <div class="rating-score" id="overallRating">0.0</div>
+                <div class="rating-stars" id="ratingStars"></div>
+                <div class="rating-count" id="ratingCount">0 đánh giá</div>
+              </div>
+            </div>
+            <div class="reviews-list" id="reviewsList">
+              <!-- Reviews will be populated by JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Templates -->
+  <template id="recipeCardTemplate">
+    <div class="recipe-card">
+      <div class="recipe-image">
+        <img data-recipe-image alt="Recipe Image">
+        <div class="recipe-difficulty" data-recipe-difficulty></div>
+        <div class="recipe-time" data-recipe-time></div>
+      </div>
+      <div class="recipe-info">
+        <h4 class="recipe-title" data-recipe-title></h4>
+        <p class="recipe-description" data-recipe-description></p>
+        <div class="recipe-meta">
+          <span class="recipe-rating" data-recipe-rating></span>
+          <span class="recipe-reviews" data-recipe-reviews></span>
+        </div>
+      </div>
+    </div>
+  </template>
+
+  <template id="achievementCardTemplate">
+    <div class="achievement-card">
+      <div class="achievement-icon" data-achievement-icon></div>
+      <h4 class="achievement-title" data-achievement-title></h4>
+      <p class="achievement-description" data-achievement-description></p>
+      <span class="achievement-year" data-achievement-year></span>
+    </div>
+  </template>
+
+  <template id="reviewCardTemplate">
+    <div class="review-card">
+      <div class="reviewer-info">
+        <img class="reviewer-avatar" data-reviewer-avatar alt="Reviewer Avatar">
+        <div class="reviewer-details">
+          <h5 class="reviewer-name" data-reviewer-name></h5>
+          <div class="review-rating" data-review-rating></div>
+        </div>
+        <span class="review-date" data-review-date></span>
+      </div>
+      <p class="review-content" data-review-content></p>
+    </div>
+  </template>
+
+  <script src="../js/main.js" type="module"></script>
+  <script src="../js/pages/chef-profile.js"></script>
+</body>
+
+</html>

@@ -8,49 +8,67 @@
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="../styles/pages/setting.css"> 
-  <link rel="stylesheet" href="../styles/components/sidebarsetting.css"> 
-  <link rel="stylesheet" href="../styles/components/headersetting.css">  
+  <link rel="stylesheet" href="../styles/base/base.css">
+  <link rel="stylesheet" href="../styles/base/variable.css"> 
+
+
+  <link rel="stylesheet" href="../styles/components/Main/header.css">
+  <link rel="stylesheet" href="../styles/components/Main/sidebar.css">  
+
+
   <link rel="stylesheet" href="../styles/base/variable.css">  
 
 </head>
 
 <body>
-  <!-- ========== HEADER ========== -->
-  <header class="page-header">
-    <div class="page-header__container">
-      <div class="page-header__content">
+   <header class="header">
+    <div class="header__container">
+      <div class="header__content">
         <!-- Logo -->
-        <a href="index.html" class="page-header__logo">
-          <div class="page-header__logo-image">
-            <img src="../assets/images/logo.svg" alt="logo">
+        <a href="index.html" class="header__logo">
+          <div class="header__logo-image">
+            <img src="../assets/images/logo.svg" />
           </div>
-          <h1>POTPAN</h1>
+          <h1 class="header__logo-text">POTPAN</h1>
         </a>
 
         <!-- Thanh tìm kiếm -->
-        <div class="page-header__search-bar">
-          <input type="text" placeholder="Tìm kiếm công thức, nguyên liệu...">
-          <button class="page-header__search-button">
-            <i class="fas fa-search"></i>
+        <div class="header__search">
+          <input type="text" class="header__search-input" placeholder="Tìm kiếm công thức, nguyên liệu..." />
+          <button class="header__search-button">
+            <i class="fas fa-search header__search-icon"></i>
           </button>
         </div>
 
         <!-- Điều hướng -->
-        <div class="page-header__nav">
-          <a href="../index.html" class="active">
-            <i class="fas fa-home nav-icon"></i><span>Trang chủ</span>
+        <div class="header__nav">
+          <a href="index.html" class="header__nav-item header__nav-item--active">
+            <i class="fas fa-home header__nav-icon"></i>
+            <span class="header__nav-text">Trang chủ</span>
           </a>
-          <a href="../">
-            <i class="fas fa-compass page-header__nav-icon"></i><span>Khám phá</span>
+          <a href="./pages/explore.html" class="header__nav-item">
+            <i class="fas fa-compass header__nav-icon"></i>
+            <span class="header__nav-text">Khám phá</span>
           </a>
-          <a href="./contact.html">
-            <i class="fa-solid fa-users"></i><span>Về chúng tôi</span>
+          <a href="./pages/about.html" target="_blank" class="header__nav-item">
+            <i class="fa-solid fa-users header__nav-icon"></i>
+            <span class="header__nav-text">Về chúng tôi</span>
           </a>
-          <a href="./contact.html">
-            <i class="fa-solid fa-phone"></i><span>Liên hệ</span>
+          <a href="./pages/contact.html" target="_blank" class="header__nav-item">
+            <i class="fa-solid fa-phone header__nav-icon"></i>
+            <span class="header__nav-text">Liên hệ</span>
           </a>
-          <a href="./login.html">
-            <i class="fa-solid fa-user"></i><span>Đăng nhập</span>
+
+          <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
+          <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
+            <i class="fas fa-sign-out-alt header__nav-icon"></i>
+            <span class="header__nav-text">Đăng xuất</span>
+          </a>
+
+          <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
+          <a href="./pages/login.html" class="header__nav-item header__nav-item--login" id="loginNav">
+            <i class="fa-solid fa-user header__nav-icon"></i>
+            <span class="header__nav-text">Đăng nhập</span>
           </a>
         </div>
       </div>
@@ -61,32 +79,42 @@
   <main class="page profile">
     <!-- Sidebar trái -->
     <aside class="sidebar">
-      <div class="profile">
-        <img class="profile__avatar" src="../assets/images/avatar.png" alt="avatar">
-        <div class="profile-info">
-          <div class="profile__name">Minh Nhựt</div>
-          <div class="profile__handle">@nhutminh_amthuc</div>
+      <div class="sidebar__profile">
+        <img class="sidebar__avatar" id="sidebarAvatar" src="./assets/images/avatar.png" alt="avatar" />
+        <div class="sidebar__profile-info">
+          <div class="sidebar__name" id="sidebarName">...</div>
+          <div class="sidebar__handle" id="sidebarHandle">...</div>
         </div>
       </div>
 
-      <nav class="main-menu">
-        <a class="main-menu__item" href="../index.html">
-          <i class="fas fa-newspaper"></i><span>Bảng tin</span>
+      <nav class="sidebar__menu">
+        <a class="sidebar__menu-item" href="../index.html">
+          <i class="fas fa-newspaper sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Bảng tin</span>
         </a>
-        <a class="main-menu__item " href="./profile.html">
-          <i class="fas fa-user"></i><span>Hồ sơ của tôi</span>
+
+        <a class="sidebar__menu-item sidebar__menu-item--active" href="./profile.html">
+          <i class="fas fa-user sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Hồ sơ của tôi</span>
         </a>
-        <a class="main-menu__item" href="./myRecipe.html">
-          <i class="fas fa-bookmark"></i><span>Công thức đã lưu</span>
+
+        <a class="sidebar__menu-item" href="./myRecipe.html">
+          <i class="fas fa-bookmark sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Công thức đã lưu</span>
         </a>
-        <a class="main-menu__item" href="./famous-chef.html">
-          <i class="fas fa-utensils"></i><span>Đầu bếp nổi tiếng</span>
+
+        <a class="sidebar__menu-item" href="./famous-chef.html">
+          <i class="fas fa-utensils sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
         </a>
-        <a class="main-menu__item active" href="./setting.html">
-          <i class="fas fa-cog"></i><span>Cài đặt</span>
+
+        <a class="sidebar__menu-item" href="./setting.html">
+          <i class="fas fa-cog sidebar__menu-icon"></i>
+          <span class="sidebar__menu-text">Cài đặt</span>
         </a>
       </nav>
     </aside>
+
 
     <!-- Khu nội dung phải -->
     <div class="settings-sections">
@@ -427,5 +455,7 @@
 
   <!-- Liên kết với file JavaScript -->
   <script src="../js/pages/setting.js"></script>
+  <script src="../js/main.js"> type = "module"</script>
+
 </body>
 </html>
