@@ -1,3 +1,4 @@
+/* ===== LAYOUT CHÍNH ===== */
 .page {
     display: flex;
     justify-content: center;
@@ -5,12 +6,9 @@
     gap: 24px;
 }
 
-.save-page {
-    max-width: 1400px;
+.saved-recipes-page {
     width: 100%;
 }
-
-
 
 /* Layout chính với sidebar và content */
 main.page {
@@ -22,8 +20,8 @@ main.page {
     margin: 0 auto;
 }
 
-/* Sidebar */
-.sidebar-card {
+/* ===== SIDEBAR ===== */
+.sidebar {
     background: var(--bg-card);
     border-radius: var(--radius);
     padding: 24px;
@@ -41,7 +39,7 @@ main.page {
     border-bottom: 1px solid var(--border-color);
 }
 
-.avatar {
+.profile__avatar {
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -49,24 +47,24 @@ main.page {
     border: 2px solid var(--border-color);
 }
 
-.name {
+.profile__name {
     font-weight: 600;
     font-size: 16px;
     color: var(--text);
 }
 
-.handle {
+.profile__handle {
     font-size: 14px;
     color: var(--muted);
 }
 
-.menu {
+.main-menu {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.menu .item {
+.main-menu__item {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -79,22 +77,22 @@ main.page {
     border: 1px solid transparent;
 }
 
-.menu .item:hover {
+.main-menu__item:hover {
     border-color: var(--primary-light);
 }
 
-.menu .item.active {
+.main-menu__item.active {
     background-color: var(--primary-color);
     color: var(--text-on-primary);
     border-color: var(--primary-dark);
 }
 
-.menu .item.active img {
+.main-menu__item.active img {
     filter: brightness(0) invert(1);
 }
 
-/* Header content */
-.save-header {
+/* ===== HEADER CONTENT ===== */
+.saved-recipes__title-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -102,7 +100,7 @@ main.page {
     max-width: 980px;
 }
 
-#save-title {
+.saved-recipes__main-title {
     font-weight: 550;
     font-size: 32px;
     padding: 5px 180px;
@@ -112,10 +110,10 @@ main.page {
     border-radius: 30px;
 }
 
-/* Content chính */
-.saved-card {
+/* ===== CONTENT CHÍNH ===== */
+.saved-recipes {
     position: relative;
-    flex:1;
+    flex: 1;
     background: var(--bg-card);
     border-radius: var(--radius);
     padding: 24px;
@@ -124,12 +122,12 @@ main.page {
     border: 1px solid var(--border-color);
 }
 
-.header-page {
+.saved-recipes__header {
     width: 100%;
 }
 
-/* Grid cho bài viết */
-.save-baiviet {
+/* ===== GRID CHO BÀI VIẾT ===== */
+.saved-recipes__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
@@ -153,13 +151,13 @@ main.page {
     border-color: var(--primary-dark);
 }
 
-.recipe-anh {
+.recipe-card__image {
     overflow: hidden;
     width: 100%;
     height: 242px;
 }
 
-.recipe-anh img {
+.recipe-card__image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -167,33 +165,33 @@ main.page {
     transition: transform 0.5s ease;
 }
 
-.recipe-card:hover .recipe-anh img {
+.recipe-card:hover .recipe-card__image img {
     transform: scale(1.05);
 }
 
-.recipe-body {
+.recipe-card__content {
     padding: 16px;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
-.recipe-title {
+.recipe-card__title {
     font-size: 22px;
     font-weight: 600;
     line-height: 1.3;
     color: var(--text);
 }
 
-.recipe-text {
+.recipe-card__description {
     color: var(--text-light-subtle);
     font-size: 16px;
     margin-top: auto;
     line-height: 1.5;
 }
 
-/* Scroll area cho danh sách bài viết */
-.post-scroll {
+/* ===== SCROLL AREA CHO DANH SÁCH BÀI VIẾT ===== */
+.saved-recipes__scroll-container {
     max-height: calc(100vh - 220px);
     overflow: auto;
     padding-right: 6px;
@@ -203,8 +201,8 @@ main.page {
     position: relative;
 }
 
-.post-scroll::before,
-.post-scroll::after {
+.saved-recipes__scroll-container::before,
+.saved-recipes__scroll-container::after {
     content: "";
     position: sticky;
     height: 14px;
@@ -212,40 +210,40 @@ main.page {
     display: block;
 }
 
-.post-scroll::before {
+.saved-recipes__scroll-container::before {
     border-top-left-radius: var(--radius);
     border-top-right-radius: var(--radius);
 }
 
-.post-scroll::after {
+.saved-recipes__scroll-container::after {
     border-bottom-left-radius: var(--radius);
     border-bottom-right-radius: var(--radius);
 }
 
-.post-scroll {
+.saved-recipes__scroll-container {
     scrollbar-width: thin;
     scrollbar-color: var(--primary-color) transparent;
 }
 
-.post-scroll::-webkit-scrollbar {
+.saved-recipes__scroll-container::-webkit-scrollbar {
     width: 6px;
 }
 
-.post-scroll::-webkit-scrollbar-track {
+.saved-recipes__scroll-container::-webkit-scrollbar-track {
     background: transparent;
     border-radius: 3px;
 }
 
-.post-scroll::-webkit-scrollbar-thumb {
+.saved-recipes__scroll-container::-webkit-scrollbar-thumb {
     background: var(--primary-color);
     border-radius: 3px;
 }
 
-.post-scroll::-webkit-scrollbar-thumb:hover {
+.saved-recipes__scroll-container::-webkit-scrollbar-thumb:hover {
     background: var(--primary-dark);
 }
 
-/* ===== Responsive ===== */
+/* ===== RESPONSIVE ===== */
 
 /* Large Desktop */
 @media (max-width: 1440px) {
@@ -254,7 +252,7 @@ main.page {
         gap: 28px;
     }
     
-    .save-baiviet {
+    .saved-recipes__grid {
         gap: 20px;
     }
 }
@@ -266,11 +264,11 @@ main.page {
         gap: 24px;
     }
     
-    .save-baiviet {
+    .saved-recipes__grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    #save-title {
+    .saved-recipes__main-title {
         font-size: 34px;
     }
 }
@@ -286,15 +284,15 @@ main.page {
         gap: 20px;
     }
     
-    .sidebar-card {
+    .sidebar {
         padding: 20px;
     }
     
-    .save-baiviet {
+    .saved-recipes__grid {
         gap: 18px;
     }
     
-    .recipe-anh {
+    .recipe-card__image {
         height: 220px;
     }
 }
@@ -311,32 +309,32 @@ main.page {
         gap: 20px;
     }
     
-    .sidebar-card {
+    .sidebar {
         order: 2;
     }
     
-    .saved-card {
+    .saved-recipes {
         order: 1;
     }
     
-    .save-header {
+    .saved-recipes__title-wrapper {
         margin: 16px 0;
     }
     
-    #save-title {
+    .saved-recipes__main-title {
         font-size: 28px;
     }
     
-    .save-baiviet {
+    .saved-recipes__grid {
         grid-template-columns: 1fr;
         gap: 16px;
     }
     
-    .recipe-anh {
+    .recipe-card__image {
         height: 200px;
     }
     
-    .recipe-title {
+    .recipe-card__title {
         font-size: 20px;
     }
     
@@ -345,7 +343,7 @@ main.page {
         text-align: center;
     }
     
-    .menu .item {
+    .main-menu__item {
         justify-content: center;
         text-align: center;
     }
@@ -357,42 +355,37 @@ main.page {
         padding: 12px;
     }
     
-    .save-header {
+    .saved-recipes__title-wrapper {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
     }
     
-    #save-title {
+    .saved-recipes__main-title {
         font-size: 26px;
     }
     
-    #save-button {
-        align-self: stretch;
-        text-align: center;
-    }
-    
-    .recipe-anh {
+    .recipe-card__image {
         height: 180px;
     }
     
-    .recipe-body {
+    .recipe-card__content {
         padding: 12px;
     }
     
-    .recipe-title {
+    .recipe-card__title {
         font-size: 18px;
     }
     
-    .recipe-text {
+    .recipe-card__description {
         font-size: 14px;
     }
     
-    .post-scroll {
+    .saved-recipes__scroll-container {
         max-height: calc(100vh - 260px);
     }
     
-    .sidebar-card {
+    .sidebar {
         padding: 16px;
     }
 }
@@ -403,15 +396,15 @@ main.page {
         padding: 8px;
     }
     
-    #save-title {
+    .saved-recipes__main-title {
         font-size: 22px;
     }
     
-    .recipe-anh {
+    .recipe-card__image {
         height: 160px;
     }
     
-    .menu .item {
+    .main-menu__item {
         padding: 10px 12px;
         font-size: 14px;
     }
@@ -420,39 +413,39 @@ main.page {
         gap: 8px;
     }
     
-    .avatar {
+    .profile__avatar {
         width: 40px;
         height: 40px;
     }
     
-    .name {
+    .profile__name {
         font-size: 14px;
     }
     
-    .handle {
+    .profile__handle {
         font-size: 12px;
     }
 }
 
 /* Very Small Mobile */
 @media (max-width: 360px) {
-    .save-baiviet {
+    .saved-recipes__grid {
         gap: 12px;
     }
     
-    .recipe-anh {
+    .recipe-card__image {
         height: 140px;
     }
     
-    .recipe-body {
+    .recipe-card__content {
         padding: 10px;
     }
     
-    .recipe-title {
+    .recipe-card__title {
         font-size: 16px;
     }
     
-    .recipe-text {
+    .recipe-card__description {
         font-size: 13px;
     }
 }
