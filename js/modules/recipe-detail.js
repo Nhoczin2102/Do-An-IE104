@@ -83,7 +83,7 @@
     if (tagsEl) {
       tagsEl.insertAdjacentHTML(
         "beforeend",
-        (d.tags || []).map(t => `<span class="tag">${t}</span>`).join("")
+        (d.tags || []).map(t => `<span class="recipe-detail__tag">${t}</span>`).join("")
       );
     }
 
@@ -93,7 +93,7 @@
         ? `<ul>${ing.map(i=>`<li>${i}</li>`).join("")}</ul>`
         : (Array.isArray(ing)
             ? ing.map(g => `
-                <div class="ing-group">
+                <div class="recipe-detail__ingredient-group">
                   ${g.title ? `<h4>${g.title}</h4>` : ""}
                   <ul>${(g.items||[]).map(i=>`<li>${i}</li>`).join("")}</ul>
                 </div>`).join("")
@@ -105,8 +105,8 @@
       stepsEl.innerHTML = (d.steps || []).length
         ? d.steps.map(s => {
             const text = (typeof s === "string") ? s : s.text;
-            const tip  = (typeof s === "object" && s.tip) ? `<div class="step-tip">Mẹo: ${s.tip}</div>` : "";
-            return `<li><div class="step-line">${text}</div>${tip}</li>`;
+            const tip  = (typeof s === "object" && s.tip) ? `<div class="recipe-detail__step-tip">Mẹo: ${s.tip}</div>` : "";
+            return `<li><div class="recipe-detail__step-line">${text}</div>${tip}</li>`;
           }).join("")
         : `<li>Đang cập nhật...</li>`;
     }

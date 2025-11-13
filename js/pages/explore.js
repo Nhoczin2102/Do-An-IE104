@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const chefsContainer = document.querySelector('.explore-chefs');
-  const trendingContainer = document.querySelector('.explore-trending');
-  const allRecipesContainer = document.querySelector('.explore-allrecipes');
-  const loadMoreBtn = document.querySelector('.btn-load-more');
+  // Cập nhật selectors theo BEM
+  const chefsContainer = document.querySelector('.explore-chefs__grid');
+  const trendingContainer = document.querySelector('.explore-trending__scroll');
+  const allRecipesContainer = document.querySelector('.explore-recipes__grid');
+  const loadMoreBtn = document.querySelector('.explore-load-more__button');
 
   let allData = [];            // toàn bộ entries 
   let allBucket = [];          // 101..199
@@ -21,10 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function renderChefs(chefs) {
     chefsContainer.innerHTML = (chefs || []).map(chef => `
-      <div class='chef-card' data-chef-id='${chef.id}'>
-        <img src="${chef.img}" alt="${chef.name}" class="chef-avatar" />
-        <div class="chef-name">${chef.name}</div>
-        <div class="chef-specialty">${chef.specialty}</div>
+      <div class='explore-chef-card' data-chef-id='${chef.id}'>
+        <img src="${chef.img}" alt="${chef.name}" class="explore-chef-card__avatar" />
+        <div class="explore-chef-card__name">${chef.name}</div>
+        <div class="explore-chef-card__specialty">${chef.specialty}</div>
       </div>
     `).join('');
   }
@@ -32,15 +33,15 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderTrending() {
     trendingContainer.innerHTML = trendingBucket.map(r => `
       <div class='recipe-card' data-recipe-id='${r.id}' data-source='trending'>
-        <div class='recipe-anh'>
+        <div class='recipe-card__image'>
           <img src='${r.img}' alt='${r.name}'>
         </div>
-        <div class='recipe-body'>
-          <h4 class='recipe-title'>${r.name}</h4>
-          <p class='recipe-text'>${r.short || ''}</p>
-          <div class='recipe-meta'>
-            <span class='chef'>${r.chef || ''}</span>
-            <span class='time'>${r.time || ''}</span>
+        <div class='recipe-card__content'>
+          <h4 class='recipe-card__title'>${r.name}</h4>
+          <p class='recipe-card__description'>${r.short || ''}</p>
+          <div class='recipe-card__meta'>
+            <span class='recipe-card__chef'>${r.chef || ''}</span>
+            <span class='recipe-card__time'>${r.time || ''}</span>
           </div>
         </div>
       </div>
@@ -51,15 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const data = allBucket.slice(0, currentDisplayCount);
     allRecipesContainer.innerHTML = data.map(r => `
       <div class='recipe-card' data-recipe-id='${r.id}' data-source='all'>
-        <div class='recipe-anh'>
+        <div class='recipe-card__image'>
           <img src='${r.img}' alt='${r.name}'>
         </div>
-        <div class='recipe-body'>
-          <h3 class='recipe-title'>${r.name}</h3>
-          <p class='recipe-text'>${r.short || ''}</p>
-          <div class='recipe-meta'>
-            <span class='chef'>${r.chef || ''}</span>
-            <span class='time'>${r.time || ''}</span>
+        <div class='recipe-card__content'>
+          <h3 class='recipe-card__title'>${r.name}</h3>
+          <p class='recipe-card__description'>${r.short || ''}</p>
+          <div class='recipe-card__meta'>
+            <span class='recipe-card__chef'>${r.chef || ''}</span>
+            <span class='recipe-card__time'>${r.time || ''}</span>
           </div>
         </div>
       </div>

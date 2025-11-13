@@ -2,7 +2,7 @@
   const TARGET = '../../components/modules/category.html';
 
   document.addEventListener('click', (e) => {
-    const card = e.target.closest('.category-card[data-tag]');
+    const card = e.target.closest('.explore-category-card[data-tag]');
     if (!card) return;
 
     const tag = card.getAttribute('data-tag') || '';

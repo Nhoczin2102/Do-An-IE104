@@ -5,15 +5,15 @@
     <title>Công thức đã lưu</title>
     <link rel="stylesheet" href="../styles/base/variable.css" />
     <link rel="stylesheet" href="../styles/base/base.css" />
-    <link rel="stylesheet" href="../styles/components/header.css" />
-    <link rel="stylesheet" href="../styles/components/sidebar.css" />
+    <link rel="stylesheet" href="../styles/components/Main/header.css" />
+    <link rel="stylesheet" href="../styles/components/Main/sidebar.css" />
     <link rel="stylesheet" href="../styles/pages/myRecipe.css" />
     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
   </head>
   <body>
-    <home class="save-page">
+    <main class="saved-recipes-page">
       <header class="page-header">
         <div class="page-header__container">
           <div class="page-header__content">
@@ -104,26 +104,26 @@
         </nav>
       </aside>
 
-        <aside class="saved-card">
-          <div class="header-page">
+        <section class="saved-recipes">
+          <div class="saved-recipes__header">
             <!-- Tựa đề -->
-            <div class="save-header">
-              <h1 id="save-title">Công thức đã lưu</h1>
+            <div class="saved-recipes__title-wrapper">
+              <h1 class="saved-recipes__main-title">Công thức đã lưu</h1>
             </div>
           </div>
-          <section class="page header-page">
+          <section class="page saved-recipes__header">
             <!-- Cac the hinh anh -->
             <div
-              class="post-scroll"
+              class="saved-recipes__scroll-container"
               role="region"
               aria-label="Danh sách bài viết đã lưu"
             >
-              <div class="save-baiviet"></div>
+              <div class="saved-recipes__grid"></div>
             </div>
           </section>
-        </aside>
+        </section>
       </main>
-    </home>
+    </main>
     <script src="../js/pages/savereciped.js"></script>
     <script src="../js/modules/nav-detail-recipes.js"></script>
   </body>

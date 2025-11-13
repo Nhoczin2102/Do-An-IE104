@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const recipeContainer = document.querySelector(".save-baiviet");
+  const recipeContainer = document.querySelector(".saved-recipes__grid");
 
   const isSAVED = (id) => id >= 301 && id <= 399;
 
@@ -11,12 +11,12 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     recipeContainer.innerHTML = saved.map(r => `
       <article class="recipe-card" data-recipe-id="${r.id}" data-source="saved">
-        <div class="recipe-anh">
+        <div class="recipe-card__image">
           <img src="${r.img}" alt="${r.name}" />
         </div>
-        <div class="recipe-body">
-          <h3 class="recipe-title">${r.name}</h3>
-          <p class="recipe-text">${r.short || ''}</p>
+        <div class="recipe-card__content">
+          <h3 class="recipe-card__title">${r.name}</h3>
+          <p class="recipe-card__description">${r.short || ''}</p>
         </div>
       </article>
     `).join('');

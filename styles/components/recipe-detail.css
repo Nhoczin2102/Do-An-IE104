@@ -46,7 +46,7 @@ ul, ol {
 }
 
 /* --- Header --- */
-.header {
+.recipe-detail-header {
   background: linear-gradient(135deg, var(--bg-card) 0%, #fffaf9 100%);
   box-shadow: 0 4px 20px rgba(255, 105, 103, 0.1);
   position: sticky;
@@ -62,13 +62,13 @@ ul, ol {
   padding: 16px 20px;
 }
 
-.header-content {
+.recipe-detail-header__content {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.back-link {
+.recipe-detail-header__back-link {
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -84,13 +84,13 @@ ul, ol {
   border: 2px solid transparent;
 }
 
-.back-link:hover {
+.recipe-detail-header__back-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
   border-color: var(--primary-light);
 }
 
-.page-title {
+.recipe-detail-header__title {
   font-size: 24px;
   margin: 0;
   background: var(--gradient-primary);
@@ -101,13 +101,13 @@ ul, ol {
 }
 
 /* --- Thẻ món ăn --- */
-.detail-container {
+.recipe-detail {
   max-width: 1100px;
   margin: 32px auto;
   padding: 0 20px;
 }
 
-.recipe-card {
+.recipe-detail__hero {
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   gap: 32px;
@@ -122,7 +122,7 @@ ul, ol {
   position: relative;
 }
 
-.recipe-card::before {
+.recipe-detail__hero::before {
   content: '';
   position: absolute;
   top: 0;
@@ -132,12 +132,12 @@ ul, ol {
   background: var(--gradient-primary);
 }
 
-.recipe-card:hover {
+.recipe-detail__hero:hover {
   box-shadow: var(--hover-shadow);
   transform: translateY(-4px);
 }
 
-.recipe-card img {
+.recipe-detail__hero img {
   display: block;
   justify-self: end;
   width: 65%;
@@ -149,12 +149,12 @@ ul, ol {
   border: 3px solid var(--bg-card);
 }
 
-.recipe-card:hover img {
+.recipe-detail__hero:hover img {
   transform: scale(1.02);
   box-shadow: 0 12px 35px rgba(255, 105, 103, 0.3);
 }
 
-.detail-info h2 {
+.recipe-detail__info h2 {
   margin: 0 0 16px;
   color: var(--text);
   font-size: 2.5rem;
@@ -163,7 +163,7 @@ ul, ol {
   position: relative;
 }
 
-.detail-info h2::after {
+.recipe-detail__info h2::after {
   content: '';
   position: absolute;
   bottom: -8px;
@@ -174,7 +174,7 @@ ul, ol {
   border-radius: 2px;
 }
 
-.meta {
+.recipe-detail__meta {
   display: flex;
   gap: 16px;
   color: var(--muted);
@@ -183,7 +183,7 @@ ul, ol {
   flex-wrap: wrap;
 }
 
-.meta span {
+.recipe-detail__meta span {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -204,14 +204,14 @@ ul, ol {
   font-size: 1.1em;
 }
 
-.tags {
+.recipe-detail__tags {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   margin-top: 16px;
 }
 
-.tags .tag {
+.recipe-detail__tag {
   border: 2px solid var(--primary-color);
   border-radius: 50px;
   padding: 8px 16px;
@@ -223,7 +223,7 @@ ul, ol {
   cursor: default;
 }
 
-.tags .tag:hover {
+.recipe-detail__tag:hover {
   background: var(--gradient-primary);
   color: var(--text-on-primary);
   transform: translateY(-2px);
@@ -231,7 +231,7 @@ ul, ol {
 }
 
 /* --- Nội dung chi tiết --- */
-.detail-grid {
+.recipe-detail__grid {
   display: grid;
   grid-template-areas:
     'steps ingredients'
@@ -241,19 +241,19 @@ ul, ol {
   margin-top: 32px;
 }
 
-.detail-grid > article:nth-of-type(1) {
+.recipe-detail__grid > article:nth-of-type(1) {
   grid-area: ingredients;
 }
 
-.detail-grid > article:nth-of-type(2) {
+.recipe-detail__grid > article:nth-of-type(2) {
   grid-area: steps;
 }
 
-.detail-grid > aside {
+.recipe-detail__grid > aside {
   grid-area: nutrition;
 }
 
-.card {
+.recipe-detail__card {
   background: var(--bg-card);
   border-radius: var(--radius);
   border: 1px solid var(--border-color);
@@ -265,7 +265,7 @@ ul, ol {
   height: fit-content;
 }
 
-.card::before {
+.recipe-detail__card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -275,12 +275,12 @@ ul, ol {
   background: var(--gradient-primary);
 }
 
-.card:hover {
+.recipe-detail__card:hover {
   box-shadow: var(--hover-shadow);
   transform: translateY(-2px);
 }
 
-.card h3 {
+.recipe-detail__card h3 {
   font-size: 1.5rem;
   padding-bottom: 12px;
   border-bottom: 2px solid var(--primary-light);
@@ -289,7 +289,7 @@ ul, ol {
   position: relative;
 }
 
-.card h3::after {
+.recipe-detail__card h3::after {
   content: '';
   position: absolute;
   bottom: -2px;
@@ -299,13 +299,13 @@ ul, ol {
   background: var(--primary-dark);
 }
 
-.card ul,
-.card ol {
+.recipe-detail__card ul,
+.recipe-detail__card ol {
   padding-left: 0;
   line-height: 1.7;
 }
 
-.card li {
+.recipe-detail__card li {
   margin-bottom: 12px;
   position: relative;
   padding-left: 8px;
@@ -399,37 +399,37 @@ ul, ol {
 
 /* --- Responsive --- */
 @media (max-width: 960px) {
-  .recipe-card {
+  .recipe-detail__hero {
     grid-template-columns: 1fr;
     padding: 24px;
     gap: 24px;
   }
-  .recipe-card img {
+  .recipe-detail__hero img {
     justify-self: center;
     width: 100%;
     max-width: 400px;
     height: 250px;
   }
   
-  .detail-info h2 {
+  .recipe-detail__info h2 {
     font-size: 2rem;
     text-align: center;
   }
   
-  .detail-info h2::after {
+  .recipe-detail__info h2::after {
     left: 50%;
     transform: translateX(-50%);
   }
 
-  .meta {
+  .recipe-detail__meta {
     justify-content: center;
   }
 
-  .tags {
+  .recipe-detail__tags {
     justify-content: center;
   }
 
-  .detail-grid {
+  .recipe-detail__grid {
     grid-template-columns: 1fr;
     grid-template-areas:
       'steps'
@@ -442,38 +442,38 @@ ul, ol {
     padding: 12px 16px;
   }
   
-  .header-content {
+  .recipe-detail-header__content {
     flex-direction: column;
     gap: 12px;
     align-items: flex-start;
   }
   
-  .back-link {
+  .recipe-detail-header__back-link {
     align-self: flex-start;
   }
 }
 
 @media (max-width: 480px) {
-  .detail-container {
+  .recipe-detail {
     margin: 20px auto;
     padding: 0 16px;
   }
   
-  .recipe-card {
+  .recipe-detail__hero {
     padding: 20px;
     border-radius: 12px;
   }
   
-  .detail-info h2 {
+  .recipe-detail__info h2 {
     font-size: 1.75rem;
   }
   
-  .card {
+  .recipe-detail__card {
     padding: 20px;
     border-radius: 12px;
   }
   
-  .meta {
+  .recipe-detail__meta {
     flex-direction: column;
     align-items: center;
     gap: 10px;
