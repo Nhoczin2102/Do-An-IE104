@@ -11,7 +11,7 @@
 }
 
 .sidebar-right__card .sidebar-right__title {
-  color: var(--primary-color);
+  color: var(--text);
   font-size: 18px;
   font-weight: 700;
   padding-bottom: 16px;

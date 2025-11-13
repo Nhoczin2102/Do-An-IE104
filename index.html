@@ -1,471 +1,521 @@
 <!DOCTYPE html>
 <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>POTPAN - Mạng xã hội nấu ăn</title>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>POTPAN - Mạng xã hội nấu ăn</title>
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./styles/base/base.css" />
+    <link rel="stylesheet" href="./styles/base/variable.css" />
+    <link rel="stylesheet" href="./styles/pages/home.css" />
+    <link rel="stylesheet" href="./styles/components/Main/header.css" />
+    <link rel="stylesheet" href="./styles/components/Main/sidebar.css" />
+    <link rel="stylesheet" href="./styles/components/Home/feed_composer.css" />
+    <link rel="stylesheet" href="./styles/components/Home/feed_post.css" />
+    <link rel="stylesheet" href="./styles/components/Home/cookmode.css" />
+    <link rel="stylesheet" href="./styles/components/Home/modal.css" />
+    <link rel="stylesheet" href="./styles/components/Home/right_sidebar.css" />
+  </head>
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link rel="stylesheet" href="./styles/base/base.css" />
-  <link rel="stylesheet" href="./styles/base/variable.css" />
-  <link rel="stylesheet" href="./styles/pages/home.css" />
-  <link rel="stylesheet" href="./styles/components/Main/header.css" />
-  <link rel="stylesheet" href="./styles/components/Main/sidebar.css" />
-  <link rel="stylesheet" href="./styles/components/Home/feed_composer.css" />
-  <link rel="stylesheet" href="./styles/components/Home/feed_post.css" />
-  <link rel="stylesheet" href="./styles/components/Home/cookmode.css" />
-  <link rel="stylesheet" href="./styles/components/Home/modal.css" />
-  <link rel="stylesheet" href="./styles/components/Home/right_sidebar.css" />
-</head>
+  <body>
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+      <div class="header__container">
+        <div class="header__content">
+          <!-- Logo -->
+          <a href="index.html" class="header__logo">
+            <div class="header__logo-image">
+              <img src="./assets/images/logo.svg" />
+            </div>
+            <h1 class="header__logo-text">POTPAN</h1>
+          </a>
 
-<body>
-  <!-- ========== HEADER ========== -->
-  <header class="header">
-    <div class="header__container">
-      <div class="header__content">
-        <!-- Logo -->
-        <a href="index.html" class="header__logo">
-          <div class="header__logo-image">
-            <img src="./assets/images/logo.svg" />
+          <!-- Thanh tìm kiếm -->
+          <div class="header__search">
+            <input
+              type="text"
+              class="header__search-input"
+              placeholder="Tìm kiếm công thức, nguyên liệu..."
+            />
+            <button class="header__search-button">
+              <i class="fas fa-search header__search-icon"></i>
+            </button>
           </div>
-          <h1 class="header__logo-text">POTPAN</h1>
-        </a>
 
-        <!-- Thanh tìm kiếm -->
-        <div class="header__search">
-          <input type="text" class="header__search-input" placeholder="Tìm kiếm công thức, nguyên liệu..." />
-          <button class="header__search-button">
-            <i class="fas fa-search header__search-icon"></i>
-          </button>
-        </div>
-
-        <!-- Điều hướng -->
-        <div class="header__nav">
-          <a href="index.html" class="header__nav-item header__nav-item--active">
-            <i class="fas fa-home header__nav-icon"></i>
-            <span class="header__nav-text">Trang chủ</span>
-          </a>
-          <a href="./pages/explore.html" class="header__nav-item">
-            <i class="fas fa-compass header__nav-icon"></i>
-            <span class="header__nav-text">Khám phá</span>
-          </a>
-          <a href="./pages/about.html" target="_blank" class="header__nav-item">
-            <i class="fa-solid fa-users header__nav-icon"></i>
-            <span class="header__nav-text">Về chúng tôi</span>
-          </a>
-          <a href="./pages/contact.html" target="_blank" class="header__nav-item">
-            <i class="fa-solid fa-phone header__nav-icon"></i>
-            <span class="header__nav-text">Liên hệ</span>
-          </a>
-
-          <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
-          <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
-            <i class="fas fa-sign-out-alt header__nav-icon"></i>
-            <span class="header__nav-text">Đăng xuất</span>
-          </a>
-
-          <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
-          <a href="./pages/login.html" class="header__nav-item header__nav-item--login" id="loginNav">
-            <i class="fa-solid fa-user header__nav-icon"></i>
-            <span class="header__nav-text">Đăng nhập</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ========== LAYOUT 3 CỘT ========== -->
-  <main class="page page--home">
-    <aside class="sidebar">
-      <div class="sidebar__profile">
-        <img class="sidebar__avatar" id="sidebarAvatar" src="./assets/images/avatar.png" alt="avatar" />
-        <div class="sidebar__profile-info">
-          <div class="sidebar__name" id="sidebarName">...</div>
-          <div class="sidebar__handle" id="sidebarHandle">...</div>
-        </div>
-      </div>
-
-      <nav class="sidebar__menu">
-        <a class="sidebar__menu-item sidebar__menu-item--active" href="#">
-          <i class="fas fa-newspaper sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Bảng tin</span>
-        </a>
-
-        <a class="sidebar__menu-item" href="./pages/profile.html">
-          <i class="fas fa-user sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Hồ sơ của tôi</span>
-        </a>
-
-        <a class="sidebar__menu-item" href="./pages/myRecipe.html">
-          <i class="fas fa-bookmark sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Công thức đã lưu</span>
-        </a>
-
-        <a class="sidebar__menu-item" href="./pages/famous-chef.html">
-          <i class="fas fa-utensils sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
-        </a>
-
-        <a class="sidebar__menu-item" href="./pages/setting.html">
-          <i class="fas fa-cog sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Cài đặt</span>
-        </a>
-      </nav>
-    </aside>
-
-    <!-- Cột giữa: nạp nội dung từ file JS -->
-    <div class="feed">
-      <div class="feed__composer">
-        <div class="feed__composer-content">
-          <img src="./assets/images/avatar.png" alt="" class="feed__composer-avatar" />
-          <input type="text" class="feed__composer-input" placeholder="Chia sẻ công thức mới của bạn..." />
-        </div>
-        <div class="feed__composer-tabs">
-          <span class="feed__composer-tab">Ảnh</span>
-          <span class="feed__composer-tab">Video</span>
-          <span class="feed__composer-tab">Công thức</span>
-          <button class="feed__composer-button">Đăng</button>
-        </div>
-      </div>
-
-      <section class="feed__posts" id="feed"></section>
-    </div>
-
-    <!-- Cột phải -->
-    <aside class="sidebar-right">
-      <div class="sidebar-right__card">
-        <h3 class="sidebar-right__title">Đầu bếp đề xuất</h3>
-        <div class="sidebar-right__chef">
-          <img src="https://i.pravatar.cc/100?img=5" alt="" class="sidebar-right__chef-avatar" />
-          <div class="sidebar-right__chef-info">
-            <strong class="sidebar-right__chef-name">Hoàng Tú</strong><br /><small
-              class="sidebar-right__chef-specialty">Chuyên các món nướng</small>
-          </div>
-        </div>
-        <div class="sidebar-right__chef">
-          <img src="https://i.pravatar.cc/100?img=14" alt="" class="sidebar-right__chef-avatar" />
-          <div class="sidebar-right__chef-info"><strong class="sidebar-right__chef-name">Văn Tài</strong><br /><small
-              class="sidebar-right__chef-specialty">Các món bánh</small></div>
-        </div>
-        <div class="sidebar-right__chef">
-          <img src="https://i.pravatar.cc/100?img=47" alt="" class="sidebar-right__chef-avatar" />
-          <div class="sidebar-right__chef-info">
-            <strong class="sidebar-right__chef-name">Ngọc Trâm</strong><br /><small
-              class="sidebar-right__chef-specialty">Các món chay</small>
+          <!-- Điều hướng -->
+          <div class="header__nav">
+            <a href="index.html" class="header__nav-item header__nav-item--active">
+              <i class="fas fa-home header__nav-icon"></i>
+              <span class="header__nav-text">Trang chủ</span>
+            </a>
+            <a href="./pages/explore.html" class="header__nav-item">
+              <i class="fas fa-compass header__nav-icon"></i>
+              <span class="header__nav-text">Khám phá</span>
+            </a>
+            <a href="./pages/about.html" target="_blank" class="header__nav-item">
+              <i class="fa-solid fa-users header__nav-icon"></i>
+              <span class="header__nav-text">Về chúng tôi</span>
+            </a>
+            <a href="./pages/contact.html" target="_blank" class="header__nav-item">
+              <i class="fa-solid fa-phone header__nav-icon"></i>
+              <span class="header__nav-text">Liên hệ</span>
+            </a>
+            
+            <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
+            <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
+              <i class="fas fa-sign-out-alt header__nav-icon"></i>
+              <span class="header__nav-text">Đăng xuất</span>
+            </a>
+            
+            <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
+            <a href="./pages/login.html" class="header__nav-item header__nav-item--login" id="loginNav">
+              <i class="fa-solid fa-user header__nav-icon"></i>
+              <span class="header__nav-text">Đăng nhập</span>
+            </a>
           </div>
         </div>
       </div>
+    </header>
 
+    <!-- ========== LAYOUT 3 CỘT ========== -->
+    <main class="page page--home">
+      <aside class="sidebar">
+        <div class="sidebar__profile">
+          <img
+            class="sidebar__avatar"
+            id="sidebarAvatar"
+            src="./assets/images/avatar.png"
+            alt="avatar"
+          />
+          <div class="sidebar__profile-info">
+            <div class="sidebar__name" id="sidebarName">...</div>
+            <div class="sidebar__handle" id="sidebarHandle">...</div>
+          </div>
+        </div>
+
+        <nav class="sidebar__menu">
+          <a class="sidebar__menu-item sidebar__menu-item--active" href="#">
+            <i class="fas fa-newspaper sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Bảng tin</span>
+          </a>
+
+          <a class="sidebar__menu-item" href="./pages/profile.html">
+            <i class="fas fa-user sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Hồ sơ của tôi</span>
+          </a>
+
+          <a class="sidebar__menu-item" href="./pages/myRecipe.html">
+            <i class="fas fa-bookmark sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Công thức đã lưu</span>
+          </a>
+
+          <a class="sidebar__menu-item" href="./pages/famous-chef.html">
+            <i class="fas fa-utensils sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
+          </a>
+
+          <a class="sidebar__menu-item" href="./pages/setting.html">
+            <i class="fas fa-cog sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Cài đặt</span>
+          </a>
+        </nav>
+      </aside>
+
+      <!-- Cột giữa: nạp nội dung từ file JS -->
+      <div class="feed">
+        <div class="feed__composer">
+          <div class="feed__composer-content">
+            <img
+              src="./assets/images/avatar.png"
+              alt=""
+              class="feed__composer-avatar"
+            />
+            <input type="text" class="feed__composer-input" placeholder="Chia sẻ công thức mới của bạn..." />
+          </div>
+          <div class="feed__composer-tabs">
+            <span class="feed__composer-tab">Ảnh</span>
+            <span class="feed__composer-tab">Video</span>
+            <span class="feed__composer-tab">Công thức</span>
+            <button class="feed__composer-button">Đăng</button>
+          </div>
+        </div>
+
+        <section class="feed__posts" id="feed"></section>
+      </div>
+
+      <!-- Cột phải -->
       <aside class="sidebar-right">
         <div class="sidebar-right__card">
-          <h3 class="sidebar-right__title">Món ăn đề xuất</h3>
+          <h3 class="sidebar-right__title">Đầu bếp đề xuất</h3>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=5" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info">
+              <strong class="sidebar-right__chef-name">Hoàng Tú</strong><br /><small class="sidebar-right__chef-specialty">Chuyên các món nướng</small>
+            </div>
+          </div>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=14" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info"><strong class="sidebar-right__chef-name">Văn Tài</strong><br /><small class="sidebar-right__chef-specialty">Các món bánh</small></div>
+          </div>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=47" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info">
+              <strong class="sidebar-right__chef-name">Ngọc Trâm</strong><br /><small class="sidebar-right__chef-specialty">Các món chay</small>
+            </div>
+          </div>
+        </div>
+
+        <aside class="sidebar-right">
+        <div class="sidebar-right__card">
+          <h3 class="sidebar-right__title">Đầu bếp đề xuất</h3>
           <div class="sidebar-right__chef">
             <img src="./assets/images/TKDH.webp" alt="" class="sidebar-right__chef-avatar" />
             <div class="sidebar-right__chef-info">
-              <strong class="sidebar-right__chef-name">Thịt kho đậu hủ</strong><br /><small
-                class="sidebar-right__chef-specialty">Bùi Anh Khôi</small>
+              <strong class="sidebar-right__chef-name">Thịt kho đậu hủ</strong><br /><small class="sidebar-right__chef-specialty">Bùi Anh Khôi</small>
             </div>
           </div>
           <div class="sidebar-right__chef">
-            <img src="./assets/images/cakho.webp" alt="" class="sidebar-right__chef-avatar" />
-            <div class="sidebar-right__chef-info"><strong class="sidebar-right__chef-name">Cá kho tộ</strong><br /><small
-                class="sidebar-right__chef-specialty">Hán Dương Long</small></div>
+            <img src="https://i.pravatar.cc/100?img=14" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info"><strong class="sidebar-right__chef-name">Văn Tài</strong><br /><small class="sidebar-right__chef-specialty">Các món bánh</small></div>
           </div>
           <div class="sidebar-right__chef">
-            <img src="./assets/images/canhchua.webp" alt="" class="sidebar-right__chef-avatar" />
+            <img src="https://i.pravatar.cc/100?img=47" alt="" class="sidebar-right__chef-avatar" />
             <div class="sidebar-right__chef-info">
-              <strong class="sidebar-right__chef-name">Canh chua</strong><br /><small
-                class="sidebar-right__chef-specialty">Nhật Quang</small>
+              <strong class="sidebar-right__chef-name">Ngọc Trâm</strong><br /><small class="sidebar-right__chef-specialty">Các món chay</small>
             </div>
           </div>
         </div>
 
-
+       
       </aside>
-  </main>
+    </main>
 
-  <!-- MODAL TẠO BÀI ĐĂNG -->
-  <div id="createPostModal" class="modal">
-    <div class="modal__content">
-      <!-- Header popup -->
-      <div class="modal__header">
-        <h3 class="modal__title">Tạo bài đăng mới</h3>
-        <button class="modal__close">&times;</button>
-      </div>
-
-      <!-- Thông tin người dùng -->
-      <div class="modal__user">
-        <img src="../../assets/images/avatar.png" alt="Avatar" class="modal__user-avatar" />
-        <div class="modal__user-info">
-          <div class="modal__user-name">Minh Nhựt</div>
-          <div class="modal__user-handle">@nhutminh_amthuc</div>
+    <!-- MODAL TẠO BÀI ĐĂNG -->
+    <div id="createPostModal" class="modal">
+      <div class="modal__content">
+        <!-- Header popup -->
+        <div class="modal__header">
+          <h3 class="modal__title">Tạo bài đăng mới</h3>
+          <button class="modal__close">&times;</button>
         </div>
-      </div>
 
-      <!-- Nội dung bài đăng -->
-      <textarea class="modal__content-input" placeholder="Chia sẻ công thức mới của bạn..."></textarea>
-
-      <!-- Phần công thức -->
-      <div class="modal__recipe-form">
-        <h4 class="modal__recipe-title">🍴 Thông tin công thức</h4>
-
-        <div class="modal__recipe-basic-info">
-          <div class="modal__input-group">
-            <label class="modal__input-label">Tên món ăn</label>
-            <input type="text" class="modal__recipe-title-input" placeholder="Ví dụ: Phở bò Hà Nội" />
-          </div>
-          <div class="modal__input-group">
-            <label class="modal__input-label">Độ khó</label>
-            <select class="modal__recipe-difficulty">
-              <option value="Dễ">Dễ</option>
-              <option value="Trung bình">Trung bình</option>
-              <option value="Khó">Khó</option>
-            </select>
+        <!-- Thông tin người dùng -->
+        <div class="modal__user">
+          <img src="../../assets/images/avatar.png" alt="Avatar" class="modal__user-avatar" />
+          <div class="modal__user-info">
+            <div class="modal__user-name">Minh Nhựt</div>
+            <div class="modal__user-handle">@nhutminh_amthuc</div>
           </div>
         </div>
 
-        <div class="modal__recipe-time-info">
-          <div class="modal__input-group">
-            <label class="modal__input-label">Thời gian chuẩn bị</label>
-            <input type="text" class="modal__recipe-prep-time" placeholder="30 phút" />
-          </div>
-          <div class="modal__input-group">
-            <label class="modal__input-label">Thời gian nấu</label>
-            <input type="text" class="modal__recipe-cook-time" placeholder="1 giờ" />
-          </div>
-          <div class="modal__input-group">
-            <label class="modal__input-label">Khẩu phần</label>
-            <input type="text" class="modal__recipe-servings" placeholder="4 người" />
-          </div>
-        </div>
+        <!-- Nội dung bài đăng -->
+        <textarea
+          class="modal__content-input"
+          placeholder="Chia sẻ công thức mới của bạn..."
+        ></textarea>
 
-        <!-- Nguyên liệu -->
-        <div class="modal__ingredients-section">
-          <label class="modal__section-label">📝 Nguyên liệu</label>
-          <div class="modal__ingredients-list"></div>
-          <button type="button" class="modal__add-ingredient">
-            + Thêm nguyên liệu
-          </button>
-        </div>
+        <!-- Phần công thức -->
+        <div class="modal__recipe-form">
+          <h4 class="modal__recipe-title">🍴 Thông tin công thức</h4>
 
-        <!-- Các bước thực hiện -->
-        <div class="modal__steps-section">
-          <label class="modal__section-label">👩‍🍳 Các bước thực hiện</label>
-          <div class="modal__steps-list"></div>
-          <button type="button" class="modal__add-step">+ Thêm bước</button>
-        </div>
-
-        <!-- Mẹo hay -->
-        <div class="modal__tips-section">
-          <label class="modal__section-label">💡 Mẹo hay</label>
-          <textarea class="modal__recipe-tips" placeholder="Chia sẻ mẹo nấu ăn của bạn..."></textarea>
-        </div>
-      </div>
-
-      <!-- Upload ảnh -->
-      <div class="modal__image-upload">
-        <label class="modal__section-label">🖼️ Hình ảnh món ăn</label>
-        <div class="modal__upload-area">
-          <div class="modal__upload-icon">📷</div>
-          <div class="modal__upload-text">
-            Kéo thả ảnh vào đây hoặc click để chọn
-          </div>
-          <div class="modal__upload-subtext">JPG, PNG (Tối đa 5MB)</div>
-          <input type="file" accept="image/*" class="modal__image-input" />
-          <input type="file" accept="video/*" class="modal__image-input" />
-        </div>
-        <div class="modal__image-preview"></div>
-      </div>
-
-      <!-- Nút hành động -->
-      <div class="modal__actions">
-        <button class="modal__cancel-btn">Hủy</button>
-        <button class="modal__post-btn">Đăng bài</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- COOK MODE MODAL -->
-  <div id="cookModeModal" class="cookmode">
-    <div class="cookmode__content">
-      <div class="cookmode__header">
-        <h2 class="cookmode__title">CHẾ ĐỘ NẤU ĂN - COOK MODE</h2>
-        <button class="cookmode__close">&times;</button>
-      </div>
-
-      <div class="cookmode__body">
-        <!-- Dish Info -->
-        <div class="cookmode__dish-info">
-          <h3 class="cookmode__dish-name">Tên món ăn</h3>
-          <div class="cookmode__meta">
-            <div class="cookmode__meta-item">Thời gian chuẩn bị: <span data-cm-prep>--</span></div>
-            <div class="cookmode__meta-item">Thời gian nấu: <span data-cm-cook>--</span></div>
-            <div class="cookmode__meta-item">Khẩu phần ăn: <span data-cm-serv>--</span></div>
-            <div class="cookmode__meta-item">Độ khó: <span data-cm-diff>--</span></div>
-          </div>
-        </div>
-
-        <!-- Ingredients -->
-        <div class="cookmode__section">
-          <h4 class="cookmode__section-title">📝 Nguyên liệu</h4>
-          <ul class="cookmode__ingredients"></ul>
-        </div>
-
-        <!-- Current Step -->
-        <div class="cookmode__section">
-          <h4 class="cookmode__section-title">👩‍🍳 Bước thực hiện</h4>
-          <div class="cookmode__step">
-            <div class="cookmode__step-progress">
-              <span data-cm-step-index>1</span>/<span data-cm-step-total>5</span>
-              <div class="cookmode__progress-bar">
-                <div class="cookmode__progress-fill" data-cm-progress-bar style="width: 0%"></div>
-              </div>
-              <span data-cm-progress>0%</span>
+          <div class="modal__recipe-basic-info">
+            <div class="modal__input-group">
+              <label class="modal__input-label">Tên món ăn</label>
+              <input
+                type="text"
+                class="modal__recipe-title-input"
+                placeholder="Ví dụ: Phở bò Hà Nội"
+              />
             </div>
-            <p class="cookmode__step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
-          </div>
-        </div>
-
-        <!-- Timer -->
-        <div class="cookmode__section">
-          <h4 class="cookmode__section-title">⏰ Hẹn giờ</h4>
-          <div class="cookmode__timer">
-            <div class="cookmode__timer-display" data-cm-timer>00:00</div>
-            <div class="cookmode__timer-controls">
-              <button class="cookmode__timer-btn" data-cm-minus>-1m</button>
-              <button class="cookmode__timer-btn" data-cm-startstop>Bắt đầu</button>
-              <button class="cookmode__timer-btn" data-cm-plus>+1m</button>
+            <div class="modal__input-group">
+              <label class="modal__input-label">Độ khó</label>
+              <select class="modal__recipe-difficulty">
+                <option value="Dễ">Dễ</option>
+                <option value="Trung bình">Trung bình</option>
+                <option value="Khó">Khó</option>
+              </select>
             </div>
           </div>
-        </div>
 
-        <!-- Tips -->
-        <div class="cookmode__section" data-cm-tip style="display: none">
-          <h4 class="cookmode__section-title">💡 Mẹo nhỏ</h4>
-          <p class="cookmode__tip-text"></p>
-        </div>
-      </div>
+          <div class="modal__recipe-time-info">
+            <div class="modal__input-group">
+              <label class="modal__input-label">Thời gian chuẩn bị</label>
+              <input
+                type="text"
+                class="modal__recipe-prep-time"
+                placeholder="30 phút"
+              />
+            </div>
+            <div class="modal__input-group">
+              <label class="modal__input-label">Thời gian nấu</label>
+              <input type="text" class="modal__recipe-cook-time" placeholder="1 giờ" />
+            </div>
+            <div class="modal__input-group">
+              <label class="modal__input-label">Khẩu phần</label>
+              <input
+                type="text"
+                class="modal__recipe-servings"
+                placeholder="4 người"
+              />
+            </div>
+          </div>
 
-      <div class="cookmode__footer">
-        <button class="cookmode__btn cookmode__btn--secondary" data-cm-prev disabled>
-          ⬅ Bước trước
-        </button>
-        <button class="cookmode__btn cookmode__btn--primary" data-cm-next>
-          Bước tiếp theo ➡
-        </button>
-        <button class="cookmode__btn cookmode__btn--success" data-cm-finish style="display: none">
-          🎉 Hoàn thành
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ========== HTML TEMPLATES ========== -->
-  <!-- Post Template -->
-  <template id="postTemplate">
-    <article class="feed-post" data-post-id="{id}">
-      <div class="feed-post__header">
-        <img class="feed-post__avatar" src="{avatar}" alt="{name}" />
-        <div class="feed-post__user">
-          <strong class="feed-post__name">{name}</strong>
-          <div class="feed-post__time">{time}</div>
-        </div>
-      </div>
-
-      <p class="feed-post__content">{content}</p>
-
-      {recipeSection} {imageSection}
-
-      <div class="feed-post__stats">
-        <span class="feed-post__likes">{likes} lượt thích</span>
-        <span class="feed-post__comments-count">{comments} bình luận</span>
-        <span class="feed-post__shares">{shares} chia sẻ</span>
-      </div>
-
-      <div class="feed-post__actions">
-        <button class="feed-post__action-btn {likeClass}" data-action="like" data-post-id="{id}">
-          <i class="fas fa-heart feed-post__action-icon"></i>
-          <span class="feed-post__action-text">{likeText}</span>
-        </button>
-        <button class="feed-post__action-btn" data-action="comment" data-post-id="{id}">
-          <i class="fas fa-comment feed-post__action-icon"></i>
-          <span class="feed-post__action-text">Bình luận</span>
-        </button>
-        <button class="feed-post__action-btn" data-action="share" data-post-id="{id}">
-          <i class="fas fa-share feed-post__action-icon"></i>
-          <span class="feed-post__action-text">Chia sẻ</span>
-        </button>
-        {cookModeButton}
-      </div>
-
-      <div class="feed-post__comments">
-        {commentsList}
-
-        <div class="feed-post__comment-input">
-          <img class="feed-post__comment-avatar" src="./assets/images/avatar.png" alt="Your avatar" />
-          <div class="feed-post__comment-input-wrapper">
-            <input type="text" placeholder="Viết bình luận..." class="feed-post__comment-input-field"
-              data-post-id="{id}" />
-            <button class="feed-post__comment-submit" data-post-id="{id}">
-              <i class="fas fa-paper-plane feed-post__comment-submit-icon"></i>
+          <!-- Nguyên liệu -->
+          <div class="modal__ingredients-section">
+            <label class="modal__section-label">📝 Nguyên liệu</label>
+            <div class="modal__ingredients-list"></div>
+            <button type="button" class="modal__add-ingredient">
+              + Thêm nguyên liệu
             </button>
           </div>
-        </div>
-      </div>
-    </article>
-  </template>
 
-  <!-- Recipe Template -->
-  <template id="recipeTemplate">
-    <div class="feed-post__recipe">
-      <h4 class="feed-post__recipe-title">🍴 {title}</h4>
+          <!-- Các bước thực hiện -->
+          <div class="modal__steps-section">
+            <label class="modal__section-label">👩‍🍳 Các bước thực hiện</label>
+            <div class="modal__steps-list"></div>
+            <button type="button" class="modal__add-step">+ Thêm bước</button>
+          </div>
 
-      <div class="feed-post__recipe-info">
-        <div class="feed-post__recipe-info-item">⏱️ Chuẩn bị: {prepTime}</div>
-        <div class="feed-post__recipe-info-item">🔥 Nấu: {cookTime}</div>
-        <div class="feed-post__recipe-info-item">👥 Khẩu phần: {servings}</div>
-        <div class="feed-post__recipe-info-item">📊 Độ khó: {difficulty}</div>
-      </div>
-
-      <div class="feed-post__recipe-details">
-        <div class="feed-post__ingredients">
-          <h5 class="feed-post__ingredients-title">Nguyên liệu:</h5>
-          <ul class="feed-post__ingredients-list">
-            {ingredientsList}
-          </ul>
+          <!-- Mẹo hay -->
+          <div class="modal__tips-section">
+            <label class="modal__section-label">💡 Mẹo hay</label>
+            <textarea
+              class="modal__recipe-tips"
+              placeholder="Chia sẻ mẹo nấu ăn của bạn..."
+            ></textarea>
+          </div>
         </div>
 
-        <div class="feed-post__steps">
-          <h5 class="feed-post__steps-title">Các bước:</h5>
-          <ol class="feed-post__steps-list">
-            {stepsList}
-          </ol>
+        <!-- Upload ảnh -->
+        <div class="modal__image-upload">
+          <label class="modal__section-label">🖼️ Hình ảnh món ăn</label>
+          <div class="modal__upload-area">
+            <div class="modal__upload-icon">📷</div>
+            <div class="modal__upload-text">
+              Kéo thả ảnh vào đây hoặc click để chọn
+            </div>
+            <div class="modal__upload-subtext">JPG, PNG (Tối đa 5MB)</div>
+            <input type="file" accept="image/*" class="modal__image-input" />
+            <input type="file" accept="video/*" class="modal__image-input" />
+          </div>
+          <div class="modal__image-preview"></div>
         </div>
-      </div>
 
-      {tipsSection}
-    </div>
-  </template>
-
-  <!-- Comment Template -->
-  <template id="commentTemplate">
-    <div class="feed-post__comment">
-      <img class="feed-post__comment-avatar" src="{avatar}" alt="{name}" />
-      <div class="feed-post__comment-content">
-        <div class="feed-post__comment-header">
-          <strong class="feed-post__comment-name">{name}</strong>
-          <span class="feed-post__comment-time">{time}</span>
+        <!-- Nút hành động -->
+        <div class="modal__actions">
+          <button class="modal__cancel-btn">Hủy</button>
+          <button class="modal__post-btn">Đăng bài</button>
         </div>
-        <p class="feed-post__comment-text">{content}</p>
       </div>
     </div>
-  </template>
 
-  <!-- Nhúng file JS demo -->
-  <script src="./js/pages/home.js" type="module"></script>
-  <script src="./js/main.js" type="module"></script>
-</body>
+    <!-- COOK MODE MODAL -->
+    <div id="cookModeModal" class="cookmode">
+      <div class="cookmode__content">
+        <div class="cookmode__header">
+          <h2 class="cookmode__title">CHẾ ĐỘ NẤU ĂN - COOK MODE</h2>
+          <button class="cookmode__close">&times;</button>
+        </div>
 
+        <div class="cookmode__body">
+          <!-- Dish Info -->
+          <div class="cookmode__dish-info">
+            <h3 class="cookmode__dish-name">Tên món ăn</h3>
+            <div class="cookmode__meta">
+              <div class="cookmode__meta-item">Thời gian chuẩn bị: <span data-cm-prep>--</span></div>
+              <div class="cookmode__meta-item">Thời gian nấu: <span data-cm-cook>--</span></div>
+              <div class="cookmode__meta-item">Khẩu phần ăn: <span data-cm-serv>--</span></div>
+              <div class="cookmode__meta-item">Độ khó: <span data-cm-diff>--</span></div>
+            </div>
+          </div>
+
+          <!-- Ingredients -->
+          <div class="cookmode__section">
+            <h4 class="cookmode__section-title">📝 Nguyên liệu</h4>
+            <ul class="cookmode__ingredients"></ul>
+          </div>
+
+          <!-- Current Step -->
+          <div class="cookmode__section">
+            <h4 class="cookmode__section-title">👩‍🍳 Bước thực hiện</h4>
+            <div class="cookmode__step">
+              <div class="cookmode__step-progress">
+                <span data-cm-step-index>1</span>/<span data-cm-step-total>5</span>
+                <div class="cookmode__progress-bar">
+                  <div
+                    class="cookmode__progress-fill"
+                    data-cm-progress-bar
+                    style="width: 0%"
+                  ></div>
+                </div>
+                <span data-cm-progress>0%</span>
+              </div>
+              <p class="cookmode__step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
+            </div>
+          </div>
+
+          <!-- Timer -->
+          <div class="cookmode__section">
+            <h4 class="cookmode__section-title">⏰ Hẹn giờ</h4>
+            <div class="cookmode__timer">
+              <div class="cookmode__timer-display" data-cm-timer>00:00</div>
+              <div class="cookmode__timer-controls">
+                <button class="cookmode__timer-btn" data-cm-minus>-1m</button>
+                <button class="cookmode__timer-btn" data-cm-startstop>Bắt đầu</button>
+                <button class="cookmode__timer-btn" data-cm-plus>+1m</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tips -->
+          <div class="cookmode__section" data-cm-tip style="display: none">
+            <h4 class="cookmode__section-title">💡 Mẹo nhỏ</h4>
+            <p class="cookmode__tip-text"></p>
+          </div>
+        </div>
+
+        <div class="cookmode__footer">
+          <button class="cookmode__btn cookmode__btn--secondary" data-cm-prev disabled>
+            ⬅ Bước trước
+          </button>
+          <button class="cookmode__btn cookmode__btn--primary" data-cm-next>
+            Bước tiếp theo ➡
+          </button>
+          <button class="cookmode__btn cookmode__btn--success" data-cm-finish style="display: none">
+            🎉 Hoàn thành
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== HTML TEMPLATES ========== -->
+    <!-- Post Template -->
+    <template id="postTemplate">
+      <article class="feed-post" data-post-id="{id}">
+        <div class="feed-post__header">
+          <img class="feed-post__avatar" src="{avatar}" alt="{name}" />
+          <div class="feed-post__user">
+            <strong class="feed-post__name">{name}</strong>
+            <div class="feed-post__time">{time}</div>
+          </div>
+        </div>
+
+        <p class="feed-post__content">{content}</p>
+
+        {recipeSection} {imageSection}
+
+        <div class="feed-post__stats">
+          <span class="feed-post__likes">{likes} lượt thích</span>
+          <span class="feed-post__comments-count">{comments} bình luận</span>
+          <span class="feed-post__shares">{shares} chia sẻ</span>
+        </div>
+
+        <div class="feed-post__actions">
+          <button
+            class="feed-post__action-btn {likeClass}"
+            data-action="like"
+            data-post-id="{id}"
+          >
+            <i class="fas fa-heart feed-post__action-icon"></i>
+            <span class="feed-post__action-text">{likeText}</span>
+          </button>
+          <button
+            class="feed-post__action-btn"
+            data-action="comment"
+            data-post-id="{id}"
+          >
+            <i class="fas fa-comment feed-post__action-icon"></i>
+            <span class="feed-post__action-text">Bình luận</span>
+          </button>
+          <button
+            class="feed-post__action-btn"
+            data-action="share"
+            data-post-id="{id}"
+          >
+            <i class="fas fa-share feed-post__action-icon"></i>
+            <span class="feed-post__action-text">Chia sẻ</span>
+          </button>
+          {cookModeButton}
+        </div>
+
+        <div class="feed-post__comments">
+          {commentsList}
+
+          <div class="feed-post__comment-input">
+            <img
+              class="feed-post__comment-avatar"
+              src="./assets/images/avatar.png"
+              alt="Your avatar"
+            />
+            <div class="feed-post__comment-input-wrapper">
+              <input
+                type="text"
+                placeholder="Viết bình luận..."
+                class="feed-post__comment-input-field"
+                data-post-id="{id}"
+              />
+              <button class="feed-post__comment-submit" data-post-id="{id}">
+                <i class="fas fa-paper-plane feed-post__comment-submit-icon"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </template>
+
+    <!-- Recipe Template -->
+    <template id="recipeTemplate">
+      <div class="feed-post__recipe">
+        <h4 class="feed-post__recipe-title">🍴 {title}</h4>
+
+        <div class="feed-post__recipe-info">
+          <div class="feed-post__recipe-info-item">⏱️ Chuẩn bị: {prepTime}</div>
+          <div class="feed-post__recipe-info-item">🔥 Nấu: {cookTime}</div>
+          <div class="feed-post__recipe-info-item">👥 Khẩu phần: {servings}</div>
+          <div class="feed-post__recipe-info-item">📊 Độ khó: {difficulty}</div>
+        </div>
+
+        <div class="feed-post__recipe-details">
+          <div class="feed-post__ingredients">
+            <h5 class="feed-post__ingredients-title">Nguyên liệu:</h5>
+            <ul class="feed-post__ingredients-list">
+              {ingredientsList}
+            </ul>
+          </div>
+
+          <div class="feed-post__steps">
+            <h5 class="feed-post__steps-title">Các bước:</h5>
+            <ol class="feed-post__steps-list">
+              {stepsList}
+            </ol>
+          </div>
+        </div>
+
+        {tipsSection}
+      </div>
+    </template>
+
+    <!-- Comment Template -->
+    <template id="commentTemplate">
+      <div class="feed-post__comment">
+        <img class="feed-post__comment-avatar" src="{avatar}" alt="{name}" />
+        <div class="feed-post__comment-content">
+          <div class="feed-post__comment-header">
+            <strong class="feed-post__comment-name">{name}</strong>
+            <span class="feed-post__comment-time">{time}</span>
+          </div>
+          <p class="feed-post__comment-text">{content}</p>
+        </div>
+      </div>
+    </template>
+
+    <!-- Nhúng file JS demo -->
+    <script src="./js/pages/home.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+  </body>
 </html>
