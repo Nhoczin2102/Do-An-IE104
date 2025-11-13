@@ -1,8 +1,8 @@
 export class SearchManager {
     constructor(postManager) {
         this.postManager = postManager;
-        this.searchInput = document.querySelector('.header-search_bar input');
-        this.searchBtn = document.querySelector('.header-search_btn');
+        this.searchInput = document.querySelector('.header__search-input');
+        this.searchBtn = document.querySelector('.header__search-button');
         
         this.bindEvents();
     }

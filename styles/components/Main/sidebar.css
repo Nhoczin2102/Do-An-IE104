@@ -1,3 +1,5 @@
+/* CSS */
+
 .sidebar {
   background: var(--bg-card);
   border-radius: var(--radius);
@@ -5,15 +7,13 @@
   box-shadow: var(--shadow);
   position: sticky;
   top: 90px;
-    max-height: calc(100vh - 150px);
+  max-height: calc(100vh - 150px);
   overflow-y: auto;
   z-index: 100;
   height: fit-content;
-  
 }
 
-
-.profile {
+.sidebar__profile {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -22,7 +22,7 @@
   border-bottom: 2px solid var(--border-color);
 }
 
-.profile__avatar {
+.sidebar__avatar {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -31,18 +31,18 @@
   box-shadow: var(--shadow-primary);
 }
 
-.profile__info {
+.sidebar__profile-info {
   flex: 1;
 }
 
-.profile__name {
+.sidebar__name {
   font-weight: 700;
   font-size: 20px;
   color: var(--text);
   margin-bottom: 4px;
 }
 
-.profile__handle {
+.sidebar__handle {
   color: var(--muted);
   font-size: 14px;
   display: flex;
@@ -50,18 +50,17 @@
   gap: 6px;
 }
 
-.handle::before {
-  content: "@";
+.sidebar__handle::before {
   color: var(--primary-color);
 }
 
-.main-menu {
+.sidebar__menu {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.main-menu .main-menu__item {
+.sidebar__menu .sidebar__menu-item {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -75,7 +74,7 @@
   overflow: hidden;
 }
 
-.main-menu .main-menu__item::before {
+.sidebar__menu .sidebar__menu-item::before {
   content: '';
   position: absolute;
   left: 0;
@@ -87,29 +86,44 @@
   transition: transform 0.3s ease;
 }
 
-.main-menu  .main-menu__item:hover {
+.sidebar__menu  .sidebar__menu-item:hover {
   background: var(--background-light);
   color: var(--primary-color);
   transform: translateX(8px);
 }
 
-.main-menu .main-menu__item:hover::before {
+.sidebar__menu .sidebar__menu-item:hover::before {
   transform: scaleY(1);
 }
 
-.main-menu .main-menu__item.active {
+.sidebar__menu .sidebar__menu-item.sidebar__menu-item--active {
   background: var(--primary-color);
   color: white;
   box-shadow: var(--shadow-primary);
 }
 
-.main-menu .main-menu__item.active::before {
+.sidebar__menu .sidebar__menu-item.sidebar__menu-item--active::before {
   transform: scaleY(1);
   background: white;
 }
 
-.main-menu .main-menu__item i {
+.sidebar__menu .sidebar__menu-item .sidebar__menu-icon {
   font-size: 20px;
   width: 24px;
   text-align: center;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 787px) {
+  .sidebar {
+    display: none;
+    position: static; 
+  }
+}
+
+@media (max-width: 538px) {
+  .sidebar {
+    display: none;
+  }
 }

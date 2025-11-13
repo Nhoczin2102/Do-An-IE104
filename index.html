@@ -13,234 +13,228 @@
     <link rel="stylesheet" href="./styles/base/base.css" />
     <link rel="stylesheet" href="./styles/base/variable.css" />
     <link rel="stylesheet" href="./styles/pages/home.css" />
-    <link rel="stylesheet" href="./styles/components/sidebar.css" />
-    <link rel="stylesheet" href="./styles/components/header.css" />
-    <link rel="stylesheet" href="./styles/components/feed_composer.css" />
-    <link rel="stylesheet" href="./styles/components/feed_post.css" />
-    <link rel="stylesheet" href="./styles/components/cookmode.css" />
-    <link rel="stylesheet" href="./styles/components/modal.css" />
-    <link rel="stylesheet" href="./styles/components/right-sidebar.css" />
+    <link rel="stylesheet" href="./styles/components/Main/header.css" />
+    <link rel="stylesheet" href="./styles/components/Main/sidebar.css" />
+    <link rel="stylesheet" href="./styles/components/Home/feed_composer.css" />
+    <link rel="stylesheet" href="./styles/components/Home/feed_post.css" />
+    <link rel="stylesheet" href="./styles/components/Home/cookmode.css" />
+    <link rel="stylesheet" href="./styles/components/Home/modal.css" />
+    <link rel="stylesheet" href="./styles/components/Home/right_sidebar.css" />
   </head>
 
   <body>
     <!-- ========== HEADER ========== -->
-    <header class="page-header">
-  <div class="page-header__container">
-    <div class="page-header__content">
-      <!-- Logo -->
-      <a href="index.html" class="page-header__logo">
-        <div class="page-header__logo-image">
-          <img src="./assets/images/logo.svg" />
+    <header class="header">
+      <div class="header__container">
+        <div class="header__content">
+          <!-- Logo -->
+          <a href="index.html" class="header__logo">
+            <div class="header__logo-image">
+              <img src="./assets/images/logo.svg" />
+            </div>
+            <h1 class="header__logo-text">POTPAN</h1>
+          </a>
+
+          <!-- Thanh tìm kiếm -->
+          <div class="header__search">
+            <input
+              type="text"
+              class="header__search-input"
+              placeholder="Tìm kiếm công thức, nguyên liệu..."
+            />
+            <button class="header__search-button">
+              <i class="fas fa-search header__search-icon"></i>
+            </button>
+          </div>
+
+          <!-- Điều hướng -->
+          <div class="header__nav">
+            <a href="index.html" class="header__nav-item header__nav-item--active">
+              <i class="fas fa-home header__nav-icon"></i>
+              <span class="header__nav-text">Trang chủ</span>
+            </a>
+            <a href="./pages/explore.html" class="header__nav-item">
+              <i class="fas fa-compass header__nav-icon"></i>
+              <span class="header__nav-text">Khám phá</span>
+            </a>
+            <a href="./pages/about.html" target="_blank" class="header__nav-item">
+              <i class="fa-solid fa-users header__nav-icon"></i>
+              <span class="header__nav-text">Về chúng tôi</span>
+            </a>
+            <a href="./pages/contact.html" target="_blank" class="header__nav-item">
+              <i class="fa-solid fa-phone header__nav-icon"></i>
+              <span class="header__nav-text">Liên hệ</span>
+            </a>
+            
+            <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
+            <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
+              <i class="fas fa-sign-out-alt header__nav-icon"></i>
+              <span class="header__nav-text">Đăng xuất</span>
+            </a>
+            
+            <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
+            <a href="./pages/login.html" class="header__nav-item header__nav-item--login" id="loginNav">
+              <i class="fa-solid fa-user header__nav-icon"></i>
+              <span class="header__nav-text">Đăng nhập</span>
+            </a>
+          </div>
         </div>
-        <h1>POTPAN</h1>
-      </a>
-
-      <!-- Thanh tìm kiếm -->
-      <div class="page-header__search-bar">
-        <input
-          type="text"
-          placeholder="Tìm kiếm công thức, nguyên liệu..."
-        />
-        <button class="page-header__search-button">
-          <i class="fas fa-search"></i>
-        </button>
       </div>
+    </header>
 
-      <!-- Điều hướng -->
-      <div class="page-header__nav">
-        <a href="index.html" class="active">
-          <i class="fas fa-home nav-icon"></i>
-          <span>Trang chủ</span>
-        </a>
-        <a href="./pages/explore.html">
-          <i class="fas fa-compass page-header__nav-icon"></i>
-          <span>Khám phá</span>
-        </a>
-        <a href="./pages/about.html" target="_blank">
-          <i class="fa-solid fa-users"></i>
-          <span>Về chúng tôi</span>
-        </a>
-        <a href="./pages/contact.html" target="_blank">
-          <i class="fa-solid fa-phone"></i>
-          <span>Liên hệ</span>
-        </a>
-        
-        <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
-        <a href="#" class="logout-nav" id="logoutNav" style="display: none;">
-          <i class="fas fa-sign-out-alt"></i>
-          <span>Đăng xuất</span>
-        </a>
-        
-        <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
-        <a href="./pages/login.html" class="login-nav" id="loginNav">
-          <i class="fa-solid fa-user"></i>
-          <span>Đăng nhập</span>
-        </a>
-      </div>
-    </div>
-  </div>
-</header>
     <!-- ========== LAYOUT 3 CỘT ========== -->
-    <main class="page home">
+    <main class="page page--home">
       <aside class="sidebar">
-    <div class="profile">
-        <img
-            class="profile__avatar"
+        <div class="sidebar__profile">
+          <img
+            class="sidebar__avatar"
             id="sidebarAvatar"
             src="./assets/images/avatar.png"
             alt="avatar"
-        />
-        <div class="profile-info">
-            <div class="profile__name" id="sidebarName">...</div>
-            <div class="profile__handle" id="sidebarHandle">...</div>
+          />
+          <div class="sidebar__profile-info">
+            <div class="sidebar__name" id="sidebarName">...</div>
+            <div class="sidebar__handle" id="sidebarHandle">...</div>
+          </div>
         </div>
-    </div>
 
-    <nav class="main-menu">
-        <a class="main-menu__item active" href="#">
-            <i class="fas fa-newspaper"></i>
-            <span>Bảng tin</span>
-        </a>
+        <nav class="sidebar__menu">
+          <a class="sidebar__menu-item sidebar__menu-item--active" href="#">
+            <i class="fas fa-newspaper sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Bảng tin</span>
+          </a>
 
-        <a class="main-menu__item" href="./pages/profile.html">
-            <i class="fas fa-user"></i>
-            <span>Hồ sơ của tôi</span>
-        </a>
+          <a class="sidebar__menu-item" href="./pages/profile.html">
+            <i class="fas fa-user sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Hồ sơ của tôi</span>
+          </a>
 
-        <a class="main-menu__item" href="./pages/myRecipe.html">
-            <i class="fas fa-bookmark"></i>
-            <span>Công thức đã lưu</span>
-        </a>
+          <a class="sidebar__menu-item" href="./pages/myRecipe.html">
+            <i class="fas fa-bookmark sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Công thức đã lưu</span>
+          </a>
 
-        <a class="main-menu__item" href="./pages/famous-chef.html">
-            <i class="fas fa-utensils"></i>
-            <span>Đầu bếp nổi tiếng</span>
-        </a>
+          <a class="sidebar__menu-item" href="./pages/famous-chef.html">
+            <i class="fas fa-utensils sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
+          </a>
 
-        <a class="main-menu__item" href="./pages/setting.html">
-            <i class="fas fa-cog"></i>
-            <span>Cài đặt</span>
-        </a>
-    </nav>
-</aside>
+          <a class="sidebar__menu-item" href="./pages/setting.html">
+            <i class="fas fa-cog sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Cài đặt</span>
+          </a>
+        </nav>
+      </aside>
 
       <!-- Cột giữa: nạp nội dung từ file JS -->
-      <div>
-        <div class="feed-card">
-          <div class="composer">
+      <div class="feed">
+        <div class="feed__composer">
+          <div class="feed__composer-content">
             <img
               src="./assets/images/avatar.png"
               alt=""
-              style="width: 40px; height: 40px; border-radius: 50%"
+              class="feed__composer-avatar"
             />
-            <input type="text" placeholder="Chia sẻ công thức mới của bạn..." />
+            <input type="text" class="feed__composer-input" placeholder="Chia sẻ công thức mới của bạn..." />
           </div>
-          <div class="tabs">
-            <span>Ảnh</span>
-            <span>Video</span>
-            <span>Công thức</span>
-            <button class="btn-post">Đăng</button>
+          <div class="feed__composer-tabs">
+            <span class="feed__composer-tab">Ảnh</span>
+            <span class="feed__composer-tab">Video</span>
+            <span class="feed__composer-tab">Công thức</span>
+            <button class="feed__composer-button">Đăng</button>
           </div>
         </div>
 
-        <section id="feed"></section>
+        <section class="feed__posts" id="feed"></section>
       </div>
 
       <!-- Cột phải -->
-      <aside>
-        <div class="right-card">
-          <h3>Đầu bếp đề xuất</h3>
-          <div class="chef">
-            <img src="https://i.pravatar.cc/100?img=5" alt="" />
-            <div>
-              <strong>Hoàng Tú</strong><br /><small>Chuyên các món nướng</small>
+      <aside class="sidebar-right">
+        <div class="sidebar-right__card">
+          <h3 class="sidebar-right__title">Đầu bếp đề xuất</h3>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=5" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info">
+              <strong class="sidebar-right__chef-name">Hoàng Tú</strong><br /><small class="sidebar-right__chef-specialty">Chuyên các món nướng</small>
             </div>
           </div>
-          <div class="chef">
-            <img src="https://i.pravatar.cc/100?img=14" alt="" />
-            <div><strong>Văn Tài</strong><br /><small>Các món bánh</small></div>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=14" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info"><strong class="sidebar-right__chef-name">Văn Tài</strong><br /><small class="sidebar-right__chef-specialty">Các món bánh</small></div>
           </div>
-          <div class="chef">
-            <img src="https://i.pravatar.cc/100?img=47" alt="" />
-            <div>
-              <strong>Ngọc Trâm</strong><br /><small>Các món chay</small>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=47" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info">
+              <strong class="sidebar-right__chef-name">Ngọc Trâm</strong><br /><small class="sidebar-right__chef-specialty">Các món chay</small>
             </div>
           </div>
         </div>
 
-        <div class="right-card">
-          <h3>Món ăn nổi bật</h3>
-          <div class="chef">
-            <img
-              src="data:image/jpeg;base64,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"
-              alt=""
-            />
-            <div>
-              <strong>Thịt kho tàu</strong><br /><small>Bùi Anh Khôi</small>
+        <aside class="sidebar-right">
+        <div class="sidebar-right__card">
+          <h3 class="sidebar-right__title">Đầu bếp đề xuất</h3>
+          <div class="sidebar-right__chef">
+            <img src="./assets/images/TKDH.webp" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info">
+              <strong class="sidebar-right__chef-name">Thịt kho đậu hủ</strong><br /><small class="sidebar-right__chef-specialty">Bùi Anh Khôi</small>
             </div>
           </div>
-          <div class="chef">
-            <img
-              src="https://i.ytimg.com/vi/BfD1KwGwkqA/maxresdefault.jpg"
-              alt=""
-            />
-            <div>
-              <strong>Cá kho tộ</strong><br /><small>Hán Dương Long</small>
-            </div>
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=14" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info"><strong class="sidebar-right__chef-name">Văn Tài</strong><br /><small class="sidebar-right__chef-specialty">Các món bánh</small></div>
           </div>
-          <div class="chef">
-            <img
-              src="https://www.cet.edu.vn/wp-content/uploads/2021/03/ga-kho-gung-nghe-vua-thom-ngon.jpg"
-              alt=""
-            />
-            <div>
-              <strong>Gà kho gừng</strong><br /><small
-                >Bùi Trương Nhật Quang</small
-              >
+          <div class="sidebar-right__chef">
+            <img src="https://i.pravatar.cc/100?img=47" alt="" class="sidebar-right__chef-avatar" />
+            <div class="sidebar-right__chef-info">
+              <strong class="sidebar-right__chef-name">Ngọc Trâm</strong><br /><small class="sidebar-right__chef-specialty">Các món chay</small>
             </div>
           </div>
         </div>
+
+       
       </aside>
     </main>
+
+    <!-- MODAL TẠO BÀI ĐĂNG -->
     <div id="createPostModal" class="modal">
-      <div class="modal-content">
+      <div class="modal__content">
         <!-- Header popup -->
-        <div class="modal-header">
-          <h3>Tạo bài đăng mới</h3>
-          <button class="close-modal">&times;</button>
+        <div class="modal__header">
+          <h3 class="modal__title">Tạo bài đăng mới</h3>
+          <button class="modal__close">&times;</button>
         </div>
 
         <!-- Thông tin người dùng -->
-        <div class="post-user">
-          <img src="../../assets/images/avatar.png" alt="Avatar" />
-          <div>
-            <div class="user-name">Minh Nhựt</div>
-            <div class="user-handle">@nhutminh_amthuc</div>
+        <div class="modal__user">
+          <img src="../../assets/images/avatar.png" alt="Avatar" class="modal__user-avatar" />
+          <div class="modal__user-info">
+            <div class="modal__user-name">Minh Nhựt</div>
+            <div class="modal__user-handle">@nhutminh_amthuc</div>
           </div>
         </div>
 
         <!-- Nội dung bài đăng -->
         <textarea
-          class="post-content-input"
+          class="modal__content-input"
           placeholder="Chia sẻ công thức mới của bạn..."
         ></textarea>
 
         <!-- Phần công thức -->
-        <div class="recipe-form">
-          <h4>🍴 Thông tin công thức</h4>
+        <div class="modal__recipe-form">
+          <h4 class="modal__recipe-title">🍴 Thông tin công thức</h4>
 
-          <div class="recipe-basic-info">
-            <div class="input-group">
-              <label>Tên món ăn</label>
+          <div class="modal__recipe-basic-info">
+            <div class="modal__input-group">
+              <label class="modal__input-label">Tên món ăn</label>
               <input
                 type="text"
-                class="recipe-title"
+                class="modal__recipe-title-input"
                 placeholder="Ví dụ: Phở bò Hà Nội"
               />
             </div>
-            <div class="input-group">
-              <label>Độ khó</label>
-              <select class="recipe-difficulty">
+            <div class="modal__input-group">
+              <label class="modal__input-label">Độ khó</label>
+              <select class="modal__recipe-difficulty">
                 <option value="Dễ">Dễ</option>
                 <option value="Trung bình">Trung bình</option>
                 <option value="Khó">Khó</option>
@@ -248,153 +242,151 @@
             </div>
           </div>
 
-          <div class="recipe-time-info">
-            <div class="input-group">
-              <label>Thời gian chuẩn bị</label>
+          <div class="modal__recipe-time-info">
+            <div class="modal__input-group">
+              <label class="modal__input-label">Thời gian chuẩn bị</label>
               <input
                 type="text"
-                class="recipe-prep-time"
+                class="modal__recipe-prep-time"
                 placeholder="30 phút"
               />
             </div>
-            <div class="input-group">
-              <label>Thời gian nấu</label>
-              <input type="text" class="recipe-cook-time" placeholder="1 giờ" />
+            <div class="modal__input-group">
+              <label class="modal__input-label">Thời gian nấu</label>
+              <input type="text" class="modal__recipe-cook-time" placeholder="1 giờ" />
             </div>
-            <div class="input-group">
-              <label>Khẩu phần</label>
+            <div class="modal__input-group">
+              <label class="modal__input-label">Khẩu phần</label>
               <input
                 type="text"
-                class="recipe-servings"
+                class="modal__recipe-servings"
                 placeholder="4 người"
               />
             </div>
           </div>
 
           <!-- Nguyên liệu -->
-          <div class="ingredients-section">
-            <label>📝 Nguyên liệu</label>
-            <div class="ingredients-list"></div>
-            <button type="button" class="add-ingredient">
+          <div class="modal__ingredients-section">
+            <label class="modal__section-label">📝 Nguyên liệu</label>
+            <div class="modal__ingredients-list"></div>
+            <button type="button" class="modal__add-ingredient">
               + Thêm nguyên liệu
             </button>
           </div>
 
           <!-- Các bước thực hiện -->
-          <div class="steps-section">
-            <label>👩‍🍳 Các bước thực hiện</label>
-            <div class="steps-list"></div>
-            <button type="button" class="add-step">+ Thêm bước</button>
+          <div class="modal__steps-section">
+            <label class="modal__section-label">👩‍🍳 Các bước thực hiện</label>
+            <div class="modal__steps-list"></div>
+            <button type="button" class="modal__add-step">+ Thêm bước</button>
           </div>
 
           <!-- Mẹo hay -->
-          <div class="tips-section">
-            <label>💡 Mẹo hay</label>
+          <div class="modal__tips-section">
+            <label class="modal__section-label">💡 Mẹo hay</label>
             <textarea
-              class="recipe-tips"
+              class="modal__recipe-tips"
               placeholder="Chia sẻ mẹo nấu ăn của bạn..."
             ></textarea>
           </div>
         </div>
 
         <!-- Upload ảnh -->
-        <div class="image-upload">
-          <label>🖼️ Hình ảnh món ăn</label>
-          <div class="upload-area">
-            <div class="upload-icon">📷</div>
-            <div class="upload-text">
+        <div class="modal__image-upload">
+          <label class="modal__section-label">🖼️ Hình ảnh món ăn</label>
+          <div class="modal__upload-area">
+            <div class="modal__upload-icon">📷</div>
+            <div class="modal__upload-text">
               Kéo thả ảnh vào đây hoặc click để chọn
             </div>
-            <div class="upload-subtext">JPG, PNG (Tối đa 5MB)</div>
-            <input type="file" accept="image/*" class="image-input" />
-            <input type="file" accept="video/*" class="image-input" />
+            <div class="modal__upload-subtext">JPG, PNG (Tối đa 5MB)</div>
+            <input type="file" accept="image/*" class="modal__image-input" />
+            <input type="file" accept="video/*" class="modal__image-input" />
           </div>
-          <div class="image-preview"></div>
+          <div class="modal__image-preview"></div>
         </div>
 
         <!-- Nút hành động -->
-        <div class="modal-actions">
-          <button class="cancel-btn">Hủy</button>
-          <button class="post-btn">Đăng bài</button>
+        <div class="modal__actions">
+          <button class="modal__cancel-btn">Hủy</button>
+          <button class="modal__post-btn">Đăng bài</button>
         </div>
       </div>
     </div>
 
     <!-- COOK MODE MODAL -->
-    <div id="cookModeModal" class="cookmode-modal">
-      <div class="cookmode-content">
-        <div class="cookmode-header">
-          <h2>🍳 COOK MODE</h2>
-          <button class="cook-close">&times;</button>
+    <div id="cookModeModal" class="cookmode">
+      <div class="cookmode__content">
+        <div class="cookmode__header">
+          <h2 class="cookmode__title">CHẾ ĐỘ NẤU ĂN - COOK MODE</h2>
+          <button class="cookmode__close">&times;</button>
         </div>
 
-        <div class="cookmode-body">
+        <div class="cookmode__body">
           <!-- Dish Info -->
-          <div class="cookmode-dish-info">
-            <h3 class="cookmode-dish">Tên món ăn</h3>
-            <div class="cookmode-meta">
-              <div><span data-cm-prep>--</span> chuẩn bị</div>
-              <div><span data-cm-cook>--</span> nấu</div>
-              <div><span data-cm-serv>--</span> khẩu phần</div>
-              <div><span data-cm-diff>--</span> độ khó</div>
+          <div class="cookmode__dish-info">
+            <h3 class="cookmode__dish-name">Tên món ăn</h3>
+            <div class="cookmode__meta">
+              <div class="cookmode__meta-item">Thời gian chuẩn bị: <span data-cm-prep>--</span></div>
+              <div class="cookmode__meta-item">Thời gian nấu: <span data-cm-cook>--</span></div>
+              <div class="cookmode__meta-item">Khẩu phần ăn: <span data-cm-serv>--</span></div>
+              <div class="cookmode__meta-item">Độ khó: <span data-cm-diff>--</span></div>
             </div>
           </div>
 
           <!-- Ingredients -->
-          <div class="cookmode-section">
-            <h4>📝 Nguyên liệu</h4>
-            <ul class="cookmode-ingredients"></ul>
+          <div class="cookmode__section">
+            <h4 class="cookmode__section-title">📝 Nguyên liệu</h4>
+            <ul class="cookmode__ingredients"></ul>
           </div>
 
           <!-- Current Step -->
-          <div class="cookmode-section">
-            <h4>👩‍🍳 Bước thực hiện</h4>
-            <div class="cookmode-step">
-              <div class="step-progress">
-                <span data-cm-step-index>1</span>/<span data-cm-step-total
-                  >5</span
-                >
-                <div class="progress-bar">
+          <div class="cookmode__section">
+            <h4 class="cookmode__section-title">👩‍🍳 Bước thực hiện</h4>
+            <div class="cookmode__step">
+              <div class="cookmode__step-progress">
+                <span data-cm-step-index>1</span>/<span data-cm-step-total>5</span>
+                <div class="cookmode__progress-bar">
                   <div
-                    class="progress-fill"
+                    class="cookmode__progress-fill"
                     data-cm-progress-bar
                     style="width: 0%"
                   ></div>
                 </div>
                 <span data-cm-progress>0%</span>
               </div>
-              <p class="step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
+              <p class="cookmode__step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
             </div>
           </div>
 
           <!-- Timer -->
-          <div class="cookmode-section">
-            <h4>⏰ Hẹn giờ</h4>
-            <div class="cookmode-timer">
-              <div class="timer-display" data-cm-timer>00:00</div>
-              <div class="timer-controls">
-                <button class="timer-btn" data-cm-minus>-1m</button>
-                <button class="timer-btn" data-cm-startstop>Bắt đầu</button>
-                <button class="timer-btn" data-cm-plus>+1m</button>
+          <div class="cookmode__section">
+            <h4 class="cookmode__section-title">⏰ Hẹn giờ</h4>
+            <div class="cookmode__timer">
+              <div class="cookmode__timer-display" data-cm-timer>00:00</div>
+              <div class="cookmode__timer-controls">
+                <button class="cookmode__timer-btn" data-cm-minus>-1m</button>
+                <button class="cookmode__timer-btn" data-cm-startstop>Bắt đầu</button>
+                <button class="cookmode__timer-btn" data-cm-plus>+1m</button>
               </div>
             </div>
           </div>
 
           <!-- Tips -->
-          <div class="cookmode-section" data-cm-tip style="display: none">
-            <h4>💡 Mẹo nhỏ</h4>
-            <p></p>
+          <div class="cookmode__section" data-cm-tip style="display: none">
+            <h4 class="cookmode__section-title">💡 Mẹo nhỏ</h4>
+            <p class="cookmode__tip-text"></p>
           </div>
         </div>
 
-        <div class="cookmode-footer">
-          <button class="cook-btn secondary" data-cm-prev disabled>
+        <div class="cookmode__footer">
+          <button class="cookmode__btn cookmode__btn--secondary" data-cm-prev disabled>
             ⬅ Bước trước
           </button>
-          <button class="cook-btn primary" data-cm-next>
+          <button class="cookmode__btn cookmode__btn--primary" data-cm-next>
             Bước tiếp theo ➡
           </button>
-          <button class="cook-btn success" data-cm-finish style="display: none">
+          <button class="cookmode__btn cookmode__btn--success" data-cm-finish style="display: none">
             🎉 Hoàn thành
           </button>
         </div>
@@ -405,70 +397,70 @@
     <!-- Post Template -->
     <template id="postTemplate">
       <article class="feed-post" data-post-id="{id}">
-        <div class="feed-post-header">
-          <img class="feed-post-avatar" src="{avatar}" alt="{name}" />
-          <div class="feed-post-user">
-            <strong class="feed-post-name">{name}</strong>
-            <div class="feed-post-time">{time}</div>
+        <div class="feed-post__header">
+          <img class="feed-post__avatar" src="{avatar}" alt="{name}" />
+          <div class="feed-post__user">
+            <strong class="feed-post__name">{name}</strong>
+            <div class="feed-post__time">{time}</div>
           </div>
         </div>
 
-        <p class="feed-post-content">{content}</p>
+        <p class="feed-post__content">{content}</p>
 
         {recipeSection} {imageSection}
 
-        <div class="feed-post-stats">
-          <span class="feed-post-likes">{likes} lượt thích</span>
-          <span class="feed-post-comments-count">{comments} bình luận</span>
-          <span class="feed-post-shares">{shares} chia sẻ</span>
+        <div class="feed-post__stats">
+          <span class="feed-post__likes">{likes} lượt thích</span>
+          <span class="feed-post__comments-count">{comments} bình luận</span>
+          <span class="feed-post__shares">{shares} chia sẻ</span>
         </div>
 
-        <div class="feed-post-actions">
+        <div class="feed-post__actions">
           <button
-            class="feed-action-btn {likeClass}"
+            class="feed-post__action-btn {likeClass}"
             data-action="like"
             data-post-id="{id}"
           >
-            <i class="fas fa-heart"></i>
-            <span>{likeText}</span>
+            <i class="fas fa-heart feed-post__action-icon"></i>
+            <span class="feed-post__action-text">{likeText}</span>
           </button>
           <button
-            class="feed-action-btn"
+            class="feed-post__action-btn"
             data-action="comment"
             data-post-id="{id}"
           >
-            <i class="fas fa-comment"></i>
-            <span>Bình luận</span>
+            <i class="fas fa-comment feed-post__action-icon"></i>
+            <span class="feed-post__action-text">Bình luận</span>
           </button>
           <button
-            class="feed-action-btn"
+            class="feed-post__action-btn"
             data-action="share"
             data-post-id="{id}"
           >
-            <i class="fas fa-share"></i>
-            <span>Chia sẻ</span>
+            <i class="fas fa-share feed-post__action-icon"></i>
+            <span class="feed-post__action-text">Chia sẻ</span>
           </button>
           {cookModeButton}
         </div>
 
-        <div class="feed-comments">
+        <div class="feed-post__comments">
           {commentsList}
 
-          <div class="feed-comment-input">
+          <div class="feed-post__comment-input">
             <img
-              class="feed-comment-avatar"
+              class="feed-post__comment-avatar"
               src="./assets/images/avatar.png"
               alt="Your avatar"
             />
-            <div class="comment-input-wrapper">
+            <div class="feed-post__comment-input-wrapper">
               <input
                 type="text"
                 placeholder="Viết bình luận..."
-                class="comment-input"
+                class="feed-post__comment-input-field"
                 data-post-id="{id}"
               />
-              <button class="comment-submit" data-post-id="{id}">
-                <i class="fas fa-paper-plane"></i>
+              <button class="feed-post__comment-submit" data-post-id="{id}">
+                <i class="fas fa-paper-plane feed-post__comment-submit-icon"></i>
               </button>
             </div>
           </div>
@@ -478,27 +470,27 @@
 
     <!-- Recipe Template -->
     <template id="recipeTemplate">
-      <div class="recipe-section">
-        <h4>🍴 {title}</h4>
+      <div class="feed-post__recipe">
+        <h4 class="feed-post__recipe-title">🍴 {title}</h4>
 
-        <div class="recipe-info">
-          <div>⏱️ Chuẩn bị: {prepTime}</div>
-          <div>🔥 Nấu: {cookTime}</div>
-          <div>👥 Khẩu phần: {servings}</div>
-          <div>📊 Độ khó: {difficulty}</div>
+        <div class="feed-post__recipe-info">
+          <div class="feed-post__recipe-info-item">⏱️ Chuẩn bị: {prepTime}</div>
+          <div class="feed-post__recipe-info-item">🔥 Nấu: {cookTime}</div>
+          <div class="feed-post__recipe-info-item">👥 Khẩu phần: {servings}</div>
+          <div class="feed-post__recipe-info-item">📊 Độ khó: {difficulty}</div>
         </div>
 
-        <div class="recipe-details">
-          <div class="ingredients">
-            <h5>Nguyên liệu:</h5>
-            <ul>
+        <div class="feed-post__recipe-details">
+          <div class="feed-post__ingredients">
+            <h5 class="feed-post__ingredients-title">Nguyên liệu:</h5>
+            <ul class="feed-post__ingredients-list">
               {ingredientsList}
             </ul>
           </div>
 
-          <div class="steps">
-            <h5>Các bước:</h5>
-            <ol>
+          <div class="feed-post__steps">
+            <h5 class="feed-post__steps-title">Các bước:</h5>
+            <ol class="feed-post__steps-list">
               {stepsList}
             </ol>
           </div>
@@ -510,14 +502,14 @@
 
     <!-- Comment Template -->
     <template id="commentTemplate">
-      <div class="feed-comment">
-        <img class="feed-comment-avatar" src="{avatar}" alt="{name}" />
-        <div class="feed-comment-content">
-          <div class="feed-comment-header">
-            <strong class="feed-comment-name">{name}</strong>
-            <span class="feed-comment-time">{time}</span>
+      <div class="feed-post__comment">
+        <img class="feed-post__comment-avatar" src="{avatar}" alt="{name}" />
+        <div class="feed-post__comment-content">
+          <div class="feed-post__comment-header">
+            <strong class="feed-post__comment-name">{name}</strong>
+            <span class="feed-post__comment-time">{time}</span>
           </div>
-          <p class="feed-comment-text">{content}</p>
+          <p class="feed-post__comment-text">{content}</p>
         </div>
       </div>
     </template>

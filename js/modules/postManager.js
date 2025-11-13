@@ -5,7 +5,7 @@ export class PostManager {
     constructor() {
         this.posts = [...samplePosts];
         this.renderer = new TemplateRenderer();
-        this.feed = document.getElementById("feed");
+        this.feed = document.querySelector(".feed__posts");
     }
 
     init() {
@@ -93,7 +93,7 @@ export class PostManager {
         if (!this.feed) return;
 
         this.feed.addEventListener('click', (e) => {
-            const button = e.target.closest('.feed-action-btn');
+            const button = e.target.closest('.feed-post__action-btn');
             if (button) {
                 const action = button.dataset.action;
                 const postId = parseInt(button.dataset.postId);
@@ -101,7 +101,7 @@ export class PostManager {
                 if (action === 'like') {
                     this.likePost(postId);
                 } else if (action === 'comment') {
-                    const commentInput = document.querySelector(`.comment-input[data-post-id="${postId}"]`);
+                    const commentInput = document.querySelector(`.feed-post__comment-input-field[data-post-id="${postId}"]`);
                     if (commentInput) commentInput.focus();
                 } else if (action === 'share') {
                     if (this.sharePost(postId)) {
@@ -111,10 +111,10 @@ export class PostManager {
             }
 
             // Xử lý gửi bình luận
-            const commentSubmit = e.target.closest('.comment-submit');
+            const commentSubmit = e.target.closest('.feed-post__comment-submit');
             if (commentSubmit) {
                 const postId = parseInt(commentSubmit.dataset.postId);
-                const commentInput = document.querySelector(`.comment-input[data-post-id="${postId}"]`);
+                const commentInput = document.querySelector(`.feed-post__comment-input-field[data-post-id="${postId}"]`);
                 
                 if (commentInput && commentInput.value.trim()) {
                     this.addComment(postId, commentInput.value);
