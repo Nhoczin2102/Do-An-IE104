@@ -1,8 +1,14 @@
-/* ========== RESET & BASE ========== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scrollbar-width: none;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -10,5 +16,4 @@ body {
   background-color: #f8f9fa;
   color: var(--text);
   line-height: 1.5;
-
 }

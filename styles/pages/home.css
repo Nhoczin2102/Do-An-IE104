@@ -1,7 +1,6 @@
 /* ========== LAYOUT ========== */
 
-
-.page.home {
+.page.page--home {
   display: grid;
   grid-template-columns: 320px minmax(0, 1fr) 320px;
   gap: 50px;
@@ -12,170 +11,66 @@
   min-height: calc(100vh - 130px);
 }
 
-.page.home > div:nth-child(2) {
+.page.page--home  > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 140px);
   min-height: 900px;
   width: 100%;
+  overflow-x: hidden; /* <-- THÊM DÒNG NÀY ĐỂ KHÓA CỘT FEED */
 }
 
 
-/* ========== RESPONSIVE ========== */
+/* ========== RESPONSIVE (Chỉ còn lại code cho .page.home) ========== */
 @media (max-width: 1400px) {
-  .page.home {
+  .page.page--home  {
     grid-template-columns: 280px minmax(0, 1fr) 280px;
     max-width: 100%;
   }
 }
 
 @media (max-width: 1200px) {
-  .page.home {
+  .page.page--home  {
     grid-template-columns: 260px minmax(0, 1fr) 250px;
     gap: 25px;
   }
 }
 
 @media (max-width: 1091px) {
-  .page.home {
+  .page.page--home  {
     grid-template-columns: 260px minmax(0, 1fr);
-  }
-
-  .right-card {
-    display: none;
-  }
-  .page-header__container{
-    height: 200px;
-  }
- 
-  .page-header__content {
-    flex-wrap: wrap;
-    height: auto;
-    padding: 15px 0;
-    gap: 15px;
-    display: block
-  }
-  
-  .page-header__search_bar {
-    order: 3;
-    max-width: 100%;
-    margin-top: 10px;
   }
 }
 
 @media (max-width: 787px) {
-  .page.home {
+  .page.page--home  {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  .sidebar{display: none;}
-  .page-header__container {
-    height:180px;
-    width: 100%;
-  }
-
-  .page-header__nav span {
-    display: none !important
-  }
- 
   
-  .sidebar-card {
-    position: static;
-  }
-  
-  .page.home > div:nth-child(2) {
+  .page.page--home  > div:nth-child(2) {
     height: auto;
     min-height: auto;
   }
-  
-  .header-nav_links span {
-    display: none;
-  }
-  
-  .header-nav_links a {
-    padding: 10px;
-  }
-  
-  .feed-card {
-    padding: 20px;
-  }
-  
-  .feed-card .tabs {
-    gap: 16px;
-    font-size: 14px;
-  }
 }
 
-@media (max-width: 538px) {
-  .sidebar-card{display: none;}
-  .page.home {
+@media (max-width: 555px) {
+  .page.page--home  {
     padding: 0 15px;
-  }
-  
-  .feed-card .tabs {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  
-  .feed-card .btn-post {
-    margin-left: 0;
-    width: 100%;
-  }
-
-
-
-
- 
-  
-  .header-logo h1 {
-    display: none;
-  }
-  
-  .feed-post {
-    padding: 20px;
   }
 }
 
 /* Mobile Extra Small: 320px - 374px */
-@media (max-width: 374px) {
-  .page.home {
+@media (max-width: 500px) {
+  .page.page--home  {
     padding: 0 8px;
     margin: 10px auto;
     gap: 8px;
   }
-  
-  .page-header__container {
-    padding: 0 8px;
-  }
-  
-  .page-header__content {
-    min-height: auto;
-    padding: 4px 0;
-    gap: 6px;
-  }
-  
-  .page-header__nav {
-    gap: 4px;
-    order: 2;
-    width: 100%;
-    justify-content: space-between;
-    margin-top: 3px;
-  }
-  
-  .page-header__nav a {
-    padding: 3px 4px;
-    font-size: 11px;
-    flex: 1;
-    min-width: 40px;
-    max-width: 60px;
-    text-align: center;
-  }
-  
-  .page-header__nav span {
-    display: none;
-  }
-  .page-header {
-    width: 100%;
-  }
 }
-
+@media (max-width: 330px) {
+  /* Ép 1 cột cho an toàn tuyệt đối */
+  .feed-post__recipe-info{
+    grid-template-columns: 1fr;
+  }
+} 

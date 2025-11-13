@@ -1,5 +1,6 @@
-/* Đây là phiên bản Light Mode Modal mà chúng ta đã thống nhất giữ lại */
-.cookmode-modal {
+/* CSS */
+
+.cookmode {
     display: none;
     position: fixed;
     top: 0;
@@ -11,14 +12,14 @@
     backdrop-filter: blur(5px);
 }
 
-.cookmode-modal.open {
+.cookmode.open {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.cookmode-content {
-    background: white;
+.cookmode__content {
+    background: var(--bg-card); 
     border-radius: 20px;
     width: 90%;
     max-width: 1000px;
@@ -27,26 +28,39 @@
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-.cookmode-header {
+.cookmode__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
     border-bottom: 2px solid #f0f0f0;
-    background: linear-gradient(135deg, #FF6967, #ff8e8e);
-    color: white;
+    background: var(--primary-color);
+    color: var(--text-on-primary); 
     border-radius: 20px 20px 0 0;
 }
 
-.cookmode-header h2 {
+.cookmode__body {
+    padding: 10px;
+}
+
+.cookmode__footer {
+    display: flex;
+    gap: 10px;
+    padding: 20px;
+    border-top: 2px solid #f0f0f0;
+    background: #fafafa;
+    border-radius: 0 0 20px 20px;
+}
+
+.cookmode__title {
     margin: 0;
     font-size: 1.5em;
 }
 
-.cook-close {
+.cookmode__close {
     background: none;
     border: none;
-    color: white;
+    color: var(--text-on-primary); 
     font-size: 2em;
     cursor: pointer;
     padding: 0;
@@ -58,148 +72,135 @@
     justify-content: center;
 }
 
-.cook-close:hover {
+.cookmode__close:hover {
     background: rgba(255, 255, 255, 0.2);
 }
 
-.cookmode-body {
-    padding: 10px;
-}
-
-.cookmode-dish-info {
+.cookmode__dish-info {
     text-align: center;
 }
 
-.cookmode-dish {
-    color: #FF6967;
+.cookmode__dish-name {
+    color: var(--primary-color); 
     margin: 0 0 10px 0;
     font-size: 1.4em;
 }
 
-.cookmode-meta {
+.cookmode__meta {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     font-size: 0.9em;
-    color: #666;
+    color: var(--text-light-subtle); 
 }
 
-.cookmode-section {
+.cookmode__section {
     margin-bottom: 25px;
 }
 
-.cookmode-section h4 {
-    color: #333;
+.cookmode__section-title {
+    color: var(--text-light); 
     margin: 0 0 12px 0;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.cookmode-ingredients {
+.cookmode__ingredients {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.cookmode-ingredients li {
+.cookmode__ingredients li {
     display: flex;
     align-items: center;
     padding: 8px 0;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.cookmode-ingredients input[type="checkbox"] {
+.cookmode__ingredients input[type="checkbox"] {
     margin-right: 10px;
     transform: scale(1.2);
 }
 
-.cookmode-step {
+.cookmode__step {
     background: #f8f9fa;
     padding: 15px;
     border-radius: 10px;
 }
 
-.step-progress {
+.cookmode__step-progress {
     display: flex;
     align-items: center;
     gap: 10px;
     margin-bottom: 10px;
     font-weight: bold;
-    color: #FF6967;
+    color: var(--primary-color); 
 }
 
-.progress-bar {
+.cookmode__progress-bar {
     flex: 1;
     height: 8px;
-    background: #e0e0e0;
+    background: var(--border-color); 
     border-radius: 4px;
     overflow: hidden;
 }
 
-.progress-fill {
+.cookmode__progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #FF6967, #ff8e8e);
+    background: var(--primary-color); 
     transition: width 0.3s ease;
 }
 
-.step-text {
+.cookmode__step-text {
     margin: 0;
     line-height: 1.5;
-    color: #333;
+    color: var(--text-light); 
 }
 
-.cookmode-timer {
+.cookmode__timer {
     text-align: center;
     background: #f8f9fa;
     padding: 15px;
     border-radius: 10px;
 }
 
-.timer-display {
+.cookmode__timer-display {
     font-size: 2.5em;
     font-weight: bold;
-    color: #FF6967;
+    color: var(--primary-color); 
     margin-bottom: 15px;
     font-family: 'Courier New', monospace;
 }
 
-.timer-controls {
+.cookmode__timer-controls {
     display: flex;
     gap: 10px;
     justify-content: center;
 }
 
-.timer-btn {
+.cookmode__timer-btn {
     padding: 8px 16px;
     border: none;
     border-radius: 8px;
-    background: #FF6967;
-    color: white;
+    background: var(--primary-color); 
+    color: var(--text-on-primary); 
     cursor: pointer;
     font-weight: bold;
     transition: all 0.3s ease;
 }
 
-.timer-btn:hover {
+.cookmode__timer-btn:hover {
     background: #ff5252;
     transform: translateY(-2px);
 }
 
-.timer-btn.timer-active {
+.cookmode__timer-btn.timer-active {
     background: #ff3333;
 }
 
-.cookmode-footer {
-    display: flex;
-    gap: 10px;
-    padding: 20px;
-    border-top: 2px solid #f0f0f0;
-    background: #fafafa;
-    border-radius: 0 0 20px 20px;
-}
-
-.cook-btn {
+.cookmode__btn {
     flex: 1;
     padding: 12px;
     border: none;
@@ -209,36 +210,58 @@
     transition: all 0.3s ease;
 }
 
-.cook-btn.primary {
-    background: #FF6967;
-    color: white;
+.cookmode__btn.cookmode__btn--primary {
+    background: var(--primary-color); 
+    color: var(--text-on-primary); 
 }
 
-.cook-btn.primary:hover:not(:disabled) {
+.cookmode__btn.cookmode__btn--primary:hover:not(:disabled) {
     background: #ff5252;
     transform: translateY(-2px);
 }
 
-.cook-btn.secondary {
-    background: #e0e0e0;
-    color: #333;
+.cookmode__btn.cookmode__btn--secondary {
+    background: var(--border-color); 
+    color: var(--text-light); 
 }
 
-.cook-btn.secondary:hover:not(:disabled) {
+.cookmode__btn.cookmode__btn--secondary:hover:not(:disabled) {
     background: #d0d0d0;
 }
 
-.cook-btn.success {
+.cookmode__btn.cookmode__btn--success {
     background: #4CAF50;
-    color: white;
+    color: var(--text-on-primary); 
 }
 
-.cook-btn.success:hover {
+.cookmode__btn.cookmode__btn--success:hover {
     background: #45a049;
 }
 
-.cook-btn:disabled {
+.cookmode__btn:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     transform: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 600px) {
+    .cookmode__title {
+        font-size: 1.2em;
+    }
+
+    .cookmode__meta {
+        grid-template-columns: 1fr;
+        gap: 5px;
+        text-align: left;
+    }
+
+    .cookmode__footer {
+        flex-direction: column;
+    }
+
+    .cookmode__footer .cookmode__btn {
+        width: 100%;
+    }
 }
