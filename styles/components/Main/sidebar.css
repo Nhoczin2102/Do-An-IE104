@@ -1,5 +1,3 @@
-/* CSS */
-
 .sidebar {
   background: var(--bg-card);
   border-radius: var(--radius);
@@ -7,13 +5,15 @@
   box-shadow: var(--shadow);
   position: sticky;
   top: 90px;
-  max-height: calc(100vh - 150px);
+    max-height: calc(100vh - 150px);
   overflow-y: auto;
   z-index: 100;
   height: fit-content;
+  
 }
 
-.sidebar__profile {
+
+.profile {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -22,7 +22,7 @@
   border-bottom: 2px solid var(--border-color);
 }
 
-.sidebar__avatar {
+.profile__avatar {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -31,18 +31,18 @@
   box-shadow: var(--shadow-primary);
 }
 
-.sidebar__profile-info {
+.profile__info {
   flex: 1;
 }
 
-.sidebar__name {
+.profile__name {
   font-weight: 700;
   font-size: 20px;
   color: var(--text);
   margin-bottom: 4px;
 }
 
-.sidebar__handle {
+.profile__handle {
   color: var(--muted);
   font-size: 14px;
   display: flex;
@@ -50,17 +50,18 @@
   gap: 6px;
 }
 
-.sidebar__handle::before {
+.handle::before {
+  content: "@";
   color: var(--primary-color);
 }
 
-.sidebar__menu {
+.main-menu {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
 
-.sidebar__menu .sidebar__menu-item {
+.main-menu .main-menu__item {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -74,7 +75,7 @@
   overflow: hidden;
 }
 
-.sidebar__menu .sidebar__menu-item::before {
+.main-menu .main-menu__item::before {
   content: '';
   position: absolute;
   left: 0;
@@ -86,44 +87,29 @@
   transition: transform 0.3s ease;
 }
 
-.sidebar__menu  .sidebar__menu-item:hover {
+.main-menu  .main-menu__item:hover {
   background: var(--background-light);
   color: var(--primary-color);
   transform: translateX(8px);
 }
 
-.sidebar__menu .sidebar__menu-item:hover::before {
+.main-menu .main-menu__item:hover::before {
   transform: scaleY(1);
 }
 
-.sidebar__menu .sidebar__menu-item.sidebar__menu-item--active {
+.main-menu .main-menu__item.active {
   background: var(--primary-color);
   color: white;
   box-shadow: var(--shadow-primary);
 }
 
-.sidebar__menu .sidebar__menu-item.sidebar__menu-item--active::before {
+.main-menu .main-menu__item.active::before {
   transform: scaleY(1);
   background: white;
 }
 
-.sidebar__menu .sidebar__menu-item .sidebar__menu-icon {
+.main-menu .main-menu__item i {
   font-size: 20px;
   width: 24px;
   text-align: center;
-}
-
-/* RESPONSIVE */
-
-@media (max-width: 787px) {
-  .sidebar {
-    display: none;
-    position: static; 
-  }
-}
-
-@media (max-width: 538px) {
-  .sidebar {
-    display: none;
-  }
 }
