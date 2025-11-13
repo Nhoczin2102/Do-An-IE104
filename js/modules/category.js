@@ -31,20 +31,20 @@
 
   function renderList(list) {
     if (!list.length) {
-      grid.innerHTML = `<p>Chưa có công thức cho tag “${humanTag(tagParam)}”.</p>`;
+      grid.innerHTML = `<p>Chưa có công thức cho tag "${humanTag(tagParam)}".</p>`;
       return;
     }
     grid.innerHTML = list.map(r => `
       <div class="recipe-card" data-recipe-id="${r.id}" data-source="${bucketOf(Number(r.id))}">
-        <div class="recipe-anh">
+        <div class="recipe-card__image">
           <img src="${r.img || r.hero}" alt="${r.name}">
         </div>
-        <div class="recipe-body">
-          <h3 class="recipe-title">${r.name}</h3>
-          <p class="recipe-text">${r.short || ""}</p>
-          <div class="recipe-meta">
-            <span class="chef">${r.chef || ""}</span>
-            <span class="time">${r.time || ""}</span>
+        <div class="recipe-card__content">
+          <h3 class="recipe-card__title">${r.name}</h3>
+          <p class="recipe-card__description">${r.short || ""}</p>
+          <div class="recipe-card__meta">
+            <span class="recipe-card__chef">${r.chef || ""}</span>
+            <span class="recipe-card__time">${r.time || ""}</span>
           </div>
         </div>
       </div>
@@ -62,7 +62,7 @@
   async function init() {
     const tag = String(tagParam).trim();
     title.textContent = tag ? `Danh mục: ${humanTag(tag)}` : "Danh mục";
-    sub.textContent = tag ? `Các công thức mang tag “${humanTag(tag)}”` : "Chọn một danh mục để xem";
+    sub.textContent = tag ? `Các công thức mang tag "${humanTag(tag)}"` : "Chọn một danh mục để xem";
 
     if (!tag) {
       grid.innerHTML = `<p>Thiếu tham số tag.</p>`;
