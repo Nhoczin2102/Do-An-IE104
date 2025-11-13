@@ -9,38 +9,38 @@
 </head>
   <body>
     <!-- Header -->
-    <header class="header">
-      <div class="container header-content">
-        <a id="back-link" class="back-link" href="#">← Quay lại</a>
-        <h1 id="recipe-name" class="page-title">Đang tải...</h1>
+    <header class="recipe-detail-header">
+      <div class="container recipe-detail-header__content">
+        <a id="back-link" class="recipe-detail-header__back-link" href="#">← Quay lại</a>
+        <h1 id="recipe-name" class="recipe-detail-header__title">Đang tải...</h1>
       </div>
     </header>
     <!-- The mon -->
-    <main class="detail-container">
-      <section class="recipe-card">
+    <main class="recipe-detail">
+      <section class="recipe-detail__hero">
         <img id="recipe-img" alt="Hình món ăn" />
-        <div class="detail-info">
+        <div class="recipe-detail__info">
           <h2 id="recipe-name-dup"></h2>
-          <div class="meta">
+          <div class="recipe-detail__meta">
             <span id="recipe-chef"></span>
             <span id="recipe-time"></span>
           </div>
-          <div class="tags" id="recipe-tags"></div>
+          <div class="recipe-detail__tags" id="recipe-tags"></div>
         </div>
       </section>
       <!-- Nội dung chi tiết -->
-      <section class="detail-grid">
-        <article class="card">
+      <section class="recipe-detail__grid">
+        <article class="recipe-detail__card">
           <h3>Nguyên liệu</h3>
           <ul id="ingredients"></ul>
         </article>
 
-        <article class="card">
+        <article class="recipe-detail__card">
           <h3>Các bước thực hiện</h3>
           <ol id="steps"></ol>
         </article>
 
-        <aside class="card">
+        <aside class="recipe-detail__card">
           <h3>Dinh dưỡng</h3>
           <ul id="nutrition"></ul>
         </aside>
