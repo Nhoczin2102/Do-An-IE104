@@ -7,11 +7,12 @@
 
   <!-- Font Awesome -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="../styles/pages/setting.css"> 
-  <link rel="stylesheet" href="../styles/components/sidebarsetting.css"> 
-  <link rel="stylesheet" href="../styles/components/headersetting.css">  
-  <link rel="stylesheet" href="../styles/base/variable.css">  
 
+  <!-- CSS thứ tự nên là: base -> header -> sidebar -> page -->
+  <link rel="stylesheet" href="../styles/base/variable.css">
+  <link rel="stylesheet" href="../styles/components/headersetting.css">
+  <link rel="stylesheet" href="../styles/components/sidebarsetting.css">
+  <link rel="stylesheet" href="../styles/pages/setting.css">
 </head>
 
 <body>
@@ -20,161 +21,244 @@
     <div class="page-header__container">
       <div class="page-header__content">
         <!-- Logo -->
-        <a href="index.html" class="page-header__logo">
+        <a href="../index.html" class="page-header__logo">
           <div class="page-header__logo-image">
             <img src="../assets/images/logo.svg" alt="logo">
           </div>
-          <h1>POTPAN</h1>
+          <h1 class="page-header__logo-text">POTPAN</h1>
         </a>
 
         <!-- Thanh tìm kiếm -->
         <div class="page-header__search-bar">
-          <input type="text" placeholder="Tìm kiếm công thức, nguyên liệu...">
+          <input
+            type="text"
+            class="page-header__search-input"
+            placeholder="Tìm kiếm công thức, nguyên liệu..."
+          >
           <button class="page-header__search-button">
-            <i class="fas fa-search"></i>
+            <i class="fas fa-search page-header__search-icon"></i>
           </button>
         </div>
 
         <!-- Điều hướng -->
-        <div class="page-header__nav">
-          <a href="../index.html" class="active">
-            <i class="fas fa-home nav-icon"></i><span>Trang chủ</span>
+        <nav class="page-header__nav">
+          <a href="../index.html"
+             class="page-header__nav-link page-header__nav-link--active">
+            <i class="fas fa-home page-header__nav-icon"></i>
+            <span class="page-header__nav-label">Trang chủ</span>
           </a>
-          <a href="../">
-            <i class="fas fa-compass page-header__nav-icon"></i><span>Khám phá</span>
+          <a href="../" class="page-header__nav-link">
+            <i class="fas fa-compass page-header__nav-icon"></i>
+            <span class="page-header__nav-label">Khám phá</span>
           </a>
-          <a href="./contact.html">
-            <i class="fa-solid fa-users"></i><span>Về chúng tôi</span>
+          <a href="./contact.html" class="page-header__nav-link">
+            <i class="fa-solid fa-users page-header__nav-icon"></i>
+            <span class="page-header__nav-label">Về chúng tôi</span>
           </a>
-          <a href="./contact.html">
-            <i class="fa-solid fa-phone"></i><span>Liên hệ</span>
+          <a href="./contact.html" class="page-header__nav-link">
+            <i class="fa-solid fa-phone page-header__nav-icon"></i>
+            <span class="page-header__nav-label">Liên hệ</span>
           </a>
-          <a href="./login.html">
-            <i class="fa-solid fa-user"></i><span>Đăng nhập</span>
+          <a href="./login.html" class="page-header__nav-link">
+            <i class="fa-solid fa-user page-header__nav-icon"></i>
+            <span class="page-header__nav-label">Đăng nhập</span>
           </a>
-        </div>
+        </nav>
       </div>
     </div>
   </header>
 
   <!-- ========== LAYOUT 2 CỘT ========== -->
-  <main class="page profile">
+  <main class="settings-page">
     <!-- Sidebar trái -->
-    <aside class="sidebar">
-      <div class="profile">
-        <img class="profile__avatar" src="../assets/images/avatar.png" alt="avatar">
-        <div class="profile-info">
-          <div class="profile__name">Minh Nhựt</div>
-          <div class="profile__handle">@nhutminh_amthuc</div>
+    <aside class="settings-page__sidebar settings-sidebar">
+      <div class="settings-sidebar__user">
+        <img
+          class="settings-sidebar__user-avatar"
+          src="../assets/images/avatar.png"
+          alt="avatar"
+        >
+        <div class="settings-sidebar__user-info">
+          <div class="settings-sidebar__user-name">Minh Nhựt</div>
+          <div class="settings-sidebar__user-handle">@nhutminh_amthuc</div>
         </div>
       </div>
 
-      <nav class="main-menu">
-        <a class="main-menu__item" href="../index.html">
-          <i class="fas fa-newspaper"></i><span>Bảng tin</span>
+      <nav class="settings-sidebar__menu">
+        <a class="settings-sidebar__menu-item" href="../index.html">
+          <i class="fas fa-newspaper settings-sidebar__menu-icon"></i>
+          <span class="settings-sidebar__menu-label">Bảng tin</span>
         </a>
-        <a class="main-menu__item " href="./profile.html">
-          <i class="fas fa-user"></i><span>Hồ sơ của tôi</span>
+        <a class="settings-sidebar__menu-item" href="./profile.html">
+          <i class="fas fa-user settings-sidebar__menu-icon"></i>
+          <span class="settings-sidebar__menu-label">Hồ sơ của tôi</span>
         </a>
-        <a class="main-menu__item" href="./myRecipe.html">
-          <i class="fas fa-bookmark"></i><span>Công thức đã lưu</span>
+        <a class="settings-sidebar__menu-item" href="./myRecipe.html">
+          <i class="fas fa-bookmark settings-sidebar__menu-icon"></i>
+          <span class="settings-sidebar__menu-label">Công thức đã lưu</span>
         </a>
-        <a class="main-menu__item" href="./famous-chef.html">
-          <i class="fas fa-utensils"></i><span>Đầu bếp nổi tiếng</span>
+        <a class="settings-sidebar__menu-item" href="./famous-chef.html">
+          <i class="fas fa-utensils settings-sidebar__menu-icon"></i>
+          <span class="settings-sidebar__menu-label">Đầu bếp nổi tiếng</span>
         </a>
-        <a class="main-menu__item active" href="./setting.html">
-          <i class="fas fa-cog"></i><span>Cài đặt</span>
+        <a class="settings-sidebar__menu-item settings-sidebar__menu-item--active" href="./setting.html">
+          <i class="fas fa-cog settings-sidebar__menu-icon"></i>
+          <span class="settings-sidebar__menu-label">Cài đặt</span>
         </a>
       </nav>
     </aside>
 
     <!-- Khu nội dung phải -->
-    <div class="settings-sections">
-      <!-- Account (mặc định active) -->
-      <section class="settings-section" id="account-section">
-        <div class="section-header">
-          <h2 class="section-title">Tài khoản</h2>
-          <span class="section-icon">👤</span>
+    <div class="settings-page__sections">
+      <!-- Account -->
+      <section class="settings-section settings-section--account" id="account-section">
+        <div class="settings-section__header">
+          <h2 class="settings-section__title">Tài khoản</h2>
+          <span class="settings-section__icon">👤</span>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Tên hiển thị</div>
-            <div class="setting-description">Tên sẽ hiển thị trong ứng dụng</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Tên hiển thị</div>
+            <div class="settings-item__description">
+              Tên sẽ hiển thị trong ứng dụng
+            </div>
           </div>
-          <div class="setting-control">
+          <div class="settings-item__control">
             <input type="text" id="display-name" value="Người dùng PotPan">
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Email</div>
-            <div class="setting-description">Địa chỉ email của tài khoản</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Email</div>
+            <div class="settings-item__description">
+              Địa chỉ email của tài khoản
+            </div>
           </div>
-          <div class="setting-control">
+          <div class="settings-item__control">
             <span id="user-email">user@example.com</span>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Đổi mật khẩu</div>
-            <div class="setting-description">Cập nhật mật khẩu đăng nhập</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Đổi mật khẩu</div>
+            <div class="settings-item__description">
+              Cập nhật mật khẩu đăng nhập
+            </div>
           </div>
-          <div class="setting-control">
-            <button class="btn secondary" id="change-password">Thay đổi</button>
+          <div class="settings-item__control">
+            <button class="button button--secondary" id="change-password">
+              Thay đổi
+            </button>
           </div>
         </div>
       </section>
 
       <!-- Notifications -->
-      <section class="settings-section" id="notifications-section">
-        <div class="section-header">
-          <h2 class="section-title">Thông báo</h2>
-          <span class="section-icon">🔔</span>
+      <section class="settings-section settings-section--notifications" id="notifications-section">
+        <div class="settings-section__header">
+          <h2 class="settings-section__title">Thông báo</h2>
+          <span class="settings-section__icon">🔔</span>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Bật thông báo</div>
-            <div class="setting-description">Cho phép ứng dụng gửi thông báo</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Bật thông báo</div>
+            <div class="settings-item__description">
+              Cho phép ứng dụng gửi thông báo
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="notifications-enabled" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="notifications-enabled"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Cập nhật công thức đã lưu</div>
-            <div class="setting-description">Thông báo khi công thức đã lưu được cập nhật</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Nhắc giờ nấu ăn</div>
+            <div class="settings-item__description">
+              Nhắc nhở khi đến giờ nấu ăn
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="saved-recipe-updates" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="meal-reminders"
+                checked
+              >
+              <span class="toggle__slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Công thức mới</div>
+            <div class="settings-item__description">
+              Thông báo công thức mới phù hợp với sở thích
+            </div>
+          </div>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="new-recipes"
+                checked
+              >
+              <span class="toggle__slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Cập nhật công thức đã lưu</div>
+            <div class="settings-item__description">
+              Thông báo khi công thức đã lưu được cập nhật
+            </div>
+          </div>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="saved-recipe-updates"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
           </div>
         </div>
       </section>
 
       <!-- Language & Region -->
-      <section class="settings-section" id="language-section">
-        <div class="section-header">
-          <h2 class="section-title">Ngôn ngữ</h2>
-          <span class="section-icon">🌐</span>
+      <section class="settings-section settings-section--language" id="language-section">
+        <div class="settings-section__header">
+          <h2 class="settings-section__title">Ngôn ngữ &amp; Vùng</h2>
+          <span class="settings-section__icon">🌐</span>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Ngôn ngữ</div>
-            <div class="setting-description">Ngôn ngữ hiển thị trong ứng dụng</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Ngôn ngữ</div>
+            <div class="settings-item__description">
+              Ngôn ngữ hiển thị trong ứng dụng
+            </div>
           </div>
-          <div class="setting-control">
+          <div class="settings-item__control">
             <select id="language">
               <option value="vi">Tiếng Việt</option>
               <option value="en">English</option>
@@ -183,12 +267,15 @@
             </select>
           </div>
         </div>
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Định dạng thời gian</div>
-            <div class="setting-description">Cách hiển thị thời gian</div>
+
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Định dạng thời gian</div>
+            <div class="settings-item__description">
+              Cách hiển thị thời gian
+            </div>
           </div>
-          <div class="setting-control">
+          <div class="settings-item__control">
             <select id="time-format">
               <option value="24h">24 giờ</option>
               <option value="12h">12 giờ (AM/PM)</option>
@@ -197,32 +284,41 @@
         </div>
       </section>
 
-       <!-- Downloads & Storage -->
-      <section class="settings-section" id="downloads-section">
-        <div class="section-header">
-          <h2 class="section-title">Tải xuống & bộ nhớ</h2>
-          <span class="section-icon">📥</span>
+      <!-- Downloads & Storage -->
+      <section class="settings-section settings-section--downloads" id="downloads-section">
+        <div class="settings-section__header">
+          <h2 class="settings-section__title">Tải xuống &amp; bộ nhớ</h2>
+          <span class="settings-section__icon">📥</span>
         </div>
-      
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Chỉ tải qua Wi-Fi</div>
-            <div class="setting-description">Chỉ tải công thức khi kết nối Wi-Fi</div>
+
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Chỉ tải qua Wi-Fi</div>
+            <div class="settings-item__description">
+              Chỉ tải công thức khi kết nối Wi-Fi
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="wifi-only" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="wifi-only"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Chất lượng ảnh</div>
-            <div class="setting-description">Chọn chất lượng ảnh khi tải về</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Chất lượng ảnh</div>
+            <div class="settings-item__description">
+              Chọn chất lượng ảnh khi tải về
+            </div>
           </div>
-          <div class="setting-control">
+          <div class="settings-item__control">
             <select id="image-quality">
               <option value="low">Tiết kiệm</option>
               <option value="standard" selected>Chuẩn</option>
@@ -231,133 +327,185 @@
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Dung lượng đã dùng</div>
-            <div class="setting-description">Xem và quản lý bộ nhớ đã sử dụng</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Dung lượng đã dùng</div>
+            <div class="settings-item__description">
+              Xem và quản lý bộ nhớ đã sử dụng
+            </div>
           </div>
-          <div class="setting-control">
+          <div class="settings-item__control">
             <span id="cache-size">125 MB</span>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Xoá bộ nhớ cache</div>
-            <div class="setting-description">Xoá dữ liệu tạm thời để giải phóng bộ nhớ</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Xoá bộ nhớ cache</div>
+            <div class="settings-item__description">
+              Xoá dữ liệu tạm thời để giải phóng bộ nhớ
+            </div>
           </div>
-          <div class="setting-control">
-            <button class="btn secondary" id="clear-cache">Xoá cache</button>
+          <div class="settings-item__control">
+            <button class="button button--secondary" id="clear-cache">
+              Xoá cache
+            </button>
           </div>
         </div>
       </section>
 
       <!-- Sync & Backup -->
-      <section class="settings-section" id="sync-section">
-        <div class="section-header">
-          <h2 class="section-title">Đồng bộ & Sao lưu</h2>
-          <span class="section-icon">☁️</span>
+      <section class="settings-section settings-section--sync" id="sync-section">
+        <div class="settings-section__header">
+          <h2 class="settings-section__title">Đồng bộ &amp; Sao lưu</h2>
+          <span class="settings-section__icon">☁️</span>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Đồng bộ đám mây</div>
-            <div class="setting-description">Tự động đồng bộ dữ liệu lên đám mây</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Đồng bộ đám mây</div>
+            <div class="settings-item__description">
+              Tự động đồng bộ dữ liệu lên đám mây
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="cloud-sync" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="cloud-sync"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Sao lưu tự động</div>
-            <div class="setting-description">Tự động sao lưu dữ liệu hàng tuần</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Sao lưu tự động</div>
+            <div class="settings-item__description">
+              Tự động sao lưu dữ liệu hàng tuần
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="auto-backup" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="auto-backup"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
-          </div> 
-        </div>
-       
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Sao lưu thủ công</div>
-            <div class="setting-description">Tạo bản sao lưu ngay bây giờ</div>
           </div>
-          <div class="setting-control">
-            <button class="btn secondary" id="manual-backup">Sao lưu ngay</button>
+        </div>
+
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Sao lưu thủ công</div>
+            <div class="settings-item__description">
+              Tạo bản sao lưu ngay bây giờ
+            </div>
+          </div>
+          <div class="settings-item__control">
+            <button class="button button--secondary" id="manual-backup">
+              Sao lưu ngay
+            </button>
           </div>
         </div>
       </section>
 
       <!-- Privacy & Legal -->
-      <section class="settings-section" id="privacy-section">
-        <div class="section-header">
-          <h2 class="section-title">Quyền riêng tư & Pháp lý</h2>
-          <span class="section-icon">🔒</span>
+      <section class="settings-section settings-section--privacy" id="privacy-section">
+        <div class="settings-section__header">
+          <h2 class="settings-section__title">Quyền riêng tư &amp; Pháp lý</h2>
+          <span class="settings-section__icon">🔒</span>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Cá nhân hoá</div>
-            <div class="setting-description">Cho phép ứng dụng đề xuất công thức phù hợp</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Cá nhân hoá</div>
+            <div class="settings-item__description">
+              Cho phép ứng dụng đề xuất công thức phù hợp
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="personalization" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="personalization"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Thu thập dữ liệu ẩn danh</div>
-            <div class="setting-description">Giúp cải thiện sản phẩm</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Thu thập dữ liệu ẩn danh</div>
+            <div class="settings-item__description">
+              Giúp cải thiện sản phẩm
+            </div>
           </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="analytics" checked>
-              <span class="slider"></span>
+          <div class="settings-item__control">
+            <label class="toggle">
+              <input
+                type="checkbox"
+                class="toggle__input"
+                id="analytics"
+                checked
+              >
+              <span class="toggle__slider"></span>
             </label>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Điều khoản dịch vụ</div>
-            <div class="setting-description">Điều khoản sử dụng ứng dụng</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Điều khoản dịch vụ</div>
+            <div class="settings-item__description">
+              Điều khoản sử dụng ứng dụng
+            </div>
           </div>
-          <div class="setting-control">
-            <button class="btn secondary" id="open-tos">Xem</button>
-          </div>
-        </div>
-
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Chính sách riêng tư</div>
-            <div class="setting-description">Cách chúng tôi bảo vệ dữ liệu của bạn</div>
-          </div>
-          <div class="setting-control">
-            <button class="btn secondary" id="open-privacy">Xem</button>
+          <div class="settings-item__control">
+            <button class="button button--secondary" id="open-tos">
+              Xem
+            </button>
           </div>
         </div>
 
-        <div class="setting-item">
-          <div class="setting-info">
-            <div class="setting-title">Xoá tài khoản</div>
-            <div class="setting-description">Xoá vĩnh viễn tài khoản và dữ liệu</div>
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Chính sách riêng tư</div>
+            <div class="settings-item__description">
+              Cách chúng tôi bảo vệ dữ liệu của bạn
+            </div>
           </div>
-          <div class="setting-control">
-            <button class="btn danger" id="delete-account">Xoá tài khoản</button>
+          <div class="settings-item__control">
+            <button class="button button--secondary" id="open-privacy">
+              Xem
+            </button>
           </div>
         </div>
+
+        <div class="settings-item">
+          <div class="settings-item__info">
+            <div class="settings-item__title">Xoá tài khoản</div>
+            <div class="settings-item__description">
+              Xoá vĩnh viễn tài khoản và dữ liệu
+            </div>
+          </div>
+          <div class="settings-item__control">
+            <button class="button button--danger" id="delete-account">
+              Xoá tài khoản
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
   </main>
 
   <!-- Liên kết với file JavaScript -->
