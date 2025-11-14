@@ -2,13 +2,14 @@
 .page-header {
   background: var(--primary-color);
   border-bottom: 1px solid var(--border-color);
-  position:  fixed;
+  position: fixed;
   top: 0;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   width: 100%;
 }
 
+/* Container & layout */
 .page-header__container {
   max-width: 100%;
   margin: 0 auto;
@@ -23,6 +24,7 @@
   gap: 40px;
 }
 
+/* Logo */
 .page-header__logo {
   display: flex;
   align-items: center;
@@ -44,6 +46,11 @@
   object-fit: contain;
 }
 
+.page-header__logo-text {
+  margin: 0;
+}
+
+/* Search bar */
 .page-header__search-bar {
   display: flex;
   flex: 1;
@@ -52,7 +59,7 @@
   position: relative;
 }
 
-.page-header__search-bar input {
+.page-header__search-input {
   width: 100%;
   padding: 12px 20px;
   border: 1px solid var(--border-color);
@@ -62,10 +69,10 @@
   transition: all 0.2s ease;
 }
 
-.page-header__search-bar input:focus {
+.page-header__search-input:focus {
   outline: none;
   border-color: var(--primary-light);
-  background: white;
+  background: #fff;
   height: 30px;
   box-shadow: 0 0 0 3px rgba(255, 105, 103, 0.1);
 }
@@ -80,7 +87,7 @@
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  color: white;
+  color: #fff;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -89,13 +96,18 @@
   background: var(--primary-dark);
 }
 
+.page-header__search-icon {
+  font-size: 14px;
+}
+
+/* Nav */
 .page-header__nav {
   display: flex;
   align-items: center;
   gap: 40px;
 }
 
-.page-header__nav a {
+.page-header__nav-link {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -108,13 +120,8 @@
   font-size: 17px;
 }
 
-.page-header__nav a:hover {
-  background: var(--background-light);
-  color: var(--primary-color);
-  height: 40px;
-}
-
-.page-header__nav a.active {
+.page-header__nav-link:hover,
+.page-header__nav-link--active {
   background: var(--background-light);
   color: var(--primary-color);
   height: 40px;
@@ -122,4 +129,8 @@
 
 .page-header__nav-icon {
   font-size: 18px;
+}
+
+.page-header__nav-label {
+  white-space: nowrap;
 }
