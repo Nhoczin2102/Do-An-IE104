@@ -205,13 +205,16 @@
         </div>
 
         <!-- Thông tin người dùng -->
-        <div class="modal__user">
-          <img src="../../assets/images/avatar.png" alt="Avatar" class="modal__user-avatar" />
-          <div class="modal__user-info">
-            <div class="modal__user-name">Minh Nhựt</div>
-            <div class="modal__user-handle">@nhutminh_amthuc</div>
-          </div>
+        <div class="modal__header">
+    <div class="modal__user-info">
+        <img class="modal__user-avatar" src="./assets/images/avatar.png" alt="Avatar">
+        <div class="modal__user-details">
+            <!-- SỬA: Thay hardcode bằng dynamic data -->
+            <div class="modal__user-name" id="modalUserName">Người dùng</div>
+            <div class="modal__user-handle" id="modalUserHandle">@user</div>
         </div>
+    </div>
+</div>
 
         <!-- Nội dung bài đăng -->
         <textarea

@@ -12,6 +12,14 @@ function updateNavigation() {
         
         // Cập nhật thông tin người dùng trên toàn bộ trang
         updateUserProfile(currentUser);
+        
+        // Cập nhật PostManager và ModalManager với user mới
+        if (postManager && postManager.updateCurrentUser) {
+            postManager.updateCurrentUser();
+        }
+        if (modalManager && modalManager.updateCurrentUser) {
+            modalManager.updateCurrentUser();
+        }
     } else {
         // Chưa đăng nhập - hiển thị nút Đăng nhập, ẩn nút Đăng xuất
         if (loginNav) loginNav.style.display = 'flex';
@@ -21,6 +29,14 @@ function updateNavigation() {
         if (!window.location.href.includes('login.html') && 
             !window.location.href.includes('register.html')) {
             window.location.href = './pages/login.html';
+        }
+        
+        // Cập nhật PostManager và ModalManager với user null
+        if (postManager && postManager.updateCurrentUser) {
+            postManager.updateCurrentUser();
+        }
+        if (modalManager && modalManager.updateCurrentUser) {
+            modalManager.updateCurrentUser();
         }
     }
 }
@@ -139,11 +155,17 @@ function checkAndUpdateUserProfile() {
         if (updatedUser) {
             localStorage.setItem('currentUser', JSON.stringify(updatedUser));
             updateUserProfile(updatedUser);
+            
+            // Cập nhật PostManager
+            if (postManager && postManager.updateCurrentUser) {
+                postManager.updateCurrentUser();
+            }
         } else {
             updateUserProfile(currentUser);
         }
     }
 }
+
 
 // Hàm kiểm tra đăng nhập và chuyển hướng
 function checkAuthAndRedirect() {
@@ -164,11 +186,47 @@ function checkAuthAndRedirect() {
     return true;
 }
 
+// THÊM: Biến global để quản lý PostManager
+let postManager = null;
+
+// THÊM: Hàm khởi tạo PostManager
+async function initializePostManager() {
+    if (typeof PostManager !== 'undefined') {
+        const { PostManager } = await import('../js/managers/postManager.js');
+        postManager = new PostManager();
+        await postManager.init();
+        
+        // Cập nhật PostManager khi user thay đổi
+        if (postManager.updateCurrentUser) {
+            postManager.updateCurrentUser();
+        }
+    }
+}
+
+let modalManager = null;
+
+// THÊM: Hàm khởi tạo ModalManager
+async function initializeModalManager(postManager) {
+    if (typeof ModalManager !== 'undefined') {
+        const { ModalManager } = await import('../js/managers/modalManager.js');
+        modalManager = new ModalManager(postManager);
+        
+        console.log('✅ ModalManager initialized with user:', modalManager.currentUser);
+    }
+}
+
+
 // Gọi hàm khi trang load
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
     if (checkAuthAndRedirect()) {
         updateNavigation();
         setupLogout();
         checkAndUpdateUserProfile();
+        
+        // Khởi tạo managers theo thứ tự
+        await initializePostManager();
+        if (postManager) {
+            await initializeModalManager(postManager);
+        }
     }
 });

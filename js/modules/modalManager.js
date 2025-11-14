@@ -1,8 +1,11 @@
+import { getCurrentUser } from './auth.js';
+
 export class ModalManager {
     constructor(postManager) {
         this.postManager = postManager;
         this.modal = document.getElementById('createPostModal');
         this.feedComposer = document.querySelector('.feed__composer');
+        this.currentUser = getCurrentUser(); // ĐẶT TRONG CONSTRUCTOR
         this.initializeElements();
     }
 
@@ -22,12 +25,41 @@ export class ModalManager {
             modal: !!this.modal,
             postBtn: !!this.postBtn,
             addIngredientBtn: !!this.addIngredientBtn,
-            addStepBtn: !!this.addStepBtn
+            addStepBtn: !!this.addStepBtn,
+            currentUser: !!this.currentUser // THÊM: kiểm tra user
         });
 
         this.bindEvents();
         this.addDefaultFields();
     }
+
+     updateModalUserInfo() {
+        if (this.currentUser) {
+            const userNameElement = document.getElementById('modalUserName');
+            const userHandleElement = document.getElementById('modalUserHandle');
+            const userAvatarElement = document.querySelector('.modal__user-avatar');
+            
+            if (userNameElement) {
+                userNameElement.textContent = this.currentUser.name;
+            }
+            if (userHandleElement) {
+                const username = this.currentUser.username || this.currentUser.email?.split('@')[0] || 'user';
+                userHandleElement.textContent = `@${username}`;
+            }
+            if (userAvatarElement && this.currentUser.avatar) {
+                userAvatarElement.src = this.currentUser.avatar;
+            }
+        }
+    }
+
+    openModal() {
+        this.currentUser = getCurrentUser(); // Cập nhật lại user
+        this.updateModalUserInfo(); // Cập nhật thông tin
+        this.modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        console.log('Popup opened with user:', this.currentUser);
+    }
+
 
     bindEvents() {
         // Mở popup - SỬA: feed__composer
@@ -87,11 +119,7 @@ export class ModalManager {
         }
     }
 
-    openModal() {
-        this.modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        console.log('Popup opened');
-    }
+  
 
     closeModal() {
         if (this.modal) {
@@ -280,13 +308,17 @@ export class ModalManager {
         return true;
     }
 
-    createNewPost(formData) {
+       createNewPost(formData) {
         const { content, title, difficulty, prepTime, cookTime, servings, tips, ingredients, steps } = formData;
 
+        // THÊM: Kiểm tra và log user info
+        console.log('👤 Current user in createNewPost:', this.currentUser);
+        
+        // SỬA: Sử dụng thông tin user hiện tại
         return {
             id: Date.now(),
-            avatar: "../../assets/images/avatar.png",
-            name: "Minh Nhựt",
+            avatar: this.currentUser?.avatar || "./assets/images/avatar.png",
+            name: this.currentUser?.name || "Người dùng", // SỬA: Dùng optional chaining
             time: "Vừa xong",
             content: content,
             image: this.imageInput && this.imageInput.files[0] ? 
@@ -298,18 +330,17 @@ export class ModalManager {
             isLiked: false,
             recipe: {
                 title: title,
-                prepTime: prepTime,
-                cookTime: cookTime,
-                servings: servings,
+                prepTime: prepTime || '15 phút',
+                cookTime: cookTime || '30 phút',
+                servings: servings || '2 người',
                 difficulty: difficulty,
                 ingredients: ingredients,
                 steps: steps,
-                tips: tips
+                tips: tips || ''
             },
             commentsList: []
         };
     }
-
     resetForm() {
         console.log('Resetting form...');
         

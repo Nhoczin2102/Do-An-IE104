@@ -11,22 +11,22 @@ class FeedApp {
         this.cookMode = null;
     }
 
-    init() {
+    async init() { // THÊM: Chuyển thành async
         console.log('🚀 Initializing Feed App...');
         
         try {
-            // Khởi tạo các manager
+            // Khởi tạo PostManager trước
             this.postManager = new PostManager();
+            await this.postManager.init(); // THÊM: Chờ PostManager init xong
+            
+            // Sau đó mới khởi tạo ModalManager
             this.modalManager = new ModalManager(this.postManager);
             this.searchManager = new SearchManager(this.postManager);
-            
-            // Khởi tạo ứng dụng
-            this.postManager.init();
             
             // Khởi tạo Cook Mode sau khi mọi thứ đã load
             setTimeout(() => {
                 this.cookMode = new CookMode();
-                window.cookMode = this.cookMode; // Make globally accessible if needed
+                window.cookMode = this.cookMode;
                 console.log('🍳 Cook Mode initialized successfully');
             }, 100);
 
@@ -46,8 +46,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Make app globally accessible for debugging
     window.feedApp = app;
 });
-
-
 
 // Export for testing or other modules
 export { FeedApp };

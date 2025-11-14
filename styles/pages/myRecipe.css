@@ -12,23 +12,19 @@
 
 /* Layout chính  */
 main.page {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    gap: 32px;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+     display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 50px;
+  max-width: 90%;
+  margin: 23px auto;
+  padding: 0 20px;
+  align-items: start;
+  min-height: calc(100vh - 130px);
+  position: relative;
 }
 
 /* ===== SIDEBAR ===== */
-.sidebar {
-    background: var(--bg-card);
-    border-radius: var(--radius);
-    padding: 24px;
-    height: fit-content;
-    box-shadow: var(--shadow);
-    border: 1px solid var(--border-color);
-}
+
 
 .profile {
     display: flex;

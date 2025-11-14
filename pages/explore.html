@@ -13,54 +13,63 @@
 </head>
 <body>
     <main class="explore-page">
-        <header class="page-header">
-            <div class="page-header__container">
-                <div class="page-header__content">
-                    <!-- Logo -->
-                    <a href="index.html" class="page-header__logo">
-                        <div class="page-header__logo-image">
-                            <img src="../assets/images/logo.svg" />
-                        </div>
-                        <h1>POTPAN</h1>
-                    </a>
-
-                    <!-- Thanh tìm kiếm -->
-                    <div class="page-header__search-bar">
-                        <input
-                            type="text"
-                            placeholder="Tìm kiếm công thức, nguyên liệu..."
-                        />
-                        <button class="page-header__search-button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-
-                    <!-- Điều hướng -->
-                    <div class="page-header__nav">
-                        <a href="../index.html">
-                            <i class="fas fa-home nav-icon"></i>
-                            <span>Trang chủ</span>
-                        </a>
-                        <a href="./pages/explore.html" class="active">
-                            <i class="fas fa-compass page-header__nav-icon"></i>
-                            <span>Khám phá</span>
-                        </a>
-                        <a href="./about.html" target="_blank">
-                            <i class="fa-solid fa-users"></i>
-                            <span>Về chúng tôi</span>
-                        </a>
-                        <a href="./contact.html">
-                            <i class="fa-solid fa-phone"></i>
-                            <span>Liên hệ</span>
-                        </a>
-                        <a href="./login.html">
-                            <i class="fa-solid fa-user"></i>
-                            <span>Đăng nhập</span>
-                        </a>
-                    </div>
-                </div>
+       <header class="header">
+      <div class="header__container">
+        <div class="header__content">
+          <!-- Logo -->
+          <a href="index.html" class="header__logo">
+            <div class="header__logo-image">
+              <img src="../assets/images/logo.svg" />
             </div>
-        </header>
+            <h1 class="header__logo-text">POTPAN</h1>
+          </a>
+
+          <!-- Thanh tìm kiếm -->
+          <div class="header__search">
+            <input
+              type="text"
+              class="header__search-input"
+              placeholder="Tìm kiếm công thức, nguyên liệu..."
+            />
+            <button class="header__search-button">
+              <i class="fas fa-search header__search-icon"></i>
+            </button>
+          </div>
+
+          <!-- Điều hướng -->
+          <div class="header__nav">
+            <a href="../index.html" class="header__nav-item ">
+              <i class="fas fa-home header__nav-icon"></i>
+              <span class="header__nav-text">Trang chủ</span>
+            </a>
+            <a href="./explore.html" class="header__nav-item header__nav-item--active">
+              <i class="fas fa-compass header__nav-icon"></i>
+              <span class="header__nav-text">Khám phá</span>
+            </a>
+            <a href="./about.html" target="_blank" class="header__nav-item">
+              <i class="fa-solid fa-users header__nav-icon"></i>
+              <span class="header__nav-text">Về chúng tôi</span>
+            </a>
+            <a href="./contact.html" target="_blank" class="header__nav-item">
+              <i class="fa-solid fa-phone header__nav-icon"></i>
+              <span class="header__nav-text">Liên hệ</span>
+            </a>
+            
+            <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
+            <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
+              <i class="fas fa-sign-out-alt header__nav-icon"></i>
+              <span class="header__nav-text">Đăng xuất</span>
+            </a>
+            
+            <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
+            <a href="./login.html" class="header__nav-item header__nav-item--login" id="loginNav">
+              <i class="fa-solid fa-user header__nav-icon"></i>
+              <span class="header__nav-text">Đăng nhập</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
         
         <main class="explore-content">
             <section class="explore-hero">
