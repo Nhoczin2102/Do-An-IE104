@@ -21,7 +21,7 @@ class ChefProfile {
 
     getChefIdFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
-        return parseInt(urlParams.get('id')) || 1; // Default to first chef if no ID
+        return parseInt(urlParams.get('id')) || 1;
     }
 
     loadChefData() {
@@ -97,7 +97,6 @@ class ChefProfile {
         const recipesGrid = document.getElementById('recipesGrid');
         if (!recipesGrid) return;
 
-        // In a real app, you would fetch chef's recipes from an API
         const sampleRecipes = this.generateSampleRecipes();
         
         if (sampleRecipes.length === 0) {
@@ -115,13 +114,11 @@ class ChefProfile {
     }
 
     generateSampleRecipes() {
-        // Generate sample recipes for demonstration
-        // In a real app, this would come from your data
         return [
             {
                 id: 1,
                 title: "Phở Bò Hà Nội",
-                image: "../assets/images/recipes/pho-bo.jpg",
+                image: "../../assets/images/phobo.jpg",
                 time: "120 phút",
                 difficulty: "Trung bình",
                 rating: 4.8,
@@ -130,7 +127,7 @@ class ChefProfile {
             {
                 id: 2,
                 title: "Bánh Xèo Miền Tây",
-                image: "../assets/images/recipes/banh-xeo.jpg",
+                image: "../../assets/images/banhxeo.webp",
                 time: "45 phút",
                 difficulty: "Dễ",
                 rating: 4.5,
@@ -139,7 +136,7 @@ class ChefProfile {
             {
                 id: 3,
                 title: "Gà Nướng Muối Ớt",
-                image: "../assets/images/recipes/ga-nuong.jpg",
+                image: "../../assets/images/ganuongmuoiot.webp",
                 time: "60 phút",
                 difficulty: "Dễ",
                 rating: 4.7,
@@ -154,7 +151,7 @@ class ChefProfile {
         return `
             <div class="recipe-card" data-recipe-id="${recipe.id}">
                 <div class="recipe-image">
-                    <img src="${recipe.image}" alt="${recipe.title}">
+                    <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../assets/images/recipe-placeholder.jpg'">
                 </div>
                 <div class="recipe-info">
                     <h3 class="recipe-title">${recipe.title}</h3>
@@ -257,10 +254,8 @@ class ChefProfile {
         const averageRating = document.getElementById('averageRating');
         const totalReviews = document.getElementById('totalReviews');
         
-        // In a real app, you would fetch reviews from an API
         const sampleReviews = this.generateSampleReviews();
         
-        // Calculate average rating
         const avgRating = sampleReviews.length > 0 
             ? (sampleReviews.reduce((sum, review) => sum + review.rating, 0) / sampleReviews.length).toFixed(1)
             : '0.0';
@@ -268,7 +263,6 @@ class ChefProfile {
         averageRating.textContent = avgRating;
         totalReviews.textContent = `${sampleReviews.length} đánh giá`;
         
-        // Render stars for average rating
         this.renderStars('averageStars', parseFloat(avgRating));
         
         if (sampleReviews.length === 0) {
@@ -286,7 +280,6 @@ class ChefProfile {
     }
 
     generateSampleReviews() {
-        // Generate sample reviews for demonstration
         return [
             {
                 id: 1,
@@ -318,7 +311,7 @@ class ChefProfile {
             <div class="review-item">
                 <div class="review-header">
                     <div class="reviewer-info">
-                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviewer-avatar">
+                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviewer-avatar" onerror="this.src='../assets/images/avatar.png'">
                         <div class="reviewer-details">
                             <h4>${review.user.name}</h4>
                             <div class="review-date">${review.date}</div>
@@ -464,19 +457,22 @@ class ChefProfile {
     parseFollowers(followersStr) {
         if (followersStr.includes('K')) {
             return parseFloat(followersStr) * 1000;
+        } else if (followersStr.includes('M')) {
+            return parseFloat(followersStr) * 1000000;
         }
         return parseInt(followersStr);
     }
 
     formatFollowers(count) {
-        if (count >= 1000) {
+        if (count >= 1000000) {
+            return (count / 1000000).toFixed(1) + 'M';
+        } else if (count >= 1000) {
             return (count / 1000).toFixed(1) + 'K';
         }
         return count.toString();
     }
 
     messageChef() {
-        // In a real app, this would open a messaging interface
         this.showNotification('Tính năng nhắn tin sẽ sớm có mặt!');
     }
 
@@ -488,7 +484,6 @@ class ChefProfile {
                 url: window.location.href
             });
         } else {
-            // Fallback: copy to clipboard
             navigator.clipboard.writeText(window.location.href).then(() => {
                 this.showNotification('Đã sao chép liên kết vào clipboard!');
             });
@@ -496,7 +491,6 @@ class ChefProfile {
     }
 
     viewRecipe(recipeId) {
-        // Redirect to recipe page
         window.location.href = `recipe-detail.html?id=${recipeId}&chef=${this.chefId}`;
     }
 
@@ -504,7 +498,6 @@ class ChefProfile {
         const modal = document.getElementById('reviewModal');
         modal.classList.add('active');
         
-        // Reset form
         document.getElementById('reviewText').value = '';
         this.resetStarRating();
     }
@@ -602,13 +595,11 @@ class ChefProfile {
             return;
         }
         
-        // In a real app, you would submit the review to your backend
         console.log('Submitting review:', { rating, comment });
         
         this.closeReviewModal();
         this.showNotification('Cảm ơn bạn đã đánh giá!');
         
-        // Refresh reviews after a short delay
         setTimeout(() => {
             this.renderReviews();
         }, 1000);
@@ -642,6 +633,13 @@ class ChefProfile {
     }
 }
 
+document.getElementById('backToChefs').addEventListener('click', function() {
+  // Quay lại trang đầu bếp nổi tiếng
+  window.location.href = './famous-chef.html';
+  
+  // Hoặc nếu muốn quay lại trang trước đó:
+  // window.history.back();
+});
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ChefProfile();

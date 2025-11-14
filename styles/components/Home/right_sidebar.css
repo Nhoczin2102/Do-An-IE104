@@ -1,4 +1,4 @@
-/* RESPONSIVE */
+/* RESPONSIVE RIGHT SIDEBAR - IMPROVED VERSION */
 
 .sidebar-right__card {
   background: var(--bg-card);
@@ -7,8 +7,15 @@
   box-shadow: var(--shadow);
   position: sticky;
   height: fit-content;
-
   margin-bottom: 30px;
+  /* New improvements */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+}
+
+.sidebar-right__card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
 .sidebar-right__card .sidebar-right__title {
@@ -17,6 +24,22 @@
   font-weight: 700;
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border-color);
+  justify-self: center;
+  /* New improvements */
+  text-align: center;
+  position: relative;
+  margin-bottom: 8px;
+}
+
+.sidebar-right__card .sidebar-right__title::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 2px;
+  background: var(--primary-color);
 }
 
 .sidebar-right__chef {
@@ -27,6 +50,9 @@
   border-top: 1px solid var(--border-color);
   transition: all 0.15s ease;
   cursor: pointer;
+  /* New improvements */
+  border-radius: 6px;
+  margin: 2px 0;
 }
 
 .sidebar-right__chef:first-of-type {
@@ -39,6 +65,9 @@
   padding-right: 12px;
   margin: 0 -12px;
   border-radius: 8px;
+  /* New improvements */
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-right__chef-avatar {
@@ -47,6 +76,14 @@
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  /* New improvements */
+  transition: transform 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.sidebar-right__chef:hover .sidebar-right__chef-avatar {
+  transform: scale(1.1);
+  border-color: var(--primary-color);
 }
 
 .sidebar-right__chef-info {
@@ -57,14 +94,46 @@
   color: var(--text);
   font-weight: 600;
   margin-bottom: 4px;
+  /* New improvements */
+  transition: color 0.2s ease;
+}
+
+.sidebar-right__chef:hover .sidebar-right__chef-name {
+  color: var(--primary-color);
 }
 
 .sidebar-right__chef-specialty {
   color: var(--muted);
   font-size: 13px;
+  /* New improvements */
+  position: relative;
+  padding-left: 12px;
 }
 
-/* RESPONSIVE */
+.sidebar-right__chef-specialty::before {
+  content: "•";
+  color: var(--primary-color);
+  position: absolute;
+  left: 0;
+}
+
+/* New: Add subtle animation for card appearance */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.sidebar-right__card {
+  animation: slideInRight 0.5s ease-out;
+}
+
+/* RESPONSIVE - KEEP EXISTING STYLES */
 
 @media (max-width: 1091px) {
   .sidebar-right {
@@ -76,5 +145,19 @@
   .sidebar-right__card {
     padding: 10px;
     margin-bottom: 10px;
+  }
+
+  .sidebar-right__card .sidebar-right__title {
+    font-size: 18px;
+  }
+  
+  /* New improvements for small height screens */
+  .sidebar-right__chef {
+    padding: 12px 0;
+  }
+  
+  .sidebar-right__chef-avatar {
+    width: 44px;
+    height: 44px;
   }
 }
