@@ -2,6 +2,7 @@ import { PostManager } from '../modules/postManager.js';
 import { ModalManager } from '../modules/modalManager.js';
 import { SearchManager } from '../modules/seachManager.js';
 import { CookMode } from '../modules/cookMode.js';
+import { ChefNavigation } from '../modules/chefNavigation.js'; // THÊM DÒNG NÀY
 
 class FeedApp {
     constructor() {
@@ -9,19 +10,23 @@ class FeedApp {
         this.modalManager = null;
         this.searchManager = null;
         this.cookMode = null;
+        this.chefNavigation = null; // THÊM DÒNG NÀY
     }
 
-    async init() { // THÊM: Chuyển thành async
+    async init() {
         console.log('🚀 Initializing Feed App...');
         
         try {
             // Khởi tạo PostManager trước
             this.postManager = new PostManager();
-            await this.postManager.init(); // THÊM: Chờ PostManager init xong
+            await this.postManager.init();
             
             // Sau đó mới khởi tạo ModalManager
             this.modalManager = new ModalManager(this.postManager);
             this.searchManager = new SearchManager(this.postManager);
+            
+            // THÊM: Khởi tạo ChefNavigation
+            this.chefNavigation = new ChefNavigation();
             
             // Khởi tạo Cook Mode sau khi mọi thứ đã load
             setTimeout(() => {

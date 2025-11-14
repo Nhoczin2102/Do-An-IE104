@@ -4,7 +4,7 @@ import { chefsData } from '../data/chefsData.js'
 class ChefProfile {
     constructor() {
         this.chef = null;
-        this.chefId = this.getChefIdFromURL();
+        this.chefId = null;
         this.currentRecipePage = 1;
         this.recipesPerPage = 9;
         this.currentReviewPage = 1;
@@ -21,19 +21,61 @@ class ChefProfile {
 
     getChefIdFromURL() {
         const urlParams = new URLSearchParams(window.location.search);
-        return parseInt(urlParams.get('id')) || 1;
+        return parseInt(urlParams.get('id'));
+    }
+
+    getChefFromSessionStorage() {
+        const chefData = sessionStorage.getItem('selectedChef');
+        if (chefData) {
+            const chef = JSON.parse(chefData);
+            return chef.id;
+        }
+        return null;
     }
 
     loadChefData() {
+        // ƯU TIÊN 1: Lấy từ sessionStorage (từ trang Home)
+        const sessionChefId = this.getChefFromSessionStorage();
+        
+        // ƯU TIÊN 2: Lấy từ URL parameter (từ trang Famous Chef)
+        const urlChefId = this.getChefIdFromURL();
+        
+        // Xác định chefId cần sử dụng
+        this.chefId = sessionChefId || urlChefId;
+
+        console.log('Session Chef ID:', sessionChefId);
+        console.log('URL Chef ID:', urlChefId);
+        console.log('Final Chef ID:', this.chefId);
+
+        // Fallback: Nếu không có ID nào
+        if (!this.chefId) {
+            console.warn('Không tìm thấy chef ID, sử dụng ID mặc định 1');
+            this.chefId = 1;
+        }
+
+        // Tìm chef trong database
         this.chef = chefsData.find(chef => chef.id === this.chefId);
+        
+        console.log('Found chef:', this.chef);
+
         if (!this.chef) {
+            console.error('Không tìm thấy đầu bếp với ID:', this.chefId);
             // Redirect to chefs list if chef not found
             window.location.href = 'famous-chef.html';
             return;
         }
+
+        // Xóa sessionStorage sau khi đã sử dụng để tránh conflict
+        sessionStorage.removeItem('selectedChef');
     }
 
     renderChefProfile() {
+        if (!this.chef) {
+            console.error('Không có dữ liệu chef để render');
+            return;
+        }
+
+        console.log('Rendering profile for:', this.chef.name);
         this.renderHeader();
         this.renderStats();
         this.renderRecipes();
@@ -407,6 +449,14 @@ class ChefProfile {
                 this.viewRecipe(recipeId);
             }
         });
+
+        // Back button
+        const backButton = document.getElementById('backToChefs');
+        if (backButton) {
+            backButton.addEventListener('click', () => {
+                window.location.href = './famous-chef.html';
+            });
+        }
     }
 
     switchTab(tabName) {
@@ -633,13 +683,6 @@ class ChefProfile {
     }
 }
 
-document.getElementById('backToChefs').addEventListener('click', function() {
-  // Quay lại trang đầu bếp nổi tiếng
-  window.location.href = './famous-chef.html';
-  
-  // Hoặc nếu muốn quay lại trang trước đó:
-  // window.history.back();
-});
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ChefProfile();
