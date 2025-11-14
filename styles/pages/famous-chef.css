@@ -13,12 +13,19 @@
 
 /* ========== CHEFS CONTENT SCROLLABLE ========== */
 .chefs-content {
-  background: var(--bg-card);
+    background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  height: fit-content;
-  min-height: 600px;
-  margin-top: 10px;
+  
+  /* Làm cho nó "dính" lại giống sidebar */
+  position: sticky;
+  top: 90px; 
+
+  /* Giới hạn chiều cao và cho phép cuộn bên trong */
+  max-height: calc(100vh - 150px); 
+  overflow-y: auto; 
+  
+  height: auto; 
 }
 
 /* Chefs Header */

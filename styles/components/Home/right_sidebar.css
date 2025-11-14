@@ -7,11 +7,12 @@
   box-shadow: var(--shadow);
   position: sticky;
   height: fit-content;
+
   margin-bottom: 30px;
 }
 
 .sidebar-right__card .sidebar-right__title {
-  color: var(--text);
+  color: var(--primary-color);
   font-size: 18px;
   font-weight: 700;
   padding-bottom: 16px;
@@ -68,5 +69,12 @@
 @media (max-width: 1091px) {
   .sidebar-right {
     display: none;
+  }
+}
+
+@media (max-height: 800px) {
+  .sidebar-right__card {
+    padding: 10px;
+    margin-bottom: 10px;
   }
 }

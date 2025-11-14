@@ -11,6 +11,38 @@
     position: relative;
 }
 
+/* ========== SETTINGS CONTENT SCROLLABLE ========== */
+.settings-sections {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    
+    /* Làm cho nó "dính" lại giống sidebar */
+    position: sticky;
+    top: 90px;
+
+    /* Giới hạn chiều cao và cho phép cuộn bên trong */
+    max-height: calc(100vh - 150px);
+    overflow-y: auto;
+    
+    height: auto;
+    padding: 25px;
+}
+
+/* Section styling */
+.settings-section {
+    background-color: #fff;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    animation: fadeIn .3s ease;
+}
+
+.settings-section:last-child {
+    margin-bottom: 0;
+}
+
 .user-profile {
     display: flex;
     align-items: center;
@@ -52,7 +84,6 @@
     padding-bottom: 15px;
     border-bottom: 1px solid var(--border-color);
 }
-
 
 .section-icon {
     color: var(--primary-color);
@@ -293,6 +324,11 @@ button.danger:hover {
     .sidebar {
         display: none
     }
+    
+    .settings-sections {
+        position: static;
+        max-height: none;
+    }
 }
 
 @media (max-width:768px) {
@@ -333,11 +369,32 @@ button.danger:hover {
     .nav-item {
         padding: 16px
     }
+
+    .setting-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .setting-control {
+        margin-left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+    }
 }
 
 @media (max-width:480px) {
     .page.profile {
         padding: 0 16px
+    }
+
+    .settings-sections {
+        padding: 16px;
+    }
+
+    .settings-section {
+        padding: 20px;
     }
 
     .profile-header {
@@ -353,4 +410,49 @@ button.danger:hover {
         flex-direction: column;
         gap: 8px
     }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .section-icon {
+        align-self: flex-end;
+    }
+}
+
+/* Avatar trong setting */
+.avatar-upload {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.setting-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.setting-avatar:hover {
+  border-color: var(--primary-color);
+  transform: scale(1.05);
+}
+
+/* Responsive cho avatar */
+@media (max-width: 768px) {
+  .avatar-upload {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .setting-avatar {
+    width: 50px;
+    height: 50px;
+  }
 }

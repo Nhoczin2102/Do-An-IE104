@@ -1,473 +1,648 @@
-// chef-profile.js
+// js/pages/chef-profile.js
+import { chefsData } from '../data/chefsData.js'
 
-// Dữ liệu mẫu cho đầu bếp
-const chefDatabase = {
-    1: {
-        id: 1,
-        name: "Gordon Ramsay",
-        specialty: "Ẩm thực Âu - Bếp trưởng 3 sao Michelin",
-        avatar: "../assets/images/chefs/chef1.jpg",
-        cover: "../assets/images/chef-cover.jpg",
-        rating: 4.9,
-        recipes: 245,
-        followers: 125000,
-        experience: 12,
-        bio: "Đầu bếp nổi tiếng thế giới với 3 sao Michelin, chuyên về ẩm thực châu Âu hiện đại. Với hơn 12 năm kinh nghiệm trong ngành ẩm thực, tôi đã đào tạo hàng trăm đầu bếp trẻ và mang đến những trải nghiệm ẩm thực độc đáo cho thực khách.",
-        expertise: ["French Cuisine", "Fine Dining", "Modern European", "Culinary Training", "Recipe Development"],
-        category: "european",
-        isFeatured: true,
-        isVerified: true,
-        isFollowing: false,
+class ChefProfile {
+    constructor() {
+        this.chef = null;
+        this.chefId = this.getChefIdFromURL();
+        this.currentRecipePage = 1;
+        this.recipesPerPage = 9;
+        this.currentReviewPage = 1;
+        this.reviewsPerPage = 5;
         
-        about: `
-            <p>Gordon Ramsay là một trong những đầu bếp nổi tiếng nhất thế giới với sự nghiệp lẫy lừng trong ngành ẩm thực. Sinh ra tại Scotland, ông bắt đầu sự nghiệp với bóng đá nhưng một chấn thương đã đưa ông đến với nghề bếp.</p>
-            
-            <h4>Hành trình ẩm thực:</h4>
-            <ul>
-                <li>Đào tạo tại Nhà hàng Harvey's dưới sự hướng dẫn của Marco Pierre White</li>
-                <li>Làm việc tại Pháp dưới sự chỉ dẫn của các bếp trưởng nổi tiếng</li>
-                <li>Nhận 3 sao Michelin cho nhà hàng Restaurant Gordon Ramsay</li>
-            </ul>
-            
-            <h4>Triết lý nấu ăn:</h4>
-            <p>"Ẩm thực không chỉ là việc nấu ăn, đó là nghệ thuật tạo ra trải nghiệm. Mỗi món ăn phải kể một câu chuyện, mang đến cảm xúc và ký ức cho thực khách."</p>
-        `,
+        this.init();
+    }
+
+    init() {
+        this.loadChefData();
+        this.bindEvents();
+        this.renderChefProfile();
+    }
+
+    getChefIdFromURL() {
+        const urlParams = new URLSearchParams(window.location.search);
+        return parseInt(urlParams.get('id')) || 1; // Default to first chef if no ID
+    }
+
+    loadChefData() {
+        this.chef = chefsData.find(chef => chef.id === this.chefId);
+        if (!this.chef) {
+            // Redirect to chefs list if chef not found
+            window.location.href = 'famous-chef.html';
+            return;
+        }
+    }
+
+    renderChefProfile() {
+        this.renderHeader();
+        this.renderStats();
+        this.renderRecipes();
+        this.renderAbout();
+        this.renderReviews();
+    }
+
+    renderHeader() {
+        // Set cover image
+        const coverImg = document.getElementById('chefCover');
+        if (this.chef.coverImage) {
+            coverImg.src = this.chef.coverImage;
+        }
+
+        // Set avatar
+        const avatarImg = document.getElementById('chefAvatar');
+        avatarImg.src = this.chef.avatar;
+        avatarImg.alt = this.chef.name;
+
+        // Set verified badge
+        const verifiedBadge = document.getElementById('chefVerified');
+        if (this.chef.verified) {
+            verifiedBadge.style.display = 'flex';
+        }
+
+        // Set name and specialty
+        document.getElementById('chefName').textContent = this.chef.name;
+        document.getElementById('chefSpecialty').textContent = this.chef.specialty;
+
+        // Set featured badge
+        const badge = document.getElementById('chefBadge');
+        if (this.chef.featured) {
+            badge.style.display = 'block';
+        }
+
+        // Set bio
+        document.getElementById('chefBio').textContent = this.chef.bio;
+        document.getElementById('chefBioFull').textContent = this.chef.bioFull || this.chef.bio;
+
+        // Set rating
+        this.renderStars('chefStars', this.chef.rating);
+        document.getElementById('chefRating').textContent = this.chef.rating;
+        document.getElementById('chefReviewCount').textContent = `(${this.chef.reviewCount || '0'} đánh giá)`;
+
+        // Set follow button state
+        const followBtn = document.getElementById('followChefBtn');
+        if (this.chef.isFollowing) {
+            followBtn.classList.add('following');
+            followBtn.innerHTML = '<i class="fas fa-check"></i><span>Đang theo dõi</span>';
+        }
+    }
+
+    renderStats() {
+        document.getElementById('statRecipes').textContent = this.chef.recipes;
+        document.getElementById('statFollowers').textContent = this.chef.followers;
+        document.getElementById('statFollowing').textContent = this.chef.following || '0';
+        document.getElementById('statExperience').textContent = this.chef.experience;
+    }
+
+    renderRecipes() {
+        const recipesGrid = document.getElementById('recipesGrid');
+        if (!recipesGrid) return;
+
+        // In a real app, you would fetch chef's recipes from an API
+        const sampleRecipes = this.generateSampleRecipes();
         
-        recipes: [
+        if (sampleRecipes.length === 0) {
+            recipesGrid.innerHTML = `
+                <div class="empty-state" style="grid-column: 1 / -1;">
+                    <div class="empty-icon">👨‍🍳</div>
+                    <h3 class="empty-text">Chưa có công thức nào</h3>
+                    <p>Đầu bếp này chưa đăng tải công thức nào.</p>
+                </div>
+            `;
+            return;
+        }
+
+        recipesGrid.innerHTML = sampleRecipes.map(recipe => this.createRecipeCard(recipe)).join('');
+    }
+
+    generateSampleRecipes() {
+        // Generate sample recipes for demonstration
+        // In a real app, this would come from your data
+        return [
             {
                 id: 1,
-                title: "Beef Wellington Cổ điển",
-                image: "../assets/images/recipes/beef-wellington.jpg",
-                description: "Món thịt bò hảo hạng với lớp vỏ bánh puff pastry giòn tan, nhân pâté và nấm thơm ngon.",
-                difficulty: "Khó",
+                title: "Phở Bò Hà Nội",
+                image: "../assets/images/recipes/pho-bo.jpg",
                 time: "120 phút",
-                rating: 4.9,
-                reviews: 234
+                difficulty: "Trung bình",
+                rating: 4.8,
+                description: "Phở bò truyền thống Hà Nội với nước dùng đậm đà, thơm ngon."
             },
             {
                 id: 2,
-                title: "Risotto Hải sản Ý",
-                image: "../assets/images/recipes/seafood-risotto.jpg",
-                description: "Risotto creamy với đủ loại hải sản tươi ngon, hương vị Địa Trung Hải đặc trưng.",
-                difficulty: "Trung bình",
+                title: "Bánh Xèo Miền Tây",
+                image: "../assets/images/recipes/banh-xeo.jpg",
                 time: "45 phút",
-                rating: 4.7,
-                reviews: 189
+                difficulty: "Dễ",
+                rating: 4.5,
+                description: "Bánh xèo giòn rụm với nhân tôm thịt đầy đặn."
             },
             {
                 id: 3,
-                title: "Bánh Chocolate Lava",
-                image: "../assets/images/recipes/chocolate-lava.jpg",
-                description: "Bánh chocolate ấm áp với nhân chocolate chảy ra khi cắt, hoàn hảo cho món tráng miệng.",
-                difficulty: "Trung bình",
-                time: "30 phút",
-                rating: 4.8,
-                reviews: 156
-            }
-        ],
-        
-        achievements: [
-            {
-                title: "3 Sao Michelin",
-                description: "Nhà hàng Restaurant Gordon Ramsay đạt 3 sao Michelin",
-                year: "2001",
-                icon: "🏆"
-            },
-            {
-                title: "Đầu bếp của năm",
-                description: "Vinh danh tại giải thưởng ẩm thực thế giới",
-                year: "2006",
-                icon: "⭐"
-            },
-            {
-                title: "Sách dạy nấu ăn bán chạy",
-                description: "Sách 'Gordon Ramsay's Home Cooking' đạt best-seller",
-                year: "2012",
-                icon: "📚"
-            }
-        ],
-        
-        reviews: [
-            {
-                user: "Nguyễn Văn A",
-                avatar: "../assets/images/users/user1.jpg",
-                rating: 5,
-                content: "Đầu bếp Gordon thực sự xuất sắc! Các công thức rất chi tiết và dễ làm theo. Món Beef Wellington của tôi đã thành công ngoài mong đợi.",
-                date: "2 tuần trước"
-            },
-            {
-                user: "Trần Thị B",
-                avatar: "../assets/images/users/user2.jpg",
-                rating: 4,
-                content: "Kỹ thuật nấu ăn chuyên nghiệp, giải thích rõ ràng. Tuy nhiên một số nguyên liệu khó tìm ở Việt Nam.",
-                date: "1 tháng trước"
-            },
-            {
-                user: "Lê Văn C",
-                avatar: "../assets/images/users/user3.jpg",
-                rating: 5,
-                content: "Phong cách giảng dạy rất cuốn hút và dễ hiểu. Tôi đã học được nhiều kỹ thuật nấu ăn chuyên nghiệp.",
-                date: "3 tuần trước"
-            }
-        ]
-    },
-    2: {
-        id: 2,
-        name: "Phan Tôn Tịnh Hải",
-        specialty: "Ẩm thực Việt Nam truyền thống",
-        avatar: "../assets/images/chefs/chef2.jpg",
-        cover: "../assets/images/chef-cover.jpg",
-        rating: 4.8,
-        recipes: 180,
-        followers: 89000,
-        experience: 15,
-        bio: "Bếp trưởng với hơn 15 năm kinh nghiệm, chuyên về ẩm thực Việt Nam truyền thống. Đam mê khám phá và gìn giữ những món ăn cổ truyền của dân tộc.",
-        expertise: ["Vietnamese Cuisine", "Street Food", "Traditional", "Family Recipes", "Regional Specialties"],
-        category: "vietnamese",
-        isFeatured: true,
-        isVerified: true,
-        isFollowing: true,
-        
-        about: `
-            <p>Phan Tôn Tịnh Hải là bếp trưởng nổi tiếng với niềm đam mê bất tận cho ẩm thực Việt Nam. Sinh ra trong gia đình có truyền thống ẩm thực, anh đã dành cả cuộc đời để nghiên cứu và phát triển các món ăn Việt.</p>
-            
-            <h4>Hành trình ẩm thực:</h4>
-            <ul>
-                <li>Học nghề từ bà và mẹ - những người phụ nữ tài hoa của gia đình</li>
-                <li>Tu nghiệp tại các nhà hàng Việt Nam nổi tiếng ở Sài Gòn</li>
-                <li>Tham gia nhiều chương trình ẩm thực quốc tế</li>
-            </ul>
-            
-            <h4>Triết lý nấu ăn:</h4>
-            <p>"Ẩm thực Việt là sự kết hợp hài hòa giữa âm dương, ngũ hành. Mỗi món ăn không chỉ ngon mà còn phải tốt cho sức khỏe và cân bằng."</p>
-        `,
-        
-        recipes: [
-            {
-                id: 4,
-                title: "Phở Bò Hà Nội",
-                image: "../assets/images/recipes/pho-bo.jpg",
-                description: "Phở bò truyền thống Hà Nội với nước dùng trong veo, thơm ngon đậm đà hương vị Bắc Bộ.",
-                difficulty: "Khó",
-                time: "180 phút",
-                rating: 4.9,
-                reviews: 312
-            },
-            {
-                id: 5,
-                title: "Bánh Xèo Miền Tây",
-                image: "../assets/images/recipes/banh-xeo.jpg",
-                description: "Bánh xèo giòn rụm với nhân tôm thịt, ăn kèm rau sống và nước mắm chua ngọt.",
-                difficulty: "Trung bình",
-                time: "40 phút",
+                title: "Gà Nướng Muối Ớt",
+                image: "../assets/images/recipes/ga-nuong.jpg",
+                time: "60 phút",
+                difficulty: "Dễ",
                 rating: 4.7,
-                reviews: 198
+                description: "Gà nướng thơm lừng với vị muối ớt đặc trưng."
             }
-        ],
-        
-        achievements: [
-            {
-                title: "Đầu bếp Việt Nam xuất sắc",
-                description: "Giải thưởng ẩm thực Việt Nam",
-                year: "2018",
-                icon: "🍜"
-            },
-            {
-                title: "Đại sứ ẩm thực",
-                description: "Đại diện ẩm thực Việt Nam tại Food Festival quốc tế",
-                year: "2020",
-                icon: "🌍"
-            }
-        ],
-        
-        reviews: [
-            {
-                user: "Mai Thị D",
-                avatar: "../assets/images/users/user4.jpg",
-                rating: 5,
-                content: "Đầu bếp Tịnh Hải rất tâm huyết với ẩm thực Việt. Các công thức rất dễ làm và ngon như ngoài hàng.",
-                date: "1 tuần trước"
-            }
-        ]
+        ];
     }
-    // Có thể thêm các đầu bếp khác...
-};
 
-// Khởi tạo trang
-document.addEventListener('DOMContentLoaded', function() {
-    // Lấy ID đầu bếp từ URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const chefId = urlParams.get('id');
-    
-    if (!chefId) {
-        showError('Không tìm thấy ID đầu bếp');
-        return;
+    createRecipeCard(recipe) {
+        const stars = this.generateStars(recipe.rating);
+        
+        return `
+            <div class="recipe-card" data-recipe-id="${recipe.id}">
+                <div class="recipe-image">
+                    <img src="${recipe.image}" alt="${recipe.title}">
+                </div>
+                <div class="recipe-info">
+                    <h3 class="recipe-title">${recipe.title}</h3>
+                    <div class="recipe-meta">
+                        <div class="recipe-time">
+                            <i class="far fa-clock"></i>
+                            ${recipe.time}
+                        </div>
+                        <div class="recipe-difficulty">
+                            <i class="fas fa-signal"></i>
+                            ${recipe.difficulty}
+                        </div>
+                    </div>
+                    <div class="recipe-rating">
+                        ${stars}
+                        <span>${recipe.rating}</span>
+                    </div>
+                    <p class="recipe-description">${recipe.description}</p>
+                </div>
+            </div>
+        `;
     }
-    
-    // Load dữ liệu đầu bếp
-    loadChefProfile(chefId);
-    setupEventListeners();
-});
 
-// Function load profile đầu bếp
-function loadChefProfile(chefId) {
-    const chef = chefDatabase[chefId];
-    
-    if (!chef) {
-        showError('Không tìm thấy thông tin đầu bếp');
-        return;
+    renderAbout() {
+        // Render expertise tags
+        const expertiseTags = document.getElementById('expertiseTags');
+        if (expertiseTags && this.chef.expertise) {
+            expertiseTags.innerHTML = this.chef.expertise.map(exp => 
+                `<span class="expertise-tag">${exp}</span>`
+            ).join('');
+        }
+
+        // Render achievements
+        const achievementsList = document.getElementById('achievementsList');
+        if (achievementsList && this.chef.achievements) {
+            achievementsList.innerHTML = this.chef.achievements.map(achievement => 
+                `<li>${achievement}</li>`
+            ).join('');
+        }
+
+        // Render contact info
+        const contactInfo = document.getElementById('contactInfo');
+        if (contactInfo) {
+            contactInfo.innerHTML = this.createContactInfo();
+        }
     }
-    
-    // Cập nhật thông tin header
-    updateChefHeader(chef);
-    
-    // Load các tab content
-    loadRecipesTab(chef.recipes);
-    loadAboutTab(chef.about);
-    loadAchievementsTab(chef.achievements);
-    loadReviewsTab(chef.reviews, chef.rating);
-}
 
-// Function cập nhật header
-function updateChefHeader(chef) {
-    document.getElementById('chefAvatar').src = chef.avatar;
-    document.getElementById('chefName').textContent = chef.name;
-    document.getElementById('chefSpecialty').textContent = chef.specialty;
-    document.getElementById('chefBio').textContent = chef.bio;
-    
-    // Stats
-    document.getElementById('recipesCount').textContent = chef.recipes;
-    document.getElementById('followersCount').textContent = formatNumber(chef.followers);
-    document.getElementById('followersCountLarge').textContent = formatNumber(chef.followers);
-    document.getElementById('experienceYears').textContent = chef.experience;
-    document.getElementById('chefRating').textContent = chef.rating;
-    
-    // Verified badge
-    document.getElementById('chefVerified').style.display = chef.isVerified ? 'flex' : 'none';
-    
-    // Follow button
-    const followBtn = document.getElementById('followChefBtn');
-    const followText = document.getElementById('followChefText');
-    if (chef.isFollowing) {
-        followBtn.classList.add('following');
-        followText.textContent = 'Đang theo dõi';
-    } else {
-        followBtn.classList.remove('following');
-        followText.textContent = 'Theo dõi';
-    }
-    
-    // Expertise tags
-    const expertiseContainer = document.getElementById('chefExpertise');
-    expertiseContainer.innerHTML = chef.expertise
-        .map(skill => `<span class="expertise-tag-large">${skill}</span>`)
-        .join('');
-    
-    // Thêm event listener cho nút follow
-    followBtn.addEventListener('click', function() {
-        toggleFollowChef(chef.id);
-    });
-}
-
-// Function load tab công thức
-function loadRecipesTab(recipes) {
-    const recipesGrid = document.getElementById('recipesGrid');
-    const template = document.getElementById('recipeCardTemplate');
-    
-    recipesGrid.innerHTML = '';
-    
-    recipes.forEach(recipe => {
-        const card = template.content.cloneNode(true);
+    createContactInfo() {
+        const contacts = [];
         
-        card.querySelector('[data-recipe-image]').src = recipe.image;
-        card.querySelector('[data-recipe-difficulty]').textContent = recipe.difficulty;
-        card.querySelector('[data-recipe-time]').innerHTML = `<i class="fas fa-clock"></i>${recipe.time}`;
-        card.querySelector('[data-recipe-title]').textContent = recipe.title;
-        card.querySelector('[data-recipe-description]').textContent = recipe.description;
-        card.querySelector('[data-recipe-rating]').textContent = recipe.rating;
-        card.querySelector('[data-recipe-reviews]').textContent = `(${recipe.reviews})`;
-        
-        // Thêm event click
-        card.querySelector('.recipe-card').addEventListener('click', () => {
-            viewRecipe(recipe.id);
-        });
-        
-        recipesGrid.appendChild(card);
-    });
-}
-
-// Function load tab giới thiệu
-function loadAboutTab(aboutContent) {
-    document.getElementById('aboutContent').innerHTML = aboutContent;
-}
-
-// Function load tab thành tích
-function loadAchievementsTab(achievements) {
-    const achievementsGrid = document.getElementById('achievementsGrid');
-    const template = document.getElementById('achievementCardTemplate');
-    
-    achievementsGrid.innerHTML = '';
-    
-    achievements.forEach(achievement => {
-        const card = template.content.cloneNode(true);
-        
-        card.querySelector('[data-achievement-icon]').textContent = achievement.icon;
-        card.querySelector('[data-achievement-title]').textContent = achievement.title;
-        card.querySelector('[data-achievement-description]').textContent = achievement.description;
-        card.querySelector('[data-achievement-year]').textContent = achievement.year;
-        
-        achievementsGrid.appendChild(card);
-    });
-}
-
-// Function load tab đánh giá
-function loadReviewsTab(reviews, overallRating) {
-    // Cập nhật overall rating
-    document.getElementById('overallRating').textContent = overallRating;
-    document.getElementById('ratingCount').textContent = `${reviews.length} đánh giá`;
-    
-    // Tạo stars
-    const stars = '★'.repeat(Math.floor(overallRating)) + '☆'.repeat(5 - Math.floor(overallRating));
-    document.getElementById('ratingStars').textContent = stars;
-    
-    // Load reviews list
-    const reviewsList = document.getElementById('reviewsList');
-    const template = document.getElementById('reviewCardTemplate');
-    
-    reviewsList.innerHTML = '';
-    
-    reviews.forEach(review => {
-        const card = template.content.cloneNode(true);
-        
-        card.querySelector('[data-reviewer-avatar]').src = review.avatar;
-        card.querySelector('[data-reviewer-name]').textContent = review.user;
-        card.querySelector('[data-review-rating]').textContent = '★'.repeat(review.rating);
-        card.querySelector('[data-review-date]').textContent = review.date;
-        card.querySelector('[data-review-content]').textContent = review.content;
-        
-        reviewsList.appendChild(card);
-    });
-}
-
-// Function toggle theo dõi đầu bếp
-function toggleFollowChef(chefId) {
-    const chef = chefDatabase[chefId];
-    if (chef) {
-        chef.isFollowing = !chef.isFollowing;
-        
-        // Cập nhật UI
-        const followBtn = document.getElementById('followChefBtn');
-        const followText = document.getElementById('followChefText');
-        
-        if (chef.isFollowing) {
-            followBtn.classList.add('following');
-            followText.textContent = 'Đang theo dõi';
-            chef.followers += 1;
-        } else {
-            followBtn.classList.remove('following');
-            followText.textContent = 'Theo dõi';
-            chef.followers -= 1;
+        if (this.chef.email) {
+            contacts.push(`
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Email</h4>
+                        <p>${this.chef.email}</p>
+                    </div>
+                </div>
+            `);
         }
         
-        // Cập nhật số lượng followers
-        document.getElementById('followersCount').textContent = formatNumber(chef.followers);
-        document.getElementById('followersCountLarge').textContent = formatNumber(chef.followers);
+        if (this.chef.website) {
+            contacts.push(`
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h4>Website</h4>
+                        <p>${this.chef.website}</p>
+                    </div>
+                </div>
+            `);
+        }
         
-        // Hiển thị thông báo
-        showNotification(chef.isFollowing ? 
-            `Đã theo dõi ${chef.name}` : 
-            `Đã bỏ theo dõi ${chef.name}`
-        );
+        if (this.chef.socialMedia) {
+            Object.entries(this.chef.socialMedia).forEach(([platform, handle]) => {
+                contacts.push(`
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-${platform}"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h4>${platform.charAt(0).toUpperCase() + platform.slice(1)}</h4>
+                            <p>${handle}</p>
+                        </div>
+                    </div>
+                `);
+            });
+        }
+
+        return contacts.join('');
     }
-}
 
-// Function xem công thức
-function viewRecipe(recipeId) {
-    alert(`Xem công thức ${recipeId} - Trong thực tế sẽ chuyển đến trang công thức`);
-    // window.location.href = `recipe.html?id=${recipeId}`;
-}
-
-// Function định dạng số
-function formatNumber(num) {
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M';
-    } else if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
+    renderReviews() {
+        const reviewsList = document.getElementById('reviewsList');
+        const averageRating = document.getElementById('averageRating');
+        const totalReviews = document.getElementById('totalReviews');
+        
+        // In a real app, you would fetch reviews from an API
+        const sampleReviews = this.generateSampleReviews();
+        
+        // Calculate average rating
+        const avgRating = sampleReviews.length > 0 
+            ? (sampleReviews.reduce((sum, review) => sum + review.rating, 0) / sampleReviews.length).toFixed(1)
+            : '0.0';
+        
+        averageRating.textContent = avgRating;
+        totalReviews.textContent = `${sampleReviews.length} đánh giá`;
+        
+        // Render stars for average rating
+        this.renderStars('averageStars', parseFloat(avgRating));
+        
+        if (sampleReviews.length === 0) {
+            reviewsList.innerHTML = `
+                <div class="empty-state">
+                    <div class="empty-icon">💬</div>
+                    <h3 class="empty-text">Chưa có đánh giá nào</h3>
+                    <p>Hãy là người đầu tiên đánh giá đầu bếp này.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        reviewsList.innerHTML = sampleReviews.map(review => this.createReviewItem(review)).join('');
     }
-    return num.toString();
-}
 
-// Function hiển thị thông báo
-function showNotification(message) {
-    const notification = document.createElement('div');
-    notification.className = 'chef-notification';
-    notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas fa-check-circle"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: var(--primary-color);
-        color: white;
-        padding: 16px 24px;
-        border-radius: 12px;
-        box-shadow: var(--shadow-hover);
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
+    generateSampleReviews() {
+        // Generate sample reviews for demonstration
+        return [
+            {
+                id: 1,
+                user: {
+                    name: "Nguyễn Văn A",
+                    avatar: "../assets/images/avatar-user1.jpg"
+                },
+                rating: 5,
+                comment: "Đầu bếp rất tài năng! Các công thức rất dễ làm theo và thành phẩm rất ngon.",
+                date: "2 ngày trước"
+            },
+            {
+                id: 2,
+                user: {
+                    name: "Trần Thị B",
+                    avatar: "../assets/images/avatar-user2.jpg"
+                },
+                rating: 4,
+                comment: "Mình đã học được rất nhiều từ đầu bếp. Cảm ơn những chia sẻ hữu ích!",
+                date: "1 tuần trước"
             }
-        }, 300);
-    }, 3000);
-}
+        ];
+    }
 
-// Function hiển thị lỗi
-function showError(message) {
-    const content = document.querySelector('.chef-profile-content');
-    content.innerHTML = `
-        <div class="error-state">
-            <div class="error-icon">😕</div>
-            <h2 class="error-title">Không tìm thấy</h2>
-            <p class="error-message">${message}</p>
-            <button class="btn-back" onclick="window.history.back()">
-                <i class="fas fa-arrow-left"></i>
-                Quay lại
-            </button>
-        </div>
-    `;
-}
+    createReviewItem(review) {
+        const stars = this.generateStars(review.rating);
+        
+        return `
+            <div class="review-item">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviewer-avatar">
+                        <div class="reviewer-details">
+                            <h4>${review.user.name}</h4>
+                            <div class="review-date">${review.date}</div>
+                        </div>
+                    </div>
+                    <div class="review-rating">
+                        ${stars}
+                    </div>
+                </div>
+                <div class="review-content">
+                    ${review.comment}
+                </div>
+            </div>
+        `;
+    }
 
-// Setup event listeners
-function setupEventListeners() {
-    // Tab navigation
-    document.querySelectorAll('.nav-tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            const tabName = this.getAttribute('data-tab');
-            
-            // Remove active class từ tất cả tabs
-            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            
-            // Add active class cho tab được click
-            this.classList.add('active');
-            document.getElementById(`${tabName}Tab`).classList.add('active');
+    generateStars(rating) {
+        const fullStars = Math.floor(rating);
+        const hasHalfStar = rating % 1 >= 0.5;
+        let stars = '';
+        
+        for (let i = 0; i < fullStars; i++) {
+            stars += '<i class="fas fa-star"></i>';
+        }
+        
+        if (hasHalfStar) {
+            stars += '<i class="fas fa-star-half-alt"></i>';
+        }
+        
+        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+        for (let i = 0; i < emptyStars; i++) {
+            stars += '<i class="far fa-star"></i>';
+        }
+        
+        return stars;
+    }
+
+    renderStars(elementId, rating) {
+        const element = document.getElementById(elementId);
+        if (element) {
+            element.innerHTML = this.generateStars(rating);
+        }
+    }
+
+    bindEvents() {
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                this.switchTab(tab.dataset.tab);
+            });
         });
-    });
-    
-    // Recipe filter
-    document.getElementById('recipeFilter').addEventListener('change', function(e) {
-        // Trong thực tế sẽ filter recipes
-        console.log('Filter recipes by:', e.target.value);
-    });
+
+        // Follow button
+        const followBtn = document.getElementById('followChefBtn');
+        if (followBtn) {
+            followBtn.addEventListener('click', () => {
+                this.toggleFollow();
+            });
+        }
+
+        // Message button
+        const messageBtn = document.getElementById('messageChefBtn');
+        if (messageBtn) {
+            messageBtn.addEventListener('click', () => {
+                this.messageChef();
+            });
+        }
+
+        // Share button
+        const shareBtn = document.getElementById('shareChefBtn');
+        if (shareBtn) {
+            shareBtn.addEventListener('click', () => {
+                this.shareChef();
+            });
+        }
+
+        // Write review button
+        const writeReviewBtn = document.getElementById('writeReviewBtn');
+        if (writeReviewBtn) {
+            writeReviewBtn.addEventListener('click', () => {
+                this.openReviewModal();
+            });
+        }
+
+        // Review modal events
+        this.bindReviewModalEvents();
+
+        // Recipe card clicks
+        document.addEventListener('click', (e) => {
+            const recipeCard = e.target.closest('.recipe-card');
+            if (recipeCard) {
+                const recipeId = recipeCard.dataset.recipeId;
+                this.viewRecipe(recipeId);
+            }
+        });
+    }
+
+    switchTab(tabName) {
+        // Update active tab
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+        // Show active panel
+        document.querySelectorAll('.tab-panel').forEach(panel => {
+            panel.classList.remove('active');
+        });
+        document.getElementById(`${tabName}-tab`).classList.add('active');
+    }
+
+    toggleFollow() {
+        if (!this.chef) return;
+
+        this.chef.isFollowing = !this.chef.isFollowing;
+        
+        const followBtn = document.getElementById('followChefBtn');
+        const followersCount = document.getElementById('statFollowers');
+        
+        if (this.chef.isFollowing) {
+            followBtn.classList.add('following');
+            followBtn.innerHTML = '<i class="fas fa-check"></i><span>Đang theo dõi</span>';
+            
+            // Update followers count
+            const currentFollowers = this.parseFollowers(this.chef.followers);
+            this.chef.followers = this.formatFollowers(currentFollowers + 1);
+            followersCount.textContent = this.chef.followers;
+            
+            this.showNotification(`Đã theo dõi ${this.chef.name}`);
+        } else {
+            followBtn.classList.remove('following');
+            followBtn.innerHTML = '<i class="fas fa-plus"></i><span>Theo dõi</span>';
+            
+            // Update followers count
+            const currentFollowers = this.parseFollowers(this.chef.followers);
+            this.chef.followers = this.formatFollowers(Math.max(0, currentFollowers - 1));
+            followersCount.textContent = this.chef.followers;
+            
+            this.showNotification(`Đã bỏ theo dõi ${this.chef.name}`);
+        }
+    }
+
+    parseFollowers(followersStr) {
+        if (followersStr.includes('K')) {
+            return parseFloat(followersStr) * 1000;
+        }
+        return parseInt(followersStr);
+    }
+
+    formatFollowers(count) {
+        if (count >= 1000) {
+            return (count / 1000).toFixed(1) + 'K';
+        }
+        return count.toString();
+    }
+
+    messageChef() {
+        // In a real app, this would open a messaging interface
+        this.showNotification('Tính năng nhắn tin sẽ sớm có mặt!');
+    }
+
+    shareChef() {
+        if (navigator.share) {
+            navigator.share({
+                title: `Đầu bếp ${this.chef.name} - POTPAN`,
+                text: `Khám phá hồ sơ của ${this.chef.name} - ${this.chef.specialty}`,
+                url: window.location.href
+            });
+        } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+                this.showNotification('Đã sao chép liên kết vào clipboard!');
+            });
+        }
+    }
+
+    viewRecipe(recipeId) {
+        // Redirect to recipe page
+        window.location.href = `recipe-detail.html?id=${recipeId}&chef=${this.chefId}`;
+    }
+
+    openReviewModal() {
+        const modal = document.getElementById('reviewModal');
+        modal.classList.add('active');
+        
+        // Reset form
+        document.getElementById('reviewText').value = '';
+        this.resetStarRating();
+    }
+
+    resetStarRating() {
+        const stars = document.querySelectorAll('#starRating i');
+        stars.forEach(star => {
+            star.classList.remove('fas', 'active');
+            star.classList.add('far');
+        });
+    }
+
+    bindReviewModalEvents() {
+        // Star rating
+        const stars = document.querySelectorAll('#starRating i');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.rating);
+                this.setStarRating(rating);
+            });
+            
+            star.addEventListener('mouseover', () => {
+                const rating = parseInt(star.dataset.rating);
+                this.highlightStars(rating);
+            });
+        });
+        
+        document.getElementById('starRating').addEventListener('mouseleave', () => {
+            const currentRating = this.getCurrentRating();
+            this.highlightStars(currentRating);
+        });
+
+        // Modal close
+        document.getElementById('closeReviewModal').addEventListener('click', () => {
+            this.closeReviewModal();
+        });
+        
+        document.getElementById('cancelReview').addEventListener('click', () => {
+            this.closeReviewModal();
+        });
+
+        // Submit review
+        document.getElementById('submitReview').addEventListener('click', () => {
+            this.submitReview();
+        });
+    }
+
+    setStarRating(rating) {
+        const stars = document.querySelectorAll('#starRating i');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.remove('far');
+                star.classList.add('fas', 'active');
+            } else {
+                star.classList.remove('fas', 'active');
+                star.classList.add('far');
+            }
+        });
+    }
+
+    highlightStars(rating) {
+        const stars = document.querySelectorAll('#starRating i');
+        stars.forEach((star, index) => {
+            if (index < rating) {
+                star.classList.remove('far');
+                star.classList.add('fas');
+            } else {
+                star.classList.remove('fas');
+                star.classList.add('far');
+            }
+        });
+    }
+
+    getCurrentRating() {
+        const activeStars = document.querySelectorAll('#starRating i.active');
+        return activeStars.length;
+    }
+
+    closeReviewModal() {
+        const modal = document.getElementById('reviewModal');
+        modal.classList.remove('active');
+    }
+
+    submitReview() {
+        const rating = this.getCurrentRating();
+        const comment = document.getElementById('reviewText').value.trim();
+        
+        if (rating === 0) {
+            this.showNotification('Vui lòng chọn số sao đánh giá!');
+            return;
+        }
+        
+        if (!comment) {
+            this.showNotification('Vui lòng nhập nội dung đánh giá!');
+            return;
+        }
+        
+        // In a real app, you would submit the review to your backend
+        console.log('Submitting review:', { rating, comment });
+        
+        this.closeReviewModal();
+        this.showNotification('Cảm ơn bạn đã đánh giá!');
+        
+        // Refresh reviews after a short delay
+        setTimeout(() => {
+            this.renderReviews();
+        }, 1000);
+    }
+
+    showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'chef-notification';
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 100px;
+            right: 24px;
+            background: var(--primary-color);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-hover);
+            z-index: 1000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+        setTimeout(() => {
+            notification.style.transform = 'translateX(100%)';
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
 }
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new ChefProfile();
+});
