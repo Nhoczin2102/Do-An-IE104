@@ -152,6 +152,8 @@ class FamousChefs {
     parseFollowers(followersStr) {
         if (followersStr.includes('K')) {
             return parseFloat(followersStr) * 1000;
+        } else if (followersStr.includes('M')) {
+            return parseFloat(followersStr) * 1000000;
         }
         return parseInt(followersStr);
     }
@@ -279,187 +281,42 @@ class FamousChefs {
             });
         }
 
-        // Follow buttons
+        // Follow buttons and profile clicks
         document.addEventListener('click', (e) => {
+            // Click on follow button
             if (e.target.closest('[data-follow-btn]')) {
+                e.preventDefault();
+                e.stopPropagation();
                 const button = e.target.closest('[data-follow-btn]');
                 const chefId = parseInt(button.dataset.chefId);
                 this.toggleFollow(chefId);
             }
 
+            // Click on view profile button
             if (e.target.closest('[data-view-profile]')) {
+                e.preventDefault();
+                e.stopPropagation();
                 const button = e.target.closest('[data-view-profile]');
                 const chefId = parseInt(button.dataset.chefId);
+                this.viewChefProfile(chefId);
+            }
+
+            // Click on chef card (but not on buttons)
+            const chefCard = e.target.closest('.chef-card');
+            if (chefCard && 
+                !e.target.closest('[data-follow-btn]') && 
+                !e.target.closest('[data-view-profile]')) {
+                const chefId = parseInt(chefCard.dataset.id);
                 this.viewChefProfile(chefId);
             }
         });
     }
 
     viewChefProfile(chefId) {
-        // Redirect to chef profile page or show modal
-        console.log('Viewing chef profile:', chefId);
-        // You can implement this based on your routing
-        // window.location.href = `chef-profile.html?id=${chefId}`;
+        // Redirect to chef profile page
+        window.location.href = `chef-profile.html?id=${chefId}`;
     }
 }
-
-// Function tạo card đầu bếp từ template
-function createChefCardFromTemplate(chef) {
-    // Lấy template từ DOM
-    const template = document.getElementById('chefCardTemplate');
-    const card = template.content.cloneNode(true);
-    
-    // Thiết lập attributes
-    const cardElement = card.querySelector('.chef-card');
-    cardElement.setAttribute('data-chef-id', chef.id);
-    cardElement.setAttribute('data-category', chef.category);
-    
-    // Điền dữ liệu vào template
-    fillChefCardData(card, chef);
-    
-    // Thêm event listener cho toàn bộ card (click để xem chi tiết)
-    cardElement.addEventListener('click', function(e) {
-        // Ngăn chặn sự kiện khi click vào các nút bên trong
-        if (!e.target.closest('.btn-follow') && !e.target.closest('.btn-view-profile')) {
-            viewChefDetail(chef.id);
-        }
-    });
-    
-    return card;
-}
-
-// Function điền dữ liệu vào card
-function fillChefCardData(card, chef) {
-    // ... (phần này giữ nguyên như trước)
-    
-    // Thêm event listeners cho các nút
-    const followBtn = card.querySelector('[data-follow-btn]');
-    const viewProfileBtn = card.querySelector('[data-view-profile]');
-    
-    followBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); // Ngăn sự kiện nổi bọt
-        toggleFollowChef(chef.id);
-    });
-    
-    viewProfileBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); // Ngăn sự kiện nổi bọt
-        viewChefDetail(chef.id);
-    });
-}
-
-// Function xem chi tiết đầu bếp
-function viewChefDetail(chefId) {
-    // Chuyển hướng đến trang profile đầu bếp
-    window.location.href = `chef-profile.html?id=${chefId}`;
-}
-
-// Function toggle theo dõi đầu bếp
-function toggleFollowChef(chefId) {
-    const chef = chefsData.find(c => c.id === chefId);
-    if (chef) {
-        chef.isFollowing = !chef.isFollowing;
-        
-        // Hiển thị thông báo
-        showNotification(chef.isFollowing ? 
-            `Đã theo dõi ${chef.name}` : 
-            `Đã bỏ theo dõi ${chef.name}`
-        );
-        
-        // Cập nhật UI
-        updateFollowButton(chefId, chef.isFollowing);
-    }
-}
-
-// Function cập nhật nút theo dõi
-function updateFollowButton(chefId, isFollowing) {
-    const followBtn = document.querySelector(`[data-follow-btn][data-chef-id="${chefId}"]`);
-    const followText = followBtn?.querySelector('[data-follow-text]');
-    
-    if (followBtn && followText) {
-        if (isFollowing) {
-            followBtn.classList.add('btn-following');
-            followText.textContent = 'Đang theo dõi';
-        } else {
-            followBtn.classList.remove('btn-following');
-            followText.textContent = 'Theo dõi';
-        }
-    }
-}
-
-// Function hiển thị thông báo
-function showNotification(message) {
-    // Tạo thông báo
-    const notification = document.createElement('div');
-    notification.className = 'chef-notification';
-    notification.innerHTML = `
-        <div class="notification-content">
-            <i class="fas fa-check-circle"></i>
-            <span>${message}</span>
-        </div>
-    `;
-    
-    // Thêm style cho thông báo
-    notification.style.cssText = `
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        background: var(--primary-color);
-        color: white;
-        padding: 16px 24px;
-        border-radius: 12px;
-        box-shadow: var(--shadow-hover);
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-    `;
-    
-    document.body.appendChild(notification);
-    
-    // Tự động xóa sau 3 giây
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => {
-            if (notification.parentNode) {
-                notification.parentNode.removeChild(notification);
-            }
-        }, 300);
-    }, 3000);
-}
-
-// Thêm CSS animation cho thông báo
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideIn {
-        from {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-        to {
-            transform: translateX(0);
-            opacity: 1;
-        }
-    }
-    
-    @keyframes slideOut {
-        from {
-            transform: translateX(0);
-            opacity: 1;
-        }
-        to {
-            transform: translateX(100%);
-            opacity: 0;
-        }
-    }
-    
-    .chef-card {
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-    
-    .chef-card:hover {
-        transform: translateY(-5px);
-    }
-`;
-document.head.appendChild(style);
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {

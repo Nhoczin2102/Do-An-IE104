@@ -1,193 +1,168 @@
-// data/chefsData.js
+// js/data/chefsData.js
 export const chefsData = [
-  {
-    id: 1,
-    name: "Gordon Ramsay",
-    avatar: "https://images.unsplash.com/photo-1583394293214-28ded15ee548",
-    specialty: "Ẩm thực Âu • MasterChef",
-    bio: "Đầu bếp 3 sao Michelin với hơn 30 năm kinh nghiệm. Chuyên về ẩm thực châu Âu hiện đại.",
-    rating: 4.9,
-    recipes: 156,
-    followers: "125K",
-    experience: "25 năm",
-    expertise: ["Pháp", "Ý", "Anh"],
-    category: "european",
-    featured: true,
-    isFollowing: false,
-    social: {
-      youtube: "gordonramsay",
-      instagram: "gordonramsay"
+    {
+        id: 1,
+        name: "Gordon Ramsay",
+        specialty: "Ẩm thực Châu Âu",
+        avatar: "../../assets/images/gordon.jpg",
+        coverImage: "../../assets/images/gorden-cover.webp",
+        bio: "Đầu bếp nổi tiếng thế giới với 16 nhà hàng Michelin",
+        bioFull: "Gordon Ramsay là một đầu bếp, nhà hàng, và nhân vật truyền hình người Scotland. Ông được biết đến với các chương trình truyền hình thực tế về ẩm thực như Hell's Kitchen, Kitchen Nightmares và MasterChef. Với 16 ngôi sao Michelin, ông là một trong những đầu bếp được công nhận rộng rãi nhất trên thế giới.",
+        rating: 4.9,
+        recipes: 245,
+        followers: "1.2M",
+        following: 156,
+        experience: 25,
+        category: "european",
+        featured: true,
+        verified: true,
+        isFollowing: false,
+        expertise: ["French Cuisine", "British Cuisine", "Fine Dining", "Molecular Gastronomy"],
+        achievements: [
+            "16 ngôi sao Michelin",
+            "Nhà hàng Restaurant Gordon Ramsay - 3 sao Michelin",
+            "Tác giả nhiều sách dạy nấu ăn bán chạy",
+            "Chủ nhiều nhà hàng trên toàn thế giới"
+        ],
+        email: "contact@gordonramsay.com",
+        website: "www.gordonramsay.com",
+        socialMedia: {
+            facebook: "GordonRamsay",
+            instagram: "gordonramsay",
+            youtube: "GordonRamsay"
+        },
+        reviewCount: 1284
+    },
+    {
+        id: 2,
+        name: "Phan Tôn Tịnh Hải",
+        specialty: "Ẩm thực Việt Nam",
+        avatar: "../../assets/images/pttt.jpg",
+        coverImage: "../../assets/images/pttt-cover.jpg",
+        bio: "Bếp trưởng nổi tiếng với ẩm thực Việt Nam đương đại",
+        bioFull: "Phan Tôn Tịnh Hải là một trong những đầu bếp hàng đầu Việt Nam, nổi tiếng với việc kết hợp hương vị truyền thống với kỹ thuật hiện đại. Anh đã mang ẩm thực Việt Nam đến với thế giới thông qua các chương trình ẩm thực quốc tế.",
+        rating: 4.8,
+        recipes: 189,
+        followers: "850K",
+        following: 89,
+        experience: 15,
+        category: "vietnamese",
+        featured: true,
+        verified: true,
+        isFollowing: true,
+        expertise: ["Vietnamese Cuisine", "Street Food", "Fusion", "Healthy Cooking"],
+        achievements: [
+            "Top Chef Vietnam 2018",
+            "Đại sứ ẩm thực Việt Nam tại ASEAN",
+            "Tác giả sách 'Hương vị Quê Hương'",
+            "Chủ nhà hàng 'Saigon Memories'"
+        ],
+        email: "hai@satigonmemories.com",
+        website: "www.saigonmemories.com",
+        socialMedia: {
+            facebook: "TonTinhHai",
+            instagram: "tontinhhai",
+            tiktok: "chefhai"
+        },
+        reviewCount: 892
+    },
+    {
+        id: 3,
+        name: "David Chang",
+        specialty: "Ẩm thực Châu Á Fusion",
+        avatar: "../../assets/images/davidchang.jpg",
+        coverImage: "../../assets/images/davidchang-cover.jpg",
+        bio: "Người sáng lập Momofuku và là nhà cách mạng ẩm thực",
+        bioFull: "David Chang là một đầu bếp và doanh nhân người Mỹ gốc Hàn. Ông là người sáng lập của đế chế nhà hàng Momofuku và được biết đến với việc cách mạng hóa ẩm thực fusion. Ông cũng là người sáng lập tạp chí ẩm thực Lucky Peach.",
+        rating: 4.7,
+        recipes: 167,
+        followers: "720K",
+        following: 203,
+        experience: 18,
+        category: "asian",
+        featured: false,
+        verified: true,
+        isFollowing: false,
+        expertise: ["Korean Cuisine", "Japanese Cuisine", "Fusion", "Noodle Making"],
+        achievements: [
+            "Người sáng lập Momofuku Restaurant Group",
+            "2 sao Michelin cho Momofuku Ko",
+            "Sáng lập tạp chí Lucky Peach",
+            "Tác giả sách bán chạy"
+        ],
+        email: "david@momofuku.com",
+        website: "www.momofuku.com",
+        socialMedia: {
+            facebook: "DavidChang",
+            instagram: "davidchang",
+            twitter: "davidchang"
+        },
+        reviewCount: 756
+    },
+    {
+        id: 4,
+        name: "Dominique Ansel",
+        specialty: "Làm bánh và Pastry",
+        avatar: "../../assets/images/dominique.jpg",
+        coverImage: "../../assets/images/dominique-cover.jpeg",
+        bio: "Cha đẻ của Cronut và là bếp trưởng pastry nổi tiếng",
+        bioFull: "Dominique Ansel là một đầu bếp bánh ngọt người Pháp, nổi tiếng với việc phát minh ra cronut. Anh được mệnh danh là 'Willy Wonka của thế giới thực' và liên tục đổi mới trong lĩnh vực bánh ngọt.",
+        rating: 4.9,
+        recipes: 203,
+        followers: "950K",
+        following: 145,
+        experience: 20,
+        category: "baking",
+        featured: true,
+        verified: true,
+        isFollowing: false,
+        expertise: ["French Pastry", "Dessert Innovation", "Bread Making", "Chocolate Work"],
+        achievements: [
+            "Phát minh Cronut - bánh donut croissant",
+            "James Beard Award for Outstanding Pastry Chef",
+            "Tác giả sách 'The Secret Recipes'",
+            "Chủ nhiều tiệm bánh trên toàn cầu"
+        ],
+        email: "contact@dominiqueansel.com",
+        website: "www.dominiqueansel.com",
+        socialMedia: {
+            facebook: "DominiqueAnsel",
+            instagram: "dominiqueansel",
+            twitter: "dominiqueansel"
+        },
+        reviewCount: 1103
+    },
+    {
+        id: 5,
+        name: "Jamie Oliver",
+        specialty: "Ẩm thực Healthy & Gia đình",
+        avatar: "../../assets/images/jamesoliver.jpg",
+        coverImage: "../../assets/images/jamesoliver-cover.webp",
+        bio: "Đầu bếp truyền hình và nhà vận động ẩm thực lành mạnh",
+        bioFull: "Jamie Oliver là một đầu bếp, tác giả sách dạy nấu ăn và nhân vật truyền hình người Anh. Ông nổi tiếng với phương pháp nấu ăn đơn giản, sử dụng nguyên liệu tươi ngon và các chiến dịch vận động cho bữa ăn học đường lành mạnh.",
+        rating: 4.6,
+        recipes: 312,
+        followers: "2.1M",
+        following: 278,
+        experience: 25,
+        category: "healthy",
+        featured: true,
+        verified: true,
+        isFollowing: true,
+        expertise: ["Healthy Cooking", "Family Meals", "British Cuisine", "Quick Recipes"],
+        achievements: [
+            "Tác giả hơn 20 cuốn sách dạy nấu ăn bán chạy",
+            "Sáng lập Fifteen Restaurant",
+            "Chiến dịch School Dinners cải cách bữa ăn học đường",
+            "MBE từ Nữ hoàng Anh vì đóng góp ẩm thực"
+        ],
+        email: "jamie@jamieoliver.com",
+        website: "www.jamieoliver.com",
+        socialMedia: {
+            facebook: "JamieOliver",
+            instagram: "jamieoliver",
+            youtube: "JamieOliver"
+        },
+        reviewCount: 2156
     }
-  },
-  {
-    id: 2,
-    name: "Phan Tôn Tịnh Hải",
-    avatar: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf",
-    specialty: "Ẩm thực Việt • Top Chef",
-    bio: "Bếp trưởng nhà hàng Việt Nam danh tiếng. Bảo tồn và phát triển ẩm thực truyền thống.",
-    rating: 4.8,
-    recipes: 89,
-    followers: "89K",
-    experience: "15 năm",
-    expertise: ["Miền Bắc", "Miền Trung", "Hải sản"],
-    category: "vietnamese",
-    featured: true,
-    isFollowing: false,
-    social: {
-      youtube: "chefhaiton",
-      facebook: "chefhaiphan"
-    }
-  },
-  {
-    id: 3,
-    name: "Marco Pierre White",
-    avatar: "https://images.unsplash.com/photo-1577219491135-ce391730fb2c",
-    specialty: "Ẩm thực Anh • Hell's Kitchen",
-    bio: "Người đầu bếp trẻ nhất đạt 3 sao Michelin. Phong cách ẩm thực tinh tế và sáng tạo.",
-    rating: 4.7,
-    recipes: 134,
-    followers: "98K",
-    experience: "30 năm",
-    expertise: ["Anh", "Pháp", "Hải sản"],
-    category: "european",
-    featured: false,
-    isFollowing: true,
-    social: {
-      instagram: "marcowhite",
-      twitter: "mpw"
-    }
-  },
-  {
-    id: 4,
-    name: "Nguyễn Thị Diệu Linh",
-    avatar: "https://images.unsplash.com/photo-1547428067-6bbce4d8f77e",
-    specialty: "Làm bánh • MasterChef Vietnam",
-    bio: "Chuyên gia làm bánh với các công thức độc quyền. Từng tham gia MasterChef Vietnam.",
-    rating: 4.6,
-    recipes: 203,
-    followers: "67K",
-    experience: "8 năm",
-    expertise: ["Bánh ngọt", "Bánh mì", "Dessert"],
-    category: "baking",
-    featured: true,
-    isFollowing: false,
-    social: {
-      instagram: "linhbaker",
-      tiktok: "linh_cakes"
-    }
-  },
-  {
-    id: 5,
-    name: "David Chang",
-    avatar: "https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b",
-    specialty: "Ẩm thực Châu Á • Momofuku",
-    bio: "Người sáng lập Momofuku. Kết hợp ẩm thực châu Á với kỹ thuật hiện đại.",
-    rating: 4.7,
-    recipes: 178,
-    followers: "112K",
-    experience: "18 năm",
-    expertise: ["Hàn Quốc", "Nhật Bản", "Fusion"],
-    category: "asian",
-    featured: false,
-    isFollowing: false,
-    social: {
-      instagram: "davidchang",
-      youtube: "momofuku"
-    }
-  },
-  {
-    id: 6,
-    name: "Trần Văn Minh",
-    avatar: "https://images.unsplash.com/photo-1566554273541-37a9ca77b91f",
-    specialty: "Ẩm thực Việt • Street Food",
-    bio: "Chuyên gia ẩm thực đường phố Việt Nam. Đam mê các món ăn dân dã nhưng đậm đà.",
-    rating: 4.5,
-    recipes: 95,
-    followers: "45K",
-    experience: "12 năm",
-    expertise: ["Miền Nam", "Đường phố", "Chay"],
-    category: "vietnamese",
-    featured: false,
-    isFollowing: true,
-    social: {
-      facebook: "minhstreetfood",
-      tiktok: "minh_amthuc"
-    }
-  },
-  {
-    id: 7,
-    name: "Jamie Oliver",
-    avatar: "https://images.unsplash.com/photo-1566554273541-37a9ca77b91f",
-    specialty: "Ẩm thực Healthy • The Naked Chef",
-    bio: "Đầu bếp nổi tiếng với phong cách nấu ăn healthy và dễ làm. Tác giả nhiều sách dạy nấu ăn.",
-    rating: 4.8,
-    recipes: 267,
-    followers: "156K",
-    experience: "22 năm",
-    expertise: ["Healthy", "Organic", "Family Meals"],
-    category: "healthy",
-    featured: true,
-    isFollowing: false,
-    social: {
-      youtube: "jamieoliver",
-      instagram: "jamieoliver"
-    }
-  },
-  {
-    id: 8,
-    name: "Lê Thị Hương",
-    avatar: "https://images.unsplash.com/photo-1519699047748-de8e457a634e",
-    specialty: "Ăn uống lành mạnh • Eat Clean",
-    bio: "Chuyên gia dinh dưỡng và ẩm thực healthy. Chia sẻ công thức eat clean cho gia đình Việt.",
-    rating: 4.6,
-    recipes: 124,
-    followers: "78K",
-    experience: "10 năm",
-    expertise: ["Eat Clean", "Dinh dưỡng", "Chay"],
-    category: "healthy",
-    featured: false,
-    isFollowing: false,
-    social: {
-      instagram: "huong_eatclean",
-      facebook: "huonghealthy"
-    }
-  },
-  {
-    id: 9,
-    name: "Masaharu Morimoto",
-    avatar: "https://images.unsplash.com/photo-1583394293214-28ded15ee548",
-    specialty: "Ẩm thực Nhật • Iron Chef",
-    bio: "Đầu bếp sushi huyền thoại. Kết hợp kỹ thuật truyền thống Nhật Bản với ẩm thực hiện đại.",
-    rating: 4.9,
-    recipes: 142,
-    followers: "134K",
-    experience: "35 năm",
-    expertise: ["Sushi", "Nhật Bản", "Hải sản"],
-    category: "asian",
-    featured: true,
-    isFollowing: false,
-    social: {
-      instagram: "morimotochef",
-      twitter: "morimoto"
-    }
-  },
-  {
-    id: 10,
-    name: "Nguyễn Văn Hùng",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
-    specialty: "Bánh Việt • Traditional Baking",
-    bio: "Nghệ nhân làm bánh truyền thống Việt Nam. Bảo tồn các công thức bánh cổ truyền.",
-    rating: 4.4,
-    recipes: 87,
-    followers: "32K",
-    experience: "20 năm",
-    expertise: ["Bánh Việt", "Bánh truyền thống", "Bánh mì"],
-    category: "baking",
-    featured: false,
-    isFollowing: false,
-    social: {
-      facebook: "hungbaker",
-      youtube: "banhviet"
-    }
-  }
 ];
