@@ -1,30 +1,32 @@
 import { TemplateRenderer } from './templateRender.js';
-import { getCurrentUser } from './auth.js'; // THÊM: Import hàm lấy user hiện tại
+import { getCurrentUser } from './auth.js';
 
 export class PostManager {
     constructor() {
-        this.posts = []; // THAY ĐỔI: Khởi tạo mảng rỗng**
-        this.renderer = new TemplateRenderer(); // SỬA: == thành =
+        this.posts = [];
+        this.renderer = new TemplateRenderer();
         this.feed = document.querySelector(".feed__posts");
-        this.currentUser = getCurrentUser(); // THÊM: Lấy user hiện tại
+        this.currentUser = getCurrentUser();
+        
+        // THÊM: Cập nhật user cho renderer ngay khi khởi tạo
+        if (this.renderer.updateCurrentUser) {
+            this.renderer.updateCurrentUser(this.currentUser);
+        }
     }
 
-    // THAY ĐỔI: Chuyển init thành async**
     async init() {
-        await this.loadPosts(); // THÊM: Chờ tải dữ liệu**
+        await this.loadPosts();
         this.renderFeed();
         this.bindEvents();
     }
 
-    // THÊM: Hàm mới để tải dữ liệu từ JSON**
     async loadPosts() {
         try {
-            // Đường dẫn trỏ đến file JSON mới**
-            const response = await fetch('../../js/data/data.json'); // SỬA: ../ thành ./
+            const response = await fetch('../../js/data/data.json');
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            this.posts = await response.json(); // Gán dữ liệu vào this.posts**
+            this.posts = await response.json();
             console.log('✅ Dữ liệu bài viết đã được tải:', this.posts.length, 'bài viết');
         } catch (error) {
             console.error('❌ Lỗi khi tải dữ liệu posts.json:', error);
@@ -72,12 +74,10 @@ export class PostManager {
     addComment(postId, commentContent) {
         const post = this.posts.find(p => p.id === postId);
         if (post && commentContent.trim()) {
-            // SỬA: Đảm bảo commentsList tồn tại
             if (!post.commentsList) {
                 post.commentsList = [];
             }
             
-            // THÊM: Kiểm tra user đã đăng nhập chưa
             if (!this.currentUser) {
                 alert('Vui lòng đăng nhập để bình luận!');
                 return false;
@@ -85,8 +85,8 @@ export class PostManager {
             
             const newComment = {
                 id: Date.now(),
-                avatar: this.currentUser.avatar || "./assets/images/avatar.png", // THÊM: Sử dụng avatar của user hiện tại
-                name: this.currentUser.name || "Minh Nhựt", // THÊM: Sử dụng name của user hiện tại
+                avatar: this.currentUser.avatar || "./assets/images/avatar.png",
+                name: this.currentUser.name || "Minh Nhựt",
                 time: "Vừa xong",
                 content: commentContent.trim()
             };
@@ -142,7 +142,6 @@ export class PostManager {
                 }
             }
 
-            // Xử lý gửi bình luận
             const commentSubmit = e.target.closest('.feed-post__comment-submit');
             if (commentSubmit) {
                 const postId = parseInt(commentSubmit.dataset.postId);
@@ -156,10 +155,17 @@ export class PostManager {
         });
     }
 
-    // THÊM: Hàm cập nhật user hiện tại
+    // SỬA: Hàm cập nhật user hiện tại - Cập nhật cả renderer
     updateCurrentUser() {
         this.currentUser = getCurrentUser();
+        // QUAN TRỌNG: Cập nhật user cho TemplateRenderer
+        if (this.renderer.updateCurrentUser) {
+            this.renderer.updateCurrentUser(this.currentUser);
+        }
         console.log('🔄 PostManager: Cập nhật user hiện tại', this.currentUser);
+        
+        // Render lại feed để áp dụng avatar mới
+        this.renderFeed();
     }
 
     getPosts() {

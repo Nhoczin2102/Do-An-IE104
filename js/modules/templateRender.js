@@ -6,11 +6,17 @@ export class TemplateRenderer {
             comment: document.getElementById('commentTemplate')
         };
         
+        this.currentUser = null; // THÊM: Biến lưu user hiện tại
         this.initTemplates();
     }
 
+    // THÊM: Hàm cập nhật user hiện tại
+    updateCurrentUser(user) {
+        this.currentUser = user;
+        console.log('🔄 TemplateRenderer: Cập nhật user', this.currentUser);
+    }
+
     initTemplates() {
-        // Fallback templates
         if (!this.templates.post) {
             this.templates.post = this.createFallbackPostTemplate();
         }
@@ -28,6 +34,9 @@ export class TemplateRenderer {
         console.log('🎨 Rendering post:', post.id);
         
         let template = this.templates.post.innerHTML;
+
+        // THÊM: Sử dụng avatar của user hiện tại cho comment input
+        const currentUserAvatar = this.currentUser?.avatar || "./assets/images/avatar.png";
 
         return template
             .replace(/{id}/g, post.id)
@@ -50,7 +59,9 @@ export class TemplateRenderer {
                 </button>
             ` : '')
             .replace('{commentsList}', post.commentsList.map(comment => 
-                this.renderComment(comment)).join(''));
+                this.renderComment(comment)).join(''))
+            // SỬA QUAN TRỌNG: Cập nhật avatar hiện tại cho comment input
+            .replace(/src="\.\/assets\/images\/avatar\.png"/g, `src="${currentUserAvatar}"`);
     }
 
     renderRecipe(recipe) {
