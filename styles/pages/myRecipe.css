@@ -18,12 +18,11 @@ main.page {
   max-width: 90%;
   margin: 23px auto;
   padding: 0 20px;
-  align-items: start;
+
   min-height: calc(100vh - 130px);
   position: relative;
 }
 
-/* ===== SIDEBAR ===== */
 
 
 .profile {
@@ -113,7 +112,7 @@ main.page {
     background: var(--bg-card);
     border-radius: var(--radius);
     padding: 24px;
-    height: fit-content;
+    height: 100%;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
 }
@@ -126,7 +125,7 @@ main.page {
 .saved-recipes__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 35px;
 }
 
 .recipe-card {
@@ -188,7 +187,7 @@ main.page {
 
 /* ===== SCROLL AREA CHO DANH SÁCH BÀI VIẾT ===== */
 .saved-recipes__scroll-container {
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 200px);
     overflow: auto;
     padding-right: 6px;
     border-radius: var(--radius);
@@ -243,11 +242,6 @@ main.page {
 
 /* Large Desktop */
 @media (max-width: 1440px) {
-    main.page {
-        grid-template-columns: 260px 1fr;
-        gap: 28px;
-    }
-    
     .saved-recipes__grid {
         gap: 20px;
     }
@@ -255,11 +249,7 @@ main.page {
 
 /* Desktop */
 @media (max-width: 1200px) {
-    main.page {
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
-    }
-    
+
     .saved-recipes__grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -271,18 +261,8 @@ main.page {
 
 /* Tablet */
 @media (max-width: 1024px) {
-    .page {
-        padding: 20px;
-    }
+
     
-    main.page {
-        grid-template-columns: 220px 1fr;
-        gap: 20px;
-    }
-    
-    .sidebar {
-        padding: 20px;
-    }
     
     .saved-recipes__grid {
         gap: 18px;
@@ -295,19 +275,9 @@ main.page {
 
 /* Small Tablet */
 @media (max-width: 768px) {
-    .page {
-        padding: 16px;
-        flex-direction: column;
-    }
+
     
-    main.page {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .sidebar {
-        order: 2;
-    }
+
     
     .saved-recipes {
         order: 1;
@@ -347,9 +317,7 @@ main.page {
 
 /* Mobile */
 @media (max-width: 640px) {
-    .page {
-        padding: 12px;
-    }
+
     
     .saved-recipes__title-wrapper {
         flex-direction: column;
@@ -381,16 +349,11 @@ main.page {
         max-height: calc(100vh - 260px);
     }
     
-    .sidebar {
-        padding: 16px;
-    }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
-    .page {
-        padding: 8px;
-    }
+   
     
     .saved-recipes__main-title {
         font-size: 22px;
