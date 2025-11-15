@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cài Đặt - POTPAN</title>
 
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
-  <link rel="stylesheet" href="../styles/pages/setting.css"> 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/pages/setting.css">
   <link rel="stylesheet" href="../styles/base/base.css">
-  <link rel="stylesheet" href="../styles/base/variable.css"> 
-  <link rel="stylesheet" href="../styles/components/Main/header.css">
-  <link rel="stylesheet" href="../styles/components/Main/sidebar.css">  
+  <link rel="stylesheet" href="../styles/base/variable.css">
+  <link rel="stylesheet" href="../styles/components/header.css">
+  <link rel="stylesheet" href="../styles/components/sidebar.css">
 
 </head>
 
 <body>
-   <header class="header">
+  <header class="header">
     <div class="header__container">
       <div class="header__content">
         <!-- Logo -->
-        <a href="index.html" class="header__logo">
+        <a href="../index.html" class="header__logo">
           <div class="header__logo-image">
             <img src="../assets/images/logo.svg" />
           </div>
@@ -113,36 +113,36 @@
 
     <!-- Khu nội dung phải -->
     <div class="settings-sections">
-       <!-- Account (mặc định active) -->
-  <section class="settings-section" id="account-section">
-    <div class="section-header">
-      <h2 class="section-title">Tài khoản</h2>
-      <span class="section-icon"></span>
-    </div>
-
-    <!-- Thêm phần Avatar trong setting content -->
-    <div class="setting-item">
-      <div class="setting-info">
-        <div class="setting-title">Ảnh đại diện</div>
-        <div class="setting-description">Cập nhật ảnh đại diện của bạn</div>
-      </div>
-      <div class="setting-control">
-        <div class="avatar-upload">
-          <img class="setting-avatar" id="settingAvatar" src="../assets/images/avatar.png" alt="avatar" />
-          <button class="btn secondary" id="change-avatar">Đổi ảnh</button>
+      <!-- Account (mặc định active) -->
+      <section class="settings-section" id="account-section">
+        <div class="section-header">
+          <h2 class="section-title">Tài khoản</h2>
+          <span class="section-icon"></span>
         </div>
-      </div>
-    </div>
 
-    <div class="setting-item">
-      <div class="setting-info">
-        <div class="setting-title">Tên hiển thị</div>
-        <div class="setting-description">Tên sẽ hiển thị trong ứng dụng</div>
-      </div>
-      <div class="setting-control">
-        <input type="text" id="display-name" value="Người dùng PotPan">
-      </div>
-    </div>
+        <!-- Thêm phần Avatar trong setting content -->
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Ảnh đại diện</div>
+            <div class="setting-description">Cập nhật ảnh đại diện của bạn</div>
+          </div>
+          <div class="setting-control">
+            <div class="avatar-upload">
+              <img class="setting-avatar" id="settingAvatar" src="../assets/images/avatar.png" alt="avatar" />
+              <button class="btn secondary" id="change-avatar">Đổi ảnh</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="setting-item">
+          <div class="setting-info">
+            <div class="setting-title">Tên hiển thị</div>
+            <div class="setting-description">Tên sẽ hiển thị trong ứng dụng</div>
+          </div>
+          <div class="setting-control">
+            <input type="text" id="display-name" value="Người dùng PotPan">
+          </div>
+        </div>
 
 
         <div class="setting-item">
@@ -165,10 +165,6 @@
           </div>
         </div>
       </section>
-
-    
-
-  
 
       <!-- Privacy & Legal -->
       <section class="settings-section" id="privacy-section">
@@ -211,9 +207,9 @@
     </div>
   </main>
 
-  <!-- Liên kết với file JavaScript -->
   <script src="../js/pages/setting.js"></script>
   <script src="../js/main.js"> type = "module"</script>
 
 </body>
+
 </html>

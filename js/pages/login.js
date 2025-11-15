@@ -7,14 +7,15 @@ const backToLogin = document.getElementById('backToLogin');
 
 // Hàm reset tất cả class active
 function resetAllForms() {
-    root.classList.remove('signup-active', 'forgot-active');
+    // Cập nhật BEM modifier
+    root.classList.remove('container--signup-active', 'container--forgot-active');
 }
 
 // Xử lý click các link
 signupLink.addEventListener('click', (e)=>{ 
     e.preventDefault(); 
     resetAllForms();
-    root.classList.add('signup-active'); 
+    root.classList.add('container--signup-active'); // Cập nhật BEM modifier
 });
 
 signinLink.addEventListener('click', (e)=>{ 
@@ -25,7 +26,7 @@ signinLink.addEventListener('click', (e)=>{
 forgotLink.addEventListener('click', (e)=>{ 
     e.preventDefault(); 
     resetAllForms();
-    root.classList.add('forgot-active'); 
+    root.classList.add('container--forgot-active'); // Cập nhật BEM modifier
 });
 
 backToLogin.addEventListener('click', (e)=>{ 
@@ -35,7 +36,8 @@ backToLogin.addEventListener('click', (e)=>{
 });
 
 // Hiện/ẩn mật khẩu
-document.querySelectorAll('.toggle-pw').forEach(btn=>{
+// Cập nhật selector theo BEM
+document.querySelectorAll('.auth-form__toggle-password').forEach(btn=>{
     btn.addEventListener('click', ()=>{
         const id = btn.dataset.target;
         const inp = document.getElementById(id);
@@ -91,6 +93,7 @@ errorMsg.style.fontSize = '15px';
 errorMsg.style.textAlign = 'center';
 errorMsg.style.marginTop = '-8px';
 errorMsg.style.display = 'none';
+// Selector này vẫn hoạt động vì ID và class 'btn' vẫn tồn tại
 document.querySelector('#signinForm .btn').insertAdjacentElement('afterend', errorMsg);
 
 // Xử lý đăng ký

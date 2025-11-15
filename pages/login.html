@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -6,108 +5,106 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>PotPan - Đăng nhập & Đăng ký</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/base/base.css" />
+  <link rel="stylesheet" href="../styles/base/variable.css" />
   <link rel="stylesheet" href="../styles/pages/login.css" />
 
 </head>
 <body>
   <div class="container" id="container">
-    <div class="img-box" aria-hidden="true"></div>
+    
+    <div class="container__image-box" aria-hidden="true"></div>
 
-    <div class="form-wrapper">
+    <div class="container__form-wrapper">
+      
       <div class="header">
-        <img src="../assets/images/logo.svg" alt="PotPan logo" />
-        <h1>PotPan</h1>
+        <img class="header__logo" src="../assets/images/logo.svg" alt="PotPan logo" />
+        <h1 class="header__title">PotPan</h1>
       </div>
 
-      <div class="form-container">
-        <!-- Đăng nhập -->
-        <div class="form-box" id="signinBox">
-          <form id="signinForm" novalidate>
+      <div class="auth-forms">
+        
+        <div class="auth-forms__form-box" id="signinBox">
+          <form class="auth-form" id="signinForm" novalidate>
 
-            <div class="input-box">
-              <label for="signinEmail">Email</label>
-              <input id="signinEmail" name="email" type="email" placeholder="Email" inputmode="email" autocomplete="email" required>
+            <div class="auth-form__input-box">
+              <label class="auth-form__label" for="signinEmail">Email</label>
+              <input class="auth-form__input" id="signinEmail" name="email" type="email" placeholder="Email" inputmode="email" autocomplete="email" required>
             </div>
-            <div class="input-box pw-row">
-              <label for="signinPassword">Mật khẩu</label>
-              <input id="signinPassword" name="password" type="password" placeholder="Mật khẩu" autocomplete="current-password" required minlength="6">
-              <button class="toggle-pw" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="signinPassword">Hiện</button>
+            
+            <div class="auth-form__input-box auth-form__input-box--password">
+              <label class="auth-form__label" for="signinPassword">Mật khẩu</label>
+              <input class="auth-form__input" id="signinPassword" name="password" type="password" placeholder="Mật khẩu" autocomplete="current-password" required minlength="6">
+              <button class="auth-form__toggle-password" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="signinPassword">Hiện</button>
             </div>
+            
             <button class="btn" type="submit">Đăng nhập</button>
 
-            <div class="options">
-              <a href="#" id="forgotLink">Quên mật khẩu?</a>
+            <div class="auth-form__options">
+              <a class="auth-form__options-link" href="#" id="forgotLink">Quên mật khẩu?</a>
             </div>
 
-            <div class="toggle-link">
-              Bạn chưa có tài khoản? <a href="#" id="signupLink">Đăng ký ngay</a>
+            <div class="auth-form__toggle-link">
+              Bạn chưa có tài khoản? <a class="auth-form__toggle-link-anchor" href="#" id="signupLink">Đăng ký ngay</a>
             </div>
           </form>
         </div>
 
-        <!-- Đăng ký -->
-        <div class="form-box" id="signupBox">
-          <form id="signupForm" novalidate>
+        <div class="auth-forms__form-box" id="signupBox">
+          <form class="auth-form" id="signupForm" novalidate>
 
-            <div class="input-box">
-              <label for="fullName">Họ và tên</label>
-              <input id="fullName" name="name" type="text" placeholder="Họ và tên" autocomplete="name" required>
+            <div class="auth-form__input-box">
+              <label class="auth-form__label" for="fullName">Họ và tên</label>
+              <input class="auth-form__input" id="fullName" name="name" type="text" placeholder="Họ và tên" autocomplete="name" required>
             </div>
-            <div class="input-box">
-              <label for="signupEmail">Email</label>
-              <input id="signupEmail" name="email" type="email" placeholder="Email" inputmode="email" autocomplete="email" required>
+            <div class="auth-form__input-box">
+              <label class="auth-form__label" for="signupEmail">Email</label>
+              <input class="auth-form__input" id="signupEmail" name="email" type="email" placeholder="Email" inputmode="email" autocomplete="email" required>
             </div>
-            <div class="input-box pw-row">
-              <label for="signupPassword">Mật khẩu</label>
-              <input id="signupPassword" name="password" type="password" placeholder="Mật khẩu (≥ 6 ký tự)" autocomplete="new-password" required minlength="6">
-              <button class="toggle-pw" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="signupPassword">Hiện</button>
+            <div class="auth-form__input-box auth-form__input-box--password">
+              <label class="auth-form__label" for="signupPassword">Mật khẩu</label>
+              <input class="auth-form__input" id="signupPassword" name="password" type="password" placeholder="Mật khẩu (≥ 6 ký tự)" autocomplete="new-password" required minlength="6">
+              <button class="auth-form__toggle-password" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="signupPassword">Hiện</button>
             </div>
             <button class="btn" type="submit">Đăng ký</button>
 
-            <div class="toggle-link">
-              Đã có tài khoản? <a href="#" id="signinLink">Đăng nhập ngay</a>
+            <div class="auth-form__toggle-link">
+              Đã có tài khoản? <a class="auth-form__toggle-link-anchor" href="#" id="signinLink">Đăng nhập ngay</a>
             </div>
           </form>
         </div>
 
-        <!-- Quên mật khẩu -->
-        <div class="form-box" id="forgotBox">
-          <form id="forgotForm" novalidate>
-  
-          
+        <div class="auth-forms__form-box" id="forgotBox">
+          <form class="auth-form" id="forgotForm" novalidate>
             
-            <div class="input-box">
-              <label for="forgotEmail">Email đăng ký</label>
-              <input id="forgotEmail" name="email" type="email" placeholder="Nhập email của bạn" inputmode="email" autocomplete="email" required>
+            <div class="auth-form__input-box">
+              <label class="auth-form__label" for="forgotEmail">Email đăng ký</label>
+              <input class="auth-form__input" id="forgotEmail" name="email" type="email" placeholder="Nhập email của bạn" inputmode="email" autocomplete="email" required>
             </div>
             
-            <div class="input-box pw-row">
-              <label for="newPassword">Mật khẩu mới</label>
-              <input id="newPassword" name="newPassword" type="password" placeholder="Mật khẩu mới (≥ 6 ký tự)" autocomplete="new-password" required minlength="6">
-              <button class="toggle-pw" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="newPassword">Hiện</button>
+            <div class="auth-form__input-box auth-form__input-box--password">
+              <label class="auth-form__label" for="newPassword">Mật khẩu mới</label>
+              <input class="auth-form__input" id="newPassword" name="newPassword" type="password" placeholder="Mật khẩu mới (≥ 6 ký tự)" autocomplete="new-password" required minlength="6">
+              <button class="auth-form__toggle-password" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="newPassword">Hiện</button>
             </div>
             
-            <div class="input-box pw-row">
-              <label for="confirmPassword">Xác nhận mật khẩu mới</label>
-              <input id="confirmPassword" name="confirmPassword" type="password" placeholder="Nhập lại mật khẩu mới" autocomplete="new-password" required minlength="6">
-              <button class="toggle-pw" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="confirmPassword">Hiện</button>
+            <div class="auth-form__input-box auth-form__input-box--password">
+              <label class="auth-form__label" for="confirmPassword">Xác nhận mật khẩu mới</label>
+              <input class="auth-form__input" id="confirmPassword" name="confirmPassword" type="password" placeholder="Nhập lại mật khẩu mới" autocomplete="new-password" required minlength="6">
+              <button class="auth-form__toggle-password" type="button" aria-label="Hiện/ẩn mật khẩu" data-target="confirmPassword">Hiện</button>
             </div>
             
             <button class="btn" type="submit">Đặt lại mật khẩu</button>
             
-            <div class="success-msg" id="forgotSuccess">
+            <div class="auth-form__success-msg" id="forgotSuccess">
               ✅ Đã đặt lại mật khẩu thành công! Hãy đăng nhập.
             </div>
 
-            <div class="toggle-link">
-              <a href="#" id="backToLogin">← Quay lại đăng nhập</a>
+            <div class="auth-form__toggle-link auth-form__toggle-link--back">
+              <a class="auth-form__toggle-link-anchor" href="#" id="backToLogin">← Quay lại đăng nhập</a>
             </div>
           </form>
         </div>
-      </div><!-- /form-container -->
-    </div><!-- /form-wrapper -->
-  </div><!-- /container -->
-
-  <script src="../js/pages/login.js"></script>
+      </div></div></div><script src="../js/pages/login.js"></script>
 </body>
 </html>
