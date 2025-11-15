@@ -1,7 +1,8 @@
+<!DOCTYPE html>
 <html lang="vi">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Công thức đã lưu</title>
     <link rel="stylesheet" href="../styles/base/variable.css" />
     <link rel="stylesheet" href="../styles/base/base.css" />
@@ -13,14 +14,14 @@
 
   </head>
   <body>
-    <main class="saved-recipes-page">
+    <div class="saved-recipes-page">
      <header class="header">
       <div class="header__container">
         <div class="header__content">
           <!-- Logo -->
           <a href="../index.html" class="header__logo">
             <div class="header__logo-image">
-              <img src="/assets/images/logo.svg" />
+              <img src="/assets/images/logo.svg" alt="POTPAN Logo">
             </div>
             <h1 class="header__logo-text">POTPAN</h1>
           </a>
@@ -31,7 +32,7 @@
               type="text"
               class="header__search-input"
               placeholder="Tìm kiếm công thức, nguyên liệu..."
-            />
+            >
             <button class="header__search-button">
               <i class="fas fa-search header__search-icon"></i>
             </button>
@@ -43,15 +44,15 @@
               <i class="fas fa-home header__nav-icon"></i>
               <span class="header__nav-text">Trang chủ</span>
             </a>
-            <a href="./pages/explore.html" class="header__nav-item">
+            <a href="/pages/explore.html" class="header__nav-item">
               <i class="fas fa-compass header__nav-icon"></i>
               <span class="header__nav-text">Khám phá</span>
             </a>
-            <a href="./pages/about.html" target="_blank" class="header__nav-item">
+            <a href="/pages/about.html" target="_blank" class="header__nav-item">
               <i class="fa-solid fa-users header__nav-icon"></i>
               <span class="header__nav-text">Về chúng tôi</span>
             </a>
-            <a href="./pages/contact.html" target="_blank" class="header__nav-item">
+            <a href="/pages/contact.html" target="_blank" class="header__nav-item">
               <i class="fa-solid fa-phone header__nav-icon"></i>
               <span class="header__nav-text">Liên hệ</span>
             </a>
@@ -71,15 +72,15 @@
         </div>
       </div>
     </header>
-      <main class="page">
+      <div class="page">
         <aside class="sidebar">
         <div class="sidebar__profile">
           <img
             class="sidebar__avatar"
             id="sidebarAvatar"
-            src="./assets/images/avatar.png"
+            src="/assets/images/avatar.png"
             alt="avatar"
-          />
+          >
           <div class="sidebar__profile-info">
             <div class="sidebar__name" id="sidebarName">...</div>
             <div class="sidebar__handle" id="sidebarHandle">...</div>
@@ -118,11 +119,11 @@
           <div class="saved-recipes__header">
             <!-- Tựa đề -->
             <div class="saved-recipes__title-wrapper">
-              <h1 class="saved-recipes__main-title">Công thức đã lưu</h1>
+              <h2 class="saved-recipes__main-title">Công thức đã lưu</h2>
             </div>
           </div>
-          <section class="page saved-recipes__header">
-            <!-- Cac the hinh anh -->
+          <div class="page-content saved-recipes__content">
+            <!-- Các thẻ hình ảnh -->
             <div
               class="saved-recipes__scroll-container"
               role="region"
@@ -130,13 +131,12 @@
             >
               <div class="saved-recipes__grid"></div>
             </div>
-          </section>
+          </div>
         </section>
-      </main>
-    </main>
+      </div>
+    </div>
     <script src="../js/pages/savereciped.js" type="module"></script>
     <script src="../js/modules/nav-detail-recipes.js" type="module"></script>
     <script src="../js/main.js" type="module"></script>
-
   </body>
 </html>

@@ -1,53 +1,56 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chi tiết công thức</title>
-  <link rel="stylesheet" href="../../styles/components/style.header.css" />
-  <link rel="stylesheet" href="../../styles/components/recipe-detail.css" />
+  <link rel="stylesheet" href="../../styles/components/recipe-detail.css">
 </head>
-  <body>
-    <!-- Header -->
-    <header class="recipe-detail-header">
-      <div class="container recipe-detail-header__content">
+<body>
+  <!-- Header -->
+  <header class="recipe-detail-header">
+    <div class="container">
+      <div class="recipe-detail-header__content">
         <a id="back-link" class="recipe-detail-header__back-link" href="#">← Quay lại</a>
-        <h1 id="recipe-name" class="recipe-detail-header__title">Đang tải...</h1>
+        <h1 class="recipe-detail-header__title">Chi tiết công thức</h1>
       </div>
-    </header>
-    <!-- The mon -->
-    <main class="recipe-detail">
-      <section class="recipe-detail__hero">
-        <img id="recipe-img" alt="Hình món ăn" />
-        <div class="recipe-detail__info">
-          <h2 id="recipe-name-dup"></h2>
-          <div class="recipe-detail__meta">
-            <span id="recipe-chef"></span>
-            <span id="recipe-time"></span>
-          </div>
-          <div class="recipe-detail__tags" id="recipe-tags"></div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="recipe-detail">
+    <section class="recipe-detail__hero">
+      <img id="recipe-img" src="/assets/images/banhplan.jpg" alt="Hình món ăn đang tải">
+      <div class="recipe-detail__info">
+        <h2 id="recipe-name">Đang tải...</h2>
+        <div class="recipe-detail__meta">
+          <span id="recipe-chef"></span>
+          <span id="recipe-time"></span>
         </div>
-      </section>
-      <!-- Nội dung chi tiết -->
-      <section class="recipe-detail__grid">
-        <article class="recipe-detail__card">
-          <h3>Nguyên liệu</h3>
-          <ul id="ingredients"></ul>
-        </article>
+        <div class="recipe-detail__tags" id="recipe-tags"></div>
+      </div>
+    </section>
 
-        <article class="recipe-detail__card">
-          <h3>Các bước thực hiện</h3>
-          <ol id="steps"></ol>
-        </article>
+    <!-- Nội dung chi tiết -->
+    <div class="recipe-detail__grid">
+      <article class="recipe-detail__card">
+        <h3>Nguyên liệu</h3>
+        <ul id="ingredients"></ul>
+      </article>
 
-        <aside class="recipe-detail__card">
-          <h3>Dinh dưỡng</h3>
-          <ul id="nutrition"></ul>
-        </aside>
-      </section>
-    </main>
+      <article class="recipe-detail__card">
+        <h3>Các bước thực hiện</h3>
+        <ol id="steps"></ol>
+      </article>
+
+      <aside class="recipe-detail__card">
+        <h3>Thông tin dinh dưỡng</h3>
+        <ul id="nutrition"></ul>
+      </aside>
+    </div>
+  </main>
 
   <!-- Script -->
   <script src="../../js/modules/recipe-detail.js"></script>
-  </body>
+</body>
 </html>
