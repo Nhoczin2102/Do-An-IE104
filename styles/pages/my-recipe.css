@@ -1,30 +1,43 @@
+/* Thêm CSS để khóa cuộn trang chính */
+html,
+body {
+    overflow: hidden; /* Ẩn thanh cuộn của trang */
+    height: 100%; /* Đảm bảo body không vượt quá chiều cao màn hình */
+}
+
 /* ===== LAYOUT CHÍNH ===== */
+/* SỬA LẠI: Chúng ta sẽ biến .page thành layout grid 2 cột */
 .page {
-    display: flex;
-    justify-content: center;
-    padding: 24px;
-    gap: 24px;
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 50px;
+  max-width: 90%;
+  margin: 23px auto;
+  padding: 0 20px;
+  align-items: start;
+  min-height: calc(100vh - 130px);
+  position: relative;
 }
 
 .saved-recipes-page {
     width: 100%;
 }
 
-/* Layout chính  */
+/* Layout chính (đã có 2 cột) */
+/* XOÁ BỎ HOÀN TOÀN KHỐI main.page NÀY ĐỂ TRÁNH XUNG ĐỘT */
+/*
 main.page {
-     display: grid;
+  display: grid;
   grid-template-columns: 320px 1fr;
   gap: 50px;
   max-width: 90%;
   margin: 23px auto;
   padding: 0 20px;
-
+  align-items: start; 
   min-height: calc(100vh - 130px);
   position: relative;
 }
-
-/* ===== SIDEBAR ===== */
-
+*/
 
 .profile {
     display: flex;
@@ -92,18 +105,22 @@ main.page {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 30px;
+    /* Căn giữa wrapper và thêm khoảng cách dưới */
+    margin: 0 auto 24px auto;
     max-width: 980px;
 }
 
 .saved-recipes__main-title {
     font-weight: 550;
     font-size: 32px;
-    padding: 5px 180px;
+    /* Tối ưu padding, giảm ngang, tăng dọc 1 chút */
+    padding: 10px 300px;
     background-color: var(--primary-color);
     color: var(--text-on-primary);
     border-color: var(--primary-dark);
     border-radius: 30px;
+    text-align: center; /* Đảm bảo text luôn ở giữa */
+    width: auto; /* Tự động điều chỉnh độ rộng */
 }
 
 /* ===== CONTENT CHÍNH ===== */
@@ -113,18 +130,19 @@ main.page {
     background: var(--bg-card);
     border-radius: var(--radius);
     padding: 24px;
-    height: 100%;
     box-shadow: var(--shadow);
     border: 1px solid var(--border-color);
+
+    /* Thêm các thuộc tính giống chef-profile.css */
+    position: sticky;
+    top: 90px; /* Dính vào vị trí cách top 90px (bạn có thể điều chỉnh) */
+    max-height: calc(100vh - 150px); /* Chiều cao tối đa, chừa lề (bạn có thể điều chỉnh) */
+    overflow-y: hidden; /* Thêm thanh cuộn cho nội dung bên trong nếu dài */
 }
 
-.saved-recipes__header {
-    width: 100%;
-}
 
-.page-content {
-    width: 100%;
-}
+
+
 
 /* ===== GRID CHO BÀI VIẾT ===== */
 .saved-recipes__grid {
@@ -247,10 +265,7 @@ main.page {
 
 /* Large Desktop */
 @media (max-width: 1440px) {
-    main.page {
-        grid-template-columns: 260px 1fr;
-        gap: 28px;
-    }
+  
     
     .saved-recipes__grid {
         gap: 20px;
@@ -259,31 +274,20 @@ main.page {
 
 /* Desktop */
 @media (max-width: 1200px) {
-    main.page {
-        grid-template-columns: 240px 1fr;
-        gap: 24px;
-    }
+ 
     
     .saved-recipes__grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
     .saved-recipes__main-title {
-        font-size: 34px;
+        font-size: 30px; /* Điều chỉnh lại cho hợp lý */
     }
 }
 
 /* Tablet */
 @media (max-width: 1024px) {
-    .page {
-        padding: 20px;
-    }
-    
-    main.page {
-        grid-template-columns: 220px 1fr;
-        gap: 20px;
-    }
-    
+  
     
     .saved-recipes__grid {
         gap: 18px;
@@ -298,15 +302,17 @@ main.page {
 @media (max-width: 768px) {
 
     
-    main.page {
+    /* Chuyển về 1 cột trên tablet nhỏ */
+    /* SỬA LẠI: Cập nhật selector thành .page */
+    .page {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 24px;
+        max-width: 100%;
+        margin: 0;
+        padding: 16px;
     }
-    
-    .sidebar {
-        order: 2;
-    }
-    
+
+   
     .saved-recipes {
         order: 1;
     }
@@ -317,6 +323,7 @@ main.page {
     
     .saved-recipes__main-title {
         font-size: 28px;
+        padding: 8px 30px; /* Điều chỉnh padding cho responsive */
     }
     
     .saved-recipes__grid {
@@ -349,12 +356,14 @@ main.page {
     
     .saved-recipes__title-wrapper {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center; /* Đổi thành center để căn giữa */
         gap: 16px;
     }
     
     .saved-recipes__main-title {
         font-size: 26px;
+        padding: 8px 25px; /* Điều chỉnh padding */
+        width: 100%; /* Cho tiêu đề rộng 100% trên mobile */
     }
     
     .recipe-card__image {
@@ -382,9 +391,14 @@ main.page {
 /* Small Mobile */
 @media (max-width: 480px) {
    
+    /* SỬA LẠI: Cập nhật selector thành .page */
+    .page {
+        padding: 12px;
+    }
     
     .saved-recipes__main-title {
         font-size: 22px;
+        padding: 6px 20px; /* Điều chỉnh padding */
     }
     
     .recipe-card__image {
