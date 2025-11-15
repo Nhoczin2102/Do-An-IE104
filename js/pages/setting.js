@@ -25,34 +25,55 @@ function initializeUserData() {
         window.location.href = '../pages/login.html';
     }
 }
-
 function setupEventListeners() {
-    // Đổi tên hiển thị
-    document.getElementById('display-name').addEventListener('change', handleDisplayNameChange);
-    
-    // Đổi mật khẩu
-    document.getElementById('change-password').addEventListener('click', handleChangePassword);
-    
-    // Đổi avatar (trong setting content)
-    document.getElementById('change-avatar').addEventListener('click', handleAvatarChange);
-    
-    // Avatar image click (tùy chọn)
-    document.getElementById('settingAvatar').addEventListener('click', handleAvatarChange);
-    
-    // Ngôn ngữ
-    document.getElementById('language').addEventListener('change', handleLanguageChange);
-    
-    // Đăng xuất
-    document.getElementById('logoutNav').addEventListener('click', handleLogout);
-    
-    // Xóa tài khoản
-    document.getElementById('delete-account').addEventListener('click', handleDeleteAccount);
-    
-    // Các button khác
-    document.getElementById('open-tos').addEventListener('click', handleOpenTos);
-    document.getElementById('open-privacy').addEventListener('click', handleOpenPrivacy);
+    // Đảm bảo phần tử tồn tại trước khi thêm event listener
+    try {
+        // Đổi tên hiển thị
+        const displayName = document.getElementById('display-name');
+        if (displayName) displayName.addEventListener('change', handleDisplayNameChange);
+        
+        // Đổi mật khẩu
+        const changePassword = document.getElementById('change-password');
+        if (changePassword) changePassword.addEventListener('click', handleChangePassword);
+        
+        // Đổi avatar
+        const changeAvatar = document.getElementById('change-avatar');
+        if (changeAvatar) changeAvatar.addEventListener('click', handleAvatarChange);
+        
+        // Avatar image click
+        const settingAvatar = document.getElementById('settingAvatar');
+        if (settingAvatar) settingAvatar.addEventListener('click', handleAvatarChange);
+        
+        // Ngôn ngữ (chỉ thêm nếu tồn tại)
+        const language = document.getElementById('language');
+        if (language) {
+            language.addEventListener('change', handleLanguageChange);
+        }
+        
+        // Đăng xuất
+        const logoutNav = document.getElementById('logoutNav');
+        if (logoutNav) logoutNav.addEventListener('click', handleLogout);
+        
+        // Xóa tài khoản
+        const deleteAccount = document.getElementById('delete-account');
+        if (deleteAccount) {
+            deleteAccount.addEventListener('click', handleDeleteAccount);
+            console.log('✅ Đã thêm event listener cho nút xóa tài khoản');
+        } else {
+            console.error('❌ Không tìm thấy nút xóa tài khoản!');
+        }
+        
+        // Các button khác
+        const openTos = document.getElementById('open-tos');
+        if (openTos) openTos.addEventListener('click', handleOpenTos);
+        
+        const openPrivacy = document.getElementById('open-privacy');
+        if (openPrivacy) openPrivacy.addEventListener('click', handleOpenPrivacy);
+        
+    } catch (error) {
+        console.error('Lỗi khi thiết lập event listeners:', error);
+    }
 }
-
 function handleAvatarChange() {
     const input = document.createElement('input');
     input.type = 'file';
@@ -151,21 +172,6 @@ function handleChangePassword() {
     updateUserInList(currentUser);
     
     alert('✅ Đã đổi mật khẩu thành công!');
-}
-
-function handleLanguageChange(event) {
-    const selectedLanguage = event.target.value;
-    localStorage.setItem('preferredLanguage', selectedLanguage);
-    
-    // Hiển thị thông báo
-    const languageNames = {
-        'vi': 'Tiếng Việt',
-        'en': 'English',
-        'fr': 'Français',
-        'es': 'Español'
-    };
-    
-    alert(`🌐 Đã chuyển ngôn ngữ sang: ${languageNames[selectedLanguage]}`);
 }
 
 function handleLogout(event) {
