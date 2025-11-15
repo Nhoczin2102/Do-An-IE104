@@ -10,21 +10,20 @@
     width: 100%;
 }
 
-/* Layout chính  */
-main.page {
-     display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 50px;
-  max-width: 90%;
-  margin: 23px auto;
-  padding: 0 20px;
-  align-items: start;
-  min-height: calc(100vh - 130px);
-  position: relative;
+/* Layout chính */
+.page {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 50px;
+    max-width: 90%;
+    margin: 23px auto;
+    padding: 0 20px;
+    align-items: start;
+    min-height: calc(100vh - 130px);
+    position: relative;
 }
 
 /* ===== SIDEBAR ===== */
-
 
 .profile {
     display: flex;
@@ -119,6 +118,10 @@ main.page {
 }
 
 .saved-recipes__header {
+    width: 100%;
+}
+
+.page-content {
     width: 100%;
 }
 
@@ -243,7 +246,7 @@ main.page {
 
 /* Large Desktop */
 @media (max-width: 1440px) {
-    main.page {
+    .page {
         grid-template-columns: 260px 1fr;
         gap: 28px;
     }
@@ -255,7 +258,7 @@ main.page {
 
 /* Desktop */
 @media (max-width: 1200px) {
-    main.page {
+    .page {
         grid-template-columns: 240px 1fr;
         gap: 24px;
     }
@@ -275,7 +278,7 @@ main.page {
         padding: 20px;
     }
     
-    main.page {
+    .page {
         grid-template-columns: 220px 1fr;
         gap: 20px;
     }
@@ -300,7 +303,7 @@ main.page {
         flex-direction: column;
     }
     
-    main.page {
+    .page {
         grid-template-columns: 1fr;
         gap: 20px;
     }
