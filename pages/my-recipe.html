@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="vi">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Công thức đã lưu</title>
-    <link rel="stylesheet" href="../styles/base/variable.css" />
-    <link rel="stylesheet" href="../styles/base/base.css" />
-    <link rel="stylesheet" href="../styles/components/header.css" />
-    <link rel="stylesheet" href="../styles/components/sidebar.css" />
-    <link rel="stylesheet" href="../styles/pages/my-recipe.css" />
-    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
 
-  </head>
-  <body>
-    <div class="saved-recipes-page">
-     <header class="header">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Công thức đã lưu</title>
+  <link rel="stylesheet" href="../styles/base/variable.css">
+  <link rel="stylesheet" href="../styles/base/base.css">
+  <link rel="stylesheet" href="../styles/components/header.css">
+  <link rel="stylesheet" href="../styles/components/sidebar.css">
+  <link rel="stylesheet" href="../styles/pages/my-recipe.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+</head>
+
+<body>
+  <div class="saved-recipes-page">
+    <header class="header">
       <div class="header__container">
         <div class="header__content">
           <!-- Logo -->
@@ -28,11 +31,7 @@
 
           <!-- Thanh tìm kiếm -->
           <div class="header__search">
-            <input
-              type="text"
-              class="header__search-input"
-              placeholder="Tìm kiếm công thức, nguyên liệu..."
-            >
+            <input type="text" class="header__search-input" placeholder="Tìm kiếm công thức, nguyên liệu...">
             <button class="header__search-button">
               <i class="fas fa-search header__search-icon"></i>
             </button>
@@ -56,13 +55,13 @@
               <i class="fa-solid fa-phone header__nav-icon"></i>
               <span class="header__nav-text">Liên hệ</span>
             </a>
-            
+
             <!-- Nút Đăng xuất (chỉ hiện khi đã đăng nhập) -->
             <a href="#" class="header__nav-item header__nav-item--logout" id="logoutNav" style="display: none;">
               <i class="fas fa-sign-out-alt header__nav-icon"></i>
               <span class="header__nav-text">Đăng xuất</span>
             </a>
-            
+
             <!-- Nút Đăng nhập (chỉ hiện khi chưa đăng nhập) -->
             <a href="./login.html" class="header__nav-item header__nav-item--login" id="loginNav">
               <i class="fa-solid fa-user header__nav-icon"></i>
@@ -72,15 +71,10 @@
         </div>
       </div>
     </header>
-      <div class="page">
-        <aside class="sidebar">
+    <div class="page">
+      <aside class="sidebar">
         <div class="sidebar__profile">
-          <img
-            class="sidebar__avatar"
-            id="sidebarAvatar"
-            src="/assets/images/avatar.png"
-            alt="avatar"
-          >
+          <img class="sidebar__avatar" id="sidebarAvatar" src="/assets/images/avatar.png" alt="avatar">
           <div class="sidebar__profile-info">
             <div class="sidebar__name" id="sidebarName">...</div>
             <div class="sidebar__handle" id="sidebarHandle">...</div>
@@ -115,28 +109,25 @@
         </nav>
       </aside>
 
-        <section class="saved-recipes">
-          <div class="saved-recipes__header">
-            <!-- Tựa đề -->
-            <div class="saved-recipes__title-wrapper">
-              <h2 class="saved-recipes__main-title">Công thức đã lưu</h2>
-            </div>
+      <section class="saved-recipes">
+        <div class="saved-recipes__header">
+          <!-- Tựa đề -->
+          <div class="saved-recipes__title-wrapper">
+            <h2 class="saved-recipes__main-title">Công thức đã lưu</h2>
           </div>
-          <div class="page-content saved-recipes__content">
-            <!-- Các thẻ hình ảnh -->
-            <div
-              class="saved-recipes__scroll-container"
-              role="region"
-              aria-label="Danh sách bài viết đã lưu"
-            >
-              <div class="saved-recipes__grid"></div>
-            </div>
+        </div>
+        <div class="page-content saved-recipes__content">
+          <!-- Các thẻ hình ảnh -->
+          <div class="saved-recipes__scroll-container" role="region" aria-label="Danh sách bài viết đã lưu">
+            <div class="saved-recipes__grid"></div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
-    <script src="../js/pages/savereciped.js" type="module"></script>
-    <script src="../js/modules/nav-detail-recipes.js" type="module"></script>
-    <script src="../js/main.js" type="module"></script>
-  </body>
+  </div>
+  <script src="../js/pages/savereciped.js" type="module"></script>
+  <script src="../js/modules/nav-detail-recipes.js" type="module"></script>
+  <script src="../js/main.js" type="module"></script>
+</body>
+
 </html>

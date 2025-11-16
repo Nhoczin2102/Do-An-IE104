@@ -34,38 +34,30 @@ class ChefProfile {
     }
 
     loadChefData() {
-        // ƯU TIÊN 1: Lấy từ sessionStorage (từ trang Home)
         const sessionChefId = this.getChefFromSessionStorage();
-        
-        // ƯU TIÊN 2: Lấy từ URL parameter (từ trang Famous Chef)
         const urlChefId = this.getChefIdFromURL();
         
-        // Xác định chefId cần sử dụng
         this.chefId = sessionChefId || urlChefId;
 
         console.log('Session Chef ID:', sessionChefId);
         console.log('URL Chef ID:', urlChefId);
         console.log('Final Chef ID:', this.chefId);
 
-        // Fallback: Nếu không có ID nào
         if (!this.chefId) {
             console.warn('Không tìm thấy chef ID, sử dụng ID mặc định 1');
             this.chefId = 1;
         }
 
-        // Tìm chef trong database
         this.chef = chefsData.find(chef => chef.id === this.chefId);
         
         console.log('Found chef:', this.chef);
 
         if (!this.chef) {
             console.error('Không tìm thấy đầu bếp với ID:', this.chefId);
-            // Redirect to chefs list if chef not found
             window.location.href = 'famous-chef.html';
             return;
         }
 
-        // Xóa sessionStorage sau khi đã sử dụng để tránh conflict
         sessionStorage.removeItem('selectedChef');
     }
 
@@ -84,43 +76,35 @@ class ChefProfile {
     }
 
     renderHeader() {
-        // Set cover image
         const coverImg = document.getElementById('chefCover');
         if (this.chef.coverImage) {
             coverImg.src = this.chef.coverImage;
         }
 
-        // Set avatar
         const avatarImg = document.getElementById('chefAvatar');
         avatarImg.src = this.chef.avatar;
         avatarImg.alt = this.chef.name;
 
-        // Set verified badge
         const verifiedBadge = document.getElementById('chefVerified');
         if (this.chef.verified) {
             verifiedBadge.style.display = 'flex';
         }
 
-        // Set name and specialty
         document.getElementById('chefName').textContent = this.chef.name;
         document.getElementById('chefSpecialty').textContent = this.chef.specialty;
 
-        // Set featured badge
         const badge = document.getElementById('chefBadge');
         if (this.chef.featured) {
             badge.style.display = 'block';
         }
 
-        // Set bio
         document.getElementById('chefBio').textContent = this.chef.bio;
         document.getElementById('chefBioFull').textContent = this.chef.bioFull || this.chef.bio;
 
-        // Set rating
         this.renderStars('chefStars', this.chef.rating);
         document.getElementById('chefRating').textContent = this.chef.rating;
         document.getElementById('chefReviewCount').textContent = `(${this.chef.reviewCount || '0'} đánh giá)`;
 
-        // Set follow button state
         const followBtn = document.getElementById('followChefBtn');
         if (this.chef.isFollowing) {
             followBtn.classList.add('following');
@@ -144,8 +128,8 @@ class ChefProfile {
         if (sampleRecipes.length === 0) {
             recipesGrid.innerHTML = `
                 <div class="empty-state" style="grid-column: 1 / -1;">
-                    <div class="empty-icon">👨‍🍳</div>
-                    <h3 class="empty-text">Chưa có công thức nào</h3>
+                    <div class="empty-state__icon">👨‍🍳</div>
+                    <h3 class="empty-state__text">Chưa có công thức nào</h3>
                     <p>Đầu bếp này chưa đăng tải công thức nào.</p>
                 </div>
             `;
@@ -192,41 +176,39 @@ class ChefProfile {
         
         return `
             <div class="recipe-card" data-recipe-id="${recipe.id}">
-                <div class="recipe-image">
+                <div class="recipe-card__image">
                     <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../assets/images/recipe-placeholder.jpg'">
                 </div>
-                <div class="recipe-info">
-                    <h3 class="recipe-title">${recipe.title}</h3>
-                    <div class="recipe-meta">
-                        <div class="recipe-time">
+                <div class="recipe-card__info">
+                    <h3 class="recipe-card__title">${recipe.title}</h3>
+                    <div class="recipe-card__meta">
+                        <div class="recipe-card__time">
                             <i class="far fa-clock"></i>
                             ${recipe.time}
                         </div>
-                        <div class="recipe-difficulty">
+                        <div class="recipe-card__difficulty">
                             <i class="fas fa-signal"></i>
                             ${recipe.difficulty}
                         </div>
                     </div>
-                    <div class="recipe-rating">
+                    <div class="recipe-card__rating">
                         ${stars}
                         <span>${recipe.rating}</span>
                     </div>
-                    <p class="recipe-description">${recipe.description}</p>
+                    <p class="recipe-card__description">${recipe.description}</p>
                 </div>
             </div>
         `;
     }
 
     renderAbout() {
-        // Render expertise tags
         const expertiseTags = document.getElementById('expertiseTags');
         if (expertiseTags && this.chef.expertise) {
             expertiseTags.innerHTML = this.chef.expertise.map(exp => 
-                `<span class="expertise-tag">${exp}</span>`
+                `<span class="about__tag">${exp}</span>`
             ).join('');
         }
 
-        // Render achievements
         const achievementsList = document.getElementById('achievementsList');
         if (achievementsList && this.chef.achievements) {
             achievementsList.innerHTML = this.chef.achievements.map(achievement => 
@@ -234,7 +216,6 @@ class ChefProfile {
             ).join('');
         }
 
-        // Render contact info
         const contactInfo = document.getElementById('contactInfo');
         if (contactInfo) {
             contactInfo.innerHTML = this.createContactInfo();
@@ -246,11 +227,11 @@ class ChefProfile {
         
         if (this.chef.email) {
             contacts.push(`
-                <div class="contact-item">
-                    <div class="contact-icon">
+                <div class="about__contact-item">
+                    <div class="about__contact-icon">
                         <i class="fas fa-envelope"></i>
                     </div>
-                    <div class="contact-details">
+                    <div class="about__contact-details">
                         <h4>Email</h4>
                         <p>${this.chef.email}</p>
                     </div>
@@ -260,11 +241,11 @@ class ChefProfile {
         
         if (this.chef.website) {
             contacts.push(`
-                <div class="contact-item">
-                    <div class="contact-icon">
+                <div class="about__contact-item">
+                    <div class="about__contact-icon">
                         <i class="fas fa-globe"></i>
                     </div>
-                    <div class="contact-details">
+                    <div class="about__contact-details">
                         <h4>Website</h4>
                         <p>${this.chef.website}</p>
                     </div>
@@ -275,11 +256,11 @@ class ChefProfile {
         if (this.chef.socialMedia) {
             Object.entries(this.chef.socialMedia).forEach(([platform, handle]) => {
                 contacts.push(`
-                    <div class="contact-item">
-                        <div class="contact-icon">
+                    <div class="about__contact-item">
+                        <div class="about__contact-icon">
                             <i class="fab fa-${platform}"></i>
                         </div>
-                        <div class="contact-details">
+                        <div class="about__contact-details">
                             <h4>${platform.charAt(0).toUpperCase() + platform.slice(1)}</h4>
                             <p>${handle}</p>
                         </div>
@@ -310,8 +291,8 @@ class ChefProfile {
         if (sampleReviews.length === 0) {
             reviewsList.innerHTML = `
                 <div class="empty-state">
-                    <div class="empty-icon">💬</div>
-                    <h3 class="empty-text">Chưa có đánh giá nào</h3>
+                    <div class="empty-state__icon">💬</div>
+                    <h3 class="empty-state__text">Chưa có đánh giá nào</h3>
                     <p>Hãy là người đầu tiên đánh giá đầu bếp này.</p>
                 </div>
             `;
@@ -350,20 +331,20 @@ class ChefProfile {
         const stars = this.generateStars(review.rating);
         
         return `
-            <div class="review-item">
-                <div class="review-header">
-                    <div class="reviewer-info">
-                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviewer-avatar" onerror="this.src='../assets/images/avatar.png'">
-                        <div class="reviewer-details">
+            <div class="reviews__item">
+                <div class="reviews__item-header">
+                    <div class="reviews__user">
+                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviews__user-avatar" onerror="this.src='../assets/images/avatar.png'">
+                        <div class="reviews__user-info">
                             <h4>${review.user.name}</h4>
-                            <div class="review-date">${review.date}</div>
+                            <div class="reviews__date">${review.date}</div>
                         </div>
                     </div>
-                    <div class="review-rating">
+                    <div class="reviews__item-rating">
                         ${stars}
                     </div>
                 </div>
-                <div class="review-content">
+                <div class="reviews__content">
                     ${review.comment}
                 </div>
             </div>
@@ -399,14 +380,12 @@ class ChefProfile {
     }
 
     bindEvents() {
-        // Tab switching
-        document.querySelectorAll('.tab').forEach(tab => {
+        document.querySelectorAll('.tabs__item').forEach(tab => {
             tab.addEventListener('click', () => {
                 this.switchTab(tab.dataset.tab);
             });
         });
 
-        // Follow button
         const followBtn = document.getElementById('followChefBtn');
         if (followBtn) {
             followBtn.addEventListener('click', () => {
@@ -414,7 +393,6 @@ class ChefProfile {
             });
         }
 
-        // Message button
         const messageBtn = document.getElementById('messageChefBtn');
         if (messageBtn) {
             messageBtn.addEventListener('click', () => {
@@ -422,7 +400,6 @@ class ChefProfile {
             });
         }
 
-        // Share button
         const shareBtn = document.getElementById('shareChefBtn');
         if (shareBtn) {
             shareBtn.addEventListener('click', () => {
@@ -430,7 +407,6 @@ class ChefProfile {
             });
         }
 
-        // Write review button
         const writeReviewBtn = document.getElementById('writeReviewBtn');
         if (writeReviewBtn) {
             writeReviewBtn.addEventListener('click', () => {
@@ -438,10 +414,8 @@ class ChefProfile {
             });
         }
 
-        // Review modal events
         this.bindReviewModalEvents();
 
-        // Recipe card clicks
         document.addEventListener('click', (e) => {
             const recipeCard = e.target.closest('.recipe-card');
             if (recipeCard) {
@@ -450,7 +424,6 @@ class ChefProfile {
             }
         });
 
-        // Back button
         const backButton = document.getElementById('backToChefs');
         if (backButton) {
             backButton.addEventListener('click', () => {
@@ -460,17 +433,15 @@ class ChefProfile {
     }
 
     switchTab(tabName) {
-        // Update active tab
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.classList.remove('active');
+        document.querySelectorAll('.tabs__item').forEach(tab => {
+            tab.classList.remove('tabs__item--active');
         });
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+        document.querySelector(`[data-tab="${tabName}"]`).classList.add('tabs__item--active');
 
-        // Show active panel
-        document.querySelectorAll('.tab-panel').forEach(panel => {
-            panel.classList.remove('active');
+        document.querySelectorAll('.chef-profile__panel').forEach(panel => {
+            panel.classList.remove('chef-profile__panel--active');
         });
-        document.getElementById(`${tabName}-tab`).classList.add('active');
+        document.getElementById(`${tabName}-tab`).classList.add('chef-profile__panel--active');
     }
 
     toggleFollow() {
@@ -485,7 +456,6 @@ class ChefProfile {
             followBtn.classList.add('following');
             followBtn.innerHTML = '<i class="fas fa-check"></i><span>Đang theo dõi</span>';
             
-            // Update followers count
             const currentFollowers = this.parseFollowers(this.chef.followers);
             this.chef.followers = this.formatFollowers(currentFollowers + 1);
             followersCount.textContent = this.chef.followers;
@@ -495,7 +465,6 @@ class ChefProfile {
             followBtn.classList.remove('following');
             followBtn.innerHTML = '<i class="fas fa-plus"></i><span>Theo dõi</span>';
             
-            // Update followers count
             const currentFollowers = this.parseFollowers(this.chef.followers);
             this.chef.followers = this.formatFollowers(Math.max(0, currentFollowers - 1));
             followersCount.textContent = this.chef.followers;
@@ -561,7 +530,6 @@ class ChefProfile {
     }
 
     bindReviewModalEvents() {
-        // Star rating
         const stars = document.querySelectorAll('#starRating i');
         stars.forEach(star => {
             star.addEventListener('click', () => {
@@ -580,7 +548,6 @@ class ChefProfile {
             this.highlightStars(currentRating);
         });
 
-        // Modal close
         document.getElementById('closeReviewModal').addEventListener('click', () => {
             this.closeReviewModal();
         });
@@ -589,7 +556,6 @@ class ChefProfile {
             this.closeReviewModal();
         });
 
-        // Submit review
         document.getElementById('submitReview').addEventListener('click', () => {
             this.submitReview();
         });
@@ -683,7 +649,6 @@ class ChefProfile {
     }
 }
 
-// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     new ChefProfile();
 });
