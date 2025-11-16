@@ -20,11 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderChefs(chefs) {
-    if (!chefsContainer) return;
-    
     chefsContainer.innerHTML = (chefs || []).map(chef => `
       <div class='explore-chef-card' data-chef-id='${chef.id}'>
-        <img src="${chef.img}" alt="${chef.name.replace(/"/g, '&quot;')}" class="explore-chef-card__avatar" loading="lazy" />
+        <img src="${chef.img}" alt="${chef.name}" class="explore-chef-card__avatar" />
         <div class="explore-chef-card__name">${chef.name}</div>
         <div class="explore-chef-card__specialty">${chef.specialty}</div>
       </div>
@@ -32,12 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderTrending() {
-    if (!trendingContainer) return;
-    
     trendingContainer.innerHTML = trendingBucket.map(r => `
       <div class='recipe-card' data-recipe-id='${r.id}' data-source='trending'>
         <div class='recipe-card__image'>
-          <img src='${r.img}' alt='${r.name.replace(/"/g, '&quot;')}' loading="lazy">
+          <img src='${r.img}' alt='${r.name}'>
         </div>
         <div class='recipe-card__content'>
           <h4 class='recipe-card__title'>${r.name}</h4>
@@ -52,13 +48,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderAllRecipes() {
-    if (!allRecipesContainer) return;
-    
     const data = allBucket.slice(0, currentDisplayCount);
     allRecipesContainer.innerHTML = data.map(r => `
       <div class='recipe-card' data-recipe-id='${r.id}' data-source='all'>
         <div class='recipe-card__image'>
-          <img src='${r.img}' alt='${r.name.replace(/"/g, '&quot;')}' loading="lazy">
+          <img src='${r.img}' alt='${r.name}'>
         </div>
         <div class='recipe-card__content'>
           <h3 class='recipe-card__title'>${r.name}</h3>
@@ -72,70 +66,42 @@ document.addEventListener('DOMContentLoaded', () => {
     `).join('');
 
     // nút Load more
-    if (loadMoreBtn) {
-      if (currentDisplayCount >= allBucket.length) {
-        loadMoreBtn.style.display = 'none';
-      } else {
-        loadMoreBtn.style.display = 'block';
-      }
+    if (currentDisplayCount >= allBucket.length) {
+      loadMoreBtn.style.display = 'none';
+    } else {
+      loadMoreBtn.style.display = 'block';
     }
   }
 
   async function loadData() {
     try {
-      // Chefs 
+      // Chefs (giữ nguyên nếu bạn đang có file chefs)
       try {
         const chefRes = await fetch('../js/data/chefs.explore.data.json');
-        if (!chefRes.ok) throw new Error('Chef data not found');
         const chefs = await chefRes.json();
         renderChefs(chefs);
-      } catch (error) {
-        console.log('Chef data not available:', error.message);
-        if (chefsContainer) {
-          chefsContainer.innerHTML = '<p class="no-data-message">Không có dữ liệu đầu bếp</p>';
-        }
-      }
+      } catch { /* optional */ }
 
       // Đọc 1 file duy nhất
       const res = await fetch('../js/data/recipe-details.data.json');
-      if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-      }
-      
       allData = await res.json();
-
-      if (!Array.isArray(allData)) {
-        throw new Error('Invalid data format: expected array');
-      }
 
       const buckets = bucketByIdPrefix(allData);
       allBucket = buckets.all;
       trendingBucket = buckets.trending;
 
-      if (allBucket.length === 0 && trendingContainer) {
-        trendingContainer.innerHTML = '<p class="no-data-message">Không có công thức thịnh hành</p>';
-      }
-      
-      if (allBucket.length === 0 && allRecipesContainer) {
-        allRecipesContainer.innerHTML = '<p class="no-data-message">Không có công thức nào</p>';
-      }
-
       renderTrending();
       renderAllRecipes();
-    } catch (error) {
-      console.error('Không thể tải dữ liệu:', error);
-      if (allRecipesContainer) {
-        allRecipesContainer.innerHTML = "<p class='error-message'>Lỗi tải dữ liệu. Vui lòng thử lại.</p>";
-      }
+    } catch (e) {
+      console.error('Không thể tải dữ liệu:', e);
+      allRecipesContainer.innerHTML = "<p>Lỗi tải dữ liệu. Vui lòng thử lại.</p>";
     }
   }
 
-  if (loadMoreBtn) {
-    loadMoreBtn.addEventListener('click', () => {
-      currentDisplayCount += recipesPerLoad;
-      renderAllRecipes();
-    });
-  }
+  loadMoreBtn.addEventListener('click', () => {
+    currentDisplayCount += recipesPerLoad;
+    renderAllRecipes();
+  });
 
   loadData();
 });
