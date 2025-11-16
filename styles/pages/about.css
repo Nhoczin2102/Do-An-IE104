@@ -1,6 +1,5 @@
-/* =======================================
-   1. KHAI BÁO BIẾN & THIẾT LẬP CHUNG
-   ======================================= */
+/* ===== MÀU SẮC VÀ LAYOUT ===== */
+
 :root {
     /* Colors */
     --primary-color: #FF6967;
@@ -21,19 +20,12 @@
 
 }
 
-/* ========== RESET & BASE ========== */
+/* ===== LAYOUT MẪU ===== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: #f8f9fa;
-    color: var(--text);
-    line-height: 1.5;
-    position: relative !important;
 }
 
 .container {
@@ -50,9 +42,8 @@ body {
     background-color: var(--background-light);
 }
 
-/* =======================================
-   3. TYPOGRAPHY (CHỮ VIẾT)
-   ======================================= */
+/* ===== CHỮ VIẾT ===== */
+
 .section-title {
     font-size: 2.5em;
     margin-bottom: 20px;
@@ -68,9 +59,8 @@ body {
     margin-bottom: 50px;
 }
 
-/* =======================================
-   4. HERO SECTION (BANNER)
-   ======================================= */
+/* ===== BANNER ===== */
+
 .hero-section {
     background: url(../../assets/images/header.png);
     color: var(--text-on-primary);
@@ -90,9 +80,8 @@ body {
     opacity: 0.9;
 }
 
-/* =======================================
-   5. ABOUT/CONTACT LAYOUT
-   ======================================= */
+/* ===== LAYOUT CHÍNH ===== */
+
 .about__grid,
 .contact-content {
     display: flex;
@@ -144,9 +133,8 @@ body {
     margin-top: 15px;
 }
 
-/* =======================================
-   6. VALUE CARDS
-   ======================================= */
+/* ===== THẺ GIÁ TRỊ ===== */
+
 .values__grid {
     display: flex;
     gap: 30px;
@@ -174,9 +162,8 @@ body {
     margin-bottom: 15px;
 }
 
-/* =======================================
-   7. CONTACT INFO
-   ======================================= */
+/* ===== THÔNG TIN LIÊN HỆ ===== */
+
 .contact-info {
     background-color: var(--background-light);
     padding: 30px;
@@ -204,9 +191,8 @@ body {
     margin-bottom: 30px;
 }
 
-/* =======================================
-   8. CONTACT FORM
-   ======================================= */
+/* ===== FORM LIÊN HỆ ===== */
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -234,9 +220,6 @@ body {
     min-height: 150px;
 }
 
-/* =======================================
-   9. MAP SECTION
-   ======================================= */
 .map-container {
     height: 400px;
     background-color: #ddd;
@@ -248,9 +231,8 @@ body {
     border-radius: 8px;
 }
 
-/* =======================================
-   10. CTA SECTION & BUTTONS
-   ======================================= */
+/* ===== CÁC NÚT ===== */
+
 .cta-section__box {
     background-color: var(--primary-color);
     color: var(--text-on-primary);
@@ -289,12 +271,8 @@ body {
     font-size: 1.1em;
 }
 
-/* =======================================
-   11. SOCIAL MEDIA
-   ======================================= */
-.social-media {
-    margin-top: 20px;
-    text-align: center;
+margin-top: 20px;
+text-align: center;
 }
 
 .social-media a {
@@ -308,19 +286,9 @@ body {
     opacity: 0.7;
 }
 
-/* =======================================
-   12. FOOTER
-   ======================================= */
-.main-footer {
-    background-color: var(--text-on-light);
-    color: var(--background-light);
-    text-align: center;
-    padding: 20px 0;
-}
 
-/* =======================================
-   13. MEDIA QUERIES (RESPONSIVE)
-   ======================================= */
+/* ===== RESPONSIVE ===== */
+
 @media (max-width: 992px) {
 
     .about__grid,
