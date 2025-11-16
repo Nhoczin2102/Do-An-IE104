@@ -69,13 +69,13 @@ class RecipeDetail {
         }
     }
 
-  function fallbackBySrc() {
-    const src = ["trending","saved","all"].includes(srcParam) ? srcParam : bucketOf(id);
-    if (src === "saved")    return "../../pages/myRecipe.html";
-    if (src === "trending") return "../../pages/explore.html#trending";
-    if (src === "all")      return "../../pages/explore.html#all";
-    return "../explore.html";
-  }
+    fallbackBySrc() {
+        const src = ["trending","saved","all"].includes(this.srcParam) ? this.srcParam : this.bucketOf(this.id);
+        if (src === "saved") return "../../pages/myRecipe.html";
+        if (src === "trending") return "../../pages/explore.html#trending";
+        if (src === "all") return "../../pages/explore.html#all";
+        return "../explore.html";
+    }
 
     async getJson(url) {
         const res = await fetch(url);
@@ -83,24 +83,32 @@ class RecipeDetail {
         return res.json();
     }
 
-  async function load() {
-    const details = await getJson("../../js/data/recipe-details.data.json");
-    const d = Array.isArray(details) ? details.find(x => Number(x.id) === id) : null;
-    if (!d) throw new Error("Không tìm thấy công thức id=" + id);
+    async load() {
+        if (!this.id) {
+            this.elements.name.textContent = "Thiếu tham số id";
+            return;
+        }
 
-    render(d);
+        try {
+            const details = await this.getJson("../../js/data/recipe-details.data.json");
+            this.recipeData = Array.isArray(details) ? details.find(x => Number(x.id) === this.id) : null;
+            
+            if (!this.recipeData) {
+                throw new Error("Không tìm thấy công thức id=" + this.id);
+            }
 
-    const main = ["trending","saved","all"].includes(srcParam) ? srcParam : bucketOf(id);
-    const badges = [];
-    if (badges.length) {
-      tagsEl && tagsEl.insertAdjacentHTML("afterbegin", badges.join(" "));
+            this.render(this.recipeData);
+            this.updateCookModeButton();
+
+        } catch (error) {
+            console.error(error);
+            this.elements.name.textContent = "Không thể tải chi tiết công thức.";
+        }
     }
-  }
 
-  function render(d) {
-    const name = d.name || "Công thức";
-    if (nameH1) nameH1.textContent = name;
-    if (nameH2) nameH2.textContent = name;
+    render(d) {
+        const name = d.name || "Công thức";
+        if (this.elements.name) this.elements.name.textContent = name;
 
         if (this.elements.img) {
             this.elements.img.src = d.img || "../../images/placeholder/recipe.png";
