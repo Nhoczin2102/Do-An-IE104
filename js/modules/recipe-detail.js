@@ -25,7 +25,7 @@
     if (idNum >= 101 && idNum <= 199) return "all";
     if (idNum >= 201 && idNum <= 299) return "trending";
     if (idNum >= 301 && idNum <= 399) return "saved";
-    if (idNum >= 401) return "profile1"; // THÊM DÒNG NÀY
+    if (idNum >= 401) return "profile1"; 
     return "unknown";
   };
 
