@@ -23,21 +23,6 @@ body {
     width: 100%;
 }
 
-/* Layout chính (đã có 2 cột) */
-/* XOÁ BỎ HOÀN TOÀN KHỐI main.page NÀY ĐỂ TRÁNH XUNG ĐỘT */
-/*
-main.page {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 50px;
-  max-width: 90%;
-  margin: 23px auto;
-  padding: 0 20px;
-  align-items: start; 
-  min-height: calc(100vh - 130px);
-  position: relative;
-}
-*/
 
 .profile {
     display: flex;
@@ -136,19 +121,69 @@ main.page {
     /* Thêm các thuộc tính giống chef-profile.css */
     position: sticky;
     top: 90px; /* Dính vào vị trí cách top 90px (bạn có thể điều chỉnh) */
-    max-height: calc(100vh - 150px); /* Chiều cao tối đa, chừa lề (bạn có thể điều chỉnh) */
+    max-height: calc(100vh - 160px); /* Giảm max-height để tạo khoảng trống */
     overflow-y: hidden; /* Thêm thanh cuộn cho nội dung bên trong nếu dài */
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 15px; /* Thêm padding bottom cho container */
 }
 
+/* ===== FIX SCROLL AREA - KHÔNG CHE PHẦN TỬ CUỐI ===== */
+.saved-recipes__scroll-container {
+    flex: 1;
+    max-height: calc(100vh - 280px); /* Giảm thêm để đảm bảo không bị che */
+    overflow-y: auto;
+    padding: 12px 6px 25px 6px; /* Quan trọng: padding bottom lớn */
+    margin-bottom: 5px;
+    border-radius: var(--radius);
+    scroll-behavior: smooth;
+    scrollbar-gutter: stable both-edges;
+    position: relative;
+}
 
+/* Thêm khoảng trống ảo ở cuối scroll container */
+.saved-recipes__scroll-container::after {
+    content: "";
+    display: block;
+    height: 1px;
+    width: 100%;
+    opacity: 0;
+}
 
+.saved-recipes__scroll-container::before {
+    content: "";
+    position: sticky;
+    height: 14px;
+    pointer-events: none;
+    display: block;
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+}
 
+.saved-recipes__scroll-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.saved-recipes__scroll-container::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 3px;
+}
+
+.saved-recipes__scroll-container::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 3px;
+}
+
+.saved-recipes__scroll-container::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
 
 /* ===== GRID CHO BÀI VIẾT ===== */
 .saved-recipes__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
+    padding-bottom: 5px; /* Thêm khoảng cách dưới cùng của grid */
 }
 
 .recipe-card {
@@ -208,59 +243,6 @@ main.page {
     line-height: 1.5;
 }
 
-/* ===== SCROLL AREA CHO DANH SÁCH BÀI VIẾT ===== */
-.saved-recipes__scroll-container {
-    max-height: calc(100vh - 200px);
-    overflow: auto;
-    padding-right: 6px;
-    border-radius: var(--radius);
-    scroll-behavior: smooth;
-    scrollbar-gutter: stable both-edges;
-    position: relative;
-}
-
-.saved-recipes__scroll-container::before,
-.saved-recipes__scroll-container::after {
-    content: "";
-    position: sticky;
-    height: 14px;
-    pointer-events: none;
-    display: block;
-}
-
-.saved-recipes__scroll-container::before {
-    border-top-left-radius: var(--radius);
-    border-top-right-radius: var(--radius);
-}
-
-.saved-recipes__scroll-container::after {
-    border-bottom-left-radius: var(--radius);
-    border-bottom-right-radius: var(--radius);
-}
-
-.saved-recipes__scroll-container {
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary-color) transparent;
-}
-
-.saved-recipes__scroll-container::-webkit-scrollbar {
-    width: 6px;
-}
-
-.saved-recipes__scroll-container::-webkit-scrollbar-track {
-    background: transparent;
-    border-radius: 3px;
-}
-
-.saved-recipes__scroll-container::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
-    border-radius: 3px;
-}
-
-.saved-recipes__scroll-container::-webkit-scrollbar-thumb:hover {
-    background: var(--primary-dark);
-}
-
 /* ===== RESPONSIVE ===== */
 
 /* Large Desktop */
@@ -296,6 +278,11 @@ main.page {
     .recipe-card__image {
         height: 220px;
     }
+    
+    .saved-recipes__scroll-container {
+        max-height: calc(100vh - 240px);
+        padding-bottom: 20px;
+    }
 }
 
 /* Small Tablet */
@@ -315,6 +302,7 @@ main.page {
    
     .saved-recipes {
         order: 1;
+        max-height: calc(100vh - 140px);
     }
     
     .saved-recipes__title-wrapper {
@@ -347,6 +335,11 @@ main.page {
     .main-menu__item {
         justify-content: center;
         text-align: center;
+    }
+    
+    .saved-recipes__scroll-container {
+        max-height: calc(100vh - 220px);
+        padding: 10px 4px 20px 4px;
     }
 }
 
@@ -383,7 +376,7 @@ main.page {
     }
     
     .saved-recipes__scroll-container {
-        max-height: calc(100vh - 260px);
+        max-height: calc(100vh - 200px);
     }
     
 }
@@ -394,6 +387,10 @@ main.page {
     /* SỬA LẠI: Cập nhật selector thành .page */
     .page {
         padding: 12px;
+    }
+    
+    .saved-recipes {
+        max-height: calc(100vh - 120px);
     }
     
     .saved-recipes__main-title {
@@ -426,6 +423,11 @@ main.page {
     .profile__handle {
         font-size: 12px;
     }
+    
+    .saved-recipes__scroll-container {
+        max-height: calc(100vh - 200px);
+        padding: 8px 4px 15px 4px;
+    }
 }
 
 /* Very Small Mobile */
@@ -448,5 +450,9 @@ main.page {
     
     .recipe-card__description {
         font-size: 13px;
+    }
+    
+    .saved-recipes__scroll-container {
+        max-height: calc(100vh - 180px);
     }
 }

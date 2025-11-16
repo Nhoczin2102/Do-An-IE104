@@ -1,5 +1,5 @@
 (function () {
-  const DETAIL_PATH = '../../components/modules/recipe-detail.html';
+  const DETAIL_PATH = '../../pages/recipe-detail.html';
   document.addEventListener('click', (e) => {
     const card = e.target.closest('.recipe-card');
     if (!card) return;

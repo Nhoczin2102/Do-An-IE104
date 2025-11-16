@@ -6,11 +6,10 @@ export class TemplateRenderer {
             comment: document.getElementById('commentTemplate')
         };
         
-        this.currentUser = null; // THÊM: Biến lưu user hiện tại
+        this.currentUser = null;
         this.initTemplates();
     }
 
-    // THÊM: Hàm cập nhật user hiện tại
     updateCurrentUser(user) {
         this.currentUser = user;
         console.log('🔄 TemplateRenderer: Cập nhật user', this.currentUser);
@@ -38,6 +37,12 @@ export class TemplateRenderer {
         // THÊM: Sử dụng avatar của user hiện tại cho comment input
         const currentUserAvatar = this.currentUser?.avatar || "./assets/images/avatar.png";
 
+        // THÊM: Xác định trạng thái lưu và icon
+        const isSaved = post.isSaved || false;
+        const saveIcon = isSaved ? 'fa-bookmark' : 'fa-bookmark';
+        const saveText = isSaved ? 'Đã lưu' : 'Lưu';
+        const saveClass = isSaved ? 'feed-post__action-btn--saved' : '';
+
         return template
             .replace(/{id}/g, post.id)
             .replace(/{avatar}/g, post.avatar)
@@ -58,8 +63,15 @@ export class TemplateRenderer {
                     <span class="feed-post__action-text">COOK Mode</span>
                 </button>
             ` : '')
-            .replace('{commentsList}', post.commentsList.map(comment => 
-                this.renderComment(comment)).join(''))
+            // THÊM: Nút lưu công thức
+            .replace('{saveButton}', post.recipe ? `
+                <button class="feed-post__action-btn feed-post__save-btn ${saveClass}" data-action="save" data-post-id="${post.id}">
+                    <i class="fas ${saveIcon} feed-post__action-icon"></i>
+                    <span class="feed-post__action-text">${saveText}</span>
+                </button>
+            ` : '')
+            .replace('{commentsList}', post.commentsList ? post.commentsList.map(comment => 
+                this.renderComment(comment)).join('') : '')
             // SỬA QUAN TRỌNG: Cập nhật avatar hiện tại cho comment input
             .replace(/src="\.\/assets\/images\/avatar\.png"/g, `src="${currentUserAvatar}"`);
     }
@@ -106,7 +118,7 @@ export class TemplateRenderer {
             .replace(/'/g, "&#039;");
     }
 
-    // Fallback templates với class BEM
+    // Fallback templates với class BEM - THÊM nút save
     createFallbackPostTemplate() {
         const template = document.createElement('div');
         template.innerHTML = `
@@ -142,6 +154,7 @@ export class TemplateRenderer {
                         <span class="feed-post__action-text">Chia sẻ</span>
                     </button>
                     {cookModeButton}
+                    {saveButton}
                 </div>
                 <div class="feed-post__comments">
                     <div class="feed-post__comments-list">{commentsList}</div>
