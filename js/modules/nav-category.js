@@ -1,5 +1,5 @@
 (function () {
-  const TARGET = '../../components/modules/category.html';
+  const TARGET = '../../pages/category.html';
 
   document.addEventListener('click', (e) => {
     const card = e.target.closest('.explore-category-card[data-tag]');

@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Chi tiết công thức</title>
   <link rel="stylesheet" href="../styles/pages/recipe-detail.css">
+  <!-- Thêm Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
   <!-- Header -->
@@ -13,6 +15,11 @@
       <div class="recipe-detail-header__content">
         <a id="back-link" class="recipe-detail-header__back-link" href="#">← Quay lại</a>
         <h1 class="recipe-detail-header__title">Chi tiết công thức</h1>
+        <!-- THÊM NÚT COOK MODE -->
+        <button class="recipe-detail__cookmode-btn" id="cookModeBtn">
+          <i class="fas fa-utensils"></i>
+          🍳 Bật Cook Mode
+        </button>
       </div>
     </div>
   </header>
@@ -50,7 +57,82 @@
     </div>
   </main>
 
+  <!-- THÊM COOK MODE MODAL -->
+  <div id="cookModeModal" class="cookmode">
+    <div class="cookmode__content">
+      <div class="cookmode__header">
+        <h2 class="cookmode__title">CHẾ ĐỘ NẤU ĂN - COOK MODE</h2>
+        <button class="cookmode__close">&times;</button>
+      </div>
+
+      <div class="cookmode__body">
+        <!-- Dish Info -->
+        <div class="cookmode__dish-info">
+          <h3 class="cookmode__dish-name">Tên món ăn</h3>
+          <div class="cookmode__meta">
+            <div class="cookmode__meta-item">Thời gian chuẩn bị: <span data-cm-prep>--</span></div>
+            <div class="cookmode__meta-item">Thời gian nấu: <span data-cm-cook>--</span></div>
+            <div class="cookmode__meta-item">Khẩu phần ăn: <span data-cm-serv>--</span></div>
+            <div class="cookmode__meta-item">Độ khó: <span data-cm-diff>--</span></div>
+          </div>
+        </div>
+
+        <!-- Ingredients -->
+        <div class="cookmode__section">
+          <h4 class="cookmode__section-title">📝 Nguyên liệu</h4>
+          <ul class="cookmode__ingredients"></ul>
+        </div>
+
+        <!-- Current Step -->
+        <div class="cookmode__section">
+          <h4 class="cookmode__section-title">👩‍🍳 Bước thực hiện</h4>
+          <div class="cookmode__step">
+            <div class="cookmode__step-progress">
+              <span data-cm-step-index>1</span>/<span data-cm-step-total>5</span>
+              <div class="cookmode__progress-bar">
+                <div class="cookmode__progress-fill" data-cm-progress-bar style="width: 0%"></div>
+              </div>
+              <span data-cm-progress>0%</span>
+            </div>
+            <p class="cookmode__step-text" data-cm-step-text>Chọn bước để bắt đầu</p>
+          </div>
+        </div>
+
+        <!-- Timer -->
+        <div class="cookmode__section">
+          <h4 class="cookmode__section-title">⏰ Hẹn giờ</h4>
+          <div class="cookmode__timer">
+            <div class="cookmode__timer-display" data-cm-timer>00:00</div>
+            <div class="cookmode__timer-controls">
+              <button class="cookmode__timer-btn" data-cm-minus>-1m</button>
+              <button class="cookmode__timer-btn" data-cm-startstop>Bắt đầu</button>
+              <button class="cookmode__timer-btn" data-cm-plus>+1m</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tips -->
+        <div class="cookmode__section" data-cm-tip style="display: none">
+          <h4 class="cookmode__section-title">💡 Mẹo nhỏ</h4>
+          <p class="cookmode__tip-text"></p>
+        </div>
+      </div>
+
+      <div class="cookmode__footer">
+        <button class="cookmode__btn cookmode__btn--secondary" data-cm-prev disabled>
+          ⬅ Bước trước
+        </button>
+        <button class="cookmode__btn cookmode__btn--primary" data-cm-next>
+          Bước tiếp theo ➡
+        </button>
+        <button class="cookmode__btn cookmode__btn--success" data-cm-finish style="display: none">
+          🎉 Hoàn thành
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Script -->
-  <script src="../js/modules/recipe-detail.js"></script>
+  <script src="../js/modules/recipe-detail.js" type="module"></script>
 </body>
 </html>

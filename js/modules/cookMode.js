@@ -24,6 +24,13 @@ export class CookMode {
                     this.openFromPost(post);
                 }
             }
+
+            // THÊM: Xử lý click từ recipe detail
+            const recipeCookBtn = e.target.closest('#cookModeBtn');
+            if (recipeCookBtn) {
+                console.log('🍳 Cook Mode button clicked from recipe detail');
+                // Sẽ được xử lý bởi recipe-detail.js
+            }
         });
 
         this.bindModalEvents();
@@ -53,6 +60,28 @@ export class CookMode {
         modal.querySelector('[data-cm-startstop]').addEventListener('click', () => this.toggleTimer());
         modal.querySelector('[data-cm-plus]').addEventListener('click', () => this.adjustTimer(60));
         modal.querySelector('[data-cm-minus]').addEventListener('click', () => this.adjustTimer(-60));
+    }
+
+    // THÊM METHOD BỊ THIẾU
+    openFromRecipeDetail(recipeData) {
+        console.log('🍳 Opening Cook Mode from recipe detail', recipeData);
+        
+        if (!recipeData) {
+            alert('❌ Không thể tải công thức.');
+            return;
+        }
+
+        if (recipeData.steps.length === 0) {
+            alert('⚠️ Công thức này không có bước thực hiện.');
+            return;
+        }
+
+        this.currentRecipe = recipeData;
+        this.currentStep = 0;
+        this.timerSeconds = 0;
+        
+        this.render();
+        this.showModal();
     }
 
     extractRecipeData(postEl) {
@@ -365,6 +394,10 @@ export class CookMode {
 
     showModal() {
         const modal = document.getElementById('cookModeModal');
+        if (!modal) {
+            console.error('❌ Cook Mode modal not found');
+            return;
+        }
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -373,6 +406,8 @@ export class CookMode {
 
     close() {
         const modal = document.getElementById('cookModeModal');
+        if (!modal) return;
+        
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';

@@ -1,4 +1,20 @@
-import { samplePosts } from '../data/userPostData.js';
+// Function to fetch posts data
+async function fetchPosts() {
+  try {
+    const response = await fetch('../../js/data/userpostdata.json');
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    return data.posts;
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    // Return empty array as fallback
+    return [];
+  }
+}
 
 // Function to render posts
 function renderPosts(posts) {
@@ -86,10 +102,28 @@ function filterPosts(posts, filter) {
 }
 
 // Initialize the page
-document.addEventListener('DOMContentLoaded', function() {
-  // Render initial posts
-  renderPosts(samplePosts);
+document.addEventListener('DOMContentLoaded', async function() {
+  let allPosts = [];
   
+  try {
+    // Fetch posts data
+    allPosts = await fetchPosts();
+    
+    // Render initial posts
+    renderPosts(allPosts);
+    
+    // Setup event listeners
+    setupEventListeners(allPosts);
+    
+  } catch (error) {
+    console.error('Failed to initialize posts:', error);
+    document.getElementById('emptyPosts').style.display = 'block';
+    document.getElementById('emptyPosts').textContent = 'Không thể tải dữ liệu bài viết. Vui lòng thử lại sau.';
+  }
+});
+
+// Setup event listeners
+function setupEventListeners(posts) {
   // Filter tabs event listeners
   document.querySelectorAll('.filter-tabs__tab').forEach(tab => {
     tab.addEventListener('click', function() {
@@ -101,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
       const filter = this.getAttribute('data-filter');
       
       // Filter and render posts
-      const filteredPosts = filterPosts(samplePosts, filter);
+      const filteredPosts = filterPosts(posts, filter);
       const sortBy = document.getElementById('sortSelect').value;
       const sortedPosts = sortPosts(filteredPosts, sortBy);
       renderPosts(sortedPosts);
@@ -113,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sortBy = this.value;
     const activeFilter = document.querySelector('.filter-tabs__tab--active').getAttribute('data-filter');
     
-    const filteredPosts = filterPosts(samplePosts, activeFilter);
+    const filteredPosts = filterPosts(posts, activeFilter);
     const sortedPosts = sortPosts(filteredPosts, sortBy);
     renderPosts(sortedPosts);
   });
@@ -123,4 +157,4 @@ document.addEventListener('DOMContentLoaded', function() {
     // In a real app, this would navigate to the create post page
     alert('Chuyển đến trang tạo bài viết mới');
   });
-});
+}
