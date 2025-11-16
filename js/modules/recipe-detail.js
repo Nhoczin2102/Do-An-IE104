@@ -25,13 +25,15 @@
     if (idNum >= 101 && idNum <= 199) return "all";
     if (idNum >= 201 && idNum <= 299) return "trending";
     if (idNum >= 301 && idNum <= 399) return "saved";
+    if (idNum >= 401) return "profile1"; // THÊM DÒNG NÀY
     return "unknown";
   };
 
   const label = (x) =>
     x==="trending" ? "Thịnh hành" :
     x==="saved"    ? "Đã lưu" :
-    x==="all"      ? "Tất cả" : x;
+    x==="all"      ? "Tất cả" :
+    x==="profile1" ? "Hồ sơ" : x; 
 
   function safeSameOriginReferrer() {
     try {
@@ -40,10 +42,11 @@
   }
 
   function fallbackBySrc() {
-    const src = ["trending","saved","all"].includes(srcParam) ? srcParam : bucketOf(id);
+    const src = ["trending","saved","all","profile1"].includes(srcParam) ? srcParam : bucketOf(id); // THÊM "profile1" VÀO MẢNG
     if (src === "saved")    return "../../pages/myRecipe.html";
     if (src === "trending") return "../../pages/explore.html#trending";
     if (src === "all")      return "../../pages/explore.html#all";
+    if (src === "profile1") return "../../pages/profile1.html"; 
     return "../explore.html";
   }
 
@@ -60,7 +63,7 @@
 
     render(d);
 
-    const main = ["trending","saved","all"].includes(srcParam) ? srcParam : bucketOf(id);
+    const main = ["trending","saved","all","profile1"].includes(srcParam) ? srcParam : bucketOf(id); // THÊM "profile1" VÀO MẢNG
     const badges = [];
     if (badges.length) {
       tagsEl && tagsEl.insertAdjacentHTML("afterbegin", badges.join(" "));

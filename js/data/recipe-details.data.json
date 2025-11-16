@@ -439,5 +439,171 @@
     "ingredients": ["Bánh phở", "Thịt bò", "Nước dùng", "Hành", "Rau thơm", "Chanh ớt"],
     "steps": ["Chuẩn bị nước dùng.", "Trụng phở, chần thịt.", "Chan nước, thêm rau thơm."],
     "nutrition": { "Calories": "430 kcal (ước tính)", "Protein": "26g", "Carbs": "60g", "Fat": "10g" }
+  },
+
+
+  {
+    "id": 401,
+    "name": "Bánh mì thập cẩm ngon tại nhà",
+    "img": "../../assets/images/banhmi.jpg",
+    "hero": "../../assets/images/banhmi.jpg",
+    "chef": "Người dùng",
+    "time": "2 ngày trước",
+    "tags": ["Món mặn", "Bánh mì"],
+    "short": "Bánh mì thập cẩm với đầy đủ các loại nhân thơm ngon",
+    "ingredients": [
+      "Bánh mì ổ 2 cái",
+      "Thịt nguội 100g",
+      "Chả lụa 100g",
+      "Pate 50g",
+      "Rau thơm các loại",
+      "Đồ chua",
+      "Sốt mayonnaise",
+      "Bơ"
+    ],
+    "steps": [
+      "Nướng bánh mì giòn nhẹ.",
+      "Phết pate và bơ vào bên trong bánh mì.",
+      "Xếp lớp thịt nguội, chả lụa, rau thơm.",
+      "Thêm đồ chua và sốt mayonnaise.",
+      "Cắt đôi và thưởng thức ngay."
+    ],
+    "nutrition": { "Calories": "420", "Carbs": "55g", "Protein": "18g", "Fat": "14g" }
+  },
+  {
+    "id": 402,
+    "name": "Gà nướng mật ong thơm lừng",
+    "img": "../../assets/images/ganuongmatong.jpg",
+    "hero": "../../assets/images/ganuongmatong.jpg",
+    "chef": "Người dùng",
+    "time": "5 ngày trước",
+    "tags": ["Món nướng", "Món mặn"],
+    "short": "Gà nướng mật ong với lớp da giòn rụm, thịt mềm ngọt",
+    "ingredients": [
+      "Gà nguyên con 1.2kg",
+      "Mật ong 3 thìa",
+      "Tỏi băm 2 thìa",
+      "Nước tương 2 thìa",
+      "Dầu hào 1 thìa",
+      "Tiêu, muối",
+      "Chanh 1 quả"
+    ],
+    "steps": [
+      "Ướp gà với tỏi, nước tương, dầu hào, tiêu trong 2 giờ.",
+      "Phết mật ong lên toàn bộ da gà.",
+      "Nướng ở 180°C trong 45-60 phút.",
+      "Lật mặt và phết thêm mật ong sau 30 phút.",
+      "Kiểm tra gà chín, vắt chanh lên trước khi dùng."
+    ],
+    "nutrition": { "Calories": "290", "Carbs": "15g", "Protein": "35g", "Fat": "12g" }
+  },
+  {
+    "id": 403,
+    "name": "Salad trái cây tươi mát",
+    "img": "../../assets/images/saladtraicay.jpeg",
+    "hero": "../../assets/images/saladtraicay.jpeg",
+    "chef": "Người dùng",
+    "time": "1 tuần trước",
+    "tags": ["Tráng miệng", "Món chay"],
+    "short": "Salad trái cây đơn giản, bổ dưỡng, giải nhiệt ngày hè",
+    "ingredients": [
+      "Dưa hấu 200g",
+      "Dứa 1/2 quả",
+      "Xoài chín 1 quả",
+      "Táo 1 quả",
+      "Nho 100g",
+      "Sốt mayonnaise",
+      "Sữa chua không đường",
+      "Mật ong"
+    ],
+    "steps": [
+      "Cắt tất cả trái cây thành miếng vừa ăn.",
+      "Pha sốt: trộn mayonnaise, sữa chua và mật ong.",
+      "Trộn đều trái cây với sốt.",
+      "Làm lạnh 15 phút trước khi dùng.",
+      "Có thể rắc thêm dừa nạo nếu thích."
+    ],
+    "nutrition": { "Calories": "120", "Carbs": "28g", "Protein": "2g", "Fat": "1g" }
+  },
+  {
+    "id": 404,
+    "name": "Phở bò truyền thống",
+    "img": "../../assets/images/phobo.jpg",
+    "hero": "../../assets/images/phobo.jpg",
+    "chef": "Người dùng",
+    "time": "2 tuần trước",
+    "tags": ["Món mặn", "Đồ uống"],
+    "short": "Phở bò với nước dùng thơm ngon, đậm đà hương vị truyền thống",
+    "ingredients": [
+      "Xương bò 1kg",
+      "Thịt bò 300g",
+      "Bánh phở 500g",
+      "Hành tây 2 củ",
+      "Gừng 1 củ",
+      "Quế, hồi, thảo quả",
+      "Hành lá, rau mùi",
+      "Gia vị phở"
+    ],
+    "steps": [
+      "Nướng hành tây và gừng cho thơm.",
+      "Hầm xương bò với gia vị trong 4-6 giờ.",
+      "Thái thịt bò mỏng, chần sơ.",
+      "Trần bánh phở qua nước sôi.",
+      "Xếp thịt, hành lá, chan nước dùng nóng."
+    ],
+    "nutrition": { "Calories": "350", "Carbs": "45g", "Protein": "25g", "Fat": "8g" }
+  },
+  {
+    "id": 405,
+    "name": "Bánh flan caramel mềm mịn",
+    "img": "../../assets/images/banhplan.jpg",
+    "hero": "../../assets/images/banhplan.jpg",
+    "chef": "Người dùng",
+    "time": "3 tuần trước",
+    "tags": ["Tráng miệng", "Bánh ngọt"],
+    "short": "Bánh flan caramel với kết cấu mềm mịn, vị ngọt thanh",
+    "ingredients": [
+      "Trứng gà 4 quả",
+      "Sữa tươi 500ml",
+      "Đường 150g",
+      "Nước 50ml",
+      "Vani 1 ống",
+      "Nước cốt chanh 1/2 thìa"
+    ],
+    "steps": [
+      "Làm caramel: đun đường + nước đến màu cánh gián, thêm chanh.",
+      "Rót caramel vào khuôn.",
+      "Đánh trứng với đường, thêm sữa và vani khuấy đều.",
+      "Lọc hỗn hợp qua rây mịn.",
+      "Hấp cách thủy 30-40 phút, làm lạnh 4 tiếng."
+    ],
+    "nutrition": { "Calories": "180", "Carbs": "25g", "Protein": "7g", "Fat": "6g" }
+  },
+  {
+    "id": 406,
+    "name": "Cá hồi sốt cam độc đáo",
+    "img": "../../assets/images/cahoisotcam.jpg",
+    "hero": "../../assets/images/cahoisotcam.jpg",
+    "chef": "Người dùng",
+    "time": "1 tháng trước",
+    "tags": ["Món nướng", "Món mặn"],
+    "short": "Cá hồi sốt cam với hương vị chua ngọt độc đáo",
+    "ingredients": [
+      "Cá hồi phi lê 300g",
+      "Cam 2 quả",
+      "Mật ong 1 thìa",
+      "Tỏi băm 1 thìa",
+      "Dầu ô liu",
+      "Muối, tiêu",
+      "Ngò rí"
+    ],
+    "steps": [
+      "Ướp cá hồi với muối tiêu 15 phút.",
+      "Áp chảo cá vàng đều 2 mặt.",
+      "Vắt nước cam, thêm mật ong và tỏi.",
+      "Đun sốt đến khi sánh mịn.",
+      "Rưới sốt lên cá, trang trí với ngò rí."
+    ],
+    "nutrition": { "Calories": "280", "Carbs": "12g", "Protein": "30g", "Fat": "14g" }
   }
 ]

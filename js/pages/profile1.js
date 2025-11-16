@@ -39,12 +39,10 @@ function renderPosts(posts) {
     </div>
   `).join('');
   
-  // Add click event to post cards
   document.querySelectorAll('.post-card').forEach(card => {
     card.addEventListener('click', function() {
       const postId = this.getAttribute('data-id');
-      // In a real app, this would navigate to the post detail page
-      alert(`Xem chi tiết bài viết ID: ${postId}`);
+      window.location.href = `../pages/recipe-detail.html?id=${postId}&src=profile1`;
     });
   });
 }
