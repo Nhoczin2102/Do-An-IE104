@@ -1,5 +1,5 @@
 // js/pages/chef-profile.js
-import { chefsData } from '../data/chefsData.js'
+import { chefsData } from '../../data/chefsData.js'
 
 class ChefProfile {
     constructor() {

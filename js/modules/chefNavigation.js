@@ -1,4 +1,4 @@
-import { chefsData } from '../data/chefsData.js';
+import { chefsData } from '../../data/chefsData.js';
 
 export class ChefNavigation {
     constructor() {

@@ -77,13 +77,13 @@ document.addEventListener('DOMContentLoaded', () => {
     try {
       // Chefs 
       try {
-        const chefRes = await fetch('../js/data/chefs.explore.data.json');
+        const chefRes = await fetch('../../data/chefs.explore.data.json');
         const chefs = await chefRes.json();
         renderChefs(chefs);
       } catch {  }
 
       // Đọc 1 file duy nhất
-      const res = await fetch('../js/data/recipe-details.data.json');
+      const res = await fetch('../../data/recipe-details.data.json');
       allData = await res.json();
 
       const buckets = bucketByIdPrefix(allData);

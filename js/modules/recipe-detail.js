@@ -90,7 +90,7 @@ class RecipeDetail {
         }
 
         try {
-            const details = await this.getJson("../../js/data/recipe-details.data.json");
+            const details = await this.getJson("../../data/recipe-details.data.json");
             this.recipeData = Array.isArray(details) ? details.find(x => Number(x.id) === this.id) : null;
             
             if (!this.recipeData) {

@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const isSAVED = (id) => id >= 301 && id <= 399;
 
   try {
-    const response = await fetch('../js/data/recipe-details.data.json');
+    const response = await fetch('../../data/recipe-details.data.json');
     const all = await response.json();
 
     const saved = all.filter(r => isSAVED(Number(r.id)));

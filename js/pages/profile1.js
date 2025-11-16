@@ -1,7 +1,7 @@
 // Function to fetch posts data
 async function fetchPosts() {
   try {
-    const response = await fetch('../../js/data/userpostdata.json');
+    const response = await fetch('../../data/userpostdata.json');
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);

@@ -12,7 +12,7 @@
     "Món mặn", "Món chay", "Bánh ngọt", "Tráng miệng", "Đồ uống", "Món nướng"
   ]);
 
-  const DATA_URL = '../../js/data/recipe-details.data.json';
+  const DATA_URL = '../../data/recipe-details.data.json';
 
   function humanTag(t) { return t; }
 
