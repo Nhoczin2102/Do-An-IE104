@@ -1,4 +1,3 @@
-// js/pages/chef-profile.js
 class ChefProfile {
     constructor() {
         this.chef = null;

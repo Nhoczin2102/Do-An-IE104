@@ -455,3 +455,51 @@ button.danger:hover {
     height: 50px;
   }
 }
+
+/* Style cho phần chính sách */
+.policy-item {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.policy-content {
+  background-color: var(--secondary-color);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  border-left: 4px solid var(--primary-color);
+}
+
+.policy-content h3 {
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+}
+
+.policy-content h4 {
+  color: var(--text-color);
+  margin: 15px 0 8px 0;
+}
+
+.policy-content p, .policy-content ul {
+  margin-bottom: 12px;
+}
+
+.policy-content ul {
+  padding-left: 20px;
+}
+
+.policy-content li {
+  margin-bottom: 5px;
+}
+
+.policy-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.toggle-icon {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}

@@ -1,8 +1,8 @@
-// setting.js - Quản lý tài khoản
 document.addEventListener('DOMContentLoaded', () => {
     initializeUserData();
     setupEventListeners();
     loadLanguageSetting();
+    initializePolicySections();
 });
 
 // Khởi tạo dữ liệu người dùng
@@ -24,6 +24,82 @@ function initializeUserData() {
     } else {
         window.location.href = '../pages/login.html';
     }
+}
+
+// Khởi tạo các phần chính sách
+function initializePolicySections() {
+    // Tạo nội dung cho điều khoản dịch vụ
+    const tosContent = `
+        <h3>Điều Khoản Dịch Vụ</h3>
+        <p><strong>Cập nhật lần cuối: ${new Date().toLocaleDateString('vi-VN')}</strong></p>
+        
+        <h4>1. Chấp nhận điều khoản</h4>
+        <p>Bằng việc sử dụng ứng dụng POTPAN, bạn đồng ý với các điều khoản và điều kiện được quy định dưới đây.</p>
+        
+        <h4>2. Tài khoản người dùng</h4>
+        <p>Bạn chịu trách nhiệm bảo mật thông tin tài khoản và mật khẩu. POTPAN không chịu trách nhiệm cho bất kỳ thiệt hại nào phát sinh từ việc bạn không tuân thủ nghĩa vụ này.</p>
+        
+        <h4>3. Nội dung người dùng</h4>
+        <p>Bạn giữ bản quyền đối với nội dung bạn tạo ra trên POTPAN. Tuy nhiên, bằng cách đăng tải nội dung, bạn cấp cho POTPAN giấy phép toàn cầu, không độc quyền, miễn phí bản quyền để sử dụng, sao chép, chỉnh sửa nội dung đó.</p>
+        
+        <h4>4. Quy tắc ứng xử</h4>
+        <p>Bạn đồng ý không đăng tải nội dung:</p>
+        <ul>
+            <li>Vi phạm pháp luật hoặc quyền của bất kỳ bên thứ ba nào</li>
+            <li>Chứa đựng thông tin sai lệch, lừa đảo</li>
+            <li>Phân biệt chủng tộc, kỳ thị, hoặc thù địch</li>
+            <li>Spam hoặc quảng cáo không được cho phép</li>
+        </ul>
+        
+        <h4>5. Chấm dứt dịch vụ</h4>
+        <p>POTPAN có quyền tạm ngừng hoặc chấm dứt dịch vụ đối với tài khoản vi phạm các điều khoản này.</p>
+    `;
+    
+    // Tạo nội dung cho chính sách riêng tư
+    const privacyContent = `
+        <h3>Chính Sách Riêng Tư</h3>
+        <p><strong>Cập nhật lần cuối: ${new Date().toLocaleDateString('vi-VN')}</strong></p>
+        
+        <h4>1. Thông tin chúng tôi thu thập</h4>
+        <p>Chúng tôi thu thập thông tin bạn cung cấp trực tiếp khi:</p>
+        <ul>
+            <li>Tạo tài khoản (tên, email, mật khẩu)</li>
+            <li>Cập nhật hồ sơ (ảnh đại diện, thông tin cá nhân)</li>
+            <li>Tương tác với ứng dụng (công thức đã lưu, bình luận)</li>
+        </ul>
+        
+        <h4>2. Cách chúng tôi sử dụng thông tin</h4>
+        <p>Thông tin của bạn được sử dụng để:</p>
+        <ul>
+            <li>Cung cấp và cải thiện dịch vụ</li>
+            <li>Giao tiếp với bạn về các cập nhật và thông báo</li>
+            <li>Bảo vệ an toàn và bảo mật của ứng dụng</li>
+            <li>Tuân thủ các nghĩa vụ pháp lý</li>
+        </ul>
+        
+        <h4>3. Chia sẻ thông tin</h4>
+        <p>Chúng tôi không bán, cho thuê hoặc chia sẻ thông tin cá nhân của bạn với bên thứ ba, trừ khi:</p>
+        <ul>
+            <li>Có sự đồng ý của bạn</li>
+            <li>Theo yêu cầu pháp lý</li>
+            <li>Để bảo vệ quyền và tài sản của POTPAN</li>
+        </ul>
+        
+        <h4>4. Bảo mật thông tin</h4>
+        <p>Chúng tôi thực hiện các biện pháp bảo mật hợp lý để bảo vệ thông tin của bạn khỏi truy cập trái phép, sửa đổi hoặc tiết lộ.</p>
+        
+        <h4>5. Quyền của bạn</h4>
+        <p>Bạn có quyền:</p>
+        <ul>
+            <li>Truy cập và chỉnh sửa thông tin cá nhân</li>
+            <li>Xóa tài khoản của bạn</li>
+            <li>Yêu cầu ngừng sử dụng dữ liệu của bạn</li>
+        </ul>
+    `;
+    
+    // Thêm nội dung vào các phần tương ứng
+    document.getElementById('tos-content').innerHTML = tosContent;
+    document.getElementById('privacy-content').innerHTML = privacyContent;
 }
 
 // Thiết lập sự kiện
@@ -54,15 +130,33 @@ function setupEventListeners() {
         const deleteAccount = document.getElementById('delete-account');
         if (deleteAccount) deleteAccount.addEventListener('click', handleDeleteAccount);
         
-        // Liên kết thông tin
-        const openTos = document.getElementById('open-tos');
-        if (openTos) openTos.addEventListener('click', handleOpenTos);
+        // Sự kiện mở/đóng các phần chính sách
+        const tosToggle = document.getElementById('tos-toggle');
+        if (tosToggle) tosToggle.addEventListener('click', togglePolicySection);
         
-        const openPrivacy = document.getElementById('open-privacy');
-        if (openPrivacy) openPrivacy.addEventListener('click', handleOpenPrivacy);
+        const privacyToggle = document.getElementById('privacy-toggle');
+        if (privacyToggle) privacyToggle.addEventListener('click', togglePolicySection);
         
     } catch (error) {
-        // Xử lý lỗi im lặng hoặc ghi log hệ thống nếu cần
+        console.error('Lỗi khi thiết lập sự kiện:', error);
+    }
+}
+
+// Xử lý mở/đóng các phần chính sách
+function togglePolicySection(event) {
+    const button = event.currentTarget;
+    const contentId = button.getAttribute('data-target');
+    const content = document.getElementById(contentId);
+    const icon = button.querySelector('.toggle-icon');
+    
+    if (content.style.display === 'block') {
+        content.style.display = 'none';
+        icon.classList.remove('fa-chevron-up');
+        icon.classList.add('fa-chevron-down');
+    } else {
+        content.style.display = 'block';
+        icon.classList.remove('fa-chevron-down');
+        icon.classList.add('fa-chevron-up');
     }
 }
 
@@ -145,14 +239,6 @@ function updateAvatarGlobally(avatarUrl) {
 }
 
 // Các hàm xử lý phụ trợ
-function handleOpenTos() {
-    alert('Điều khoản dịch vụ sẽ được hiển thị tại đây!');
-}
-
-function handleOpenPrivacy() {
-    alert('Chính sách riêng tư sẽ được hiển thị tại đây!');
-}
-
 function handleDisplayNameChange(event) {
     const newName = event.target.value.trim();
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
