@@ -61,7 +61,7 @@ function updateSidebarInfo(user) {
                           document.querySelector('.sidebar .profile__handle');
     
     if (sidebarAvatar) {
-        sidebarAvatar.src = user.avatar || './assets/images/avatar.png';
+        sidebarAvatar.src = user.avatar || '../assets/images/avatar.png';
         sidebarAvatar.alt = user.name || 'Avatar';
     }
     if (sidebarName) {
@@ -83,7 +83,7 @@ function updateProfileHeader(user) {
                        document.querySelector('.profile-header .profile-bio');
     
     if (profileAvatar) {
-        profileAvatar.src = user.avatar || './assets/images/avatar.png';
+        profileAvatar.src = user.avatar || '../assets/images/avatar.png';
         profileAvatar.alt = user.name || 'Avatar';
     }
     if (profileName) {
@@ -153,7 +153,8 @@ function setupLogout() {
             e.preventDefault();
             if (confirm('Bạn có chắc muốn đăng xuất?')) {
                 localStorage.removeItem('currentUser');
-                window.location.href = './pages/login.html';
+                window.location.href = '/pages/login.html';
+              
             }
         });
     }
