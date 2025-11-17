@@ -1,5 +1,5 @@
 :root {
-  /* Màu của trang web */
+  /* MÀU WEB */
   --primary-color: #FF6967;
   --primary-light: #FF9A99;
   --primary-dark: #E05553;
@@ -12,7 +12,7 @@
   --text-on-primary: #fff;
   --background-light: #FFF5F5;
   
-  /* Layout */
+  /* CÁC LAYOUT DÙNG CHUNG */
   --radius: 16px;
   --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

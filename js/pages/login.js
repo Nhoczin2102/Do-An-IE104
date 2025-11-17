@@ -1,44 +1,42 @@
-// Toggle giữa Signin/Signup/Forgot Password
+// Quản lý Toggle Form (Signin/Signup/Forgot)
 const root = document.getElementById('container');
 const signupLink = document.getElementById('signupLink');
 const signinLink = document.getElementById('signinLink');
 const forgotLink = document.getElementById('forgotLink');
 const backToLogin = document.getElementById('backToLogin');
 
-// Hàm reset tất cả class active
+// Reset trạng thái form
 function resetAllForms() {
-    // Cập nhật BEM modifier
     root.classList.remove('container--signup-active', 'container--forgot-active');
 }
 
-// Xử lý click các link
-signupLink.addEventListener('click', (e)=>{ 
+// Xử lý sự kiện click chuyển form
+signupLink.addEventListener('click', (e) => { 
     e.preventDefault(); 
     resetAllForms();
-    root.classList.add('container--signup-active'); // Cập nhật BEM modifier
+    root.classList.add('container--signup-active');
 });
 
-signinLink.addEventListener('click', (e)=>{ 
+signinLink.addEventListener('click', (e) => { 
     e.preventDefault(); 
     resetAllForms();
 });
 
-forgotLink.addEventListener('click', (e)=>{ 
+forgotLink.addEventListener('click', (e) => { 
     e.preventDefault(); 
     resetAllForms();
-    root.classList.add('container--forgot-active'); // Cập nhật BEM modifier
+    root.classList.add('container--forgot-active');
 });
 
-backToLogin.addEventListener('click', (e)=>{ 
+backToLogin.addEventListener('click', (e) => { 
     e.preventDefault(); 
     resetAllForms();
     document.getElementById('forgotSuccess').style.display = 'none';
 });
 
-// Hiện/ẩn mật khẩu
-// Cập nhật selector theo BEM
-document.querySelectorAll('.auth-form__toggle-password').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+// Xử lý Ẩn/Hiện mật khẩu
+document.querySelectorAll('.auth-form__toggle-password').forEach(btn => {
+    btn.addEventListener('click', () => {
         const id = btn.dataset.target;
         const inp = document.getElementById(id);
         const isPw = inp.type === 'password';
@@ -47,9 +45,9 @@ document.querySelectorAll('.auth-form__toggle-password').forEach(btn=>{
     });
 });
 
-// Validate nhẹ (tránh submit form trống)
+// Validate cơ bản
 const requireValid = (form) => {
-    form.addEventListener('submit', (e)=>{
+    form.addEventListener('submit', (e) => {
         if(!form.checkValidity()){
             e.preventDefault();
             form.reportValidity();
@@ -60,12 +58,11 @@ requireValid(document.getElementById('signinForm'));
 requireValid(document.getElementById('signupForm'));
 requireValid(document.getElementById('forgotForm'));
 
-// ======= XỬ LÝ ĐĂNG KÝ / ĐĂNG NHẬP =======
+// ======= XỬ LÝ AUTHENTICATION =======
 
-// Hàm lưu tài khoản mới vào localStorage
+// Lưu user mới vào localStorage
 function saveUser(email, name, password){
     const users = JSON.parse(localStorage.getItem('users') || '[]');
-    // Kiểm tra trùng email
     if(users.some(u => u.email === email)){
         alert('Email này đã được đăng ký!');
         return false;
@@ -77,14 +74,7 @@ function saveUser(email, name, password){
     return true;
 }
 
-// Hàm kiểm tra đăng nhập
-function checkLogin(email, password){
-    const users = JSON.parse(localStorage.getItem('users') || '[]');
-    const user = users.find(u => u.email === email && u.password === password);
-    return user || null;
-}
-
-// Thêm phần tử hiển thị thông báo lỗi
+// Element hiển thị lỗi đăng nhập
 const errorMsg = document.createElement('p');
 errorMsg.style.color = '#FF6967';
 errorMsg.style.fontWeight = '500';
@@ -93,11 +83,10 @@ errorMsg.style.fontSize = '15px';
 errorMsg.style.textAlign = 'center';
 errorMsg.style.marginTop = '-8px';
 errorMsg.style.display = 'none';
-// Selector này vẫn hoạt động vì ID và class 'btn' vẫn tồn tại
 document.querySelector('#signinForm .btn').insertAdjacentElement('afterend', errorMsg);
 
-// Xử lý đăng ký
-document.getElementById('signupForm').addEventListener('submit', (e)=>{
+// Xử lý Đăng ký
+document.getElementById('signupForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const name = document.getElementById('fullName').value.trim();
     const email = document.getElementById('signupEmail').value.trim();
@@ -110,8 +99,8 @@ document.getElementById('signupForm').addEventListener('submit', (e)=>{
     document.getElementById('signupForm').reset();
 });
 
-// Xử lý đăng nhập
-document.getElementById('signinForm').addEventListener('submit', (e)=>{
+// Xử lý Đăng nhập
+document.getElementById('signinForm').addEventListener('submit', (e) => {
     e.preventDefault();
     const email = document.getElementById('signinEmail').value.trim();
     const password = document.getElementById('signinPassword').value.trim();
@@ -119,13 +108,9 @@ document.getElementById('signinForm').addEventListener('submit', (e)=>{
     const user = users.find(u => u.email === email && u.password === password);
 
     if(user){
-        // Lưu user hiện tại và chuyển trang
         localStorage.setItem('currentUser', JSON.stringify(user));
-        
-        // Hiển thị thông báo vai trò
         const roleMessage = user.role === 'admin' ? '👑 Đăng nhập với quyền Admin' : '👤 Đăng nhập với quyền User';
         alert(`${roleMessage}\n\nChào mừng ${user.name}!`);
-        
         window.location.href = '../index.html';
     } else {
         errorMsg.textContent = 'Sai email hoặc mật khẩu. Vui lòng thử lại.';
@@ -133,7 +118,7 @@ document.getElementById('signinForm').addEventListener('submit', (e)=>{
     }
 });
 
-// Hàm đặt lại mật khẩu
+// Xử lý logic Reset mật khẩu
 function resetPassword(email, newPassword) {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     const userIndex = users.findIndex(u => u.email === email);
@@ -143,54 +128,40 @@ function resetPassword(email, newPassword) {
         return false;
     }
     
-    // Cập nhật mật khẩu mới
     users[userIndex].password = newPassword;
     localStorage.setItem('users', JSON.stringify(users));
     
-    // Nếu user đang đăng nhập, cập nhật currentUser
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser && currentUser.email === email) {
         currentUser.password = newPassword;
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
     }
-    
     return true;
 }
 
-// Xử lý form quên mật khẩu
-document.getElementById('forgotForm').addEventListener('submit', (e)=>{
+// Xử lý Form Quên mật khẩu
+document.getElementById('forgotForm').addEventListener('submit', (e) => {
     e.preventDefault();
-    
     const email = document.getElementById('forgotEmail').value.trim();
     const newPassword = document.getElementById('newPassword').value.trim();
     const confirmPassword = document.getElementById('confirmPassword').value.trim();
     
-    // Validation
     if (!email || !newPassword || !confirmPassword) {
-        alert('Vui lòng nhập đầy đủ thông tin.');
-        return;
+        alert('Vui lòng nhập đầy đủ thông tin.'); return;
     }
-    
     if (newPassword.length < 6) {
-        alert('Mật khẩu phải có ít nhất 6 ký tự.');
-        return;
+        alert('Mật khẩu phải có ít nhất 6 ký tự.'); return;
     }
-    
     if (newPassword !== confirmPassword) {
-        alert('Mật khẩu xác nhận không khớp!');
-        return;
+        alert('Mật khẩu xác nhận không khớp!'); return;
     }
     
-    // Đặt lại mật khẩu
     if (resetPassword(email, newPassword)) {
-        // Hiển thị thông báo thành công
         const successMsg = document.getElementById('forgotSuccess');
         successMsg.style.display = 'block';
         
-        // Reset form
         document.getElementById('forgotForm').reset();
         
-        // Tự động quay lại login sau 2 giây
         setTimeout(() => {
             resetAllForms();
             successMsg.style.display = 'none';
@@ -198,10 +169,10 @@ document.getElementById('forgotForm').addEventListener('submit', (e)=>{
     }
 });
 
+// Khởi tạo User mặc định (Admin/User)
 function initializeDefaultUsers() {
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     
-    // Tài khoản Admin
     if (!users.some(u => u.email === 'admin@potpan.com')) {
         users.push({
             email: 'admin@potpan.com',
@@ -212,7 +183,6 @@ function initializeDefaultUsers() {
         });
     }
     
-    // Tài khoản User thường
     if (!users.some(u => u.email === 'user@example.com')) {
         users.push({
             email: 'user@example.com', 
@@ -226,5 +196,4 @@ function initializeDefaultUsers() {
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-// Gọi hàm khi trang load
 initializeDefaultUsers();

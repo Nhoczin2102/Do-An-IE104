@@ -1,13 +1,16 @@
 (function () {
+  // Lấy tham số từ URL
   const qs = new URLSearchParams(location.search);
   const tagParam = qs.get('tag') || '';
   const returnUrl = qs.get('return') || '';
 
+  // DOM Elements
   const grid = document.getElementById('cat-grid');
   const title = document.getElementById('cat-title');
   const sub = document.getElementById('cat-sub');
   const back = document.getElementById('back-link');
 
+  // Danh sách Tag hợp lệ
   const MAIN_TAGS = new Set([
     "Món mặn", "Món chay", "Bánh ngọt", "Tráng miệng", "Đồ uống", "Món nướng"
   ]);
@@ -16,12 +19,14 @@
 
   function humanTag(t) { return t; }
 
+  // Tải dữ liệu JSON
   async function getJson(url) {
     const res = await fetch(url, { cache: 'no-store' });
     if (!res.ok) throw new Error('Fetch failed: ' + url + ' ' + res.status);
     return res.json();
   }
 
+  // Phân loại nguồn dữ liệu theo ID
   function bucketOf(idNum) {
     if (idNum >= 101 && idNum <= 199) return "all";
     if (idNum >= 201 && idNum <= 299) return "trending";
@@ -29,6 +34,7 @@
     return "all";
   }
 
+  // Render danh sách công thức
   function renderList(list) {
     if (!list.length) {
       grid.innerHTML = `<p>Chưa có công thức cho tag "${humanTag(tagParam)}".</p>`;
@@ -51,6 +57,7 @@
     `).join('');
   }
 
+  // Xử lý nút quay lại
   function setupBack() {
     back?.addEventListener('click', (e) => {
       e.preventDefault();
@@ -59,6 +66,7 @@
     });
   }
 
+  // Khởi tạo trang
   async function init() {
     const tag = String(tagParam).trim();
     title.textContent = tag ? `Danh mục: ${humanTag(tag)}` : "Danh mục";

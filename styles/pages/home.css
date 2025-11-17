@@ -1,8 +1,8 @@
 /* ===== PAGE LAYOUT ===== */
+html,
 body {
-  overflow-y: hidden !important;
+  overflow-y: hidden;
 }
-
 .page.page--home {
   display: grid;
   grid-template-columns: 320px minmax(0, 1fr) 320px;

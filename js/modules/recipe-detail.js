@@ -13,6 +13,7 @@ class RecipeDetail {
         this.init();
     }
 
+    // Khởi tạo
     async init() {
         this.cacheElements();
         await this.initializeCookMode();
@@ -20,6 +21,7 @@ class RecipeDetail {
         this.load();
     }
 
+    // Lưu các element DOM
     cacheElements() {
         this.elements = {
             img: document.getElementById("recipe-img"),
@@ -35,15 +37,17 @@ class RecipeDetail {
         };
     }
 
+    // Khởi tạo chế độ nấu ăn
     async initializeCookMode() {
         try {
             this.cookMode = new CookMode();
-            console.log('🍳 Cook Mode initialized for recipe detail');
+            console.log('Cook Mode initialized for recipe detail');
         } catch (error) {
-            console.error('❌ Failed to initialize Cook Mode:', error);
+            console.error('Failed to initialize Cook Mode:', error);
         }
     }
 
+    // Gắn sự kiện
     bindEvents() {
         if (this.elements.backBtn) {
             this.elements.backBtn.addEventListener("click", (e) => this.handleBackClick(e));
@@ -54,6 +58,7 @@ class RecipeDetail {
         }
     }
 
+    // Phân loại nguồn dữ liệu
     bucketOf(idNum) {
         if (idNum >= 101 && idNum <= 199) return "all";
         if (idNum >= 201 && idNum <= 299) return "trending";
@@ -61,6 +66,7 @@ class RecipeDetail {
         return "unknown";
     }
 
+    // Kiểm tra referrer
     safeSameOriginReferrer() {
         try {
             return document.referrer && new URL(document.referrer).origin === location.origin;
@@ -69,8 +75,9 @@ class RecipeDetail {
         }
     }
 
+    // Xác định đường dẫn quay lại
     fallbackBySrc() {
-        const src = ["trending","saved","all"].includes(this.srcParam) ? this.srcParam : this.bucketOf(this.id);
+        const src = ["trending", "saved", "all"].includes(this.srcParam) ? this.srcParam : this.bucketOf(this.id);
         if (src === "saved") return "../../pages/myRecipe.html";
         if (src === "trending") return "../../pages/explore.html#trending";
         if (src === "all") return "../../pages/explore.html#all";
@@ -83,6 +90,7 @@ class RecipeDetail {
         return res.json();
     }
 
+    // Tải dữ liệu công thức
     async load() {
         if (!this.id) {
             this.elements.name.textContent = "Thiếu tham số id";
@@ -106,6 +114,7 @@ class RecipeDetail {
         }
     }
 
+    // Render giao diện chi tiết
     render(d) {
         const name = d.name || "Công thức";
         if (this.elements.name) this.elements.name.textContent = name;
@@ -156,10 +165,10 @@ class RecipeDetail {
         }
     }
 
+    // Cập nhật trạng thái nút nấu ăn
     updateCookModeButton() {
         if (!this.elements.cookModeBtn || !this.recipeData) return;
         
-        // Enable button if recipe has steps
         const hasSteps = this.recipeData.steps && this.recipeData.steps.length > 0;
         if (!hasSteps) {
             this.elements.cookModeBtn.disabled = true;
@@ -169,7 +178,7 @@ class RecipeDetail {
     }
 
     openCookMode() {
-        console.log('🍳 Opening Cook Mode...');
+        console.log('Opening Cook Mode...');
         
         if (!this.cookMode) {
             console.error('Cook Mode is not initialized');
@@ -182,7 +191,6 @@ class RecipeDetail {
             return;
         }
 
-        // Kiểm tra method tồn tại
         if (typeof this.cookMode.openFromRecipeDetail !== 'function') {
             console.error('openFromRecipeDetail method not found in CookMode');
             alert('Tính năng Cook Mode chưa khả dụng.');
@@ -190,21 +198,22 @@ class RecipeDetail {
         }
 
         const cookModeData = this.convertToCookModeFormat(this.recipeData);
-        console.log('📋 Cook Mode data:', cookModeData);
+        console.log('Cook Mode data:', cookModeData);
         
         this.cookMode.openFromRecipeDetail(cookModeData);
     }
 
+    // Chuyển đổi dữ liệu sang format Cook Mode
     convertToCookModeFormat(recipeData) {
         return {
             title: recipeData.name || 'Công thức',
             ingredients: this.extractIngredients(recipeData.ingredients),
             steps: this.extractSteps(recipeData.steps),
             meta: {
-                prep: '--', // Ẩn thời gian chuẩn bị
-                cook: '--', // Ẩn thời gian nấu
-                servings: '--', // Ẩn khẩu phần ăn
-                difficulty: '--' // Ẩn độ khó
+                prep: '--',
+                cook: '--',
+                servings: '--',
+                difficulty: '--'
             },
             tips: this.extractTips(recipeData.steps) || ''
         };
@@ -249,6 +258,7 @@ class RecipeDetail {
         return tips.join(' ');
     }
 
+    // Xử lý sự kiện quay lại
     handleBackClick(e) {
         e.preventDefault();
 
@@ -264,7 +274,7 @@ class RecipeDetail {
     }
 }
 
-// Khởi tạo khi DOM ready
+// Khởi chạy khi DOM sẵn sàng
 document.addEventListener('DOMContentLoaded', () => {
     new RecipeDetail();
 });

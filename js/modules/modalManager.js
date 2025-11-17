@@ -5,12 +5,12 @@ export class ModalManager {
         this.postManager = postManager;
         this.modal = document.getElementById('createPostModal');
         this.feedComposer = document.querySelector('.feed__composer');
-        this.currentUser = getCurrentUser(); // ĐẶT TRONG CONSTRUCTOR
+        this.currentUser = getCurrentUser();
         this.initializeElements();
     }
 
+    // Khởi tạo các thành phần
     initializeElements() {
-        // Lấy các element với class BEM
         this.closeBtn = document.querySelector('.modal__close');
         this.cancelBtn = document.querySelector('.modal__cancel-btn');
         this.postBtn = document.querySelector('.modal__post-btn');
@@ -20,20 +20,12 @@ export class ModalManager {
         this.addIngredientBtn = document.querySelector('.modal__add-ingredient');
         this.addStepBtn = document.querySelector('.modal__add-step');
 
-        console.log('Modal elements found:', {
-            feedComposer: !!this.feedComposer,
-            modal: !!this.modal,
-            postBtn: !!this.postBtn,
-            addIngredientBtn: !!this.addIngredientBtn,
-            addStepBtn: !!this.addStepBtn,
-            currentUser: !!this.currentUser // THÊM: kiểm tra user
-        });
-
         this.bindEvents();
         this.addDefaultFields();
     }
 
-     updateModalUserInfo() {
+    // Cập nhật thông tin người dùng trong Modal
+    updateModalUserInfo() {
         if (this.currentUser) {
             const userNameElement = document.getElementById('modalUserName');
             const userHandleElement = document.getElementById('modalUserHandle');
@@ -53,16 +45,15 @@ export class ModalManager {
     }
 
     openModal() {
-        this.currentUser = getCurrentUser(); // Cập nhật lại user
-        this.updateModalUserInfo(); // Cập nhật thông tin
+        this.currentUser = getCurrentUser();
+        this.updateModalUserInfo();
         this.modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
-        console.log('Popup opened with user:', this.currentUser);
     }
 
-
+    // Gắn sự kiện
     bindEvents() {
-        // Mở popup - SỬA: feed__composer
+        // Mở modal
         if (this.feedComposer && this.modal) {
             this.feedComposer.addEventListener('click', (e) => {
                 if (!e.target.closest('.feed__composer-button')) {
@@ -71,7 +62,7 @@ export class ModalManager {
             });
         }
 
-        // Đóng popup
+        // Đóng modal
         if (this.closeBtn) this.closeBtn.addEventListener('click', () => this.closeModal());
         if (this.cancelBtn) this.cancelBtn.addEventListener('click', () => this.closeModal());
 
@@ -83,7 +74,7 @@ export class ModalManager {
             });
         }
 
-        // Upload ảnh - SỬA: modal__upload-area
+        // Upload ảnh
         if (this.uploadArea && this.imageInput) {
             this.uploadArea.addEventListener('click', () => this.imageInput.click());
             this.uploadArea.addEventListener('dragover', (e) => {
@@ -105,7 +96,7 @@ export class ModalManager {
             });
         }
 
-        // Thêm nguyên liệu và bước - SỬA: modal__add-ingredient, modal__add-step
+        // Thêm nguyên liệu và bước làm
         if (this.addIngredientBtn) {
             this.addIngredientBtn.addEventListener('click', () => this.addIngredientField());
         }
@@ -119,8 +110,6 @@ export class ModalManager {
         }
     }
 
-  
-
     closeModal() {
         if (this.modal) {
             this.modal.style.display = 'none';
@@ -129,6 +118,7 @@ export class ModalManager {
         }
     }
 
+    // Xử lý file ảnh
     handleImageFile(file) {
         if (file.size > 5 * 1024 * 1024) {
             alert('File ảnh quá lớn! Vui lòng chọn ảnh nhỏ hơn 5MB.');
@@ -159,10 +149,7 @@ export class ModalManager {
 
     addIngredientField() {
         const ingredientsList = document.querySelector('.modal__ingredients-list');
-        if (!ingredientsList) {
-            console.error('❌ Không tìm thấy .modal__ingredients-list');
-            return;
-        }
+        if (!ingredientsList) return;
         
         const ingredientItem = document.createElement('div');
         ingredientItem.className = 'modal__ingredient-item';
@@ -185,10 +172,7 @@ export class ModalManager {
 
     addStepField() {
         const stepsList = document.querySelector('.modal__steps-list');
-        if (!stepsList) {
-            console.error('❌ Không tìm thấy .modal__steps-list');
-            return;
-        }
+        if (!stepsList) return;
         
         const stepItem = document.createElement('div');
         stepItem.className = 'modal__step-item';
@@ -215,23 +199,16 @@ export class ModalManager {
     }
 
     handlePost() {
-        console.log('=== BẮT ĐẦU ĐĂNG BÀI ===');
-        
-        // Lấy dữ liệu form
         const formData = this.getFormData();
         
         if (!this.validateForm(formData)) {
             return;
         }
 
-        // Tạo bài đăng mới
         const newPost = this.createNewPost(formData);
-        console.log('✅ New post:', newPost);
-
-        // Thêm vào feed
         this.postManager.addPost(newPost);
         this.closeModal();
-        alert('🎉 Đăng bài thành công!');
+        alert('Đăng bài thành công!');
     }
 
     getFormData() {
@@ -248,7 +225,6 @@ export class ModalManager {
         const servings = getValue('.modal__recipe-servings');
         const tips = getValue('.modal__recipe-tips');
 
-        // Lấy nguyên liệu và bước
         const ingredients = [];
         const steps = [];
 
@@ -269,7 +245,7 @@ export class ModalManager {
                 }
             });
         } catch (error) {
-            console.error('Lỗi khi lấy dữ liệu:', error);
+            // Xử lý lỗi im lặng
         }
 
         return {
@@ -289,36 +265,32 @@ export class ModalManager {
         const { content, title, ingredients, steps } = formData;
 
         if (!content) {
-            alert('❌ Vui lòng nhập nội dung bài đăng!');
+            alert('Vui lòng nhập nội dung bài đăng!');
             return false;
         }
         if (!title) {
-            alert('❌ Vui lòng nhập tên món ăn!');
+            alert('Vui lòng nhập tên món ăn!');
             return false;
         }
         if (ingredients.length === 0) {
-            alert('❌ Vui lòng thêm ít nhất 1 nguyên liệu!');
+            alert('Vui lòng thêm ít nhất 1 nguyên liệu!');
             return false;
         }
         if (steps.length === 0) {
-            alert('❌ Vui lòng thêm ít nhất 1 bước thực hiện!');
+            alert('Vui lòng thêm ít nhất 1 bước thực hiện!');
             return false;
         }
 
         return true;
     }
 
-       createNewPost(formData) {
+    createNewPost(formData) {
         const { content, title, difficulty, prepTime, cookTime, servings, tips, ingredients, steps } = formData;
 
-        // THÊM: Kiểm tra và log user info
-        console.log('👤 Current user in createNewPost:', this.currentUser);
-        
-        // SỬA: Sử dụng thông tin user hiện tại
         return {
             id: Date.now(),
             avatar: this.currentUser?.avatar || "./assets/images/avatar.png",
-            name: this.currentUser?.name || "Người dùng", // SỬA: Dùng optional chaining
+            name: this.currentUser?.name || "Người dùng",
             time: "Vừa xong",
             content: content,
             image: this.imageInput && this.imageInput.files[0] ? 
@@ -341,9 +313,8 @@ export class ModalManager {
             commentsList: []
         };
     }
+
     resetForm() {
-        console.log('Resetting form...');
-        
         const contentInput = document.querySelector('.modal__content-input');
         const titleInput = document.querySelector('.modal__recipe-title-input');
         const difficultyInput = document.querySelector('.modal__recipe-difficulty');
@@ -369,7 +340,5 @@ export class ModalManager {
         if (this.imageInput) this.imageInput.value = '';
         
         this.addDefaultFields();
-        
-        console.log('Form reset completed');
     }
 }

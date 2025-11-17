@@ -1,10 +1,8 @@
 // js/pages/famous-chefs.js
-import { chefsData } from '../../data/chefsData.js'
-
 class FamousChefs {
     constructor() {
-        this.chefs = [...chefsData];
-        this.filteredChefs = [...chefsData];
+        this.chefs = [];
+        this.filteredChefs = [];
         this.currentCategory = 'all';
         this.currentSort = 'popular';
         this.currentPage = 1;
@@ -13,15 +11,81 @@ class FamousChefs {
         this.init();
     }
 
-    init() {
+    async init() {
+        await this.loadChefsData();
         this.renderChefs();
         this.bindEvents();
         this.updateChefCount();
     }
 
+    async loadChefsData() {
+        try {
+            const response = await fetch('../../data/chefsdata.json');
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.chefs = [...data.chefs];
+            this.filteredChefs = [...data.chefs];
+            
+        } catch (error) {
+            console.error('Error loading chefs data:', error);
+            this.showError('Không thể tải dữ liệu đầu bếp. Vui lòng thử lại sau.');
+        }
+    }
+
+    showError(message) {
+        const grid = document.getElementById('chefsGrid');
+        if (grid) {
+            grid.innerHTML = `
+                <div class="error-message" style="
+                    grid-column: 1 / -1;
+                    text-align: center;
+                    padding: 40px;
+                    color: #666;
+                ">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 48px; margin-bottom: 16px; color: #ff6b6b;"></i>
+                    <h3>${message}</h3>
+                    <button id="retryButton" class="btn-primary" style="margin-top: 16px;">
+                        Thử lại
+                    </button>
+                </div>
+            `;
+
+            // Add retry functionality
+            const retryButton = document.getElementById('retryButton');
+            if (retryButton) {
+                retryButton.addEventListener('click', () => {
+                    this.loadChefsData().then(() => {
+                        this.renderChefs();
+                        this.updateChefCount();
+                    });
+                });
+            }
+        }
+    }
+
     renderChefs() {
         const grid = document.getElementById('chefsGrid');
         if (!grid) return;
+
+        // Show loading state if no chefs data
+        if (this.chefs.length === 0) {
+            grid.innerHTML = `
+                <div class="loading-message" style="
+                    grid-column: 1 / -1;
+                    text-align: center;
+                    padding: 40px;
+                    color: #666;
+                ">
+                    <i class="fas fa-spinner fa-spin" style="font-size: 48px; margin-bottom: 16px;"></i>
+                    <h3>Đang tải dữ liệu đầu bếp...</h3>
+                </div>
+            `;
+            return;
+        }
 
         const startIndex = (this.currentPage - 1) * this.chefsPerPage;
         const endIndex = startIndex + this.chefsPerPage;

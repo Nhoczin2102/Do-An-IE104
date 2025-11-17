@@ -8,7 +8,7 @@ export class PostManager {
         this.feed = document.querySelector(".feed__posts");
         this.currentUser = getCurrentUser();
         
-        // THÊM: Cập nhật user cho renderer ngay khi khởi tạo
+        // Cập nhật user cho renderer
         if (this.renderer.updateCurrentUser) {
             this.renderer.updateCurrentUser(this.currentUser);
         }
@@ -20,6 +20,7 @@ export class PostManager {
         this.bindEvents();
     }
 
+    // Tải dữ liệu bài viết
     async loadPosts() {
         try {
             const response = await fetch('../../data/data.json');
@@ -27,24 +28,18 @@ export class PostManager {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             this.posts = await response.json();
-            console.log('✅ Dữ liệu bài viết đã được tải:', this.posts.length, 'bài viết');
         } catch (error) {
-            console.error('❌ Lỗi khi tải dữ liệu posts.json:', error);
+            console.error('Lỗi khi tải dữ liệu posts.json:', error);
             if (this.feed) {
                 this.feed.innerHTML = "<p>Không thể tải được bài viết.</p>"
             }
         }
     }
 
+    // Render danh sách bài viết
     renderFeed() {
-        if (!this.feed) {
-            console.error('❌ Không tìm thấy feed element');
-            return;
-        }
-
-        console.log('🔄 Rendering feed with', this.posts.length, 'posts');
+        if (!this.feed) return;
         this.feed.innerHTML = this.posts.map(post => this.renderer.renderPost(post)).join('');
-        console.log('✅ Feed rendered successfully');
     }
 
     addPost(newPost) {
@@ -52,6 +47,7 @@ export class PostManager {
         this.renderFeed();
     }
 
+    // Xử lý like
     likePost(postId) {
         const post = this.posts.find(p => p.id === postId);
         if (post) {
@@ -61,6 +57,7 @@ export class PostManager {
         }
     }
 
+    // Xử lý share
     sharePost(postId) {
         const post = this.posts.find(p => p.id === postId);
         if (post) {
@@ -71,6 +68,7 @@ export class PostManager {
         return false;
     }
 
+    // Thêm bình luận
     addComment(postId, commentContent) {
         const post = this.posts.find(p => p.id === postId);
         if (post && commentContent.trim()) {
@@ -99,6 +97,7 @@ export class PostManager {
         return false;
     }
 
+    // Tìm kiếm bài viết
     searchPosts(searchTerm) {
         if (!searchTerm) {
             this.renderFeed();
@@ -117,10 +116,10 @@ export class PostManager {
             this.feed.innerHTML = filteredPosts.map(post => this.renderer.renderPost(post)).join('');
         }
         
-        console.log('🔍 Search results:', filteredPosts.length, 'posts found');
         return filteredPosts;
     }
 
+    // Gắn sự kiện
     bindEvents() {
         if (!this.feed) return;
 
@@ -155,16 +154,12 @@ export class PostManager {
         });
     }
 
-    // SỬA: Hàm cập nhật user hiện tại - Cập nhật cả renderer
+    // Cập nhật user hiện tại
     updateCurrentUser() {
         this.currentUser = getCurrentUser();
-        // QUAN TRỌNG: Cập nhật user cho TemplateRenderer
         if (this.renderer.updateCurrentUser) {
             this.renderer.updateCurrentUser(this.currentUser);
         }
-        console.log('🔄 PostManager: Cập nhật user hiện tại', this.currentUser);
-        
-        // Render lại feed để áp dụng avatar mới
         this.renderFeed();
     }
 

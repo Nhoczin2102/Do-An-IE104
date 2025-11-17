@@ -1,18 +1,15 @@
-// Hàm kiểm tra trạng thái đăng nhập và cập nhật navigation
+// Cập nhật thanh điều hướng dựa trên trạng thái đăng nhập
 function updateNavigation() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const loginNav = document.getElementById('loginNav');
     const logoutNav = document.getElementById('logoutNav');
     
     if (currentUser) {
-        // Đã đăng nhập - hiển thị nút Đăng xuất, ẩn nút Đăng nhập
         if (loginNav) loginNav.style.display = 'none';
         if (logoutNav) logoutNav.style.display = 'flex';
         
-        // Cập nhật thông tin người dùng trên toàn bộ trang
         updateUserProfile(currentUser);
         
-        // Cập nhật PostManager và ModalManager với user mới
         if (postManager && postManager.updateCurrentUser) {
             postManager.updateCurrentUser();
         }
@@ -20,17 +17,14 @@ function updateNavigation() {
             modalManager.updateCurrentUser();
         }
     } else {
-        // Chưa đăng nhập - hiển thị nút Đăng nhập, ẩn nút Đăng xuất
         if (loginNav) loginNav.style.display = 'flex';
         if (logoutNav) logoutNav.style.display = 'none';
         
-        // Nếu chưa đăng nhập và không ở trang login, chuyển hướng về trang login
         if (!window.location.href.includes('login.html') && 
             !window.location.href.includes('register.html')) {
             window.location.href = './pages/login.html';
         }
         
-        // Cập nhật PostManager và ModalManager với user null
         if (postManager && postManager.updateCurrentUser) {
             postManager.updateCurrentUser();
         }
@@ -40,23 +34,15 @@ function updateNavigation() {
     }
 }
 
-// Hàm tổng quát cập nhật thông tin người dùng trên tất cả các trang
+// Cập nhật thông tin user trên toàn bộ giao diện
 function updateUserProfile(user) {
     if (!user) return;
     
-    // Cập nhật sidebar (nếu có)
     updateSidebarInfo(user);
-    
-    // Cập nhật profile header (nếu có)
     updateProfileHeader(user);
-    
-    // Cập nhật thông tin trong post composer (nếu có)
     updatePostComposer(user);
-    
-    // Cập nhật thông tin trong modal (nếu có)
     updateModalInfo(user);
     
-    // Cập nhật PostManager và ModalManager với user mới
     if (postManager && postManager.updateCurrentUser) {
         postManager.updateCurrentUser();
     }
@@ -65,14 +51,14 @@ function updateUserProfile(user) {
     }
 }
 
-// Hàm cập nhật thông tin sidebar
+// Cập nhật Sidebar
 function updateSidebarInfo(user) {
     const sidebarAvatar = document.getElementById('sidebarAvatar') || 
-                         document.querySelector('.sidebar .profile__avatar');
+                          document.querySelector('.sidebar .profile__avatar');
     const sidebarName = document.getElementById('sidebarName') || 
-                       document.querySelector('.sidebar .profile__name');
+                        document.querySelector('.sidebar .profile__name');
     const sidebarHandle = document.getElementById('sidebarHandle') || 
-                         document.querySelector('.sidebar .profile__handle');
+                          document.querySelector('.sidebar .profile__handle');
     
     if (sidebarAvatar) {
         sidebarAvatar.src = user.avatar || './assets/images/avatar.png';
@@ -87,14 +73,14 @@ function updateSidebarInfo(user) {
     }
 }
 
-// Hàm cập nhật profile header
+// Cập nhật Profile Header
 function updateProfileHeader(user) {
     const profileAvatar = document.getElementById('profileAvatar') || 
-                         document.querySelector('.profile-header .profile-avatar img');
+                          document.querySelector('.profile-header .profile-avatar img');
     const profileName = document.getElementById('profileName') || 
-                       document.querySelector('.profile-header .profile-name');
+                        document.querySelector('.profile-header .profile-name');
     const profileBio = document.getElementById('profileBio') || 
-                      document.querySelector('.profile-header .profile-bio');
+                       document.querySelector('.profile-header .profile-bio');
     
     if (profileAvatar) {
         profileAvatar.src = user.avatar || './assets/images/avatar.png';
@@ -108,17 +94,15 @@ function updateProfileHeader(user) {
     }
 }
 
-// Hàm cập nhật post composer - ĐÃ SỬA
+// Cập nhật Post Composer
 function updatePostComposer(user) {
-    // Cập nhật composer trong feed - SỬA selector
     const composerAvatar = document.querySelector('.feed__composer-avatar');
     if (composerAvatar) {
         composerAvatar.src = user.avatar || './assets/images/avatar.png';
         composerAvatar.alt = user.name || 'Avatar';
-        console.log('✅ Đã cập nhật composer avatar:', composerAvatar.src);
+        console.log('Đã cập nhật composer avatar:', composerAvatar.src);
     }
     
-    // Cập nhật composer cũ (nếu có)
     const oldComposerAvatar = document.querySelector('.composer img');
     if (oldComposerAvatar) {
         oldComposerAvatar.src = user.avatar || './assets/images/avatar.png';
@@ -126,7 +110,7 @@ function updatePostComposer(user) {
     }
 }
 
-// Hàm cập nhật modal info
+// Cập nhật Modal
 function updateModalInfo(user) {
     const modalUserName = document.getElementById('modalUserName');
     const modalUserHandle = document.getElementById('modalUserHandle');
@@ -144,7 +128,6 @@ function updateModalInfo(user) {
         modalUserAvatar.alt = user.name || 'Avatar';
     }
     
-    // Cập nhật modal cũ (nếu có)
     const oldModalAvatar = document.querySelector('.modal .post-user img');
     const oldModalName = document.querySelector('.modal .user-name');
     const oldModalHandle = document.querySelector('.modal .user-handle');
@@ -162,7 +145,7 @@ function updateModalInfo(user) {
     }
 }
 
-// Hàm xử lý đăng xuất
+// Xử lý đăng xuất
 function setupLogout() {
     const logoutNav = document.getElementById('logoutNav');
     if (logoutNav) {
@@ -170,18 +153,16 @@ function setupLogout() {
             e.preventDefault();
             if (confirm('Bạn có chắc muốn đăng xuất?')) {
                 localStorage.removeItem('currentUser');
-                // Chuyển hướng về trang login
                 window.location.href = './pages/login.html';
             }
         });
     }
 }
 
-// Kiểm tra và cập nhật thông tin người dùng từ localStorage
+// Đồng bộ dữ liệu user mới nhất từ localStorage
 function checkAndUpdateUserProfile() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (currentUser) {
-        // Lấy thông tin mới nhất từ localStorage (nếu có cập nhật)
         const storedUsers = JSON.parse(localStorage.getItem('users')) || [];
         const updatedUser = storedUsers.find(u => u.email === currentUser.email);
         
@@ -189,7 +170,6 @@ function checkAndUpdateUserProfile() {
             localStorage.setItem('currentUser', JSON.stringify(updatedUser));
             updateUserProfile(updatedUser);
             
-            // Cập nhật PostManager
             if (postManager && postManager.updateCurrentUser) {
                 postManager.updateCurrentUser();
             }
@@ -199,7 +179,7 @@ function checkAndUpdateUserProfile() {
     }
 }
 
-// Hàm kiểm tra đăng nhập và chuyển hướng
+// Kiểm tra xác thực và điều hướng
 function checkAuthAndRedirect() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser'));
     const isLoginPage = window.location.href.includes('login.html');
@@ -218,17 +198,15 @@ function checkAuthAndRedirect() {
     return true;
 }
 
-// THÊM: Biến global để quản lý PostManager
 let postManager = null;
 
-// THÊM: Hàm khởi tạo PostManager
+// Khởi tạo PostManager
 async function initializePostManager() {
     if (typeof PostManager !== 'undefined') {
         const { PostManager } = await import('./managers/postManager.js');
         postManager = new PostManager();
         await postManager.init();
         
-        // Cập nhật PostManager khi user thay đổi
         if (postManager.updateCurrentUser) {
             postManager.updateCurrentUser();
         }
@@ -237,30 +215,28 @@ async function initializePostManager() {
 
 let modalManager = null;
 
-// THÊM: Hàm khởi tạo ModalManager
+// Khởi tạo ModalManager
 async function initializeModalManager(postManager) {
     if (typeof ModalManager !== 'undefined') {
         const { ModalManager } = await import('./managers/modalManager.js');
         modalManager = new ModalManager(postManager);
         
-        console.log('✅ ModalManager initialized with user:', modalManager.currentUser);
+        console.log('ModalManager initialized with user:', modalManager.currentUser);
     }
 }
 
-// Gọi hàm khi trang load
+// Khởi chạy ứng dụng
 document.addEventListener('DOMContentLoaded', async function() {
     if (checkAuthAndRedirect()) {
         updateNavigation();
         setupLogout();
         checkAndUpdateUserProfile();
         
-        // Khởi tạo managers theo thứ tự
         await initializePostManager();
         if (postManager) {
             await initializeModalManager(postManager);
         }
         
-        // THÊM: Force update composer sau khi tất cả đã load
         setTimeout(() => {
             const currentUser = JSON.parse(localStorage.getItem('currentUser'));
             if (currentUser) {
@@ -270,7 +246,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     }
 });
 
-// THÊM: Cũng cập nhật khi có sự kiện storage change (khi user đăng nhập ở tab khác)
+// Đồng bộ khi thay đổi tab
 window.addEventListener('storage', function(e) {
     if (e.key === 'currentUser') {
         const currentUser = JSON.parse(localStorage.getItem('currentUser'));

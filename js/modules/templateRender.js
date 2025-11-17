@@ -10,11 +10,12 @@ export class TemplateRenderer {
         this.initTemplates();
     }
 
+    // Cập nhật user hiện tại
     updateCurrentUser(user) {
         this.currentUser = user;
-        console.log('🔄 TemplateRenderer: Cập nhật user', this.currentUser);
     }
 
+    // Khởi tạo templates
     initTemplates() {
         if (!this.templates.post) {
             this.templates.post = this.createFallbackPostTemplate();
@@ -25,19 +26,16 @@ export class TemplateRenderer {
         if (!this.templates.comment) {
             this.templates.comment = this.createFallbackCommentTemplate();
         }
-        
-        console.log('📄 Templates loaded:', Object.keys(this.templates));
     }
 
+    // Render bài viết
     renderPost(post) {
-        console.log('🎨 Rendering post:', post.id);
-        
         let template = this.templates.post.innerHTML;
 
-        // THÊM: Sử dụng avatar của user hiện tại cho comment input
+        // Lấy avatar user hiện tại
         const currentUserAvatar = this.currentUser?.avatar || "./assets/images/avatar.png";
 
-        // THÊM: Xác định trạng thái lưu và icon
+        // Trạng thái lưu
         const isSaved = post.isSaved || false;
         const saveIcon = isSaved ? 'fa-bookmark' : 'fa-bookmark';
         const saveText = isSaved ? 'Đã lưu' : 'Lưu';
@@ -63,7 +61,6 @@ export class TemplateRenderer {
                     <span class="feed-post__action-text">COOK Mode</span>
                 </button>
             ` : '')
-            // THÊM: Nút lưu công thức
             .replace('{saveButton}', post.recipe ? `
                 <button class="feed-post__action-btn feed-post__save-btn ${saveClass}" data-action="save" data-post-id="${post.id}">
                     <i class="fas ${saveIcon} feed-post__action-icon"></i>
@@ -72,10 +69,10 @@ export class TemplateRenderer {
             ` : '')
             .replace('{commentsList}', post.commentsList ? post.commentsList.map(comment => 
                 this.renderComment(comment)).join('') : '')
-            // SỬA QUAN TRỌNG: Cập nhật avatar hiện tại cho comment input
             .replace(/src="\.\/assets\/images\/avatar\.png"/g, `src="${currentUserAvatar}"`);
     }
 
+    // Render công thức
     renderRecipe(recipe) {
         if (!recipe) return '';
         
@@ -93,11 +90,12 @@ export class TemplateRenderer {
                 `<li>${this.escapeHtml(step)}</li>`).join(''))
             .replace('{tipsSection}', recipe.tips ? `
                 <div class="feed-post__recipe-tips">
-                    <strong>💡 Mẹo:</strong> <span>${this.escapeHtml(recipe.tips)}</span>
+                    <strong>Mẹo:</strong> <span>${this.escapeHtml(recipe.tips)}</span>
                 </div>
             ` : '');
     }
 
+    // Render bình luận
     renderComment(comment) {
         let template = this.templates.comment.innerHTML;
 
@@ -108,6 +106,7 @@ export class TemplateRenderer {
             .replace(/{content}/g, this.escapeHtml(comment.content));
     }
 
+    // Xử lý ký tự đặc biệt HTML
     escapeHtml(unsafe) {
         if (!unsafe) return '';
         return unsafe
@@ -118,7 +117,7 @@ export class TemplateRenderer {
             .replace(/'/g, "&#039;");
     }
 
-    // Fallback templates với class BEM - THÊM nút save
+    // Template dự phòng cho bài viết
     createFallbackPostTemplate() {
         const template = document.createElement('div');
         template.innerHTML = `
@@ -173,24 +172,25 @@ export class TemplateRenderer {
         return template;
     }
 
+    // Template dự phòng cho công thức
     createFallbackRecipeTemplate() {
         const template = document.createElement('div');
         template.innerHTML = `
             <div class="feed-post__recipe">
-                <h4 class="feed-post__recipe-title">🍴 {title}</h4>
+                <h4 class="feed-post__recipe-title">{title}</h4>
                 <div class="feed-post__recipe-info">
-                    <div class="feed-post__recipe-info-item">⏱️ Chuẩn bị: {prepTime}</div>
-                    <div class="feed-post__recipe-info-item">🔥 Nấu: {cookTime}</div>
-                    <div class="feed-post__recipe-info-item">👥 Khẩu phần: {servings}</div>
-                    <div class="feed-post__recipe-info-item">📊 Độ khó: {difficulty}</div>
+                    <div class="feed-post__recipe-info-item">Chuẩn bị: {prepTime}</div>
+                    <div class="feed-post__recipe-info-item">Nấu: {cookTime}</div>
+                    <div class="feed-post__recipe-info-item">Khẩu phần: {servings}</div>
+                    <div class="feed-post__recipe-info-item">Độ khó: {difficulty}</div>
                 </div>
                 <div class="feed-post__recipe-details">
                     <div class="feed-post__ingredients">
-                        <h5 class="feed-post__ingredients-title">📝 Nguyên liệu:</h5>
+                        <h5 class="feed-post__ingredients-title">Nguyên liệu:</h5>
                         <ul class="feed-post__ingredients-list">{ingredientsList}</ul>
                     </div>
                     <div class="feed-post__steps">
-                        <h5 class="feed-post__steps-title">👩‍🍳 Các bước thực hiện:</h5>
+                        <h5 class="feed-post__steps-title">Các bước thực hiện:</h5>
                         <ol class="feed-post__steps-list">{stepsList}</ol>
                     </div>
                 </div>
@@ -200,6 +200,7 @@ export class TemplateRenderer {
         return template;
     }
 
+    // Template dự phòng cho bình luận
     createFallbackCommentTemplate() {
         const template = document.createElement('div');
         template.innerHTML = `

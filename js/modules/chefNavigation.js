@@ -1,18 +1,35 @@
-import { chefsData } from '../../data/chefsData.js';
-
 export class ChefNavigation {
     constructor() {
-        this.chefsData = chefsData;
+        this.chefsData = [];
         this.init();
     }
 
-    init() {
+    // Khởi tạo
+    async init() {
+        await this.loadChefsData();
         this.bindChefClicks();
-        console.log('👨‍🍳 Chef Navigation initialized');
     }
 
+    // Load dữ liệu từ JSON
+    async loadChefsData() {
+        try {
+            const response = await fetch('../../data/chefsdata.json');
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.chefsData = data.chefs || data;
+            
+        } catch (error) {
+            console.error('Error loading chefs data:', error);
+            this.chefsData = [];
+        }
+    }
+
+    // Xử lý sự kiện click vào thẻ đầu bếp
     bindChefClicks() {
-        // Lắng nghe click trên các chef card
         document.addEventListener('click', (e) => {
             const chefCard = e.target.closest('.sidebar-right__chef');
             if (chefCard) {
@@ -22,21 +39,19 @@ export class ChefNavigation {
         });
     }
 
+    // Chuyển hướng đến trang hồ sơ
     navigateToChefProfile(chefId) {
         const chef = this.chefsData.find(c => c.id === chefId);
         
         if (chef) {
-            // Lưu thông tin chef vào sessionStorage để trang chef-profile có thể sử dụng
             sessionStorage.setItem('selectedChef', JSON.stringify(chef));
-            
-            // Chuyển hướng đến trang chef-profile
             window.location.href = './pages/chef-profile.html';
         } else {
-            console.warn('Chef not found with ID:', chefId);
+            console.warn('Không tìm thấy dữ liệu đầu bếp với ID:', chefId);
         }
     }
 
-    // Phương thức để lấy thông tin chef (có thể sử dụng ở nơi khác)
+    // Helper lấy dữ liệu đầu bếp
     getChefData(chefId) {
         return this.chefsData.find(c => c.id === chefId) || null;
     }

@@ -1,10 +1,9 @@
 // js/pages/chef-profile.js
-import { chefsData } from '../../data/chefsData.js'
-
 class ChefProfile {
     constructor() {
         this.chef = null;
         this.chefId = null;
+        this.recipes = [];
         this.currentRecipePage = 1;
         this.recipesPerPage = 9;
         this.currentReviewPage = 1;
@@ -13,8 +12,9 @@ class ChefProfile {
         this.init();
     }
 
-    init() {
-        this.loadChefData();
+    async init() {
+        await this.loadChefData();
+        await this.loadRecipesData();
         this.bindEvents();
         this.renderChefProfile();
     }
@@ -33,7 +33,7 @@ class ChefProfile {
         return null;
     }
 
-    loadChefData() {
+    async loadChefData() {
         const sessionChefId = this.getChefFromSessionStorage();
         const urlChefId = this.getChefIdFromURL();
         
@@ -48,17 +48,94 @@ class ChefProfile {
             this.chefId = 1;
         }
 
-        this.chef = chefsData.find(chef => chef.id === this.chefId);
-        
-        console.log('Found chef:', this.chef);
+        try {
+            // Fetch chefs data from JSON file
+            const response = await fetch('../../data/chefsdata.json');
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            this.chef = data.chefs.find(chef => chef.id === this.chefId);
+            
+            console.log('Found chef:', this.chef);
 
-        if (!this.chef) {
-            console.error('Không tìm thấy đầu bếp với ID:', this.chefId);
-            window.location.href = 'famous-chef.html';
-            return;
+            if (!this.chef) {
+                console.error('Không tìm thấy đầu bếp với ID:', this.chefId);
+                this.showError('Không tìm thấy thông tin đầu bếp');
+                return;
+            }
+
+            sessionStorage.removeItem('selectedChef');
+            
+        } catch (error) {
+            console.error('Error loading chef data:', error);
+            this.showError('Không thể tải thông tin đầu bếp. Vui lòng thử lại sau.');
         }
+    }
 
-        sessionStorage.removeItem('selectedChef');
+    async loadRecipesData() {
+        try {
+            // Fetch recipes data from JSON file
+            const response = await fetch('../../data/recipe-details.data.json');
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            // Lọc công thức theo chefId
+            this.recipes = data.filter(recipe => {
+                // Tìm recipe có chef trùng với tên đầu bếp hiện tại
+                return recipe.chef === this.chef.name;
+            });
+            
+            console.log(`Found ${this.recipes.length} recipes for chef ${this.chef.name}:`, this.recipes);
+            
+        } catch (error) {
+            console.error('Error loading recipes data:', error);
+            // Nếu không load được recipes, sử dụng mảng rỗng
+            this.recipes = [];
+        }
+    }
+
+    showError(message) {
+        const container = document.querySelector('.chef-profile');
+        if (container) {
+            container.innerHTML = `
+                <div class="error-message" style="
+                    text-align: center;
+                    padding: 60px 20px;
+                    color: #666;
+                ">
+                    <i class="fas fa-exclamation-triangle" style="font-size: 64px; margin-bottom: 20px; color: #ff6b6b;"></i>
+                    <h2 style="margin-bottom: 16px;">Đã xảy ra lỗi</h2>
+                    <p style="margin-bottom: 24px; font-size: 16px;">${message}</p>
+                    <button id="retryButton" class="btn-primary" style="margin-right: 12px;">
+                        Thử lại
+                    </button>
+                    <button id="backButton" class="btn-secondary">
+                        Quay lại
+                    </button>
+                </div>
+            `;
+
+            // Add retry functionality
+            document.getElementById('retryButton').addEventListener('click', () => {
+                this.loadChefData().then(() => {
+                    if (this.chef) {
+                        this.renderChefProfile();
+                    }
+                });
+            });
+
+            // Add back button functionality
+            document.getElementById('backButton').addEventListener('click', () => {
+                window.location.href = './famous-chef.html';
+            });
+        }
     }
 
     renderChefProfile() {
@@ -77,55 +154,78 @@ class ChefProfile {
 
     renderHeader() {
         const coverImg = document.getElementById('chefCover');
-        if (this.chef.coverImage) {
+        if (coverImg && this.chef.coverImage) {
             coverImg.src = this.chef.coverImage;
+            coverImg.onerror = () => {
+                coverImg.src = '../../assets/images/cover-placeholder.jpg';
+            };
         }
 
         const avatarImg = document.getElementById('chefAvatar');
-        avatarImg.src = this.chef.avatar;
-        avatarImg.alt = this.chef.name;
+        if (avatarImg) {
+            avatarImg.src = this.chef.avatar;
+            avatarImg.alt = this.chef.name;
+            avatarImg.onerror = () => {
+                avatarImg.src = '../../assets/images/avatar-placeholder.jpg';
+            };
+        }
 
         const verifiedBadge = document.getElementById('chefVerified');
-        if (this.chef.verified) {
+        if (verifiedBadge && this.chef.verified) {
             verifiedBadge.style.display = 'flex';
         }
 
-        document.getElementById('chefName').textContent = this.chef.name;
-        document.getElementById('chefSpecialty').textContent = this.chef.specialty;
+        const chefName = document.getElementById('chefName');
+        if (chefName) chefName.textContent = this.chef.name;
+
+        const chefSpecialty = document.getElementById('chefSpecialty');
+        if (chefSpecialty) chefSpecialty.textContent = this.chef.specialty;
 
         const badge = document.getElementById('chefBadge');
-        if (this.chef.featured) {
+        if (badge && this.chef.featured) {
             badge.style.display = 'block';
         }
 
-        document.getElementById('chefBio').textContent = this.chef.bio;
-        document.getElementById('chefBioFull').textContent = this.chef.bioFull || this.chef.bio;
+        const chefBio = document.getElementById('chefBio');
+        if (chefBio) chefBio.textContent = this.chef.bio;
+
+        const chefBioFull = document.getElementById('chefBioFull');
+        if (chefBioFull) chefBioFull.textContent = this.chef.bioFull || this.chef.bio;
 
         this.renderStars('chefStars', this.chef.rating);
-        document.getElementById('chefRating').textContent = this.chef.rating;
-        document.getElementById('chefReviewCount').textContent = `(${this.chef.reviewCount || '0'} đánh giá)`;
+        
+        const chefRating = document.getElementById('chefRating');
+        if (chefRating) chefRating.textContent = this.chef.rating;
+
+        const chefReviewCount = document.getElementById('chefReviewCount');
+        if (chefReviewCount) chefReviewCount.textContent = `(${this.chef.reviewCount || '0'} đánh giá)`;
 
         const followBtn = document.getElementById('followChefBtn');
-        if (this.chef.isFollowing) {
+        if (followBtn && this.chef.isFollowing) {
             followBtn.classList.add('following');
             followBtn.innerHTML = '<i class="fas fa-check"></i><span>Đang theo dõi</span>';
         }
     }
 
     renderStats() {
-        document.getElementById('statRecipes').textContent = this.chef.recipes;
-        document.getElementById('statFollowers').textContent = this.chef.followers;
-        document.getElementById('statFollowing').textContent = this.chef.following || '0';
-        document.getElementById('statExperience').textContent = this.chef.experience;
+        const statRecipes = document.getElementById('statRecipes');
+        if (statRecipes) statRecipes.textContent = this.recipes.length; // Sử dụng số lượng công thức thực tế
+
+        const statFollowers = document.getElementById('statFollowers');
+        if (statFollowers) statFollowers.textContent = this.chef.followers;
+
+        const statFollowing = document.getElementById('statFollowing');
+        if (statFollowing) statFollowing.textContent = this.chef.following || '0';
+
+        const statExperience = document.getElementById('statExperience');
+        if (statExperience) statExperience.textContent = this.chef.experience;
     }
 
     renderRecipes() {
         const recipesGrid = document.getElementById('recipesGrid');
         if (!recipesGrid) return;
 
-        const sampleRecipes = this.generateSampleRecipes();
-        
-        if (sampleRecipes.length === 0) {
+        if (this.recipes.length === 0) {
             recipesGrid.innerHTML = `
                 <div class="empty-state" style="grid-column: 1 / -1;">
                     <div class="empty-state__icon">👨‍🍳</div>
@@ -136,51 +236,28 @@ class ChefProfile {
             return;
         }
 
-        recipesGrid.innerHTML = sampleRecipes.map(recipe => this.createRecipeCard(recipe)).join('');
-    }
+        // Hiển thị công thức theo trang
+        const startIndex = (this.currentRecipePage - 1) * this.recipesPerPage;
+        const endIndex = startIndex + this.recipesPerPage;
+        const recipesToShow = this.recipes.slice(startIndex, endIndex);
 
-    generateSampleRecipes() {
-        return [
-            {
-                id: 1,
-                title: "Phở Bò Hà Nội",
-                image: "../../assets/images/phobo.jpg",
-                time: "120 phút",
-                difficulty: "Trung bình",
-                rating: 4.8,
-                description: "Phở bò truyền thống Hà Nội với nước dùng đậm đà, thơm ngon."
-            },
-            {
-                id: 2,
-                title: "Bánh Xèo Miền Tây",
-                image: "../../assets/images/banhxeo.webp",
-                time: "45 phút",
-                difficulty: "Dễ",
-                rating: 4.5,
-                description: "Bánh xèo giòn rụm với nhân tôm thịt đầy đặn."
-            },
-            {
-                id: 3,
-                title: "Gà Nướng Muối Ớt",
-                image: "../../assets/images/ganuongmuoiot.webp",
-                time: "60 phút",
-                difficulty: "Dễ",
-                rating: 4.7,
-                description: "Gà nướng thơm lừng với vị muối ớt đặc trưng."
-            }
-        ];
+        recipesGrid.innerHTML = recipesToShow.map(recipe => this.createRecipeCard(recipe)).join('');
+        
+        this.updateRecipePagination();
     }
 
     createRecipeCard(recipe) {
-        const stars = this.generateStars(recipe.rating);
+        // Tạo rating mặc định nếu không có
+        const rating = recipe.rating || 4.5;
+        const stars = this.generateStars(rating);
         
         return `
             <div class="recipe-card" data-recipe-id="${recipe.id}">
                 <div class="recipe-card__image">
-                    <img src="${recipe.image}" alt="${recipe.title}" onerror="this.src='../assets/images/recipe-placeholder.jpg'">
+                    <img src="${recipe.img}" alt="${recipe.name}" onerror="this.src='../../assets/images/recipe-placeholder.jpg'">
                 </div>
                 <div class="recipe-card__info">
-                    <h3 class="recipe-card__title">${recipe.title}</h3>
+                    <h3 class="recipe-card__title">${recipe.name}</h3>
                     <div class="recipe-card__meta">
                         <div class="recipe-card__time">
                             <i class="far fa-clock"></i>
@@ -188,17 +265,39 @@ class ChefProfile {
                         </div>
                         <div class="recipe-card__difficulty">
                             <i class="fas fa-signal"></i>
-                            ${recipe.difficulty}
+                            ${recipe.difficulty || 'Trung bình'}
                         </div>
                     </div>
                     <div class="recipe-card__rating">
                         ${stars}
-                        <span>${recipe.rating}</span>
+                        <span>${rating}</span>
                     </div>
-                    <p class="recipe-card__description">${recipe.description}</p>
+                    <p class="recipe-card__description">${recipe.short || recipe.description || 'Công thức ngon và dễ làm'}</p>
+                    <div class="recipe-card__tags">
+                        ${recipe.tags ? recipe.tags.map(tag => `<span class="recipe-tag">${tag}</span>`).join('') : ''}
+                    </div>
                 </div>
             </div>
         `;
+    }
+
+    updateRecipePagination() {
+        const loadMoreBtn = document.getElementById('loadMoreRecipes');
+        if (!loadMoreBtn) return;
+        
+        const totalRecipes = this.recipes.length;
+        const currentlyShowing = this.currentRecipePage * this.recipesPerPage;
+        
+        if (currentlyShowing >= totalRecipes) {
+            loadMoreBtn.style.display = 'none';
+        } else {
+            loadMoreBtn.style.display = 'flex';
+        }
+    }
+
+    loadMoreRecipes() {
+        this.currentRecipePage++;
+        this.renderRecipes();
     }
 
     renderAbout() {
@@ -283,10 +382,12 @@ class ChefProfile {
             ? (sampleReviews.reduce((sum, review) => sum + review.rating, 0) / sampleReviews.length).toFixed(1)
             : '0.0';
         
-        averageRating.textContent = avgRating;
-        totalReviews.textContent = `${sampleReviews.length} đánh giá`;
+        if (averageRating) averageRating.textContent = avgRating;
+        if (totalReviews) totalReviews.textContent = `${sampleReviews.length} đánh giá`;
         
         this.renderStars('averageStars', parseFloat(avgRating));
+        
+        if (!reviewsList) return;
         
         if (sampleReviews.length === 0) {
             reviewsList.innerHTML = `
@@ -308,7 +409,7 @@ class ChefProfile {
                 id: 1,
                 user: {
                     name: "Nguyễn Văn A",
-                    avatar: "../assets/images/avatar-user1.jpg"
+                    avatar: "../../assets/images/avatar-user1.jpg"
                 },
                 rating: 5,
                 comment: "Đầu bếp rất tài năng! Các công thức rất dễ làm theo và thành phẩm rất ngon.",
@@ -318,7 +419,7 @@ class ChefProfile {
                 id: 2,
                 user: {
                     name: "Trần Thị B",
-                    avatar: "../assets/images/avatar-user2.jpg"
+                    avatar: "../../assets/images/avatar-user2.jpg"
                 },
                 rating: 4,
                 comment: "Mình đã học được rất nhiều từ đầu bếp. Cảm ơn những chia sẻ hữu ích!",
@@ -334,7 +435,7 @@ class ChefProfile {
             <div class="reviews__item">
                 <div class="reviews__item-header">
                     <div class="reviews__user">
-                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviews__user-avatar" onerror="this.src='../assets/images/avatar.png'">
+                        <img src="${review.user.avatar}" alt="${review.user.name}" class="reviews__user-avatar" onerror="this.src='../../assets/images/avatar.png'">
                         <div class="reviews__user-info">
                             <h4>${review.user.name}</h4>
                             <div class="reviews__date">${review.date}</div>
@@ -414,6 +515,14 @@ class ChefProfile {
             });
         }
 
+        // Load more recipes button
+        const loadMoreRecipesBtn = document.getElementById('loadMoreRecipes');
+        if (loadMoreRecipesBtn) {
+            loadMoreRecipesBtn.addEventListener('click', () => {
+                this.loadMoreRecipes();
+            });
+        }
+
         this.bindReviewModalEvents();
 
         document.addEventListener('click', (e) => {
@@ -436,12 +545,20 @@ class ChefProfile {
         document.querySelectorAll('.tabs__item').forEach(tab => {
             tab.classList.remove('tabs__item--active');
         });
-        document.querySelector(`[data-tab="${tabName}"]`).classList.add('tabs__item--active');
+        
+        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
+        if (activeTab) {
+            activeTab.classList.add('tabs__item--active');
+        }
 
         document.querySelectorAll('.chef-profile__panel').forEach(panel => {
             panel.classList.remove('chef-profile__panel--active');
         });
-        document.getElementById(`${tabName}-tab`).classList.add('chef-profile__panel--active');
+        
+        const activePanel = document.getElementById(`${tabName}-tab`);
+        if (activePanel) {
+            activePanel.classList.add('chef-profile__panel--active');
+        }
     }
 
     toggleFollow() {
@@ -458,7 +575,7 @@ class ChefProfile {
             
             const currentFollowers = this.parseFollowers(this.chef.followers);
             this.chef.followers = this.formatFollowers(currentFollowers + 1);
-            followersCount.textContent = this.chef.followers;
+            if (followersCount) followersCount.textContent = this.chef.followers;
             
             this.showNotification(`Đã theo dõi ${this.chef.name}`);
         } else {
@@ -467,7 +584,7 @@ class ChefProfile {
             
             const currentFollowers = this.parseFollowers(this.chef.followers);
             this.chef.followers = this.formatFollowers(Math.max(0, currentFollowers - 1));
-            followersCount.textContent = this.chef.followers;
+            if (followersCount) followersCount.textContent = this.chef.followers;
             
             this.showNotification(`Đã bỏ theo dõi ${this.chef.name}`);
         }
@@ -510,15 +627,25 @@ class ChefProfile {
     }
 
     viewRecipe(recipeId) {
+        // Tìm công thức trong danh sách
+        const recipe = this.recipes.find(r => r.id == recipeId);
+        if (recipe) {
+            // Lưu thông tin công thức vào sessionStorage để sử dụng ở trang chi tiết
+            sessionStorage.setItem('selectedRecipe', JSON.stringify(recipe));
+        }
         window.location.href = `recipe-detail.html?id=${recipeId}&chef=${this.chefId}`;
     }
 
     openReviewModal() {
         const modal = document.getElementById('reviewModal');
-        modal.classList.add('active');
-        
-        document.getElementById('reviewText').value = '';
-        this.resetStarRating();
+        if (modal) {
+            modal.classList.add('active');
+            
+            const reviewText = document.getElementById('reviewText');
+            if (reviewText) reviewText.value = '';
+            
+            this.resetStarRating();
+        }
     }
 
     resetStarRating() {
@@ -543,22 +670,34 @@ class ChefProfile {
             });
         });
         
-        document.getElementById('starRating').addEventListener('mouseleave', () => {
-            const currentRating = this.getCurrentRating();
-            this.highlightStars(currentRating);
-        });
+        const starRating = document.getElementById('starRating');
+        if (starRating) {
+            starRating.addEventListener('mouseleave', () => {
+                const currentRating = this.getCurrentRating();
+                this.highlightStars(currentRating);
+            });
+        }
 
-        document.getElementById('closeReviewModal').addEventListener('click', () => {
-            this.closeReviewModal();
-        });
+        const closeReviewModal = document.getElementById('closeReviewModal');
+        if (closeReviewModal) {
+            closeReviewModal.addEventListener('click', () => {
+                this.closeReviewModal();
+            });
+        }
         
-        document.getElementById('cancelReview').addEventListener('click', () => {
-            this.closeReviewModal();
-        });
+        const cancelReview = document.getElementById('cancelReview');
+        if (cancelReview) {
+            cancelReview.addEventListener('click', () => {
+                this.closeReviewModal();
+            });
+        }
 
-        document.getElementById('submitReview').addEventListener('click', () => {
-            this.submitReview();
-        });
+        const submitReview = document.getElementById('submitReview');
+        if (submitReview) {
+            submitReview.addEventListener('click', () => {
+                this.submitReview();
+            });
+        }
     }
 
     setStarRating(rating) {
@@ -594,12 +733,15 @@ class ChefProfile {
 
     closeReviewModal() {
         const modal = document.getElementById('reviewModal');
-        modal.classList.remove('active');
+        if (modal) {
+            modal.classList.remove('active');
+        }
     }
 
     submitReview() {
         const rating = this.getCurrentRating();
-        const comment = document.getElementById('reviewText').value.trim();
+        const reviewText = document.getElementById('reviewText');
+        const comment = reviewText ? reviewText.value.trim() : '';
         
         if (rating === 0) {
             this.showNotification('Vui lòng chọn số sao đánh giá!');

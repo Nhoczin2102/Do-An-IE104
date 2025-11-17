@@ -3,13 +3,13 @@ export class RecipeNavigation {
         this.init();
     }
 
+    // Khởi tạo
     init() {
         this.addRecipeClickHandlers();
-        console.log('🍽️ Recipe Navigation initialized');
     }
 
+    // Gắn sự kiện click cho danh sách món ăn
     addRecipeClickHandlers() {
-        // Lấy tất cả các món ăn trong sidebar
         const recipeItems = document.querySelectorAll('.sidebar-right__chef[data-recipe-id]');
         
         recipeItems.forEach(item => {
@@ -21,17 +21,17 @@ export class RecipeNavigation {
         });
     }
 
+    // Chuyển hướng đến trang chi tiết
     navigateToRecipeDetail(recipeElement) {
         const recipeId = recipeElement.getAttribute('data-recipe-id');
         const recipeName = recipeElement.getAttribute('data-recipe-name');
         const recipeChef = recipeElement.getAttribute('data-recipe-chef');
 
         if (!recipeId) {
-            console.error('Recipe ID not found');
+            console.error('Không tìm thấy ID công thức');
             return;
         }
 
-        // Tạo URL với parameters
         const params = new URLSearchParams({
             id: recipeId,
             src: 'sidebar',
@@ -40,11 +40,10 @@ export class RecipeNavigation {
 
         const recipeDetailUrl = `./pages/recipe-detail.html?${params.toString()}`;
         
-        console.log(`Navigating to recipe: ${recipeName} (ID: ${recipeId})`);
         window.location.href = recipeDetailUrl;
     }
 
-    // Method để thêm món ăn mới vào sidebar
+    // Thêm món ăn mới vào sidebar
     addRecipeToSidebar(recipeData) {
         const sidebar = document.querySelector('.sidebar-right__card');
         if (!sidebar) return;
@@ -62,13 +61,13 @@ export class RecipeNavigation {
             </div>
         `;
 
-        // Thêm vào sau title
+        // Chèn sau tiêu đề
         const title = sidebar.querySelector('.sidebar-right__title');
         if (title) {
             title.insertAdjacentHTML('afterend', recipeHtml);
         }
 
-        // Thêm event listener cho món ăn mới
+        // Gắn sự kiện cho món mới thêm
         const newRecipe = sidebar.querySelector(`[data-recipe-id="${recipeData.id}"]`);
         if (newRecipe) {
             newRecipe.style.cursor = 'pointer';

@@ -7,6 +7,7 @@ export class SearchManager {
         this.bindEvents();
     }
 
+    // Gắn sự kiện tìm kiếm
     bindEvents() {
         if (this.searchBtn && this.searchInput) {
             this.searchBtn.addEventListener('click', () => this.performSearch());
@@ -16,11 +17,13 @@ export class SearchManager {
         }
     }
 
+    // Thực hiện tìm kiếm
     performSearch() {
         const searchTerm = this.searchInput.value.trim().toLowerCase();
         this.postManager.searchPosts(searchTerm);
     }
 
+    // Xóa tìm kiếm
     clearSearch() {
         if (this.searchInput) {
             this.searchInput.value = '';

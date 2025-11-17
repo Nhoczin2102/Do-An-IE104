@@ -1,4 +1,5 @@
 export class Helpers {
+    // Định dạng thời gian hiển thị
     static formatTime(timestamp) {
         const now = new Date();
         const postTime = new Date(timestamp);
@@ -10,6 +11,7 @@ export class Helpers {
         return `${Math.floor(diffInSeconds / 86400)} ngày trước`;
     }
 
+    // Kiểm tra tính hợp lệ của file ảnh
     static validateImageFile(file) {
         const validTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
         const maxSize = 5 * 1024 * 1024; // 5MB
@@ -25,6 +27,7 @@ export class Helpers {
         return true;
     }
 
+    // Giới hạn tần suất gọi hàm (Debounce)
     static debounce(func, wait) {
         let timeout;
         return function executedFunction(...args) {
@@ -37,6 +40,7 @@ export class Helpers {
         };
     }
 
+    // Tạo ID ngẫu nhiên
     static generateId() {
         return Date.now() + Math.floor(Math.random() * 1000);
     }
