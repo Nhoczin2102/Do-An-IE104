@@ -1,4 +1,3 @@
-// js/pages/famous-chefs.js
 class FamousChefs {
     constructor() {
         this.chefs = [];
