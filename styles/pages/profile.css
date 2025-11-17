@@ -10,7 +10,6 @@
   position: relative;
 }
 
-/* ========== SIDEBAR FIXED ========== */
 .sidebar {
   position: sticky;
   top: 90px;
@@ -34,24 +33,17 @@
   border-radius: 10px;
 }
 
-/* ========== FOLLOWERS CONTENT SCROLLABLE ========== */
 .followers-content {
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-
-  /* Làm cho nó "dính" lại giống sidebar */
   position: sticky;
   top: 90px;
-
-  /* Giới hạn chiều cao và cho phép cuộn bên trong */
   max-height: calc(100vh - 150px);
   overflow-y: auto;
-
   height: auto;
 }
 
-/* Thêm style cho thanh cuộn (tùy chọn) */
 .followers-content::-webkit-scrollbar {
   width: 4px;
 }
@@ -66,7 +58,6 @@
   border-radius: 10px;
 }
 
-/* Profile Header */
 .profile-header {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   color: white;
@@ -157,7 +148,6 @@
   margin-top: 4px;
 }
 
-/* Navigation */
 .profile-nav {
   display: flex;
   background: white;
@@ -192,7 +182,6 @@
   background: var(--background-light);
 }
 
-/* Follow Tabs */
 .follow-tabs {
   display: flex;
   background: white;
@@ -225,7 +214,6 @@
   color: var(--primary-color);
 }
 
-/* Search Bar */
 .search-container {
   position: relative;
   margin: 0 24px 24px;
@@ -257,7 +245,6 @@
   font-size: 20px;
 }
 
-/* User List */
 .user-list {
   display: flex;
   flex-direction: column;
@@ -428,7 +415,6 @@
   transform: translateY(-2px);
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 60px 20px;
@@ -451,9 +437,6 @@
   margin-bottom: 24px;
 }
 
-/* ========== RESPONSIVE TỐI ƯU PROFILE ========== */
-
-/* Tablet & Laptop nhỏ */
 @media (max-width: 1200px) {
 
   html,
@@ -472,7 +455,6 @@
   }
 }
 
-/* Mobile & Tablet (Dưới 787px) */
 @media (max-width: 787px) {
 
   html,
@@ -483,21 +465,17 @@
 
   .page--profile {
     display: block;
-    /* Quan trọng: Bỏ Grid để tránh lỗi layout */
     margin: 23px auto;
     padding: 0 20px;
     width: 100%;
     max-width: 100%;
     position: static;
-    /* Quan trọng: Bỏ relative để con không bị nhốt */
   }
 
-  /* Ẩn Sidebar cũ (dạng cột) */
   .page--profile>.sidebar {
     display: none;
   }
 
-  /* Reset content để bung full màn hình */
   .followers-content {
     position: static;
     top: auto;
@@ -508,7 +486,6 @@
     background: transparent;
   }
 
-  /* --- CÁC PHẦN TỬ KHÁC --- */
   .profile-header {
     border-radius: 20px 20px 0px 0px;
     padding-bottom: 30px;
@@ -543,7 +520,6 @@
     font-size: 18px;
   }
 
-  /* Menu Tab & List */
   .profile-nav {
     top: 60px;
     z-index: 80;
@@ -569,7 +545,6 @@
     max-height: none;
   }
 
-  /* User Card */
   .user-card {
     flex-direction: row;
     align-items: flex-start;

@@ -1,4 +1,3 @@
-/* ========== MAIN LAYOUT ========== */
 .page--chef-profile {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -11,20 +10,17 @@
   position: relative;
 }
 
-/* ========== CHEF PROFILE ========== */
 .chef-profile {
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   overflow: hidden;
-  
   position: sticky;
   top: 90px;
   max-height: calc(100vh - 150px);
   overflow-y: auto;
 }
 
-/* ========== CHEF PROFILE HEADER ========== */
 .chef-profile__header {
   position: relative;
 }
@@ -163,7 +159,6 @@
   gap: 12px;
 }
 
-/* ========== BUTTONS ========== */
 .btn {
   padding: 12px 24px;
   border-radius: 12px;
@@ -240,7 +235,6 @@
   font-size: 14px;
 }
 
-/* ========== STATS SECTION ========== */
 .chef-profile__stats {
   background: white;
   padding: 30px 40px;
@@ -279,7 +273,6 @@
   font-weight: 600;
 }
 
-/* ========== TABS ========== */
 .chef-profile__tabs {
   background: white;
   border-bottom: 2px solid var(--border-color);
@@ -313,7 +306,6 @@
   background: var(--background-light);
 }
 
-/* ========== TAB CONTENT ========== */
 .chef-profile__content {
   padding: 40px;
 }
@@ -338,7 +330,6 @@
   }
 }
 
-/* ========== RECIPES TAB ========== */
 .recipes-filter {
   display: flex;
   justify-content: space-between;
@@ -501,7 +492,6 @@
   overflow: hidden;
 }
 
-/* ========== ABOUT TAB ========== */
 .about {
   max-width: 800px;
 }
@@ -634,7 +624,6 @@
   font-size: 14px;
 }
 
-/* ========== REVIEWS TAB ========== */
 .reviews__header {
   display: flex;
   justify-content: space-between;
@@ -764,7 +753,6 @@
   font-size: 15px;
 }
 
-/* ========== MODAL ========== */
 .modal {
   display: none;
   position: fixed;
@@ -943,7 +931,6 @@
   box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
 }
 
-/* ========== LOAD MORE BUTTON ========== */
 .recipes-load {
   text-align: center;
   padding: 40px;
@@ -971,7 +958,6 @@
   box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
 }
 
-/* ========== EMPTY STATE ========== */
 .empty-state {
   text-align: center;
   padding: 80px 40px;
@@ -996,7 +982,6 @@
   font-weight: 600;
 }
 
-/* ========== NOTIFICATION ========== */
 .chef-notification {
   position: fixed;
   top: 100px;
@@ -1021,7 +1006,6 @@
   }
 }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 1200px) {
   .page--chef-profile {
     grid-template-columns: 280px 1fr;

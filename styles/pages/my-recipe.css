@@ -1,17 +1,15 @@
-/* Thêm CSS để khóa cuộn trang chính */
 html,
 body {
-    overflow: hidden; /* Ẩn thanh cuộn của trang */
-    height: 100%; /* Đảm bảo body không vượt quá chiều cao màn hình */
+    overflow: hidden;
+    height: 100%;
 }
 
-/* ===== LAYOUT CHÍNH (Giống famous-chef) ===== */
 .page {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 50px;
     max-width: 90%;
-    margin: 10px auto; /* Chỉnh lại margin cho giống famous-chef */
+    margin: 10px auto;
     padding: 0 20px;
     align-items: start;
     min-height: calc(100vh - 130px);
@@ -83,7 +81,6 @@ body {
     filter: brightness(0) invert(1);
 }
 
-/* ===== HEADER CONTENT ===== */
 .saved-recipes__title-wrapper {
     display: flex;
     justify-content: center;
@@ -109,7 +106,6 @@ body {
     text-overflow: ellipsis;
 }
 
-/* ===== CONTENT CHÍNH ===== */
 .saved-recipes {
     position: relative;
     flex: 1;
@@ -120,14 +116,13 @@ body {
     border: 1px solid var(--border-color);
     position: sticky;
     top: 90px; 
-    max-height: calc(100vh - 150px); /* Chỉnh lại chút cho giống famous-chef */
+    max-height: calc(100vh - 150px);
     overflow-y: hidden; 
     display: flex;
     flex-direction: column;
     padding-bottom: 15px;
 }
 
-/* ===== FIX SCROLL AREA ===== */
 .saved-recipes__scroll-container {
     flex: 1;
     max-height: calc(100vh - 270px); 
@@ -176,7 +171,6 @@ body {
     background: var(--primary-dark);
 }
 
-/* ===== GRID CHO BÀI VIẾT ===== */
 .saved-recipes__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -241,17 +235,12 @@ body {
     line-height: 1.5;
 }
 
-/* ===== RESPONSIVE (ĐÃ ĐỒNG BỘ VỚI FAMOUS-CHEF) ===== */
-
-/* Large Desktop */
 @media (max-width: 1440px) {
     .saved-recipes__grid {
         gap: 20px;
     }
 }
 
-/* Desktop & Laptop (Max-width: 1200px) */
-/* MỐC NÀY GIỐNG FAMOUS-CHEF: Sidebar nhỏ lại còn 280px */
 @media (max-width: 1200px) {
     .page {
         grid-template-columns: 280px 1fr;
@@ -268,15 +257,12 @@ body {
     }
 }
 
-/* Tablet & iPad (Max-width: 968px) */
-/* MỐC MỚI: Chuyển sang 1 cột ngay tại đây giống famous-chef */
 @media (max-width: 968px) {
     .page {
         grid-template-columns: 1fr;
         gap: 24px;
     }
 
-    /* Khi về 1 cột, phần nội dung không cần sticky bên cạnh sidebar nữa */
     .saved-recipes {
         max-height: calc(100vh - 140px); 
     }
@@ -286,10 +272,7 @@ body {
     }
 }
 
-/* Small Tablet (Max-width: 768px) */
 @media (max-width: 768px) {
-    /* Layout đã chuyển 1 cột ở 968px rồi, ở đây chỉ chỉnh chi tiết */
-    
     .page {
         max-width: 100%;
         margin: 0;
@@ -336,7 +319,6 @@ body {
     }
 }
 
-/* Mobile (Max-width: 640px) */
 @media (max-width: 640px) {
     .saved-recipes__title-wrapper {
         flex-direction: column;
@@ -372,7 +354,6 @@ body {
     }
 }
 
-/* Small Mobile (Max-width: 480px) */
 @media (max-width: 480px) {
     .page {
         padding: 12px;
@@ -419,7 +400,6 @@ body {
     }
 }
 
-/* Very Small Mobile (Max-width: 360px) */
 @media (max-width: 360px) {
     .saved-recipes__grid {
         gap: 12px;

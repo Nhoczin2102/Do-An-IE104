@@ -1,4 +1,3 @@
-/* ===== PAGE LAYOUT ===== */
 html,
 body {
   overflow-y: hidden;
@@ -22,8 +21,6 @@ body {
   width: 100%;
   overflow-x: hidden; 
 }
-
-/* ===== COOK MODE ===== */
 
 .cookmode {
     display: none;
@@ -268,8 +265,6 @@ body {
     cursor: not-allowed;
     transform: none;
 }
-
-/* ===== FEED ===== */
 
 .feed__composer {
   background: var(--bg-card);
@@ -650,8 +645,6 @@ body {
   background: var(--primary-dark);
 }
 
-/* ===== MODAL ===== */
-
 .modal {
   display: none;
   position: fixed;
@@ -943,8 +936,6 @@ body {
   background: var(--primary-dark);
 }
 
-/* ===== RIGHT SIDEBAR ===== */
-
 .sidebar-right__card {
   background: var(--bg-card);
   border-radius: var(--radius);
@@ -953,7 +944,6 @@ body {
   position: sticky;
   height: fit-content;
   margin-bottom: 30px;
-  /* New improvements */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 1px solid var(--border-color);
 }
@@ -970,7 +960,6 @@ body {
   padding-bottom: 16px;
   border-bottom: 1px solid var(--border-color);
   justify-self: center;
-  /* New improvements */
   text-align: center;
   position: relative;
   margin-bottom: 8px;
@@ -995,7 +984,6 @@ body {
   border-top: 1px solid var(--border-color);
   transition: all 0.15s ease;
   cursor: pointer;
-  /* New improvements */
   border-radius: 6px;
   margin: 2px 0;
 }
@@ -1010,7 +998,6 @@ body {
   padding-right: 12px;
   margin: 0 -12px;
   border-radius: 8px;
-  /* New improvements */
   transform: translateX(4px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
@@ -1021,7 +1008,6 @@ body {
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
-  /* New improvements */
   transition: transform 0.3s ease;
   border: 2px solid transparent;
 }
@@ -1039,7 +1025,6 @@ body {
   color: var(--text);
   font-weight: 600;
   margin-bottom: 4px;
-  /* New improvements */
   transition: color 0.2s ease;
 }
 
@@ -1050,7 +1035,6 @@ body {
 .sidebar-right__chef-specialty {
   color: var(--muted);
   font-size: 13px;
-  /* New improvements */
   position: relative;
   padding-left: 12px;
 }
@@ -1077,9 +1061,6 @@ body {
   animation: slideInRight 0.5s ease-out;
 }
 
-/* ===== RESPONSIVE ===== */
-
-/* ===== PAGE LAYOUT ===== */
 @media (max-width: 1400px) {
   .page.page--home  {
     grid-template-columns: 280px minmax(0, 1fr) 280px;
@@ -1131,8 +1112,6 @@ body {
   }
 } 
 
-/* ===== COOK MODE ===== */
-
 @media (max-width: 600px) {
     .cookmode__title {
         font-size: 1.2em;
@@ -1153,8 +1132,6 @@ body {
     }
 }
 
-/* ===== FEED ===== */
-
 @media (max-width: 787px) {
   html,
 body {
@@ -1168,24 +1145,17 @@ body {
     font-size: 14px;
   }
   #feed, .feed__posts {
-    /* 1. Ẩn thanh cuộn */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE và Edge cũ */
-    
-    /* 2. Căn giữa: Bỏ padding-right (vốn dùng để chừa chỗ cho scrollbar) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     padding-right: 0 !important;
-    
-    /* Đảm bảo các bài post con được căn giữa trong container */
     align-items: center;
   }
 
-  /* Ẩn thanh cuộn trên Chrome, Safari, Edge mới */
   #feed::-webkit-scrollbar, 
   .feed__posts::-webkit-scrollbar {
     display: none;
   }
   
-  /* Đảm bảo thanh soạn thảo (composer) cũng bỏ padding thừa */
   .feed__composer {
     width: 100%;
     margin-left: 0;
@@ -1234,8 +1204,6 @@ body {
     gap: 4px;
   }
 }
-
-/* ===== FEED POST ===== */
 
 @media (max-width: 538px) {
   .feed-post {
@@ -1333,8 +1301,6 @@ body {
   }
 }
 
-/* ===== MODAL ===== */
-
 @media (max-width: 500px) {
   .modal__content {
     padding: 16px;
@@ -1361,8 +1327,6 @@ body {
     text-align: center;
   }
 }
-
-/* ===== RIGHT SIDEBAR ===== */
 
 @media (max-width: 1091px) {
   .sidebar-right {

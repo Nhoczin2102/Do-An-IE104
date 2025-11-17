@@ -26,7 +26,6 @@ body {
   padding: 24px;
 }
 
-/* ===== LAYOUT ===== */
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -48,7 +47,6 @@ body {
   min-height: 560px;
 }
 
-/* ===== FORM WRAPPER ===== */
 .container__form-wrapper {
   padding: 30px 30px 32px;
   display: flex;
@@ -80,7 +78,6 @@ body {
   margin: 0;
 }
 
-/* ===== CHUYỂN ĐỔI FORM ===== */
 .auth-forms {
   position: relative;
   flex: 1;
@@ -106,7 +103,6 @@ body {
   pointer-events: auto;
   z-index: 2;
 }
-
 
 .container--signup-active #signinBox,
 .container--signup-active #forgotBox {
@@ -136,8 +132,6 @@ body {
   z-index: 2;
 }
 
-
-/* ===== FORM ===== */
 .auth-form {
   width: 100%;
   max-width: 460px;
@@ -249,7 +243,6 @@ body {
   text-decoration: underline;
 }
 
-
 #forgotBox {
   transform: translateX(100%);
 }
@@ -276,9 +269,6 @@ body {
 .auth-form__toggle-link--back .auth-form__toggle-link-anchor:hover {
   text-decoration: underline;
 }
-
-/* ===== RESPONSIVE ===== */
-
 
 @media (max-width: 1024px) and (min-width: 481px) {
   .container {

@@ -1,4 +1,3 @@
-/* ========== MAIN LAYOUT ========== */
 .body {
   overflow-y: hidden;
 }
@@ -15,24 +14,17 @@
   position: relative;
 }
 
-/* ========== CHEFS CONTENT SCROLLABLE ========== */
 .chefs-content {
-    background: var(--bg-card);
+  background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  
-  /* Làm cho nó "dính" lại giống sidebar */
   position: sticky;
-  top: 90px; 
-
-  /* Giới hạn chiều cao và cho phép cuộn bên trong */
-  max-height: calc(100vh - 150px); 
-  overflow-y: auto; 
-  
-  height: auto; 
+  top: 90px;
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+  height: auto;
 }
 
-/* Chefs Header */
 .chefs-header {
   background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
   color: white;
@@ -75,7 +67,6 @@
   line-height: 1.6;
 }
 
-/* Filter Tabs */
 .chef-filter-tabs {
   display: flex;
   justify-content: center;
@@ -109,7 +100,6 @@
   transform: translateY(-1px);
 }
 
-/* Chefs Controls */
 .chefs-controls {
   display: flex;
   justify-content: space-between;
@@ -178,7 +168,6 @@
   box-shadow: 0 4px 20px rgba(255, 105, 103, 0.15);
 }
 
-/* Chefs Grid */
 .chefs-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -439,7 +428,6 @@
   transform: translateY(-2px);
 }
 
-/* Load More Button */
 .load-more-container {
   text-align: center;
   padding: 32px;
@@ -463,7 +451,6 @@
   box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
 }
 
-/* Empty State */
 .empty-state {
   text-align: center;
   padding: 80px 20px;
@@ -487,7 +474,6 @@
   margin-bottom: 24px;
 }
 
-/* Notification */
 .chef-notification {
   position: fixed;
   top: 100px;
@@ -529,7 +515,6 @@
   }
 }
 
-/* ========== RESPONSIVE ========== */
 @media (max-width: 1200px) {
   .page.chefs {
     grid-template-columns: 280px 1fr;
