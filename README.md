@@ -8,6 +8,8 @@ https://github.com/Nhoczin2102/Do-An-IE104.git
 
 ## 3. Link deploy
 https://potpan-git-main-nhoczin2102s-projects.vercel.app?_vercel_share=BusznsspQWFWLVPdp3NPzopDevHoLo7Fs
+tên đăng nhập: user@example.com
+mật khẩu: user123
 
 ## 4.link Video demo dự án:
 https://drive.google.com/drive/folders/1QYD8OOjr7NMKh7B5exfEBJN_eBoevBAw
