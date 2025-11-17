@@ -1,15 +1,24 @@
 /* CSS */
 
+.mobile-sidebar-wrapper {
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+  z-index: 100;
+  /* Thêm dòng này để nó chiếm full chiều rộng của cột Grid cha */
+  width: 100%; 
+}
+
+/* Style cho Sidebar bên trong */
 .sidebar {
   background: var(--bg-card);
   border-radius: var(--radius);
   padding: 28px;
   box-shadow: var(--shadow);
-  position: sticky;
-  top: 90px;
+  /* Bỏ position sticky ở đây vì wrapper đã lo việc đó */
+  position: relative; 
   max-height: calc(100vh - 150px);
   overflow-y: auto;
-  z-index: 100;
   height: fit-content;
 }
 
@@ -125,5 +134,100 @@
 @media (max-width: 538px) {
   .sidebar {
     display: none;
+  }
+}
+
+/* --- CSS CHO MOBILE FAB --- */
+
+/* Mặc định trên máy tính: Ẩn nút FAB, hiện wrapper bình thường */
+.sidebar-fab {
+  display: none;
+}
+
+.mobile-sidebar-wrapper {
+  /* Đảm bảo trên desktop nó vẫn giữ vị trí sticky của sidebar con */
+  height: fit-content;
+  position: sticky;
+  top: 90px;
+  z-index: 100;
+}
+
+/* KHI MÀN HÌNH NHỎ HƠN 1091px (Tablet & Mobile) */
+@media (max-width: 769px) {
+  /* Biến wrapper thành khung nổi */
+  .mobile-sidebar-wrapper {
+    position: fixed;
+    bottom: 80px; /* Cách đáy màn hình */
+    right: 20px;  /* Cách phải màn hình */
+    top: auto;    /* Bỏ thuộc tính top của desktop */
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    /* Hiệu ứng khi kéo */
+    touch-action: none; /* Quan trọng: ngăn cuộn trang khi đang kéo nút */
+  }
+
+  /* Hiện nút FAB hình tròn */
+  .sidebar-fab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    font-size: 24px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .sidebar-fab:active {
+    transform: scale(0.95);
+  }
+
+  /* Chỉnh lại sidebar thành menu bật lên */
+  .sidebar {
+    display: block !important; /* Ghi đè display:none của media query cũ */
+    position: absolute;
+    bottom: 70px; /* Hiện phía trên nút FAB */
+    right: 0;
+    width: 250px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    border-radius: 12px;
+    padding: 15px;
+    
+    /* Ẩn mặc định */
+    opacity: 0;
+    transform: scale(0.8) translateY(20px);
+    transform-origin: bottom right;
+    pointer-events: none; /* Không cho bấm khi đang ẩn */
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Class để hiện menu khi mở */
+  .mobile-sidebar-wrapper.active .sidebar {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Ẩn bớt thông tin profile trên menu nhỏ cho gọn */
+  .sidebar__profile {
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .sidebar__avatar {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .sidebar__name {
+    font-size: 16px;
   }
 }

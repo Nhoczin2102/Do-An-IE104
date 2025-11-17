@@ -1,31 +1,200 @@
-.posts-content {
-  background: var(--bg-card);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 90px;
-  max-height: calc(100vh - 150px);
-  overflow-y: auto;
+/* =========================================
+   1. GLOBAL LAYOUT & SCROLLBAR
+   ========================================= */
+
+/* Cấu trúc trang 2 cột: Sidebar (320px) + Content (Phần còn lại) */
+.page--profile {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 50px;
+  max-width: 90%;
+  margin: 23px auto;
+  padding: 0 20px;
+  align-items: start;
+  min-height: calc(100vh - 130px);
+  position: relative;
 }
 
-.posts-content::-webkit-scrollbar {
+/* Style chung cho thanh cuộn (Scrollbar) */
+.sidebar::-webkit-scrollbar,
+.posts-content::-webkit-scrollbar,
+.followers-content::-webkit-scrollbar,
+.user-list::-webkit-scrollbar {
   width: 4px;
 }
 
-.posts-content::-webkit-scrollbar-track {
+.sidebar::-webkit-scrollbar-track,
+.posts-content::-webkit-scrollbar-track,
+.followers-content::-webkit-scrollbar-track,
+.user-list::-webkit-scrollbar-track {
   background: var(--background-light);
   border-radius: 10px;
 }
 
-.posts-content::-webkit-scrollbar-thumb {
+.sidebar::-webkit-scrollbar-thumb,
+.posts-content::-webkit-scrollbar-thumb,
+.followers-content::-webkit-scrollbar-thumb,
+.user-list::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 10px;
 }
 
-/* Posts Grid */
+/* Style chung cho vùng nội dung bên phải (Posts & Followers) */
+.posts-content,
+.followers-content {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+
+  /* Sticky: Dính nội dung khi cuộn trang */
+  position: sticky;
+  top: 90px;
+
+  /* Scroll nội bộ: Chỉ cuộn vùng này, không cuộn cả trang */
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+
+  /* Scrollbar Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) var(--background-light);
+}
+
+/* =========================================
+   2. PROFILE HEADER (Avatar, Bio, Stats)
+   ========================================= */
+.profile-header {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+  color: white;
+  padding: 10px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" fill="rgba(255,255,255,0.1)"><path d="M0 50 Q 250 0 500 50 T 1000 50 V 100 H 0 Z"/></svg>');
+  background-size: cover;
+  background-position: bottom;
+  height: 300px;
+}
+
+.profile-header__avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid white;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-header__name {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.profile-header__bio {
+  font-size: 16px;
+  opacity: 0.9;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.profile-header__stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 32px;
+  position: relative;
+}
+
+.profile-header__stat-item {
+  text-align: center;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.profile-header__stat-item:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.profile-header__stat-number {
+  font-size: 24px;
+  font-weight: 700;
+  display: block;
+}
+
+.profile-header__stat-label {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+/* =========================================
+   3. NAVIGATION (Posts vs Follow)
+   ========================================= */
+.profile-nav {
+  display: flex;
+  background: white;
+  padding: 0;
+  border-bottom: 2px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  backdrop-filter: blur(10px);
+}
+
+.profile-nav__item {
+  flex: 1;
+  text-align: center;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: var(--text-light);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+.profile-nav__item--active {
+  color: var(--primary-color);
+  border-bottom-color: var(--primary-color);
+}
+
+.profile-nav__item:hover:not(.profile-nav__item--active) {
+  color: var(--primary-color);
+  background: var(--background-light);
+}
+
+/* =========================================
+   4. POSTS SECTION (Grid Layout)
+   ========================================= */
 .posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  /* Responsive tự động: tối thiểu 260px/cột, nếu nhỏ hơn thì bung 100% */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
   gap: 24px;
   padding: 24px;
 }
@@ -38,6 +207,9 @@
   transition: all 0.3s ease;
   cursor: pointer;
   border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .post-card:hover {
@@ -51,10 +223,15 @@
   height: 200px;
   object-fit: cover;
   display: block;
+  background-color: #eee;
+  aspect-ratio: 16/9;
 }
 
 .post-card__content {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .post-card__title {
@@ -78,6 +255,8 @@
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  margin-bottom: auto;
+  /* Đẩy phần meta xuống đáy */
 }
 
 .post-card__meta {
@@ -86,17 +265,18 @@
   align-items: center;
   font-size: 13px;
   color: var(--muted);
+  margin-top: 12px;
 }
 
-.post-card__stats {
-  display: flex;
-  gap: 12px;
-}
-
+.post-card__stats,
 .post-card__stat {
   display: flex;
   align-items: center;
   gap: 4px;
+}
+
+.post-card__stats {
+  gap: 12px;
 }
 
 .post-card__stat i {
@@ -107,13 +287,15 @@
   font-size: 12px;
 }
 
-/* Post Filters */
+/* Filters & Tabs */
 .post-filters {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px 24px 0;
   margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 
 .filter-tabs {
@@ -132,6 +314,7 @@
   transition: all 0.3s ease;
   color: var(--text-light);
   border-right: 1px solid var(--border-color);
+  white-space: nowrap;
 }
 
 .filter-tabs__tab:last-child {
@@ -154,11 +337,6 @@
   gap: 10px;
 }
 
-.sort-options__label {
-  font-size: 14px;
-  color: var(--text-light);
-}
-
 .sort-options__select {
   padding: 10px 16px;
   border: 1px solid var(--border-color);
@@ -166,7 +344,6 @@
   background: white;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
 .sort-options__select:focus {
@@ -175,7 +352,8 @@
 }
 
 /* Empty State */
-.empty-posts {
+.empty-posts,
+.empty-state {
   text-align: center;
   padding: 60px 20px;
   background: white;
@@ -184,14 +362,16 @@
   margin: 24px;
 }
 
-.empty-posts__icon {
+.empty-posts__icon,
+.empty-state__icon {
   font-size: 80px;
   color: var(--border-color);
   margin-bottom: 20px;
   opacity: 0.5;
 }
 
-.empty-posts__text {
+.empty-posts__text,
+.empty-state__text {
   color: var(--muted);
   font-size: 18px;
   margin-bottom: 24px;
@@ -215,39 +395,325 @@
   box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
 }
 
-/* Responsive */
-@media (max-width: 968px) {
+/* =========================================
+   5. FOLLOWERS SECTION (List Layout)
+   ========================================= */
+.follow-tabs {
+  display: flex;
+  background: white;
+  padding: 8px;
+  margin: 24px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border-color);
+}
+
+.follow-tabs__tab {
+  flex: 1;
+  text-align: center;
+  padding: 16px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: var(--text-light);
+}
+
+.follow-tabs__tab--active {
+  background: var(--primary-color);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 105, 103, 0.3);
+}
+
+.follow-tabs__tab:hover:not(.follow-tabs__tab--active) {
+  background: var(--background-light);
+  color: var(--primary-color);
+}
+
+.search-container {
+  margin: 0 24px 24px;
+  position: relative;
+}
+
+.search-container__input {
+  width: 100%;
+  padding: 18px 24px 18px 56px;
+  border: 2px solid var(--border-color);
+  border-radius: 16px;
+  font-size: 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-container__input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}
+
+.search-container__icon {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 20px;
+}
+
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 0 24px 24px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+
+.user-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--primary-color);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary-light);
+}
+
+.user-card:hover::before {
+  transform: scaleY(1);
+}
+
+.user-card__avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 20px;
+  flex-shrink: 0;
+  border: 3px solid var(--background-light);
+  transition: all 0.3s ease;
+}
+
+.user-card:hover .user-card__avatar {
+  border-color: var(--primary-light);
+  transform: scale(1.05);
+}
+
+.user-card__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-card__info {
+  flex: 1;
+}
+
+.user-card__name {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+.user-card__bio {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.user-card__stats {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.user-card__action {
+  margin-left: 20px;
+}
+
+.btn--follow {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn--follow:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 6px 20px rgba(255, 105, 103, 0.4);
+}
+
+.btn--following {
+  background: var(--background-light);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.btn--following:hover {
+  background: #e0e0e0;
+  color: var(--primary-dark);
+}
+
+/* =========================================
+   6. RESPONSIVE (TABLET & MOBILE)
+   ========================================= */
+
+/* Tablet (Max 1200px) */
+@media (max-width: 1200px) {
+  .page--profile {
+    grid-template-columns: 260px 1fr;
+    /* Thu nhỏ sidebar */
+    gap: 20px;
+    padding: 0 15px;
+  }
+
+  .profile-header__stats {
+    gap: 20px;
+  }
+}
+
+/* Mobile & Tablet Nhỏ (Max 768px) */
+@media (max-width: 768px) {
+
+  /* Reset Layout để chồng lên nhau */
+  .page--profile {
+    display: block;
+        margin: 23px auto;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Lưu ý: Sidebar sẽ được file sidebar.css xử lý thành nút FAB */
+
+  /* Content phải bung full màn hình */
+  .posts-content,
+  .followers-content {
+    position: static;
+    max-height: none;
+    overflow: visible;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+    padding-bottom: 100px;
+    /* Chừa chỗ cho nút FAB */
+  }
+
+  /* Header */
+  .profile-header {
+    border-radius: 0 0 20px 20px;
+    padding-bottom: 30px;
+  }
+
+  .profile-header::before {
+    height: 180px;
+  }
+
+  .profile-header__avatar {
+    width: 100px;
+    height: 100px;
+    margin-top: 40px;
+  }
+
+  .profile-header__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .profile-header__stat-number {
+    font-size: 18px;
+  }
+
+  /* Tabs & Filters */
+  .profile-nav {
+    top: 60px;
+    z-index: 80;
+  }
+
   .post-filters {
     flex-direction: column;
-    gap: 16px;
     align-items: flex-start;
-  }
-
-  .sort-options {
-    width: 100%;
-    justify-content: space-between;
-  }
-}
-
-@media (max-width: 768px) {
-  .posts-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-    padding: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .posts-grid {
-    grid-template-columns: 1fr;
+    gap: 10px;
   }
 
   .filter-tabs {
     width: 100%;
+    overflow-x: auto;
   }
 
-  .filter-tabs__tab {
-    flex: 1;
-    text-align: center;
+  /* Cuộn ngang nếu nhiều tab */
+  .sort-options {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* List & Cards */
+  .user-list {
+    padding: 0 15px;
+    max-height: none;
+  }
+
+  .user-card {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 15px;
+    gap: 15px;
+  }
+
+  .user-card__avatar {
+    width: 50px;
+    height: 50px;
+    margin-right: 0;
+  }
+
+  .user-card__info {
+    width: calc(100% - 70px);
+  }
+
+  .user-card__action {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn--follow {
+    width: 100%;
+    padding: 10px;
+  }
+
+  /* Grid Post Mobile (Đã xử lý bởi minmax nhưng thêm padding cho thoáng) */
+  .posts-grid {
+    gap: 16px;
+    padding: 16px;
   }
 }

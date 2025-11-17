@@ -1156,12 +1156,40 @@ body {
 /* ===== FEED ===== */
 
 @media (max-width: 787px) {
+  html,
+body {
+  overflow-y: auto;
+}
   .feed__composer {
     padding: 16px; 
   }
   .feed__composer .feed__composer-tabs {
     gap: 16px;
     font-size: 14px;
+  }
+  #feed, .feed__posts {
+    /* 1. Ẩn thanh cuộn */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE và Edge cũ */
+    
+    /* 2. Căn giữa: Bỏ padding-right (vốn dùng để chừa chỗ cho scrollbar) */
+    padding-right: 0 !important;
+    
+    /* Đảm bảo các bài post con được căn giữa trong container */
+    align-items: center;
+  }
+
+  /* Ẩn thanh cuộn trên Chrome, Safari, Edge mới */
+  #feed::-webkit-scrollbar, 
+  .feed__posts::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Đảm bảo thanh soạn thảo (composer) cũng bỏ padding thừa */
+  .feed__composer {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 

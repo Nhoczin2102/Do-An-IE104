@@ -1,4 +1,3 @@
-
 .page--profile {
   display: grid;
   grid-template-columns: 320px 1fr;
@@ -40,26 +39,28 @@
   background: var(--bg-card);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-  
+
   /* Làm cho nó "dính" lại giống sidebar */
   position: sticky;
-  top: 90px; 
+  top: 90px;
 
   /* Giới hạn chiều cao và cho phép cuộn bên trong */
-  max-height: calc(100vh - 150px); 
-  overflow-y: auto; 
-  
-  height: auto; 
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+
+  height: auto;
 }
 
 /* Thêm style cho thanh cuộn (tùy chọn) */
 .followers-content::-webkit-scrollbar {
   width: 4px;
 }
+
 .followers-content::-webkit-scrollbar-track {
   background: var(--background-light);
   border-radius: 10px;
 }
+
 .followers-content::-webkit-scrollbar-thumb {
   background: var(--primary-color);
   border-radius: 10px;
@@ -162,7 +163,7 @@
   background: white;
   padding: 0;
   border-bottom: 2px solid var(--border-color);
-  position: sticky;
+  position: static;
   top: 0;
   z-index: 90;
   backdrop-filter: blur(10px);
@@ -450,98 +451,154 @@
   margin-bottom: 24px;
 }
 
-/* ========== RESPONSIVE ========== */
+/* ========== RESPONSIVE TỐI ƯU PROFILE ========== */
+
+/* Tablet & Laptop nhỏ */
 @media (max-width: 1200px) {
+
+  html,
+  body {
+    overflow-y: hidden;
+  }
+
   .page--profile {
-    grid-template-columns: 280px 1fr;
-    gap: 30px;
-  }
-}
-
-@media (max-width: 968px) {
-  .page--profile {
-    grid-template-columns: 1fr;
-    gap: 24px;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 20px;
+    padding: 0 15px;
   }
 
-  .sidebar {
-    position: static;
-    max-height: none;
-  }
-
-  .profile-nav {
-    position: static;
-  }
-}
-
-@media (max-width: 768px) {
   .profile-header__stats {
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .profile-header__stat-item {
-    flex: 1;
-    min-width: 120px;
-  }
-
-  .user-card {
-    flex-direction: column;
-    text-align: center;
-    padding: 20px;
-  }
-
-  .user-card__avatar {
-    margin-right: 0;
-    margin-bottom: 16px;
-  }
-
-  .user-card__action {
-    margin-left: 0;
-    margin-top: 16px;
-  }
-
-  .user-card__stats {
-    justify-content: center;
-  }
-
-  .profile-nav {
-    flex-direction: column;
-  }
-
-  .profile-nav__item {
-    padding: 16px;
+    gap: 20px;
   }
 }
 
-@media (max-width: 480px) {
-  .page--profile {
-    padding: 0 16px;
+/* Mobile & Tablet (Dưới 787px) */
+@media (max-width: 787px) {
+
+  html,
+  body {
+    overflow-y: auto !important;
+
   }
 
+  .page--profile {
+    display: block;
+    /* Quan trọng: Bỏ Grid để tránh lỗi layout */
+    margin: 23px auto;
+    padding: 0 20px;
+    width: 100%;
+    max-width: 100%;
+    position: static;
+    /* Quan trọng: Bỏ relative để con không bị nhốt */
+  }
+
+  /* Ẩn Sidebar cũ (dạng cột) */
+  .page--profile>.sidebar {
+    display: none;
+  }
+
+  /* Reset content để bung full màn hình */
+  .followers-content {
+    position: static;
+    top: auto;
+    max-height: none;
+    overflow: visible;
+    border-radius: 0;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  /* --- CÁC PHẦN TỬ KHÁC --- */
   .profile-header {
-    padding: 20px 10px;
+    border-radius: 20px 20px 0px 0px;
+    padding-bottom: 30px;
+  }
+
+  .profile-header::before {
+    height: 180px;
   }
 
   .profile-header__avatar {
     width: 100px;
     height: 100px;
+    margin-top: 40px;
+  }
+
+  .profile-header__name {
+    font-size: 24px;
+  }
+
+  .profile-header__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .profile-header__stat-item {
+    padding: 10px 5px;
+  }
+
+  .profile-header__stat-number {
+    font-size: 18px;
+  }
+
+  /* Menu Tab & List */
+  .profile-nav {
+    top: 60px;
+    z-index: 80;
   }
 
   .follow-tabs {
-    flex-direction: column;
-    gap: 8px;
+    margin: 15px;
+    flex-direction: row;
   }
-}
 
-.posts-list-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px; /* Khoảng cách giữa các bài viết */
-  padding: 24px; /* Đệm xung quanh danh sách bài viết */
-}
+  .follow-tabs__tab {
+    padding: 10px;
+    font-size: 13px;
+  }
 
-/* Ẩn .empty-state gốc khi render post (nếu cần) */
-#postsContent .empty-state {
-   margin: 0; 
+  .search-container {
+    margin: 0 15px 15px;
+  }
+
+  .user-list {
+    padding: 0 15px 100px;
+    overflow: visible;
+    max-height: none;
+  }
+
+  /* User Card */
+  .user-card {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .user-card__avatar {
+    width: 50px;
+    height: 50px;
+    border-width: 2px;
+    margin-right: 0;
+  }
+
+  .user-card__info {
+    width: calc(100% - 70px);
+  }
+
+  .user-card__action {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .btn--follow {
+    width: 100%;
+    padding: 10px;
+  }
 }

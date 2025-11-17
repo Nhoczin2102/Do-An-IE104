@@ -73,42 +73,48 @@
 
   <!-- ========== LAYOUT 3 CỘT ========== -->
   <main class="page page--home">
-    <aside class="sidebar">
-      <div class="sidebar__profile">
-        <img class="sidebar__avatar" id="sidebarAvatar" src="./assets/images/avatar.png" alt="avatar" />
-        <div class="sidebar__profile-info">
-          <div class="sidebar__name" id="sidebarName">...</div>
-          <div class="sidebar__handle" id="sidebarHandle">...</div>
+    <div id="mobileSidebarWrapper" class="mobile-sidebar-wrapper">
+      <button id="sidebarFab" class="sidebar-fab">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <aside class="sidebar" id="mobileSidebar">
+        <div class="sidebar__profile">
+          <img class="sidebar__avatar" id="sidebarAvatar" src="./assets/images/avatar.png" alt="avatar" />
+          <div class="sidebar__profile-info">
+            <div class="sidebar__name" id="sidebarName">Loading...</div>
+            <div class="sidebar__handle" id="sidebarHandle">@...</div>
+          </div>
         </div>
-      </div>
 
-      <nav class="sidebar__menu">
-        <a class="sidebar__menu-item sidebar__menu-item--active" href="#">
-          <i class="fas fa-newspaper sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Bảng tin</span>
-        </a>
+        <nav class="sidebar__menu">
+          <a class="sidebar__menu-item sidebar__menu-item--active" href="#">
+            <i class="fas fa-newspaper sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Bảng tin</span>
+          </a>
 
-        <a class="sidebar__menu-item" href="./pages/profile.html">
-          <i class="fas fa-user sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Hồ sơ của tôi</span>
-        </a>
+          <a class="sidebar__menu-item" href="./pages/profile.html">
+            <i class="fas fa-user sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Hồ sơ của tôi</span>
+          </a>
 
-        <a class="sidebar__menu-item" href="./pages/my-recipe.html">
-          <i class="fas fa-bookmark sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Công thức đã lưu</span>
-        </a>
+          <a class="sidebar__menu-item" href="./pages/my-recipe.html">
+            <i class="fas fa-bookmark sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Công thức đã lưu</span>
+          </a>
 
-        <a class="sidebar__menu-item" href="./pages/famous-chef.html">
-          <i class="fas fa-utensils sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
-        </a>
+          <a class="sidebar__menu-item" href="./pages/famous-chef.html">
+            <i class="fas fa-utensils sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Đầu bếp nổi tiếng</span>
+          </a>
 
-        <a class="sidebar__menu-item" href="./pages/setting.html">
-          <i class="fas fa-cog sidebar__menu-icon"></i>
-          <span class="sidebar__menu-text">Cài đặt</span>
-        </a>
-      </nav>
-    </aside>
+          <a class="sidebar__menu-item" href="./pages/setting.html">
+            <i class="fas fa-cog sidebar__menu-icon"></i>
+            <span class="sidebar__menu-text">Cài đặt</span>
+          </a>
+        </nav>
+      </aside>
+    </div>
 
     <!-- Cột giữa: nạp nội dung từ file JS -->
     <div class="feed">
@@ -169,8 +175,7 @@
           <h3 class="sidebar-right__title">Món ăn nổi bật</h3>
 
           <!-- Món 1 - Thêm data attributes -->
-          <div class="sidebar-right__chef" data-recipe-id="101" data-recipe-name="Pizza"
-            data-recipe-chef="Bà Mư">
+          <div class="sidebar-right__chef" data-recipe-id="101" data-recipe-name="Pizza" data-recipe-chef="Bà Mư">
             <img src="./assets/images/recipe1.png" alt="Thịt kho đậu hủ" class="sidebar-right__chef-avatar" />
             <div class="sidebar-right__chef-info">
               <strong class="sidebar-right__chef-name">Pizza</strong><br />
