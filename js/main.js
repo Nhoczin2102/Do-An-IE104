@@ -348,8 +348,8 @@ async function initializeManagers() {
             const isPagesDir = window.location.pathname.includes('/pages/');
             
             // Đường dẫn chính xác tới file JS
-            const postManagerPath = isPagesDir ? '../js/managers/postManager.js' : './js/managers/postManager.js';
-            const modalManagerPath = isPagesDir ? '../js/managers/modalManager.js' : './js/managers/modalManager.js';
+            const postManagerPath = isPagesDir ? './modules/postManager.js' : './modules/postManager.js';
+            const modalManagerPath = isPagesDir ? './modules/modalManager.js' : './modules/modalManager.js';
             
             // Tải PostManager
             const postModule = await import(postManagerPath);
