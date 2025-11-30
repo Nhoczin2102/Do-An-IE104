@@ -335,8 +335,7 @@
     }
 
     .image-placeholder::before {
-        left: 50%;
-        transform: translateX(-50%);
+       display: none;
     }
 }
 
