@@ -287,27 +287,121 @@
 
 /* ===== RESPONSIVE ===== */
 
+/* Tablet và Laptop nhỏ (Dưới 992px) */
 @media (max-width: 992px) {
+    .container {
+        padding: 0 30px; 
+    }
 
     .about__grid,
     .contact-content,
     .values__grid {
         flex-direction: column;
+        gap: 50px; 
     }
 
     .hero__title {
         font-size: 3em;
     }
 
+    .hero-section {
+        padding: 100px 0;
+    }
+
+    /* Căn giữa nội dung khi xuống dòng */
+    .about__text, 
+    .about__image {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mission-vision {
+        border-left: none;
+        border-top: 4px solid var(--primary-color); 
+        padding-left: 0;
+        padding-top: 20px;
+        margin-top: 40px;
+        text-align: left;
+    }
+
+    /* Xử lý phần ảnh tròn logo */
+    .image-placeholder {
+        background-position: center center; 
+        margin-top: 20px;
+        padding-top: 0;
+        height: 360px; 
+        display: block;
+        position: relative;
+    }
+
+    .image-placeholder::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}
+
+/* Mobile (Dưới 768px) */
+@media (max-width: 768px) {
+    .section-title {
+        font-size: 2em; 
+    }
+
+    .hero__title {
+        font-size: 2.2em; 
+    }
+    
+    .hero__subtitle {
+        font-size: 1.1em;
+        padding: 0 10px;
+    }
+
+    .hero-section {
+        padding: 80px 0;
+        background-size: cover;
+        background-position: center;
+    }
+
     .section-padding {
         padding: 50px 0;
     }
 
-    .about__text,
-    .about__image,
-    .contact-form,
-    .contact-info {
-        flex: auto;
+    /* Chỉnh lại vòng tròn trang trí cho vừa màn hình điện thoại nhỏ */
+    .image-placeholder::before {
+        width: 280px; 
+        height: 280px;
+    }
+    
+    .image-placeholder {
+        height: 300px;
+    }
+
+    /* Thẻ giá trị (Value cards) */
+    .value-card {
+        padding: 20px;
+    }
+
+   
+    .cta-section__box {
+        padding: 30px 20px;
+    }
+    
+    .cta__title {
+        font-size: 1.5em;
+    }
+    
+    .btn {
         width: 100%;
+        text-align: center;
+    }
+}
+
+/* Mobile rất nhỏ (Dưới 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px; 
+    }
+
+    .section-title--center {
+        margin-bottom: 30px;
     }
 }
