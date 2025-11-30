@@ -7,14 +7,14 @@ class ChefProfile {
         this.recipesPerPage = 9;
         this.currentReviewPage = 1;
         this.reviewsPerPage = 5;
-        
+
         this.init();
     }
 
     async init() {
         await this.loadChefData();
         await this.loadRecipesData();
-        this.bindEvents();
+        this.bindEvents(); 
         this.renderChefProfile();
     }
 

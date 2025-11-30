@@ -54,12 +54,6 @@ function renderPosts(posts) {
         </div>
     `).join('');
     
-    document.querySelectorAll('.post-card').forEach(card => {
-        card.addEventListener('click', function() {
-            const postId = this.getAttribute('data-id');
-            window.location.href = `../pages/recipe-detail.html?id=${postId}&src=profile1`;
-        });
-    });
 }
 
 // Sắp xếp bài viết
@@ -136,8 +130,5 @@ function setupEventListeners(posts) {
         renderPosts(sortedPosts);
     });
     
-    // Sự kiện nút tạo bài viết
-    document.querySelector('.btn--create-post').addEventListener('click', function() {
-        alert('Chuyển đến trang tạo bài viết mới');
-    });
+
 }
