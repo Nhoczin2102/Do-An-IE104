@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Jisoo",
+        "avatar": "../assets/images/cd1.jpeg",
+        "bio": "Đam mê ẩm thực Việt Nam - Chia sẻ công thức gia đình",
+        "recipes": 45,
+        "followers": 320,
+        "isFollowing": true
+    },
+    {
+        "id": 2,
+        "name": "Minh Anh",
+        "avatar": "../assets/images/cd2.jpeg",
+        "bio": "Chuyên làm bánh ngọt | Yêu thích ẩm thực Pháp",
+        "recipes": 67,
+        "followers": 890,
+        "isFollowing": true
+    },
+    {
+        "id": 3,
+        "name": "Hương Giang",
+        "avatar": "../assets/images/cd3.jpeg",
+        "bio": "Food blogger | Healthy recipes | Eat clean",
+        "recipes": 123,
+        "followers": 2100,
+        "isFollowing": false
+    },
+    {
+        "id": 4,
+        "name": "Ngọc Lan",
+        "avatar": "../assets/images/cd4.jpeg",
+        "bio": "Đầu bếp nghiệp dư | Thích nấu ăn cho gia đình",
+        "recipes": 34,
+        "followers": 156,
+        "isFollowing": true
+    }
+]

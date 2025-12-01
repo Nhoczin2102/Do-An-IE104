@@ -331,11 +331,3 @@ function updateUserInList(updatedUser) {
         localStorage.setItem('users', JSON.stringify(users));
     }
 }
-
-function loadLanguageSetting() {
-    const savedLanguage = localStorage.getItem('preferredLanguage') || 'vi';
-    const languageSelect = document.getElementById('language');
-    if (languageSelect) {
-        languageSelect.value = savedLanguage;
-    }
-}

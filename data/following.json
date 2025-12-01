@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Bếp Nhà Mình",
+        "avatar": "../assets/images/bep1.jpg",
+        "bio": "Kênh ẩm thực gia đình | Món ngon mỗi ngày",
+        "recipes": 234,
+        "followers": 12500,
+        "isFollowing": true
+    },
+    {
+        "id": 2,
+        "name": "Ẩm Thực Mẹ Làm",
+        "avatar": "../assets/images/bep2.jpg",
+        "bio": "Món ngon mỗi ngày | Công thức dễ làm",
+        "recipes": 189,
+        "followers": 8700,
+        "isFollowing": true
+    },
+    {
+        "id": 3,
+        "name": "Nấu Ăn Dễ Dàng",
+        "avatar": "../assets/images/bep3.webp",
+        "bio": "Công thức đơn giản cho người mới bắt đầu",
+        "recipes": 156,
+        "followers": 5200,
+        "isFollowing": true
+    },
+    {
+        "id": 4,
+        "name": "Bếp Trưởng Gia Đình",
+        "avatar": "../assets/images/bep4.jpeg",
+        "bio": "Chia sẻ kinh nghiệm nấu nướng | Mẹo vặt bếp núc",
+        "recipes": 98,
+        "followers": 3800,
+        "isFollowing": true
+    }
+]
